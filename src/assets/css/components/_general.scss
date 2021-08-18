@@ -1,6 +1,9 @@
+@import '../variables/variables';
+
 .welcome-container {
      border-radius: 3rem;
-     box-shadow: 0 0 15px rgba($color: gray, $alpha: 0.1);
+     box-shadow: 0 0 15px rgba($color: $mainPurpleColor, $alpha: 0.1);
+     padding: 3rem 0;
 }
 
 .text-title {
@@ -8,6 +11,11 @@
      font-size: 3rem;
 }
 
-.btn-large {
-     width: 10rem;
+.btn-welcome {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 25rem;
+     height: 4rem;
+     font-size: 1.5rem;
 }

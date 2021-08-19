@@ -1,4 +1,4 @@
-import Login from "./pages/login/Login";
+import Login from "./pages/welcome/Login";
 import MessageRootPage from "./pages/message/MessageRootPage";
 import Welcome from "./pages/welcome/Welcome";
 

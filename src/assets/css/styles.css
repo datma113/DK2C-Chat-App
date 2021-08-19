@@ -10,6 +10,11 @@ html {
   line-height: 1;
 }
 
+a {
+  text-decoration: none;
+  font-weight: normal;
+}
+
 /*components*/
 .welcome-container {
   border-radius: 3rem;
@@ -64,6 +69,47 @@ html {
   width: 30rem;
   height: 30rem;
   display: block;
+}
+
+.welcome-container__logo {
+  box-shadow: 0 0 10px rgba(93, 59, 120, 0.3);
+  width: 15%;
+  border-radius: 50%;
+  background-color: #5D3B78;
+}
+
+.input-container {
+  position: relative;
+}
+.input-container__input {
+  outline: none;
+  border: none;
+  border-bottom: 3px solid #5D3B78;
+  transition: 0.3s;
+  letter-spacing: 2px;
+}
+.input-container__input:focus + .input-container__label {
+  top: -2rem;
+  color: #5D3B78;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.input-container__input:not(:placeholder-shown).input-container__input:not(:focus) + .input-container__label {
+  top: -2rem;
+  color: #5D3B78;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.input-container__input:focus {
+  box-shadow: -3px 3px 3px #a166d1;
+  border: none;
+}
+.input-container__label {
+  position: absolute;
+  transition: 0.3s;
+  left: 0;
+  top: 0;
+  font-size: 2rem;
 }
 
 /*variables*/

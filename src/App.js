@@ -1,11 +1,10 @@
 import Header from "./components/Header";
 import "./assets/css/styles.css";
-import Welcome from "./pages/welcome/Welcome";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import routes from "./routes";
 
 function App() {
-    const maproutes = routes.map((route, index) => {
+    const mapRoutes = routes.map((route, index) => {
         return (
           <Route key={index}
             path={route.path}
@@ -19,13 +18,8 @@ function App() {
         <div className="App">
           <div className="">
             <Header />
-            <Switch>{maproutes}</Switch>
-            <br></br>
-  
-  
-  
-          </div>
-  
+            <Switch>{mapRoutes}</Switch>
+          </div> 
         </div>
       </Router>
     );

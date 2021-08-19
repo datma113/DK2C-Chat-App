@@ -1,6 +1,12 @@
 .welcome-container__image {
-     // background-color: blue;
      width: 30rem;
      height: 30rem;
      display: block;
+}
+
+.welcome-container__logo {
+     box-shadow: 0 0 10px rgba($color: $mainPurpleColor, $alpha: 0.3);
+     width: 15%;
+     border-radius: 50%;
+     background-color:  $mainPurpleColor;
 }

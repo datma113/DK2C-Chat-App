@@ -31,6 +31,25 @@ html {
   font-size: 1.5rem;
 }
 
+.bg {
+  background-color: #5D3B78;
+  color: #FBFBFB;
+  /* height: 20rem; */
+  text-align: center;
+}
+
+.bg:hover .card__header {
+  background-color: #F5F3F6;
+  color: #262626;
+}
+
+.hover:hover {
+  background-color: #a166d1;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
 /*pages*/
 .welcome-container__image {
   background-color: blue;

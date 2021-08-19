@@ -1,0 +1,17 @@
+@import '../variables/variables';
+.bg {
+    background-color: $mainPurpleColor;
+    color: $mainLightColor;
+    /* height: 20rem; */
+    text-align: center;
+}
+.bg:hover .card__header {
+    background-color: $blockHoverColor;
+    color: $mainDarkColor;
+}
+.hover:hover {
+    background-color: #a166d1;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}

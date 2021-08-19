@@ -2,7 +2,6 @@
 .bg {
     background-color: $mainPurpleColor;
     color: $mainLightColor;
-    /* height: 20rem; */
     text-align: center;
 }
 .bg:hover .card__header {
@@ -10,7 +9,7 @@
     color: $mainDarkColor;
 }
 .hover:hover {
-    background-color: #a166d1;
+    background-color: $hoverPurpleColor; 
     height: 100%;
     margin: 0px;
     padding: 0px;

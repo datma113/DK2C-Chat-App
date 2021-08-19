@@ -7,6 +7,17 @@ const TextInput = ({ id, label, type, checkRegex, regexPattern }) => {
         return message.length === 0 ? "d-none" : "";
     };
 
+    const isValidationOfCheckRegexProp = (valueOfInput) => {
+        const IS_VALID = typeof checkRegex(valueOfInput, regexPattern)
+        return IS_VALID === "string" ? true : false
+    }
+
+    const changeStateWhenTriggered = (valueOfInput) => {
+        if(isValidationOfCheckRegexProp(valueOfInput))
+            setmessageOfRegex(checkRegex(valueOfInput, regexPattern));
+        else setmessageOfRegex("")
+    }
+
     return (
         <div className="input-container mb-5">
             <input
@@ -16,7 +27,7 @@ const TextInput = ({ id, label, type, checkRegex, regexPattern }) => {
                 id={id}
                 autoComplete="off"
                 onChange={(e) => {
-                    setmessageOfRegex(checkRegex(e.target.value, regexPattern));
+                    changeStateWhenTriggered(e.target.value)
                 }}
             />
             <label htmlFor={id} className="input-container__label">

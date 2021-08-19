@@ -42,16 +42,25 @@ html {
   color: #262626;
 }
 
-.hover:hover {
+.header:hover {
   background-color: #a166d1;
   height: 100%;
   margin: 0px;
   padding: 0px;
+  color: aliceblue;
+}
+
+.header {
+  color: aliceblue;
+}
+
+.header__active {
+  color: aliceblue;
+  background-color: #a166d1;
 }
 
 /*pages*/
 .welcome-container__image {
-  background-color: blue;
   width: 30rem;
   height: 30rem;
   display: block;

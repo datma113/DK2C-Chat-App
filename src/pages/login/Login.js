@@ -1,7 +1,7 @@
 import React from "react";
 import welcome from '../../assets/image/welcome.jpg'
 
-const Welcome = () => {
+const Login = () => {
     return (
         <div className="d-flex justify-content-center mt-5">
             <div className="col-lg-4 d-flex flex-column align-items-center justify-content-center welcome-container">
@@ -17,4 +17,4 @@ const Welcome = () => {
     );
 };
 
-export default Welcome;
+export default Login;

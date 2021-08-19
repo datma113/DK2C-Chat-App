@@ -1,20 +1,23 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import logo from '../assets/image/LOGO.png'
 
 const Header = () => {
     return (
         <>
             <div className=" row bg  align-items-center ">
-                <div className="col-1 p-2"> <img src={logo} style={{height: "50px",width:"50px"}} /></div>
-                <div className="hover col-1 p-2"> <i className=" fas fa-comments  "></i> </div>
-                <div className="hover col-1 p-2"><i class="fas fa-users"></i> </div>
-                <div className="hover col-1 p-2"> <i class="fas fa-file"></i> </div>
-                <div className="hover col-1 p-2"> <i class="fas fa-folder"></i> </div>
-                <div className="hover col-5 p-2">  </div>
+                <div className="col-1 p-2" type="button"> <img src={logo} style={{ height: "50px", width: "50px" }} /></div>
+
+                <NavLink className="header col-1 p-2 " activeClassName="header__active col-1 p-2" to="/message" > <i className=" fas fa-comments"></i> </NavLink>
+
+                <NavLink className="header col-1 p-2" activeClassName="header__active col-1 p-2" to="/welcome"><i class="fas fa-users"></i> </NavLink>
+                <NavLink className="header col-1 p-2" activeClassName="header__active col-1 p-2" to="/login"> <i class="fas fa-file"></i> </NavLink>
+                <NavLink className="header col-1 p-2" to="/"> <i class="fas fa-folder"></i> </NavLink>
+                <div className="col-5 p-2">  </div>
                 <div className="col-2 row">
-                <div className="hover col-3 p-2"> <i class="fas fa-list-ul"></i> </div>
-                <div className="hover col-3 p-2"> <i class="fas fa-list-ul"></i> </div>
-                <div className="hover col-3 p-2"> <i class="fas fa-sign-in-alt"></i></div>
+                    <NavLink className="header col-3 p-2" type="button" to="/"> <i class="fas fa-list-ul"></i> </NavLink>
+                    <NavLink className="header col-3 p-2" type="button" to="/"> <i class="fas fa-list-ul"></i> </NavLink>
+                    <NavLink className="header col-3 p-2" type="button" to="/"> <i class="fas fa-sign-in-alt"></i></NavLink>
                 </div>
             </div>
         </>

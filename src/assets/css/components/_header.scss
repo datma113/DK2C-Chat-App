@@ -8,9 +8,22 @@
     background-color: $blockHoverColor;
     color: $mainDarkColor;
 }
-.hover:hover {
+.header:hover {
     background-color: $hoverPurpleColor; 
     height: 100%;
     margin: 0px;
     padding: 0px;
+    color: aliceblue;
 }
+.header {
+    color: aliceblue;
+
+}
+.header__active {
+    color: aliceblue;
+    background-color: $hoverPurpleColor;
+
+}
+
+
+ 

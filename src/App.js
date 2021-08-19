@@ -6,22 +6,16 @@ import routes from "./routes";
 function App() {
     const mapRoutes = routes.map((route, index) => {
         return (
-          <Route key={index}
-            path={route.path}
-            component={route.component}
-            exact={route.exact}
-          />
+            <Route key={index} path={route.path} component={route.component} exact={route.exact} />
         );
-      });
+    });
     return (
         <Router>
-        <div className="App">
-        
-            <Header />
-            <Switch>{mapRoutes}</Switch>
-        
-        </div>
-      </Router>
+            <div className="App">
+                <Header />
+                <Switch>{mapRoutes}</Switch>
+            </div>
+        </Router>
     );
 }
 

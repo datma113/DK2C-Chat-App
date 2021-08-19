@@ -7,6 +7,9 @@ const TextInput = ({ id, label, type, checkRegex, regexPattern }) => {
         return message.length === 0 ? "d-none" : "";
     };
 
+    /** 
+     * This function can catch an undefined function pass as props
+     */
     const isValidationOfCheckRegexProp = (valueOfInput) => {
         const IS_VALID = typeof checkRegex(valueOfInput, regexPattern)
         return IS_VALID === "string" ? true : false

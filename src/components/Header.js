@@ -6,7 +6,7 @@ const Header = () => {
     return (
         <>
             <div className=" row bg  align-items-center ">
-                <div className="col-1 p-2" type="button"> <img src={logo} style={{ height: "50px", width: "50px" }} /></div>
+                <div className="col-1 p-2" type="button"> <img src={logo} alt="" style={{ height: "50px", width: "50px" }} /></div>
 
                 <NavLink className="header col-1 p-2 " activeClassName="header__active col-1 p-2" to="/message" > <i className=" fas fa-comments"></i> </NavLink>
 

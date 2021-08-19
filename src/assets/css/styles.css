@@ -57,6 +57,7 @@ a {
 
 .header {
   color: aliceblue;
+  border-radius: 100px;
 }
 
 .header__active {

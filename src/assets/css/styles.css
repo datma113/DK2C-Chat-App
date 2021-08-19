@@ -11,12 +11,24 @@ html {
 }
 
 /*components*/
-.btn--success {
-  background-color: green;
+.welcome-container {
+  border-radius: 3rem;
+  box-shadow: 0 0 15px rgba(93, 59, 120, 0.1);
+  padding: 3rem 0;
 }
 
-.btn-failed {
-  background-color: red;
+.text-title {
+  font-weight: bold;
+  font-size: 3rem;
+}
+
+.btn-welcome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25rem;
+  height: 4rem;
+  font-size: 1.5rem;
 }
 
 .bg {
@@ -25,22 +37,27 @@ html {
   /* height: 20rem; */
   text-align: center;
 }
+
 .bg:hover .card__header {
   background-color: #F5F3F6;
   color: #262626;
 }
+
 .hover:hover {
   background-color: #a166d1;
   height: 100%;
- 
   margin: 0px;
   padding: 0px;
-  
- 
 }
 
-
 /*pages*/
+.welcome-container__image {
+  background-color: blue;
+  width: 30rem;
+  height: 30rem;
+  display: block;
+}
+
 /*variables*/
 
 /*# sourceMappingURL=styles.css.map */

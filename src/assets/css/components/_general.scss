@@ -1,0 +1,21 @@
+@import '../variables/variables';
+
+.welcome-container {
+     border-radius: 3rem;
+     box-shadow: 0 0 15px rgba($color: $mainPurpleColor, $alpha: 0.1);
+     padding: 3rem 0;
+}
+
+.text-title {
+     font-weight: bold;
+     font-size: 3rem;
+}
+
+.btn-welcome {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 25rem;
+     height: 4rem;
+     font-size: 1.5rem;
+}

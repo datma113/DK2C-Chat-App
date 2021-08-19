@@ -1,5 +1,6 @@
 .input-container {
     position: relative;
+    height: auto;
     &__input {
         outline: none;
         border: none;
@@ -23,7 +24,6 @@
         
         &:focus {
              box-shadow: -3px 3px 3px $hoverPurpleColor;
-             border: none;
         }
     }
 

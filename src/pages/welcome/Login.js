@@ -1,14 +1,35 @@
 import React from "react";
 import logo from "../../assets/image/LOGO.png";
 import TextInput from "../../components/TextInput";
+import regexInputModule from "../../module/regexInputModule";
+
 const Login = () => {
     const LOGIN_FIELDS = [
-        { label: "Số điện thoại", type: "text" },
-        { label: "Mật khẩu", type: "password" },
+        { label: "Số điện thoại", type: "text", regexPattern: /[\D]/g },
+        { label: "Mật khẩu", type: "password", regexPattern: /[\w]/g },
     ];
+
     const loginMap = LOGIN_FIELDS.map((field, index) => {
+        let checkRegex = function () {};
+        switch (index) {
+            case 0:
+                checkRegex = regexInputModule.checkRegexOfUserLoginPhone;
+                break;
+            case 1:
+                checkRegex = regexInputModule.checkRegexOfUserPassword;
+                break;
+            default:
+                break;
+        }
         return (
-            <TextInput key={index} idOfInput={index} labelOfInput={field.label} type={field.type} />
+            <TextInput
+                key={index}
+                id={index}
+                label={field.label}
+                type={field.type}
+                checkRegex={checkRegex}
+                regexPattern={field.regexPattern}
+            />
         );
     });
 

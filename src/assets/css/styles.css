@@ -80,6 +80,7 @@ a {
 
 .input-container {
   position: relative;
+  height: auto;
 }
 .input-container__input {
   outline: none;
@@ -102,7 +103,6 @@ a {
 }
 .input-container__input:focus {
   box-shadow: -3px 3px 3px #a166d1;
-  border: none;
 }
 .input-container__label {
   position: absolute;

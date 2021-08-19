@@ -1,3 +1,4 @@
+import Header from './components/Header';
 import './css/styles.css'
 
 function App() {
@@ -5,11 +6,9 @@ function App() {
 
 
   return (
-    <div className="App">
-        <div className="card bg">
-        <div className="card__header">header</div>
-        </div>
-        <i className="fas fa-angle-double-down"></i>
+    <div className="App ">
+      
+       <Header />
     </div>
   );
 }

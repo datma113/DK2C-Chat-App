@@ -36,7 +36,7 @@ const TextInput = ({ id, label, type, checkRegex, regexPattern }) => {
             <label htmlFor={id} className="input-container__label">
                 {label}
             </label>
-            <p className={`text-danger ${isShowMessageOfRegex(messageOfRegex)}`}>
+            <p className={`text-danger text-message-danger ${isShowMessageOfRegex(messageOfRegex)}`}>
                 {" "}
                 {messageOfRegex}{" "}
             </p>

@@ -10,20 +10,20 @@
 
         &:focus + .input-container__label {
             top: -2rem;
-            color: $mainPurpleColor;
+            color: $focusLightPinkColor;
             font-size: $smallTextSize;
             font-weight: bold;
         }
         
         &:not(:placeholder-shown).input-container__input:not(:focus) + .input-container__label {
           top: -2rem;
-          color: $mainPurpleColor;
+          color: $focusLightPinkColor;
           font-size: $smallTextSize;
           font-weight: bold;
         }
         
         &:focus {
-             box-shadow: -3px 3px 3px $hoverPurpleColor;
+            border-bottom: 3px solid $focusBoldPinkColor;
         }
     }
 

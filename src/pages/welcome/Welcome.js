@@ -13,7 +13,9 @@ const Welcome = () => {
                 <Link to="/login">
                     <div className="btn btn-secondary btn-welcome mb-4">Đăng nhập</div>
                 </Link>
+                <Link to="/register">
                 <div className="btn btn-light btn-welcome">Bạn chưa có tài khoản ?</div>
+                </Link>
             </div>
         </div>
     );

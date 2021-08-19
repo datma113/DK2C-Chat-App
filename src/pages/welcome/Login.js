@@ -7,6 +7,7 @@ const Login = () => {
     const LOGIN_FIELDS = [
         { label: "Số điện thoại", type: "text", regexPattern: /[\D]/g },
         { label: "Mật khẩu", type: "password", regexPattern: /[\w]/g },
+
     ];
 
     const loginMap = LOGIN_FIELDS.map((field, index) => {

@@ -7,7 +7,6 @@ const reducer = (state = initial, action) => {
     if (type === STORE_USER_INFO_WHEN_REGISTER) {
         let currentUserRegisterInfo = { ...state };
         currentUserRegisterInfo[key] = value;
-        console.log(currentUserRegisterInfo)
         return currentUserRegisterInfo;
     }
     return state;

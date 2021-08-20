@@ -7,7 +7,6 @@ const reducer = (state = initial, action) => {
     if (type === STORE_PHONE_AND_PASSWORD_WHEN_LOGIN) {
         let currentUserLoginData = { ...state };
         currentUserLoginData[key] = value;
-        console.log(currentUserLoginData)
         return currentUserLoginData;
     }
     return state;

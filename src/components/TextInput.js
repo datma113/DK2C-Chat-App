@@ -20,9 +20,8 @@ const TextInput = ({
     /**
      * This function can catch an undefined function pass as props
      */
-    const isValidationOfCheckRegexProp = (valueOfInput) => {
-        const IS_VALID = typeof checkRegex(valueOfInput, regexPattern);
-        return IS_VALID === "string" ? true : false;
+    const isValidationOfCheckRegexProp = () => {
+        return checkRegex !== undefined ? true : false;
     };
 
     const changeStateWhenTriggered = (valueOfInput) => {

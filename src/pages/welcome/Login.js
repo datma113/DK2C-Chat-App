@@ -4,7 +4,6 @@ import TextInput from "../../components/TextInput";
 import MyCustomButton from "../../components/MyCustomButton";
 import { storePhoneAndPasswordWhenLogin } from "../../redux/action/actLogin";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 const Login = () => {
     const userLogin = useSelector((state) => state.userLogin);
 
@@ -38,7 +37,7 @@ const Login = () => {
                 <img src={logo} alt="" className="welcome-container__logo " />
                 <p className="text-title mt-3">Đăng nhập để tiếp tục !</p>
                 <div className="mt-3 col-6 ">{loginMap}</div>
-                <MyCustomButton label="đăng nhập" typeButton="secondary" data={userLogin} />
+                <MyCustomButton label="đăng nhập" typeButton="secondary" data={userLogin}/>
                 <MyCustomButton
                     label="Quay lại"
                     typeButton="light"

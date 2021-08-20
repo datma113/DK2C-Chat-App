@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import PropTypes from 'prop-types'
 
 const TextInput = ({
     id,
@@ -64,3 +65,13 @@ const TextInput = ({
 };
 
 export default TextInput;
+
+TextInput.propTypes = {
+    id: PropTypes.number,
+    label: PropTypes.string,
+    type: PropTypes.string,
+    checkRegex: PropTypes.func,
+    regexPattern: PropTypes.any,
+    functionToDispatch: PropTypes.func,
+    keyStoreToReducer: PropTypes.string,
+}

@@ -63,6 +63,12 @@ const Register = () => {
                 <p className="text-title mt-3">Đăng ký</p>
                 <div className="mt-3 col-6 ">{registerMap}</div>
                 <MyCustomButton label="đăng Ký" typeButton="secondary" />
+                <MyCustomButton
+                    label="Quay lại"
+                    typeButton="light"
+                    iconClass="fas fa-long-arrow-alt-left"
+                    isGoBackHistory={true}
+                />
             </div>
         </div>
     );

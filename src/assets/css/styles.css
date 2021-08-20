@@ -42,6 +42,11 @@ a {
   width: 25rem;
   height: 4rem;
   font-size: 1.5rem;
+  position: relative;
+}
+.btn-welcome__icon {
+  position: absolute;
+  left: 15%;
 }
 
 .bg {

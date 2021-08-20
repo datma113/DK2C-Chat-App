@@ -24,7 +24,7 @@ const TextInput = ({
         return checkRegex !== undefined ? true : false;
     };
 
-    const changeStateWhenTriggered = (valueOfInput) => {
+    const changeMessageStateWhenTriggered = (valueOfInput) => {
         if (isValidationOfCheckRegexProp(valueOfInput))
             setmessageOfRegex(checkRegex(valueOfInput, regexPattern));
         else setmessageOfRegex("");
@@ -46,7 +46,7 @@ const TextInput = ({
                 onChange={(e) => {
                     dispatchUserInput(e.target.value);
                 }}
-                onBlur={(e) => changeStateWhenTriggered(e.target.value)}
+                onBlur={(e) => changeMessageStateWhenTriggered(e.target.value)}
             />
             <label htmlFor={id} className="input-container__label">
                 {label}

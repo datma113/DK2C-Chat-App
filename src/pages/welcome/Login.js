@@ -19,7 +19,7 @@ const Login = () => {
         let checkRegex = function () {};
         switch (index) {
             case 0:
-                checkRegex = regexInputModule.checkRegexOfUserLoginPhone;
+                checkRegex = regexInputModule.checkRegexOfUserPhone;
                 break;
             case 1:
                 checkRegex = regexInputModule.checkRegexOfUserPassword;

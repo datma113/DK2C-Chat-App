@@ -45,9 +45,9 @@ const TextInput = ({
                 id={id}
                 autoComplete="off"
                 onChange={(e) => {
-                    changeStateWhenTriggered(e.target.value);
                     dispatchUserLoginToStore(e.target.value);
                 }}
+                onBlur={(e) => changeStateWhenTriggered(e.target.value)}
             />
             <label htmlFor={id} className="input-container__label">
                 {label}

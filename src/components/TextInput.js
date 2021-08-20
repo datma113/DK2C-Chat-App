@@ -31,7 +31,7 @@ const TextInput = ({
         else setmessageOfRegex("");
     };
 
-    const dispatchUserLoginToStore = (valueOfInput) => {
+    const dispatchUserInput = (valueOfInput) => {
         if (functionToDispatch !== undefined)
             dispatch(functionToDispatch(keyStoreToReducer, valueOfInput));
     };
@@ -45,7 +45,7 @@ const TextInput = ({
                 id={id}
                 autoComplete="off"
                 onChange={(e) => {
-                    dispatchUserLoginToStore(e.target.value);
+                    dispatchUserInput(e.target.value);
                 }}
                 onBlur={(e) => changeStateWhenTriggered(e.target.value)}
             />

@@ -3,6 +3,7 @@ import logo from "../../assets/image/LOGO.png";
 import MyCustomButton from "../../components/MyCustomButton";
 import TextInput from "../../components/TextInput";
 import regexInputModule from "../../module/regexInputModule";
+import { storeUserInfoWhenRegister } from "../../redux/action/actLogin";
 
 const Register = () => {
     const REGISTER_FIELDS = [
@@ -26,7 +27,6 @@ const Register = () => {
     const registerMap = REGISTER_FIELDS.map((field, index) => {
         let checkRegex = function () {};
         switch (index) {
-            
             case 0:
                 checkRegex = regexInputModule.checkRegexOfUserFullname;
                 break;
@@ -50,6 +50,8 @@ const Register = () => {
                 type={field.type}
                 checkRegex={checkRegex}
                 regexPattern={field.regexPattern}
+                functionToDispatch={storeUserInfoWhenRegister}
+                keyStoreToReducer={field.keyStoreToReducer}
             />
         );
     });

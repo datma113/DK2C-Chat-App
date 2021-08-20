@@ -70,7 +70,7 @@ TextInput.propTypes = {
     id: PropTypes.number,
     label: PropTypes.string,
     type: PropTypes.string,
-    checkRegex: PropTypes.func,
+    checkRegex: PropTypes.arrayOf(PropTypes.instanceOf(RegExp)),
     regexPattern: PropTypes.any,
     functionToDispatch: PropTypes.func,
     keyStoreToReducer: PropTypes.string,

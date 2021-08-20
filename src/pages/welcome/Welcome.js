@@ -1,10 +1,11 @@
 import React from "react";
 import welcome from "../../assets/image/welcome.jpg";
 import { Link } from "react-router-dom";
+import {ANIMATE_ZOOM_IN} from '../../animate'
 
 const Welcome = () => {
     return (
-        <div className="d-flex justify-content-center mt-5">
+        <div className={`d-flex justify-content-center mt-5 ${ANIMATE_ZOOM_IN} `} >
             <div className="col-lg-4 d-flex flex-column align-items-center justify-content-center welcome-container">
                 <img src={welcome} alt="" className="welcome-container__image" />
 

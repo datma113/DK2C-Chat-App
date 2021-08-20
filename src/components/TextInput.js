@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
-const TextInput = ({ id, label, type, checkRegex, regexPattern }) => {
+const TextInput = ({ id, label, type, checkRegex, regexPattern, functionToDispatch, keyStoreToReducer }) => {
+    const dispatch = useDispatch()
     const [messageOfRegex, setmessageOfRegex] = useState("");
 
     const isShowMessageOfRegex = (message) => {
@@ -21,6 +23,10 @@ const TextInput = ({ id, label, type, checkRegex, regexPattern }) => {
         else setmessageOfRegex("")
     }
 
+    const dispatchUserLoginToStore = (valueOfInput) => {
+        dispatch(functionToDispatch(keyStoreToReducer, valueOfInput))
+    }
+
     return (
         <div className="input-container mb-5">
             <input
@@ -31,6 +37,7 @@ const TextInput = ({ id, label, type, checkRegex, regexPattern }) => {
                 autoComplete="off"
                 onChange={(e) => {
                     changeStateWhenTriggered(e.target.value)
+                    dispatchUserLoginToStore(e.target.value)
                 }}
             />
             <label htmlFor={id} className="input-container__label">

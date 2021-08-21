@@ -1,4 +1,4 @@
-import Header from "./components/Headercopy";
+import Header from "./components/Header";
 import "./assets/css/styles.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import routes from "./routes";

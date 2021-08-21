@@ -8,7 +8,7 @@ const CompetedStep = ({ numberStep, currentStep }) => {
      }
     const stepMap = [...Array(numberStep)].map((nothing, index) => {
         return (
-            <div key={index} className={` completed-step ${checkCurrentCompletedStep(index)}`}>
+            <div key={index} className={` completed-step ${checkCurrentCompletedStep(index)} mb-5`}>
                 {}
             </div>
         );

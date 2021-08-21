@@ -7,19 +7,14 @@ import { storeUserInfoWhenRegister } from "../../redux/action/actLogin";
 import { ANIMATE_ZOOM_IN } from "../../animate";
 import { useState } from "react";
 import CompetedStep from "../../components/CompetedStep";
+import VerifyEmail from "./VerifyEmail";
+import SendVerifyCode from "./SendVerifyCode";
 
 const Register = () => {
     const [registerStep, setregisterStep] = useState(0);
 
     const REGISTER_FIELDS = [
         { label: "Họ tên", type: "text", regexPattern: /./, keyStoreToReducer: "fullname" },
-        // {
-        //     label: "Email",
-        //     type: "text",
-        //     regexPattern:
-        //         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-        //     keyStoreToReducer: "email",
-        // },
         { label: "Số điện thoại", type: "text", regexPattern: /[\D]/g, keyStoreToReducer: "phone" },
         {
             label: "Mật khẩu",
@@ -70,7 +65,9 @@ const Register = () => {
             <div className="col-lg-4 d-flex flex-column align-items-center justify-content-center welcome-container">
                 <img src={logo} alt="" className="welcome-container__logo " />
                 <p className="text-title mt-3">Đăng ký</p>
-                <CompetedStep numberStep={3} currentStep={registerStep}/>
+                <CompetedStep numberStep={3} currentStep={registerStep} />
+
+                {/* authentication step 1 */}
                 {registerStep === 0 && (
                     <div>
                         <div className="mt-3 col-12 ">{registerMap}</div>
@@ -88,7 +85,9 @@ const Register = () => {
                     </div>
                 )}
 
-                {registerStep ===1 && <div>step 1</div> }
+                {registerStep === 1 && <VerifyEmail  changeRegisterStep={changeRegisterStep}/>}
+                {registerStep === 2 && <SendVerifyCode  />}
+
             </div>
         </div>
     );

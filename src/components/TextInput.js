@@ -12,17 +12,16 @@ const TextInput = ({
     keyStoreToReducer,
 }) => {
     const dispatch = useDispatch();
-    const [messageOfRegex, setmessageOfRegex] = useState("");
+    const [messageOfRegex, setmessageOfRegex] = useState("");   
 
     const isShowMessageOfRegex = (message) => {
         return message.length === 0 ? "d-none" : "";
     };
-
     /**
      * This function can catch an undefined function pass as props
      */
     const isValidationOfCheckRegexProp = () => {
-        return checkRegex !== undefined ? true : false;
+        return checkRegex ? true : false;
     };
 
     const changeMessageStateWhenTriggered = (valueOfInput) => {
@@ -32,7 +31,7 @@ const TextInput = ({
     };
 
     const dispatchUserInput = (valueOfInput) => {
-        if (functionToDispatch !== undefined)
+        if (functionToDispatch)
             dispatch(functionToDispatch(keyStoreToReducer, valueOfInput));
     };
 
@@ -70,7 +69,7 @@ TextInput.propTypes = {
     id: PropTypes.number,
     label: PropTypes.string,
     type: PropTypes.string,
-    checkRegex: PropTypes.arrayOf(PropTypes.instanceOf(RegExp)),
+    checkRegex: PropTypes.func,
     regexPattern: PropTypes.any,
     functionToDispatch: PropTypes.func,
     keyStoreToReducer: PropTypes.string,

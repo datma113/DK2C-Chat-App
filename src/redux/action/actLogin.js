@@ -12,7 +12,7 @@ export const storePhoneAndPasswordWhenLogin = (key, value) => {
     };
 };
 
-export const storeUserInfoWhenRegister = (key, value) => {
+export const    storeUserInfoWhenRegister = (key, value) => {
     //key and value was created to save a dynamic object
     return {
         type: STORE_USER_INFO_WHEN_REGISTER,

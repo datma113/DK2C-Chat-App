@@ -77,6 +77,20 @@ a {
   background-color: #a166d1;
 }
 
+.completed-step {
+  display: block;
+  height: 0.5rem;
+  width: 5rem;
+  background-color: gray;
+  margin-right: 0.5rem;
+  transition: 0.5s;
+}
+
+.completed-step--has-completed {
+  background-color: #D65DB1;
+  box-shadow: 1px 1px 5px #FF6F91;
+}
+
 /*pages*/
 .welcome-container__image {
   width: 30rem;

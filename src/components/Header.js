@@ -5,10 +5,10 @@ import logo from '../assets/image/LOGO.png'
 const Header = () => {
     return (
         <>
-            <nav class="navbar navbar-expand-lg row bg  align-items-center">
-                <div class="container-fluid">
+            <nav className="navbar navbar-expand-lg row bg  align-items-center">
+                <div className="container-fluid">
                     <button
-                        class="navbar-toggler"
+                        className="navbar-toggler"
                         type="button"
                         data-mdb-toggle="collapse"
                         data-mdb-target="#navbarSupportedContent"
@@ -18,8 +18,8 @@ const Header = () => {
                     >
                         <i className="fas fa-list-ul header"></i>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <div class="navbar-nav w-100 align-items-center row">
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div className="navbar-nav w-100 align-items-center row">
                             <NavLink className="nav-item col-lg-1 col-sm-2  p-2" activeClassName="nav-item col-lg-1 col-sm-2  col-1 p-2" to="/" > <img src={logo} alt="" style={{ height: "50px", width: "50px" }} /></NavLink>
                             <NavLink className="nav-item col-lg-1 col-sm-2 header p-2" activeClassName="nav-item col-lg-1 col-sm-2  header__active col-1 p-2" to="/message" > <i className=" fas fa-comments"></i> </NavLink>
                             <NavLink className="nav-item col-lg-1 col-sm-2 header p-2" activeClassName="nav-item col-lg-1 col-sm-2  header__active col-1 p-2" to="/welcome"><i className="fas fa-users"></i> </NavLink>

@@ -63,8 +63,6 @@ a {
 .header:hover {
   background-color: #a166d1;
   height: 100%;
-  margin: 0px;
-  padding: 0px;
   color: aliceblue;
 }
 
@@ -75,6 +73,7 @@ a {
 
 .header__active {
   color: aliceblue;
+  height: 100%;
   background-color: #a166d1;
 }
 

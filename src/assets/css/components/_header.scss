@@ -11,8 +11,7 @@
 .header:hover {
     background-color: $hoverPurpleColor; 
     height: 100%;
-    margin: 0px;
-    padding: 0px;
+    
     color: aliceblue;
 }
 .header {
@@ -23,7 +22,11 @@
 }
 .header__active {
     color: aliceblue;
+    height: 100%;
+    // width: 100%;
     background-color: $hoverPurpleColor;
+    
+    // border-radius: 100px;
 
 }
 

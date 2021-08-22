@@ -8,6 +8,7 @@ const MyCustomButton = ({
     isGoBackHistory,
     isEntitledGotoNextStep,
     gotoPreviousStepOfRegister,
+    login
 }) => {
     const history = useHistory();
 
@@ -21,7 +22,13 @@ const MyCustomButton = ({
         }
 
         if (gotoPreviousStepOfRegister) gotoPreviousStepOfRegister();
+
+        
     };
+    
+    const triggeredLogin = () => {
+        if( login ) login();
+    }
 
     return (
         <div
@@ -29,6 +36,7 @@ const MyCustomButton = ({
             onClick={() => {
                 checkGoBackHistory(isGoBackHistory);
                 changeStepWhenTriggered();
+                triggeredLogin();
             }}
         >
             <i className={`${iconClass} btn-welcome__icon`}></i>

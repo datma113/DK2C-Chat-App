@@ -11,6 +11,7 @@ const reducer = (state = initial, action) => {
         case STORE_USER_INFO_WHEN_REGISTER:
             let currentUserRegisterInfo = { ...state };
             currentUserRegisterInfo[key] = value;
+            console.log(currentUserRegisterInfo)
             return currentUserRegisterInfo;
             
         case STORE_USER_INFO_WHEN_DONE_REGISTER_STEP_1:

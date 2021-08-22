@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
 const TextInput = ({
     id,
@@ -10,30 +10,22 @@ const TextInput = ({
     regexPattern,
     functionToDispatch,
     keyStoreToReducer,
-    initialValue
+    initialValue,
 }) => {
     const dispatch = useDispatch();
-    const [messageOfRegex, setmessageOfRegex] = useState("");   
+    const [messageOfRegex, setmessageOfRegex] = useState("");
 
     const isShowMessageOfRegex = (message) => {
         return message.length === 0 ? "d-none" : "";
     };
-    /**
-     * This function can catch an undefined function pass as props
-     */
-    const isValidationOfCheckRegexProp = () => {
-        return checkRegex ? true : false;
-    };
 
     const changeMessageStateWhenTriggered = (valueOfInput) => {
-        if (isValidationOfCheckRegexProp(valueOfInput))
-            setmessageOfRegex(checkRegex(valueOfInput, regexPattern));
+        if (checkRegex) setmessageOfRegex(checkRegex(valueOfInput, regexPattern));
         else setmessageOfRegex("");
     };
 
     const dispatchUserInput = (valueOfInput) => {
-        if (functionToDispatch)
-            dispatch(functionToDispatch(keyStoreToReducer, valueOfInput));
+        if (functionToDispatch) dispatch(functionToDispatch(keyStoreToReducer, valueOfInput));
     };
 
     return (
@@ -75,4 +67,4 @@ TextInput.propTypes = {
     regexPattern: PropTypes.any,
     functionToDispatch: PropTypes.func,
     keyStoreToReducer: PropTypes.string,
-}
+};

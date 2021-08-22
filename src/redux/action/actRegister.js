@@ -33,7 +33,24 @@ export const registerUserAccountStep1Redo = (user) => {
          });
  };
 
-export const storeUserInfoWhenDoneRegisterStep1 = (user) => {
+
+export const registerUserAccountStep2 = (user) => {
+    return RegisterService.registerUserAccountStep2(user)
+    .then((resp) => {
+        return Promise.resolve(resp.data);
+    })
+    .catch((err) => {
+        const MESSAGE =
+            (err.response && err.response.data && err.response.data.message) ||
+            err.message ||
+            err.toString();
+
+        console.log(MESSAGE);
+        return Promise.reject();
+    });
+}
+
+export const storeUserInfoWhenDoneARegisterStep = (user) => {
      return {
           type: STORE_USER_INFO_WHEN_DONE_REGISTER_STEP_1,
           user

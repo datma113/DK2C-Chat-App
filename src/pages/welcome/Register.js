@@ -12,7 +12,7 @@ import SendVerifyCode from "./SendVerifyCode";
 import {
     registerUserAccountStep1,
     registerUserAccountStep1Redo,
-    storeUserInfoWhenDoneRegisterStep1,
+    storeUserInfoWhenDoneARegisterStep,
 } from "../../redux/action/actRegister";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -39,20 +39,20 @@ const Register = () => {
 
     const registerMap = REGISTER_FIELDS.map((field, index) => {
         let checkRegex = function () {};
-        let initialValue = null
+        let initialValue = null;
 
         switch (index) {
             case 0:
                 checkRegex = regexInputModule.checkRegexOfUserFullname;
-                initialValue = userRegister.displayName
+                initialValue = userRegister.displayName;
                 break;
             case 1:
                 checkRegex = regexInputModule.checkRegexOfUserPhone;
-                initialValue = userRegister.phoneNumber
+                initialValue = userRegister.phoneNumber;
                 break;
             case 2:
                 checkRegex = regexInputModule.checkRegexOfUserPassword;
-                initialValue = userRegister.password
+                initialValue = userRegister.password;
                 break;
             default:
                 break;
@@ -84,7 +84,7 @@ const Register = () => {
         if (!userRegister.id) {
             registerUserAccountStep1(userRegister)
                 .then((data) => {
-                    dispatch(storeUserInfoWhenDoneRegisterStep1(data));
+                    dispatch(storeUserInfoWhenDoneARegisterStep(data));
                     gotoNextStepOfRegister();
                 })
                 .catch(() => {
@@ -93,7 +93,7 @@ const Register = () => {
         } else {
             registerUserAccountStep1Redo(userRegister)
                 .then((data) => {
-                    dispatch(storeUserInfoWhenDoneRegisterStep1(data));
+                    dispatch(storeUserInfoWhenDoneARegisterStep(data));
                     gotoNextStepOfRegister();
                 })
                 .catch(() => {
@@ -127,7 +127,12 @@ const Register = () => {
                     </div>
                 )}
 
-                {registerStep === 1 && <VerifyEmail gotoPreviousStepOfRegister={gotoPreviousStepOfRegister} />}
+                {registerStep === 1 && (
+                    <VerifyEmail
+                        gotoPreviousStepOfRegister={gotoPreviousStepOfRegister}
+                        gotoNextStepOfRegister={gotoNextStepOfRegister}
+                    />
+                )}
                 {registerStep === 2 && <SendVerifyCode />}
             </div>
         </div>

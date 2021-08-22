@@ -9,13 +9,26 @@ import { useState } from "react";
 import CompetedStep from "../../components/CompetedStep";
 import VerifyEmail from "./VerifyEmail";
 import SendVerifyCode from "./SendVerifyCode";
+import {
+    registerUserAccountStep1,
+    registerUserAccountStep1Redo,
+    storeUserInfoWhenDoneRegisterStep1,
+} from "../../redux/action/actRegister";
+import { useDispatch, useSelector } from "react-redux";
 
 const Register = () => {
+    const dispatch = useDispatch();
+    const userRegister = useSelector((state) => state.userRegister);
     const [registerStep, setregisterStep] = useState(0);
 
     const REGISTER_FIELDS = [
-        { label: "Họ tên", type: "text", regexPattern: /./, keyStoreToReducer: "fullname" },
-        { label: "Số điện thoại", type: "text", regexPattern: /[\D]/g, keyStoreToReducer: "phone" },
+        { label: "Họ tên", type: "text", regexPattern: /./, keyStoreToReducer: "displayName" },
+        {
+            label: "Số điện thoại",
+            type: "text",
+            regexPattern: /[\D]/g,
+            keyStoreToReducer: "phoneNumber",
+        },
         {
             label: "Mật khẩu",
             type: "password",
@@ -31,12 +44,9 @@ const Register = () => {
                 checkRegex = regexInputModule.checkRegexOfUserFullname;
                 break;
             case 1:
-                checkRegex = regexInputModule.checkRegexOfUserEmail;
-                break;
-            case 2:
                 checkRegex = regexInputModule.checkRegexOfUserPhone;
                 break;
-            case 3:
+            case 2:
                 checkRegex = regexInputModule.checkRegexOfUserPassword;
                 break;
             default:
@@ -56,8 +66,30 @@ const Register = () => {
         );
     });
 
-    const changeRegisterStep = () => {
+    const gotoNextStepOfRegister = () => {
         setregisterStep((step) => step + 1);
+    };
+
+    const isEntitledGotoNextStep = () => {
+        if (!userRegister.id) {
+            registerUserAccountStep1(userRegister)
+                .then((data) => {
+                    dispatch(storeUserInfoWhenDoneRegisterStep1(data));
+                    gotoNextStepOfRegister()
+                })
+                .catch(() => {
+                    window.alert(` result thất bại `);
+                });
+        } else {
+            registerUserAccountStep1Redo(userRegister)
+                .then((data) => {
+                    dispatch(storeUserInfoWhenDoneRegisterStep1(data));
+                    gotoNextStepOfRegister()
+                })
+                .catch(() => {
+                    window.alert(` result redo thất bại `);
+                });
+        }
     };
 
     return (
@@ -74,7 +106,7 @@ const Register = () => {
                         <MyCustomButton
                             label="Tiếp tục"
                             typeButton="secondary"
-                            changeRegisterStep={changeRegisterStep}
+                            isEntitledGotoNextStep={isEntitledGotoNextStep}
                         />
                         <MyCustomButton
                             label="Quay lại"
@@ -85,9 +117,8 @@ const Register = () => {
                     </div>
                 )}
 
-                {registerStep === 1 && <VerifyEmail  changeRegisterStep={changeRegisterStep}/>}
-                {registerStep === 2 && <SendVerifyCode  />}
-
+                {registerStep === 1 && <VerifyEmail changeRegisterStep={gotoNextStepOfRegister} />}
+                {registerStep === 2 && <SendVerifyCode />}
             </div>
         </div>
     );

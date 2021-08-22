@@ -19,7 +19,7 @@ const VerifyEmail = ({ changeRegisterStep }) => {
             <MyCustomButton
                 label="xác nhận"
                 typeButton="secondary"
-                changeRegisterStep={changeRegisterStep}
+                gotoNextStepOfRegister={changeRegisterStep}
             />
         </div>
     );

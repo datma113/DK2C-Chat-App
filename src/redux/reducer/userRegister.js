@@ -1,14 +1,25 @@
-import { STORE_USER_INFO_WHEN_REGISTER } from "../constants/constants";
+import {
+    STORE_USER_INFO_WHEN_REGISTER,
+    STORE_USER_INFO_WHEN_DONE_REGISTER_STEP_1,
+} from "../constants/constants";
 
 const initial = {};
 
 const reducer = (state = initial, action) => {
-    let { type, key, value } = action;
-    if (type === STORE_USER_INFO_WHEN_REGISTER) {
-        let currentUserRegisterInfo = { ...state };
-        currentUserRegisterInfo[key] = value;
-        return currentUserRegisterInfo;
+    let { type, key, value, user } = action;
+    switch (type) {
+        case STORE_USER_INFO_WHEN_REGISTER:
+            let currentUserRegisterInfo = { ...state };
+            currentUserRegisterInfo[key] = value;
+            return currentUserRegisterInfo;
+            
+        case STORE_USER_INFO_WHEN_DONE_REGISTER_STEP_1:
+            console.log(user)
+            return user 
+        default:
+            break;
     }
+
     return state;
 };
 

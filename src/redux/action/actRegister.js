@@ -1,4 +1,4 @@
-import { STORE_USER_INFO_WHEN_DONE_REGISTER_STEP_1 } from "../constants/constants";
+import { CLEAR_USER_INFO_WHEN_DONE_REGISTER, STORE_USER_INFO_WHEN_DONE_REGISTER_STEP_1 } from "../constants/constants";
 import RegisterService from "../../services/RegisterService";
 
 export const registerUserAccountStep1 = (user) => {
@@ -71,5 +71,11 @@ export const storeUserInfoWhenDoneARegisterStep = (user) => {
     return {
          type: STORE_USER_INFO_WHEN_DONE_REGISTER_STEP_1,
          user
+    }
+}
+
+export const clearUserInfoWhenDoneRegister = () => {
+    return {
+        type: CLEAR_USER_INFO_WHEN_DONE_REGISTER
     }
 }

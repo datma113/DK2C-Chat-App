@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import OtpInput from "react-otp-input";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import MyCustomButton from "../../components/MyCustomButton";
-import { registerUserAccountStep3 } from "../../redux/action/actRegister";
+import { registerUserAccountStep3, clearUserInfoWhenDoneRegister } from "../../redux/action/actRegister";
 
 const OTPCode = ({gotoPreviousStepOfRegister}) => {
+     const dispatch = useDispatch()
     const [otp, setotp] = useState("");
     const userRegister = useSelector(state => state.userRegister)
     const history = useHistory()
@@ -14,11 +15,11 @@ const OTPCode = ({gotoPreviousStepOfRegister}) => {
          const user = {
               email: userRegister.email,
               verificationCode: otp
-         }
-       
+         } 
 
           registerUserAccountStep3(user)
           .then(() => {
+               dispatch(clearUserInfoWhenDoneRegister())
                window.alert(` đăng ký thành công `)
                history.push("/welcome")
           })

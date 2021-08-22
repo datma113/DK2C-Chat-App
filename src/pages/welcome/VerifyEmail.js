@@ -3,7 +3,7 @@ import MyCustomButton from "../../components/MyCustomButton";
 import TextInput from "../../components/TextInput";
 import regexInputModule from "../../module/regexInputModule";
 
-const VerifyEmail = ({ changeRegisterStep }) => {
+const VerifyEmail = ({ gotoPreviousStepOfRegister }) => {
     return (
         <div>
             <TextInput
@@ -19,7 +19,13 @@ const VerifyEmail = ({ changeRegisterStep }) => {
             <MyCustomButton
                 label="xác nhận"
                 typeButton="secondary"
-                gotoNextStepOfRegister={changeRegisterStep}
+            />
+            <MyCustomButton
+                label="Quay lại"
+                typeButton="light"
+                iconClass="fas fa-long-arrow-alt-left"
+                gotoPreviousStepOfRegister={gotoPreviousStepOfRegister}
+               
             />
         </div>
     );

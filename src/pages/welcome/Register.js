@@ -39,15 +39,20 @@ const Register = () => {
 
     const registerMap = REGISTER_FIELDS.map((field, index) => {
         let checkRegex = function () {};
+        let initialValue = null
+
         switch (index) {
             case 0:
                 checkRegex = regexInputModule.checkRegexOfUserFullname;
+                initialValue = userRegister.displayName
                 break;
             case 1:
                 checkRegex = regexInputModule.checkRegexOfUserPhone;
+                initialValue = userRegister.phoneNumber
                 break;
             case 2:
                 checkRegex = regexInputModule.checkRegexOfUserPassword;
+                initialValue = userRegister.password
                 break;
             default:
                 break;
@@ -62,6 +67,7 @@ const Register = () => {
                 regexPattern={field.regexPattern}
                 functionToDispatch={storeUserInfoWhenRegister}
                 keyStoreToReducer={field.keyStoreToReducer}
+                initialValue={initialValue}
             />
         );
     });
@@ -70,12 +76,16 @@ const Register = () => {
         setregisterStep((step) => step + 1);
     };
 
+    const gotoPreviousStepOfRegister = () => {
+        setregisterStep((step) => step - 1);
+    };
+
     const isEntitledGotoNextStep = () => {
         if (!userRegister.id) {
             registerUserAccountStep1(userRegister)
                 .then((data) => {
                     dispatch(storeUserInfoWhenDoneRegisterStep1(data));
-                    gotoNextStepOfRegister()
+                    gotoNextStepOfRegister();
                 })
                 .catch(() => {
                     window.alert(` result thất bại `);
@@ -84,7 +94,7 @@ const Register = () => {
             registerUserAccountStep1Redo(userRegister)
                 .then((data) => {
                     dispatch(storeUserInfoWhenDoneRegisterStep1(data));
-                    gotoNextStepOfRegister()
+                    gotoNextStepOfRegister();
                 })
                 .catch(() => {
                     window.alert(` result redo thất bại `);
@@ -117,7 +127,7 @@ const Register = () => {
                     </div>
                 )}
 
-                {registerStep === 1 && <VerifyEmail changeRegisterStep={gotoNextStepOfRegister} />}
+                {registerStep === 1 && <VerifyEmail gotoPreviousStepOfRegister={gotoPreviousStepOfRegister} />}
                 {registerStep === 2 && <SendVerifyCode />}
             </div>
         </div>

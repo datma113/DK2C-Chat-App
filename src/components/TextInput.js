@@ -10,6 +10,7 @@ const TextInput = ({
     regexPattern,
     functionToDispatch,
     keyStoreToReducer,
+    initialValue
 }) => {
     const dispatch = useDispatch();
     const [messageOfRegex, setmessageOfRegex] = useState("");   
@@ -42,6 +43,7 @@ const TextInput = ({
                 className="w-100 input-container__input text-center"
                 placeholder=" "
                 id={id}
+                defaultValue={initialValue}
                 autoComplete="off"
                 onChange={(e) => {
                     dispatchUserInput(e.target.value);

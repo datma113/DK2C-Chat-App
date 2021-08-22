@@ -6,7 +6,8 @@ const MyCustomButton = ({
     typeButton,
     iconClass,
     isGoBackHistory,
-    isEntitledGotoNextStep
+    isEntitledGotoNextStep,
+    gotoPreviousStepOfRegister,
 }) => {
     const history = useHistory();
 
@@ -15,12 +16,11 @@ const MyCustomButton = ({
     };
 
     const changeStepWhenTriggered = async () => {
-    
         if (isEntitledGotoNextStep) {
             isEntitledGotoNextStep();
-         
         }
 
+        if (gotoPreviousStepOfRegister) gotoPreviousStepOfRegister();
     };
 
     return (

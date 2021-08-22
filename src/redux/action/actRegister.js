@@ -36,8 +36,8 @@ export const registerUserAccountStep1Redo = (user) => {
 
 export const registerUserAccountStep2 = (user) => {
     return RegisterService.registerUserAccountStep2(user)
-    .then((resp) => {
-        return Promise.resolve(resp.data);
+    .then(() => {
+        return Promise.resolve();
     })
     .catch((err) => {
         const MESSAGE =
@@ -50,9 +50,26 @@ export const registerUserAccountStep2 = (user) => {
     });
 }
 
+export const registerUserAccountStep3 = (user) => {
+    return RegisterService.registerUserAccountStep3(user)
+    .then(() => {
+        return Promise.resolve();
+    })
+    .catch((err) => {
+        const MESSAGE =
+            (err.response && err.response.data && err.response.data.message) ||
+            err.message ||
+            err.toString();
+
+        console.log(MESSAGE);
+        return Promise.reject();
+    });
+}
+
+
 export const storeUserInfoWhenDoneARegisterStep = (user) => {
-     return {
-          type: STORE_USER_INFO_WHEN_DONE_REGISTER_STEP_1,
-          user
-     }
+    return {
+         type: STORE_USER_INFO_WHEN_DONE_REGISTER_STEP_1,
+         user
+    }
 }

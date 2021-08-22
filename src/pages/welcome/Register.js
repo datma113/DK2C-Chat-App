@@ -8,13 +8,13 @@ import { ANIMATE_ZOOM_IN } from "../../animate";
 import { useState } from "react";
 import CompetedStep from "../../components/CompetedStep";
 import VerifyEmail from "./VerifyEmail";
-import SendVerifyCode from "./SendVerifyCode";
 import {
     registerUserAccountStep1,
     registerUserAccountStep1Redo,
     storeUserInfoWhenDoneARegisterStep,
 } from "../../redux/action/actRegister";
 import { useDispatch, useSelector } from "react-redux";
+import OTPCode from "./OTPCode";
 
 const Register = () => {
     const dispatch = useDispatch();
@@ -133,7 +133,9 @@ const Register = () => {
                         gotoNextStepOfRegister={gotoNextStepOfRegister}
                     />
                 )}
-                {registerStep === 2 && <SendVerifyCode />}
+                {registerStep === 2 && (
+                    <OTPCode gotoPreviousStepOfRegister={gotoPreviousStepOfRegister} />
+                )}
             </div>
         </div>
     );

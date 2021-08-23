@@ -5,8 +5,6 @@ import MyCustomButton from "../../components/MyCustomButton";
 import { storePhoneAndPasswordWhenLogin, login } from "../../redux/action/actLogin";
 import { useSelector } from "react-redux";
 import {ANIMATE_ZOOM_IN} from '../../animate'
-import axios from "axios";
-
 
 const Login = () => {
     const userLogin = useSelector((state) => state.userLogin);

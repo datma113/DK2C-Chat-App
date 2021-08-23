@@ -1,9 +1,7 @@
 import React from "react";
 import logo from "../../assets/image/LOGO.png";
 import MyCustomButton from "../../components/MyCustomButton";
-import TextInput from "../../components/TextInput";
-import regexInputModule from "../../module/regexInputModule";
-import { storeUserInfoWhenRegister } from "../../redux/action/actLogin";
+
 import { ANIMATE_ZOOM_IN } from "../../animate";
 import { useState } from "react";
 import CompetedStep from "../../components/CompetedStep";
@@ -15,6 +13,7 @@ import {
 } from "../../redux/action/actRegister";
 import { useDispatch, useSelector } from "react-redux";
 import OTPCode from "./OTPCode";
+import UserInfoRegister from "./UserInfoRegister";
 
 const Register = () => {
     const dispatch = useDispatch();
@@ -37,41 +36,6 @@ const Register = () => {
         },
     ];
 
-    const registerMap = REGISTER_FIELDS.map((field, index) => {
-        let checkRegex = function () {};
-        let initialValue = null;
-
-        switch (index) {
-            case 0:
-                checkRegex = regexInputModule.checkRegexOfUserFullname;
-                initialValue = userRegister.displayName;
-                break;
-            case 1:
-                checkRegex = regexInputModule.checkRegexOfUserPhone;
-                initialValue = userRegister.phoneNumber;
-                break;
-            case 2:
-                checkRegex = regexInputModule.checkRegexOfUserPassword;
-                initialValue = userRegister.password;
-                break;
-            default:
-                break;
-        }
-        return (
-            <TextInput
-                key={index}
-                id={index}
-                label={field.label}
-                type={field.type}
-                checkRegex={checkRegex}
-                regexPattern={field.regexPattern}
-                functionToDispatch={storeUserInfoWhenRegister}
-                keyStoreToReducer={field.keyStoreToReducer}
-                initialValue={initialValue}
-            />
-        );
-    });
-
     const gotoNextStepOfRegister = () => {
         setregisterStep((step) => step + 1);
     };
@@ -82,7 +46,7 @@ const Register = () => {
 
     const isEntitledGotoNextStep = () => {
         if (!userRegister.id) {
-            registerUserAccountStep1(userRegister)
+            dispatch(registerUserAccountStep1(userRegister))
                 .then((data) => {
                     dispatch(storeUserInfoWhenDoneARegisterStep(data));
                     gotoNextStepOfRegister();
@@ -91,7 +55,7 @@ const Register = () => {
                     window.alert(` result thất bại `);
                 });
         } else {
-            registerUserAccountStep1Redo(userRegister)
+            dispatch(registerUserAccountStep1Redo(userRegister))
                 .then((data) => {
                     dispatch(storeUserInfoWhenDoneARegisterStep(data));
                     gotoNextStepOfRegister();
@@ -111,20 +75,11 @@ const Register = () => {
 
                 {/* authentication step 1 */}
                 {registerStep === 0 && (
-                    <div>
-                        <div className="mt-3 col-12 ">{registerMap}</div>
-                        <MyCustomButton
-                            label="Tiếp tục"
-                            typeButton="secondary"
-                            isEntitledGotoNextStep={isEntitledGotoNextStep}
-                        />
-                        <MyCustomButton
-                            label="Quay lại"
-                            typeButton="light"
-                            iconClass="fas fa-long-arrow-alt-left"
-                            isGoBackHistory={true}
-                        />
-                    </div>
+                    <UserInfoRegister
+                        registerFields={REGISTER_FIELDS}
+                        userRegister={userRegister}
+                        isEntitledGotoNextStep={isEntitledGotoNextStep}
+                    />
                 )}
 
                 {registerStep === 1 && (

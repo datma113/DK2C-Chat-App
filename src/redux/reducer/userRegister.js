@@ -1,6 +1,6 @@
 import {
     STORE_USER_INFO_WHEN_REGISTER,
-    STORE_USER_INFO_WHEN_DONE_REGISTER_STEP_1,
+    STORE_USER_INFO_WHEN_DONE_A_REGISTER_STEP,
     CLEAR_USER_INFO_WHEN_DONE_REGISTER,
 } from "../constants/constants";
 
@@ -14,7 +14,7 @@ const reducer = (state = initial, action) => {
             currentUserRegisterInfo[key] = value;
             return currentUserRegisterInfo;
 
-        case STORE_USER_INFO_WHEN_DONE_REGISTER_STEP_1:
+        case STORE_USER_INFO_WHEN_DONE_A_REGISTER_STEP:
             return user;
         case CLEAR_USER_INFO_WHEN_DONE_REGISTER:
             return {};

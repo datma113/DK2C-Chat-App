@@ -7,7 +7,7 @@ const ErrorHandle = ({message}) => {
      }
      return (
           
-          <div className={`alert alert-danger err-message ${hasError()}`} >
+          <div className={`alert alert-danger err-message text-center ${hasError()}`} >
                <i className="fas fa-exclamation-triangle"></i>
                {message}
           </div>

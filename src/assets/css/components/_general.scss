@@ -28,3 +28,29 @@
      }
 }
 
+.loading {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     z-index: 100;
+     
+     &__overlay {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background-color: $mainLightColor;
+          opacity: 0.4;
+     }
+
+     &__spinner {
+          font-size: 1rem;
+          text-shadow: 0 0 5px black;
+          position: absolute;
+          top: 50%;
+          left: calc(52% - 8rem);
+     }
+}
+
+

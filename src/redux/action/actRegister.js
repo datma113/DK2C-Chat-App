@@ -1,6 +1,6 @@
 import {
     CLEAR_USER_INFO_WHEN_DONE_REGISTER,
-    STORE_USER_INFO_WHEN_DONE_REGISTER_STEP_1,
+    STORE_USER_INFO_WHEN_DONE_A_REGISTER_STEP,
     SET_MESSAGE_FROM_SERVER,
     CLEAR_MESSAGE_FROM_SERVER,
 } from "../constants/constants";
@@ -80,6 +80,7 @@ export const registerUserAccountStep2 = (user) => {
 };
 
 export const registerUserAccountStep3 = (user) => {
+    console.log(user)
     return (dispatch) => {
         return RegisterService.registerUserAccountStep3(user)
             .then(() => {
@@ -103,8 +104,8 @@ export const registerUserAccountStep3 = (user) => {
 
 export const storeUserInfoWhenDoneARegisterStep = (user) => {
     return {
-        type: STORE_USER_INFO_WHEN_DONE_REGISTER_STEP_1,
-        user,
+        type: STORE_USER_INFO_WHEN_DONE_A_REGISTER_STEP,
+        user
     };
 };
 

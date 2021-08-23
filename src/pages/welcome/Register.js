@@ -1,7 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "../../assets/image/LOGO.png";
-import MyCustomButton from "../../components/MyCustomButton";
-
 import { ANIMATE_ZOOM_IN } from "../../animate";
 import { useState } from "react";
 import CompetedStep from "../../components/CompetedStep";
@@ -10,15 +8,23 @@ import {
     registerUserAccountStep1,
     registerUserAccountStep1Redo,
     storeUserInfoWhenDoneARegisterStep,
+    registerUserAccountStep2,
+    clearUserInfoWhenDoneRegister,
+    registerUserAccountStep3,
 } from "../../redux/action/actRegister";
 import { useDispatch, useSelector } from "react-redux";
 import OTPCode from "./OTPCode";
+import Loading from "../../components/Loading";
 import UserInfoRegister from "./UserInfoRegister";
+import { useHistory } from "react-router-dom";
+import { CLEAR_MESSAGE_FROM_SERVER } from "../../redux/constants/constants";
 
 const Register = () => {
     const dispatch = useDispatch();
     const userRegister = useSelector((state) => state.userRegister);
     const [registerStep, setregisterStep] = useState(0);
+    const [isLoading, setisLoading] = useState(false);
+    const history = useHistory();
 
     const REGISTER_FIELDS = [
         { label: "Họ tên", type: "text", regexPattern: /./, keyStoreToReducer: "displayName" },
@@ -44,25 +50,65 @@ const Register = () => {
         setregisterStep((step) => step - 1);
     };
 
-    const isEntitledGotoNextStep = () => {
+    const isEntitledGotoNextStep_step1 = () => {
+        setisLoading(true);
         if (!userRegister.id) {
             dispatch(registerUserAccountStep1(userRegister))
                 .then((data) => {
                     dispatch(storeUserInfoWhenDoneARegisterStep(data));
                     gotoNextStepOfRegister();
+                    setisLoading(false);
                 })
                 .catch(() => {
+                    setisLoading(false);
                 });
         } else {
             dispatch(registerUserAccountStep1Redo(userRegister))
                 .then((data) => {
                     dispatch(storeUserInfoWhenDoneARegisterStep(data));
                     gotoNextStepOfRegister();
+                    setisLoading(false);
                 })
                 .catch(() => {
+                    setisLoading(false);
                 });
         }
     };
+
+    const isEntitledGotoNextStep_step2 = () => {
+        setisLoading(true);
+
+        dispatch(registerUserAccountStep2(userRegister))
+            .then(() => {
+                gotoNextStepOfRegister();
+                setisLoading(false);
+            })
+            .catch(() => {
+                setisLoading(false);
+            });
+    };
+
+    const isEntitledGotoNextStep_step3 = () => {
+        const user = {
+            email: userRegister.email,
+            verificationCode: userRegister.verificationCode,
+        };
+        dispatch(registerUserAccountStep3(user))
+            .then(() => {
+                dispatch(clearUserInfoWhenDoneRegister());
+                window.alert(` đăng ký thành công `);
+                history.push("/welcome");
+            })
+            .catch(() => {
+                console.log(`dk thất bại`);
+            });
+    };
+
+    useEffect(() => {
+        dispatch({
+            type: CLEAR_MESSAGE_FROM_SERVER,
+        });
+    }, []);
 
     return (
         <div className={`d-flex justify-content-center mt-5 ${ANIMATE_ZOOM_IN}`}>
@@ -76,7 +122,7 @@ const Register = () => {
                     <UserInfoRegister
                         registerFields={REGISTER_FIELDS}
                         userRegister={userRegister}
-                        isEntitledGotoNextStep={isEntitledGotoNextStep}
+                        isEntitledGotoNextStep={isEntitledGotoNextStep_step1}
                     />
                 )}
 
@@ -84,11 +130,16 @@ const Register = () => {
                     <VerifyEmail
                         gotoPreviousStepOfRegister={gotoPreviousStepOfRegister}
                         gotoNextStepOfRegister={gotoNextStepOfRegister}
+                        isEntitledGotoNextStep={isEntitledGotoNextStep_step2}
                     />
                 )}
                 {registerStep === 2 && (
-                    <OTPCode gotoPreviousStepOfRegister={gotoPreviousStepOfRegister} />
+                    <OTPCode
+                        gotoPreviousStepOfRegister={gotoPreviousStepOfRegister}
+                        isEntitledGotoNextStep={isEntitledGotoNextStep_step3}
+                    />
                 )}
+                {isLoading && <Loading />}
             </div>
         </div>
     );

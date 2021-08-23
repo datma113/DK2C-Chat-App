@@ -18,7 +18,7 @@ export const storeUserInfoWhenRegister = (key, value) => {
     return {
         type: STORE_USER_INFO_WHEN_REGISTER,
         key,
-        value,
+        value
     };
 };
 

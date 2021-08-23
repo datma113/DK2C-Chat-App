@@ -1,25 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ErrorHandle from "../../components/ErrorHandle";
 import MyCustomButton from "../../components/MyCustomButton";
 import TextInput from "../../components/TextInput";
 import regexInputModule from "../../module/regexInputModule";
 import { storeUserInfoWhenRegister } from "../../redux/action/actLogin";
-import { registerUserAccountStep2 } from "../../redux/action/actRegister";
+import { CLEAR_MESSAGE_FROM_SERVER } from "../../redux/constants/constants";
 
-const VerifyEmail = ({ gotoPreviousStepOfRegister, gotoNextStepOfRegister }) => {
-    const dispatch = useDispatch();
+const VerifyEmail = ({ gotoPreviousStepOfRegister, isEntitledGotoNextStep }) => {
+    const dispatch = useDispatch()
     const userRegister = useSelector((state) => state.userRegister);
     const message = useSelector((state) => state.message);
-    const isEntitledGotoNextStep = () => {
-        dispatch(registerUserAccountStep2(userRegister))
-            .then(() => {
-                gotoNextStepOfRegister();
-            })
-            .catch((err) => {
-                window.alert(err);
-            });
-    };
+   
+    useEffect(() => {
+        dispatch({
+            type: CLEAR_MESSAGE_FROM_SERVER
+        })
+    }, [])
+
     return (
         <div>
             <TextInput

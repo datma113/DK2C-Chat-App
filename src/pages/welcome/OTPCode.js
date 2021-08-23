@@ -1,32 +1,21 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import OtpInput from "react-otp-input";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import ErrorHandle from "../../components/ErrorHandle";
 import MyCustomButton from "../../components/MyCustomButton";
-import { registerUserAccountStep3, clearUserInfoWhenDoneRegister } from "../../redux/action/actRegister";
+import { storeUserInfoWhenRegister } from "../../redux/action/actLogin";
 
-const OTPCode = ({gotoPreviousStepOfRegister}) => {
-     const dispatch = useDispatch()
+const OTPCode = ({ gotoPreviousStepOfRegister, isEntitledGotoNextStep }) => {
+    const dispatch = useDispatch();
+    const message = useSelector((state) => state.message);
+
     const [otp, setotp] = useState("");
-    const userRegister = useSelector(state => state.userRegister)
-    const history = useHistory()
-    
-    const isEntitledGotoNextStep = () => {
-         const user = {
-              email: userRegister.email,
-              verificationCode: otp
-         } 
 
-          dispatch(registerUserAccountStep3(user))
-          .then(() => {
-               dispatch(clearUserInfoWhenDoneRegister())
-               window.alert(` đăng ký thành công `)
-               history.push("/welcome")
-          })
-          .catch(() => {
-               console.log(`dk thất bại`)
-          })
-    }
+    useEffect(() => {
+        dispatch(storeUserInfoWhenRegister("verificationCode", otp));
+    }, [otp]);
+
     return (
         <div>
             <div className="mb-5 d-flex justify-content-center">
@@ -38,16 +27,14 @@ const OTPCode = ({gotoPreviousStepOfRegister}) => {
                     separator={<span> &nbsp;&nbsp; </span>}
                 />
             </div>
+            <ErrorHandle message={message.message} />
 
-            <MyCustomButton label="xác thực" typeButton="secondary" 
-             isEntitledGotoNextStep={isEntitledGotoNextStep}
-            
-            />
             <MyCustomButton
-                label="gữi lại OTP"
-                typeButton="light"
-                iconClass="fas fa-sync-alt"           
+                label="xác thực"
+                typeButton="secondary"
+                isEntitledGotoNextStep={isEntitledGotoNextStep}
             />
+            <MyCustomButton label="gữi lại OTP" typeButton="light" iconClass="fas fa-sync-alt" />
             <MyCustomButton
                 label="chọn email khác"
                 typeButton="light"

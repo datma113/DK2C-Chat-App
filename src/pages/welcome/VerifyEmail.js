@@ -1,18 +1,18 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import ErrorHandle from "../../components/ErrorHandle";
 import MyCustomButton from "../../components/MyCustomButton";
 import TextInput from "../../components/TextInput";
 import regexInputModule from "../../module/regexInputModule";
 import { storeUserInfoWhenRegister } from "../../redux/action/actLogin";
-import {
-    registerUserAccountStep2
-} from "../../redux/action/actRegister";
+import { registerUserAccountStep2 } from "../../redux/action/actRegister";
 
-const VerifyEmail = ({ gotoPreviousStepOfRegister, gotoNextStepOfRegister}) => {
+const VerifyEmail = ({ gotoPreviousStepOfRegister, gotoNextStepOfRegister }) => {
+    const dispatch = useDispatch();
     const userRegister = useSelector((state) => state.userRegister);
-
+    const message = useSelector((state) => state.message);
     const isEntitledGotoNextStep = () => {
-        registerUserAccountStep2(userRegister)
+        dispatch(registerUserAccountStep2(userRegister))
             .then(() => {
                 gotoNextStepOfRegister();
             })
@@ -34,6 +34,8 @@ const VerifyEmail = ({ gotoPreviousStepOfRegister, gotoNextStepOfRegister}) => {
                 functionToDispatch={storeUserInfoWhenRegister}
                 initialValue={userRegister.email}
             />
+            <ErrorHandle message={message.message} />
+
             <MyCustomButton
                 label="xác nhận"
                 typeButton="secondary"

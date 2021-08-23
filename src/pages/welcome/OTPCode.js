@@ -17,7 +17,7 @@ const OTPCode = ({gotoPreviousStepOfRegister}) => {
               verificationCode: otp
          } 
 
-          registerUserAccountStep3(user)
+          dispatch(registerUserAccountStep3(user))
           .then(() => {
                dispatch(clearUserInfoWhenDoneRegister())
                window.alert(` đăng ký thành công `)

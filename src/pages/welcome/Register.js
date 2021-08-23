@@ -52,7 +52,6 @@ const Register = () => {
                     gotoNextStepOfRegister();
                 })
                 .catch(() => {
-                    window.alert(` result thất bại `);
                 });
         } else {
             dispatch(registerUserAccountStep1Redo(userRegister))
@@ -61,7 +60,6 @@ const Register = () => {
                     gotoNextStepOfRegister();
                 })
                 .catch(() => {
-                    window.alert(` result redo thất bại `);
                 });
         }
     };

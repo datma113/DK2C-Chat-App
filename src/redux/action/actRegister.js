@@ -10,6 +10,9 @@ export const registerUserAccountStep1 = (user) => {
     return (dispatch) => {
         return RegisterService.registerUserAccountStep1(user)
             .then((resp) => {
+                dispatch({
+                    type: CLEAR_MESSAGE_FROM_SERVER,
+                });
                 return Promise.resolve(resp.data);
             })
             .catch((err) => {
@@ -31,6 +34,9 @@ export const registerUserAccountStep1Redo = (user) => {
     return (dispatch) => {
         return RegisterService.registerUserAccountStep1Redo(user)
             .then((resp) => {
+                dispatch({
+                    type: CLEAR_MESSAGE_FROM_SERVER,
+                });
                 return Promise.resolve(resp.data);
             })
             .catch((err) => {
@@ -52,6 +58,9 @@ export const registerUserAccountStep2 = (user) => {
     return (dispatch) => {
         return RegisterService.registerUserAccountStep2(user)
             .then(() => {
+                dispatch({
+                    type: CLEAR_MESSAGE_FROM_SERVER,
+                });
                 return Promise.resolve();
             })
             .catch((err) => {

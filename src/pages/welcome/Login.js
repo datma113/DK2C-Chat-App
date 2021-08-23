@@ -3,11 +3,20 @@ import logo from "../../assets/image/LOGO.png";
 import TextInput from "../../components/TextInput";
 import MyCustomButton from "../../components/MyCustomButton";
 import { storePhoneAndPasswordWhenLogin, login } from "../../redux/action/actLogin";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {ANIMATE_ZOOM_IN} from '../../animate'
+import { useHistory } from "react-router-dom";
+import Errorhandle from '../../components/ErrorHandle'
 
 const Login = () => {
+    const dispatch = useDispatch()
+    const history = useHistory()
     const userLogin = useSelector((state) => state.userLogin);
+    const message = useSelector(state => state.message)
+    const authentication = useSelector(state => state.authentication)
+
+    console.log(authentication.user)
+    console.log(document.cookie)
 
     const LOGIN_FIELDS = [
         { label: "Số điện thoại", type: "text", regexPattern: /[\D]/g, keyStoreToReducer: "username" },
@@ -34,7 +43,14 @@ const Login = () => {
     });
 
     const loginHandle = () => {
-        login(userLogin)
+        dispatch(login(userLogin))
+        .then(() => {
+            window.alert('đăng nhập thành công')
+            history.push('/welcome')         
+        })
+        .catch(() => {
+            window.alert(` thất bại!`)
+        })
     }
 
     return (
@@ -42,7 +58,8 @@ const Login = () => {
             <div className="col-lg-4 d-flex flex-column align-items-center justify-content-center welcome-container">
                 <img src={logo} alt="" className="welcome-container__logo " />
                 <p className="text-title mt-3">Đăng nhập để tiếp tục !</p>
-                <div className="mt-3 col-6 ">{loginMap}</div>
+                <div className="mt-3 ">{loginMap}</div>
+                <Errorhandle message={message.message}/>
                 <MyCustomButton label="đăng nhập" typeButton="secondary" 
                     login={loginHandle}
                 />

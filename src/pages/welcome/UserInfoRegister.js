@@ -4,7 +4,7 @@ import ErrorHandle from "../../components/ErrorHandle";
 import MyCustomButton from "../../components/MyCustomButton";
 import TextInput from "../../components/TextInput";
 import regexInputModule from "../../module/regexInputModule";
-import { storeUserInfoWhenRegister } from "../../redux/action/actLogin";
+import { storeUserInfoWhenRegister } from "../../redux/action/actRegister";
 const UserInfoRegister = ({ registerFields, userRegister, isEntitledGotoNextStep }) => {
     const message = useSelector((state) => state.message);
     const registerMap = registerFields.map((field, index) => {

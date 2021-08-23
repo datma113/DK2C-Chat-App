@@ -3,6 +3,8 @@ import {
     STORE_USER_INFO_WHEN_DONE_A_REGISTER_STEP,
     SET_MESSAGE_FROM_SERVER,
     CLEAR_MESSAGE_FROM_SERVER,
+    STORE_USER_INFO_WHEN_REGISTER,
+
 } from "../constants/constants";
 import RegisterService from "../../services/RegisterService";
 
@@ -80,7 +82,6 @@ export const registerUserAccountStep2 = (user) => {
 };
 
 export const registerUserAccountStep3 = (user) => {
-    console.log(user)
     return (dispatch) => {
         return RegisterService.registerUserAccountStep3(user)
             .then(() => {
@@ -114,3 +115,14 @@ export const clearUserInfoWhenDoneRegister = () => {
         type: CLEAR_USER_INFO_WHEN_DONE_REGISTER,
     };
 };
+
+
+export const storeUserInfoWhenRegister = (key, value) => {
+    //key and value was created to save a dynamic object
+    return {
+        type: STORE_USER_INFO_WHEN_REGISTER,
+        key,
+        value
+    };
+};
+

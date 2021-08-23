@@ -75,7 +75,7 @@ const Register = () => {
         }
     };
 
-    const isEntitledGotoNextStep_step2 = () => {
+    const   isEntitledGotoNextStep_step2 = () => {
         setisLoading(true);
 
         dispatch(registerUserAccountStep2(userRegister))
@@ -108,7 +108,8 @@ const Register = () => {
         dispatch({
             type: CLEAR_MESSAGE_FROM_SERVER,
         });
-    }, []);
+        if(registerStep > 2) setregisterStep(2)
+    }, [registerStep]);
 
     return (
         <div className={`d-flex justify-content-center mt-5 ${ANIMATE_ZOOM_IN}`}>
@@ -137,6 +138,7 @@ const Register = () => {
                     <OTPCode
                         gotoPreviousStepOfRegister={gotoPreviousStepOfRegister}
                         isEntitledGotoNextStep={isEntitledGotoNextStep_step3}
+                        resendOTP={isEntitledGotoNextStep_step2}
                     />
                 )}
                 {isLoading && <Loading />}

@@ -3,10 +3,10 @@ import { useEffect } from "react";
 import OtpInput from "react-otp-input";
 import { useDispatch, useSelector } from "react-redux";
 import ErrorHandle from "../../components/ErrorHandle";
-import MyCustomButton from "../../components/MyCustomButton";
-import { storeUserInfoWhenRegister } from "../../redux/action/actLogin";
+import MyCustomButton from "../../components/MyCustomButton";   
+import { storeUserInfoWhenRegister } from "../../redux/action/actRegister";
 
-const OTPCode = ({ gotoPreviousStepOfRegister, isEntitledGotoNextStep }) => {
+const OTPCode = ({ gotoPreviousStepOfRegister, isEntitledGotoNextStep, resendOTP }) => {
     const dispatch = useDispatch();
     const message = useSelector((state) => state.message);
 
@@ -14,7 +14,9 @@ const OTPCode = ({ gotoPreviousStepOfRegister, isEntitledGotoNextStep }) => {
 
     useEffect(() => {
         dispatch(storeUserInfoWhenRegister("verificationCode", otp));
-    }, [otp]);
+    }, [dispatch(storeUserInfoWhenRegister("verificationCode", otp))]);
+
+   
 
     return (
         <div>
@@ -27,6 +29,7 @@ const OTPCode = ({ gotoPreviousStepOfRegister, isEntitledGotoNextStep }) => {
                     separator={<span> &nbsp;&nbsp; </span>}
                 />
             </div>
+            <p> Vui lòng Check Email:  </p>
             <ErrorHandle message={message.message} />
 
             <MyCustomButton
@@ -34,7 +37,12 @@ const OTPCode = ({ gotoPreviousStepOfRegister, isEntitledGotoNextStep }) => {
                 typeButton="secondary"
                 isEntitledGotoNextStep={isEntitledGotoNextStep}
             />
-            <MyCustomButton label="gữi lại OTP" typeButton="light" iconClass="fas fa-sync-alt" />
+            <MyCustomButton
+                label="gữi lại OTP"
+                typeButton="light"
+                iconClass="fas fa-sync-alt"
+                isEntitledGotoNextStep={resendOTP}
+            />
             <MyCustomButton
                 label="chọn email khác"
                 typeButton="light"

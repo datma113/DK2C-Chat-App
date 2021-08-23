@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const CompetedStep = ({ numberStep, currentStep }) => {
 
@@ -16,3 +17,8 @@ const CompetedStep = ({ numberStep, currentStep }) => {
 };
 
 export default CompetedStep;
+
+CompetedStep.propTypes = {
+    numberStep: PropTypes.number,
+    currentStep: PropTypes.number
+ };

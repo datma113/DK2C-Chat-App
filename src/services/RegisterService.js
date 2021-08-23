@@ -8,19 +8,19 @@ const CHECK_EMAIL = 'send_vetification_code'
 const VERIFY = 'verify'
 
 RegisterService.prototype = {
-    registerUserAccountStep1(user) {
+    registerUserAccountInitialStep(user) {
         return axios.post(URL + SAVE_IMFORMATION, user);
     },
     
-    registerUserAccountStep1Redo(user) {
+    registerUserAccountInitialStepRedo(user) {
         return axios.put(URL + SAVE_IMFORMATION, user);
     },
 
-    registerUserAccountStep2(user) {
+    registerUserAccountVerifyEmailStep(user) {
         return axios.put(URL + CHECK_EMAIL, user);
     },
 
-    registerUserAccountStep3(user) {
+    registerUserAccountVerifyOtpStep(user) {
         return axios.post(URL + VERIFY, user)
     }
 };

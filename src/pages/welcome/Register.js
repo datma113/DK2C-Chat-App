@@ -5,12 +5,12 @@ import { useState } from "react";
 import CompetedStep from "../../components/CompetedStep";
 import VerifyEmail from "./VerifyEmail";
 import {
-    registerUserAccountStep1,
-    registerUserAccountStep1Redo,
+    registerUserAccountInitialStep,
+    registerUserAccountInitialStepRedo,
     storeUserInfoWhenDoneARegisterStep,
-    registerUserAccountStep2,
+    registerUserAccountVerifyEmailStep,
     clearUserInfoWhenDoneRegister,
-    registerUserAccountStep3,
+    registerUserAccountVerifyOtpStep,
 } from "../../redux/action/actRegister";
 import { useDispatch, useSelector } from "react-redux";
 import OTPCode from "./OTPCode";
@@ -53,7 +53,7 @@ const Register = () => {
     const isEntitledGotoNextStep_step1 = () => {
         setisLoading(true);
         if (!userRegister.id) {
-            dispatch(registerUserAccountStep1(userRegister))
+            dispatch(registerUserAccountInitialStep(userRegister))
                 .then((data) => {
                     dispatch(storeUserInfoWhenDoneARegisterStep(data));
                     gotoNextStepOfRegister();
@@ -63,7 +63,7 @@ const Register = () => {
                     setisLoading(false);
                 });
         } else {
-            dispatch(registerUserAccountStep1Redo(userRegister))
+            dispatch(registerUserAccountInitialStepRedo(userRegister))
                 .then((data) => {
                     dispatch(storeUserInfoWhenDoneARegisterStep(data));
                     gotoNextStepOfRegister();
@@ -75,10 +75,10 @@ const Register = () => {
         }
     };
 
-    const   isEntitledGotoNextStep_step2 = () => {
+    const isEntitledGotoNextStep_step2 = () => {
         setisLoading(true);
 
-        dispatch(registerUserAccountStep2(userRegister))
+        dispatch(registerUserAccountVerifyEmailStep(userRegister))
             .then(() => {
                 gotoNextStepOfRegister();
                 setisLoading(false);
@@ -93,7 +93,7 @@ const Register = () => {
             email: userRegister.email,
             verificationCode: userRegister.verificationCode,
         };
-        dispatch(registerUserAccountStep3(user))
+        dispatch(registerUserAccountVerifyOtpStep(user))
             .then(() => {
                 dispatch(clearUserInfoWhenDoneRegister());
                 window.alert(` đăng ký thành công `);
@@ -108,7 +108,7 @@ const Register = () => {
         dispatch({
             type: CLEAR_MESSAGE_FROM_SERVER,
         });
-        if(registerStep > 2) setregisterStep(2)
+        if (registerStep > 2) setregisterStep(2);
     }, [registerStep]);
 
     return (

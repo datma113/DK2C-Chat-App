@@ -8,9 +8,9 @@ import {
 } from "../constants/constants";
 import RegisterService from "../../services/RegisterService";
 
-export const registerUserAccountStep1 = (user) => {
+export const registerUserAccountInitialStep = (user) => {
     return (dispatch) => {
-        return RegisterService.registerUserAccountStep1(user)
+        return RegisterService.registerUserAccountInitialStep(user)
             .then((resp) => {
                 dispatch({
                     type: CLEAR_MESSAGE_FROM_SERVER,
@@ -32,9 +32,9 @@ export const registerUserAccountStep1 = (user) => {
     };
 };
 
-export const registerUserAccountStep1Redo = (user) => {
+export const registerUserAccountInitialStepRedo = (user) => {
     return (dispatch) => {
-        return RegisterService.registerUserAccountStep1Redo(user)
+        return RegisterService.registerUserAccountInitialStepRedo(user)
             .then((resp) => {
                 dispatch({
                     type: CLEAR_MESSAGE_FROM_SERVER,
@@ -56,9 +56,9 @@ export const registerUserAccountStep1Redo = (user) => {
     };
 };
 
-export const registerUserAccountStep2 = (user) => {
+export const registerUserAccountVerifyEmailStep = (user) => {
     return (dispatch) => {
-        return RegisterService.registerUserAccountStep2(user)
+        return RegisterService.registerUserAccountVerifyEmailStep(user)
             .then(() => {
                 dispatch({
                     type: CLEAR_MESSAGE_FROM_SERVER,
@@ -81,9 +81,9 @@ export const registerUserAccountStep2 = (user) => {
     };
 };
 
-export const registerUserAccountStep3 = (user) => {
+export const registerUserAccountVerifyOtpStep = (user) => {
     return (dispatch) => {
-        return RegisterService.registerUserAccountStep3(user)
+        return RegisterService.registerUserAccountVerifyOtpStep(user)
             .then(() => {
                 return Promise.resolve();
             })

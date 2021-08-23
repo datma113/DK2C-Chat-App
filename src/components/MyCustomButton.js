@@ -59,4 +59,8 @@ MyCustomButton.propTypes = {
     typeButton: PropTypes.string,
     iconClass: PropTypes.string,
     isGoBackHistory: PropTypes.bool,
+    isEntitledGotoNextStep: PropTypes.func,
+    gotoPreviousStepOfRegister: PropTypes.func,
+    login: PropTypes.func,
+    getOtp: PropTypes.func,
 };

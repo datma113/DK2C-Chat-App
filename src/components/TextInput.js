@@ -67,4 +67,5 @@ TextInput.propTypes = {
     regexPattern: PropTypes.any,
     functionToDispatch: PropTypes.func,
     keyStoreToReducer: PropTypes.string,
+    initialValue: PropTypes.string
 };

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from "prop-types";
 
 const ErrorHandle = ({message}) => {
      
@@ -7,7 +8,7 @@ const ErrorHandle = ({message}) => {
      }
      return (
           
-          <div className={`alert alert-danger err-message text-center ${hasError()}`} >
+          <div className={`alert alert-danger err-message text-center text-small ${hasError()}`} >
                <i className="fas fa-exclamation-triangle"></i>
                {message}
           </div>
@@ -15,3 +16,7 @@ const ErrorHandle = ({message}) => {
 }
 
 export default ErrorHandle
+
+ErrorHandle.propTypes = {
+    message: PropTypes.string
+ };

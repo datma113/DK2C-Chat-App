@@ -9,15 +9,15 @@ import { storeUserInfoWhenRegister } from "../../redux/action/actRegister";
 const OTPCode = ({ gotoPreviousStepOfRegister, isEntitledGotoNextStep, resendOTP }) => {
     const dispatch = useDispatch();
     const message = useSelector((state) => state.message);
-
     const [otp, setotp] = useState("");
+
+    
 
     useEffect(() => {
         dispatch(storeUserInfoWhenRegister("verificationCode", otp));
-    }, [dispatch(storeUserInfoWhenRegister("verificationCode", otp))]);
+    }, [dispatch, otp]);
 
    
-
     return (
         <div>
             <div className="mb-5 d-flex justify-content-center">

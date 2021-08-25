@@ -16,7 +16,7 @@ const VerifyEmail = ({ gotoPreviousStepOfRegister, isEntitledGotoNextStep }) => 
         dispatch({
             type: CLEAR_MESSAGE_FROM_SERVER
         })
-    }, [])
+    }, [dispatch])
 
     return (
         <div>

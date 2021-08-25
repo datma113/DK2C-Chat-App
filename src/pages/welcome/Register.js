@@ -109,7 +109,7 @@ const Register = () => {
             type: CLEAR_MESSAGE_FROM_SERVER,
         });
         if (registerStep > 2) setregisterStep(2);
-    }, [registerStep]);
+    }, [registerStep, dispatch]);
 
     return (
         <div className={`d-flex justify-content-center mt-5 ${ANIMATE_ZOOM_IN}`}>

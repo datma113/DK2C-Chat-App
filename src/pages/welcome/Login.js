@@ -14,9 +14,7 @@ const Login = () => {
     const history = useHistory();
     const userLogin = useSelector((state) => state.userLogin);
     const message = useSelector((state) => state.message);
-    const authentication = useSelector((state) => state.authentication);
 
-    console.log(authentication);
 
     const LOGIN_FIELDS = [
         {
@@ -50,8 +48,7 @@ const Login = () => {
     const loginHandle = () => {
         dispatch(login(userLogin))
             .then(() => {
-                window.alert("đăng nhập thành công");
-                history.push("/welcome");
+            //    history.push("/welcome");
             })
             .catch(() => {
                 window.alert(` thất bại!`);

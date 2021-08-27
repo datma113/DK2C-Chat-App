@@ -1,0 +1,1 @@
+const GET_REFRESH_TOKEN = 'http://localhost:8080/api/auth/refreshtoken'

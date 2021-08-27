@@ -5,7 +5,8 @@ function LoginService() {}
 const URL = "http://localhost:8080/api/auth/signin";
 LoginService.prototype = {
     login(user) {
-        return axios.post(URL, user).then((resp) => {
+        return axios.post(URL, user, { withCredentials: true }).then((resp) => {
+            console.log(resp);
             if (resp.data.accessToken) {
                 axios.interceptors.request.use(function (config) {
                     const token = `Bearer ${resp.data.accessToken}`;

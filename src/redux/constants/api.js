@@ -1,1 +1,3 @@
-const GET_REFRESH_TOKEN = 'http://localhost:8080/api/auth/refreshtoken'
+const API = 'http://localhost:8080/api/'
+export const API_GET_REFRESH_TOKEN = API + 'auth/refreshtoken'
+export const API_GET_USER_WHEN_EXISTS_REFRESH_TOKEN = API + 'user/me'

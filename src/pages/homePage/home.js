@@ -1,32 +1,19 @@
-import axios from "axios";
-import React from "react";
-import Cookies from "universal-cookie";
-const home = () => {
-    const getRefreshToken = () => {
+import React, { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getTokenWhenRefreshPage } from "../../redux/action/actLogin";
 
-        axios
-            .get("http://localhost:8080/api/auth/refreshtoken", {
-                withCredentials: true,
-            })
-            .then((resp) => {       
-                console.log(resp);
-            })
-            .catch((err) => {
-                   const MESSAGE =
-                    (err.response && err.response.data && err.response.data.message) ||
-                    err.message ||
-                    err.toString();
-                    console.log(MESSAGE)
-                
-            })
-    };
-    return (
-        <div>
-            <div className="btn btn-danger btn-welcome" onClick={() => getRefreshToken()}>
-                get refresh token
-            </div>
-        </div>
-    );
+const Home = () => {
+    const authentication = useSelector((state) => state.authentication);
+    const dispatch = useDispatch();
+
+    console.log(authentication)
+
+    useEffect(() => {
+        dispatch(getTokenWhenRefreshPage());
+    }, []);
+
+    return <div>sss</div>;
 };
 
-export default home;
+export default Home;

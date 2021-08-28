@@ -1,9 +1,13 @@
 import { LOGIN_FAILED, LOGIN_SUCCESSFUL } from "../constants/constants";
 
-const initial = { isLoggin: false, user: null }
+let initialState = {
+    isLoggin: false,
+    user: null,
+};
 
-const reducer = (state = initial, action) => {
+const reducer = (state = initialState, action) => {
     let { type, user } = action;
+
     switch (type) {
         case LOGIN_SUCCESSFUL:
             return {

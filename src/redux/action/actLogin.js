@@ -1,10 +1,13 @@
 import {
     CLEAR_MESSAGE_FROM_SERVER,
+    LOGIN_FAILED,
     LOGIN_SUCCESSFUL,
     SET_MESSAGE_FROM_SERVER,
     STORE_PHONE_AND_PASSWORD_WHEN_LOGIN,
 } from "../constants/constants";
+import { API_GET_REFRESH_TOKEN, API_GET_USER_WHEN_EXISTS_REFRESH_TOKEN } from "../constants/api";
 import LoginService from "../../services/LoginService";
+import axios from "axios";
 
 export const storePhoneAndPasswordWhenLogin = (key, value) => {
     //key and value was created to save a dynamic object
@@ -39,7 +42,43 @@ export const login = (user) => {
                     type: SET_MESSAGE_FROM_SERVER,
                     message: MESSAGE,
                 });
+
+                dispatch({
+                    type: LOGIN_FAILED,
+                });
+
                 return Promise.reject();
+            });
+    };
+};
+
+export const getTokenWhenRefreshPage = () => {
+    return async (dispatch) => {
+        const token = await axios
+            .get(API_GET_REFRESH_TOKEN, { withCredentials: true })
+            .then((resp) => {
+                axios.interceptors.request.use(function (config) {
+                    const token = `Bearer ${resp.data}`;
+                    config.headers.Authorization = token;
+                    return config;
+                });
+                return resp.data;
+            })
+            .catch(() => "");
+
+        //get user when have token
+        axios
+            .get(API_GET_USER_WHEN_EXISTS_REFRESH_TOKEN, { token })
+            .then((resp) => {
+                dispatch({
+                    type: LOGIN_SUCCESSFUL,
+                    user: resp.data,
+                });
+            })
+            .catch(() => {
+                dispatch({
+                    type: LOGIN_FAILED,
+                });
             });
     };
 };

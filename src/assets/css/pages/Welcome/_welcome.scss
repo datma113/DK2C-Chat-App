@@ -1,0 +1,22 @@
+.welcome-container {
+     border-radius: 3rem;
+     box-shadow: 0 0 15px rgba($color: $mainPurpleColor, $alpha: 0.1);
+     padding: 3rem 0;
+
+     &__image {
+          width: 30rem;
+          height: 30rem;
+          display: block;
+     }
+
+     &__logo {
+          box-shadow: 0 0 10px rgba($color: $mainPurpleColor, $alpha: 0.3);
+          width: 15%;
+          border-radius: 50%;
+          background-color:  $mainPurpleColor;
+     }
+}
+
+.err-message {
+     width: 25rem;
+}

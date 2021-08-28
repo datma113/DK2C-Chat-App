@@ -1,0 +1,34 @@
+@import '../variables/variables';
+.bg {
+    background-color: $mainPurpleColor;
+    color: $mainLightColor;
+    text-align: center;
+}
+.bg:hover .card__header {
+    background-color: $blockHoverColor;
+    color: $mainDarkColor;
+}
+.header:hover {
+    background-color: $hoverPurpleColor; 
+    height: 100%;
+    
+    color: aliceblue;
+}
+.header {
+    color: aliceblue;
+    border-radius: 100px;
+ 
+
+}
+.header__active {
+    color: aliceblue;
+    height: 100%;
+    // width: 100%;
+    background-color: $hoverPurpleColor;
+    
+    // border-radius: 100px;
+
+}
+
+
+ 

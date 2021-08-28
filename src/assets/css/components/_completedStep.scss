@@ -1,0 +1,13 @@
+.completed-step {
+     display: block;
+     height: 0.5rem;
+     width: 5rem;
+     background-color: gray;
+     margin-right: 0.5rem;
+     transition: 0.5s;
+}
+
+.completed-step--has-completed {
+     background-color: $focusBoldPinkColor;
+     box-shadow: 1px 1px 5px $focusLightPinkColor;
+}

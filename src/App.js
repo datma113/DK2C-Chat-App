@@ -1,17 +1,22 @@
-import './css/styles.css'
+import Header from "./components/Header";
+import "./assets/css/styles.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import routes from "./routes";
 
 function App() {
-
-
-
-  return (
-    <div className="App">
-        <div className="card bg">
-        <div className="card__header">header</div>
-        </div>
-        <i className="fas fa-angle-double-down"></i>
-    </div>
-  );
+    const mapRoutes = routes.map((route, index) => {
+        return (
+            <Route key={index} path={route.path} component={route.component} exact={route.exact} />
+        );
+    });
+    return (
+        <Router>
+            <div className="App">
+                <Header />
+                <Switch>{mapRoutes}</Switch>
+            </div>
+        </Router>
+    );
 }
 
 export default App;

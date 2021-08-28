@@ -18,6 +18,7 @@ import Loading from "../../components/Loading";
 import UserInfoRegister from "./UserInfoRegister";
 import { useHistory } from "react-router-dom";
 import { CLEAR_MESSAGE_FROM_SERVER } from "../../redux/constants/constants";
+import Swal from "sweetalert2";
 
 const Register = () => {
     const dispatch = useDispatch();
@@ -59,8 +60,13 @@ const Register = () => {
                     gotoNextStepOfRegister();
                     setisLoading(false);
                 })
-                .catch(() => {
+                .catch((err) => {
                     setisLoading(false);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        html: `<div class="text-normal text-center text-danger"> ${err} </div>`,
+                    });
                 });
         } else {
             dispatch(registerUserAccountInitialStepRedo(userRegister))
@@ -69,8 +75,13 @@ const Register = () => {
                     gotoNextStepOfRegister();
                     setisLoading(false);
                 })
-                .catch(() => {
+                .catch((err) => {
                     setisLoading(false);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        html: `<div class="text-normal text-center text-danger"> ${err} </div>`,
+                    });
                 });
         }
     };
@@ -83,8 +94,13 @@ const Register = () => {
                 gotoNextStepOfRegister();
                 setisLoading(false);
             })
-            .catch(() => {
+            .catch((err) => {
                 setisLoading(false);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    html: `<div class="text-normal text-center text-danger"> ${err} </div>`,
+                });
             });
     };
 
@@ -96,11 +112,19 @@ const Register = () => {
         dispatch(registerUserAccountVerifyOtpStep(user))
             .then(() => {
                 dispatch(clearUserInfoWhenDoneRegister());
-                window.alert(` đăng ký thành công `);
+                Swal.fire({
+                    icon: "success",
+                    title: "Congratulation!",
+                    html: `<div class="text-normal text-center text-danger"> Đăng ký thành công! </div>`,
+                });
                 history.push("/welcome");
             })
-            .catch(() => {
-                console.log(`dk thất bại`);
+            .catch((err) => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    html: `<div class="text-normal text-center text-danger"> ${err} </div>`,
+                });
             });
     };
 

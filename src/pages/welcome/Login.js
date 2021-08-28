@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import logo from "../../assets/image/LOGO.png";
 import TextInput from "../../components/TextInput";
 import MyCustomButton from "../../components/MyCustomButton";
+import Swal from "sweetalert2";
+
 import {
     storePhoneAndPasswordWhenLogin,
     login,
@@ -54,14 +56,18 @@ const Login = () => {
             .then(() => {
                 history.push("/");
             })
-            .catch(() => {
-                window.alert(` thất bại!`);
+            .catch((err) => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    html: `<div class="text-normal text-center text-danger"> ${err} </div>`,
+                });
             });
     };
 
     const gobackHome = () => {
-        history.push("/")
-    }
+        history.push("/");
+    };
 
     useEffect(() => {
         dispatch(getTokenWhenRefreshPage());
@@ -101,7 +107,9 @@ const Login = () => {
             {authentication.isLoggin && (
                 <div>
                     <div>bạn đã login rồi. Quay lại trang chủ</div>
-                    <div className="btn btn-danger btn-welcome" onClick={gobackHome}>Quay về trang chủ</div>
+                    <div className="btn btn-danger btn-welcome" onClick={gobackHome}>
+                        Quay về trang chủ
+                    </div>
                 </div>
             )}
         </div>

@@ -27,7 +27,7 @@ export const registerUserAccountInitialStep = (user) => {
                     type: SET_MESSAGE_FROM_SERVER,
                     message: MESSAGE,
                 });
-                return Promise.reject();
+                return Promise.reject(MESSAGE);
             });
     };
 };
@@ -51,7 +51,7 @@ export const registerUserAccountInitialStepRedo = (user) => {
                     type: SET_MESSAGE_FROM_SERVER,
                     message: MESSAGE,
                 });
-                return Promise.reject();
+                return Promise.reject(MESSAGE);
             });
     };
 };
@@ -76,7 +76,7 @@ export const registerUserAccountVerifyEmailStep = (user) => {
                     message: MESSAGE,
                 });
 
-                return Promise.reject();
+                return Promise.reject(MESSAGE);
             });
     };
 };
@@ -98,7 +98,7 @@ export const registerUserAccountVerifyOtpStep = (user) => {
                     message: MESSAGE,
                 });
 
-                return Promise.reject();
+                return Promise.reject(MESSAGE);
             });
     };
 };

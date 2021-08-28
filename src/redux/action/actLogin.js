@@ -14,7 +14,7 @@ export const storePhoneAndPasswordWhenLogin = (key, value) => {
     return {
         type: STORE_PHONE_AND_PASSWORD_WHEN_LOGIN,
         key,
-        value,
+        value
     };
 };
 
@@ -47,7 +47,7 @@ export const login = (user) => {
                     type: LOGIN_FAILED,
                 });
 
-                return Promise.reject();
+                return Promise.reject(MESSAGE);
             });
     };
 };

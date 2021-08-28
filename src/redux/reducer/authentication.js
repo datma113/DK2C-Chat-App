@@ -2,7 +2,7 @@ import { LOGIN_FAILED, LOGIN_SUCCESSFUL } from "../constants/constants";
 
 let initialState = {
     isLoggin: false,
-    user: null,
+    user: {},
 };
 
 const reducer = (state = initialState, action) => {
@@ -17,7 +17,7 @@ const reducer = (state = initialState, action) => {
         case LOGIN_FAILED:
             return {
                 isLoggin: false,
-                user: null,
+                user: {},
             };
         default:
             break;

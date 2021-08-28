@@ -18,7 +18,7 @@ const Welcome = () => {
                 <div className="btn btn-light btn-welcome">Bạn chưa có tài khoản ?</div>
                 </Link>
             </div>
-        </div>
+        </div>  
     );
 };
 

@@ -1,12 +1,50 @@
-import React from 'react'
+import React from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Inbox from "../../components/Inbox";
+import { getInboxsFromServer } from "../../redux/action/actHome";
 
 const InboxList = () => {
+    const dispatch = useDispatch();
+    const inboxs = useSelector((state) => state.inboxs);
 
-     return (
-          <div>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae ducimus sequi atque expedita tempora mollitia sunt, ipsa officiis saepe, aperiam necessitatibus odio in possimus optio incidunt quibusdam placeat quos, natus facilis sint. Quaerat fuga voluptatibus magni corrupti sed nihil quam asperiores qui labore sint tempora, repellendus, possimus esse, sapiente impedit. Nobis aspernatur expedita fugiat sint. Commodi sit molestias ipsa, atque iure asperiores consequuntur quisquam, labore eius sunt soluta repellendus dolorum inventore animi accusantium. Quidem, deserunt voluptatem commodi obcaecati vitae ipsum reiciendis aut totam quos dicta voluptatibus consectetur minus qui deleniti beatae iusto laborum officiis sit ipsam ab fugiat fugit? Fugit nemo dolore aspernatur adipisci atque at sed vel libero architecto hic incidunt amet consequuntur, eum pariatur, sit laudantium iste doloremque quidem minima magni debitis earum, dolor cumque. Vel, quidem aperiam vitae ipsam voluptas error ipsum temporibus reprehenderit nulla unde quas? Voluptatem praesentium doloribus repudiandae mollitia veniam molestiae, nihil iure doloremque officiis ullam aspernatur vel. Esse eius asperiores suscipit officia nam aperiam, reiciendis expedita est quod at unde officiis eos rem doloremque voluptatem obcaecati nihil amet a odio ratione inventore eaque natus ipsa. Placeat consequuntur repellat qui? Delectus voluptatem magnam sapiente, recusandae nulla voluptatibus, fuga dolor rem quia quam et quaerat?
-          </div>
-     )
-}
+    useEffect(() => {
+        dispatch(getInboxsFromServer());
+    }, [dispatch]);
 
-export default InboxList
+    const inboxsMap = inboxs.map((inbox, index) => {
+        const TYPE_ROOM_ONE = "ONE";
+        const TYPE_ROOM_GROUP = "GROUP";
+        let imgUrl = "";
+        let displayName = "";
+
+        switch (inbox.room.type) {
+            case TYPE_ROOM_ONE:
+                imgUrl = inbox.room.to.imageUrl;
+                displayName = inbox.room.to.displayName;
+                break;
+            case TYPE_ROOM_GROUP:
+                imgUrl = inbox.room.imageUrl;
+                displayName = inbox.room.name;
+                break;
+            default:
+                break;
+        }
+
+
+        return (
+            <Inbox
+                key={index}
+                imgUrl={imgUrl}
+                displayName={displayName}
+                lastMessage={inbox.lastMessage.content}
+                senderName={inbox.lastMessage.sender.displayName}
+                type={inbox.room.type}
+            />
+        );
+    });
+
+    return <div> {inboxsMap} </div>;
+};
+
+export default InboxList;

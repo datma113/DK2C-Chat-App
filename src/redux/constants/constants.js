@@ -7,6 +7,9 @@ export const CLEAR_USER_INFO_LOGIN = 'CLEAR_USER_INFO_LOGIN'
 export const LOGIN_SUCCESSFUL = "LOGIN_SUCCESSFUL";
 export const LOGIN_FAILED = "LOGIN_FAILED";
 
+/**Inbox */
+export const STORE_INBOXS = "STORE_INBOXS";
+export const GET_INBOXS_FROM_SERVER = "GET_INBOXS_FROM_SERVER";
 
 
 /**Message from server */

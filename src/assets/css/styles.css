@@ -29,6 +29,10 @@ a {
   font-size: 1.5rem;
 }
 
+.text-medium {
+  font-size: 1.8rem;
+}
+
 .text-message-danger {
   color: red;
   font-size: 1.5rem;
@@ -70,6 +74,12 @@ a {
   position: absolute;
   top: 50%;
   left: calc(52% - 8rem);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .bg {
@@ -177,7 +187,27 @@ a {
 }
 .home__inbox-list {
   overflow: scroll;
-  height: calc(100vh - 100px);
+  height: 99vh;
+}
+
+.inbox {
+  background-color: #FBFBFB;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.inbox:hover {
+  background-color: #a166d1;
+  color: white;
+}
+.inbox__img {
+  border-radius: 100%;
+  overflow: hidden;
+  width: 60px;
+  height: 60px;
+}
+.inbox__img img {
+  width: 100%;
+  height: 100%;
 }
 
 /*variables*/

@@ -3,12 +3,13 @@ import userLogin from './userLogin'
 import userRegister from './userRegister'
 import message from './message'
 import authentication from './authentication'
-
+import inboxs from './inboxs'
 const reducer = combineReducers({
      userLogin,
      userRegister,
      message,
-     authentication
+     authentication,
+     inboxs
 })
 
 export default reducer

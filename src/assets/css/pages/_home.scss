@@ -5,6 +5,7 @@
     &__inbox-list {
         overflow: scroll;
         height: 99vh;
+        width: 38rem;
     }
 }
 
@@ -17,6 +18,7 @@
           background-color: $hoverPurpleColor;
           color: white;
      }
+     
     &__img {
         border-radius: 100%;
         overflow: hidden;

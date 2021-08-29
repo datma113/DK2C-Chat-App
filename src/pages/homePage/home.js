@@ -18,7 +18,7 @@ const Home = () => {
 
             {authentication.isLoggin && (
                 <div className="home row">
-                    <div className="home__inbox-list col-5 col-lg-3">
+                    <div className="home__inbox-list">
                         <InboxList />
                     </div>
                     <div className="home__general col-6">

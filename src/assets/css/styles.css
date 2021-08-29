@@ -188,6 +188,7 @@ a {
 .home__inbox-list {
   overflow: scroll;
   height: 99vh;
+  width: 38rem;
 }
 
 .inbox {

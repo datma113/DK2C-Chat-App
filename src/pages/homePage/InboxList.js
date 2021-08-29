@@ -8,6 +8,7 @@ const InboxList = () => {
     const dispatch = useDispatch();
     const inboxs = useSelector((state) => state.inboxs);
 
+    console.log(inboxs)
     useEffect(() => {
         dispatch(getInboxsFromServer());
     }, [dispatch]);
@@ -40,6 +41,7 @@ const InboxList = () => {
                 lastMessage={inbox.lastMessage.content}
                 senderName={inbox.lastMessage.sender.displayName}
                 type={inbox.room.type}
+                lastMessageTime={inbox.lastMessage.createAt}
             />
         );
     });

@@ -8,6 +8,8 @@
 html {
   font-size: 62.5%;
   line-height: 1;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 a {
@@ -167,6 +169,15 @@ a {
 
 .err-message {
   width: 25rem;
+}
+
+.home {
+  display: flex;
+  flex-direction: row;
+}
+.home__inbox-list {
+  overflow: scroll;
+  height: calc(100vh - 100px);
 }
 
 /*variables*/

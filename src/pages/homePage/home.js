@@ -17,8 +17,18 @@ const Home = () => {
             {!authentication.isLoggin && <Welcome />}
 
             {authentication.isLoggin && (
-                <div>
-                    <InboxList />
+                <div className="home row">
+                    <div className="home__inbox-list col-3 ">
+                        <InboxList />
+                    </div>
+                    <div className="home__general col-6">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores saepe
+                        deleniti eos, culpa nihil earum!
+                    </div>
+                    <div className="home__general col-3 d-none d-lg-flex">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores saepe
+                        deleniti eos, culpa nihil earum!
+                    </div>
                 </div>
             )}
         </div>

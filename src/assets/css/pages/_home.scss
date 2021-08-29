@@ -1,0 +1,10 @@
+.home {
+     display: flex;
+     flex-direction: row;
+  
+     &__inbox-list {
+          overflow: scroll;
+          height: calc(100vh - 100px);
+     }
+  
+}

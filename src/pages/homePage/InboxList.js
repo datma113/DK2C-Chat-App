@@ -8,16 +8,17 @@ const InboxList = () => {
     const dispatch = useDispatch();
     const inboxs = useSelector((state) => state.inboxs);
 
-    console.log(inboxs)
     useEffect(() => {
         dispatch(getInboxsFromServer());
     }, [dispatch]);
+
 
     const inboxsMap = inboxs.map((inbox, index) => {
         const TYPE_ROOM_ONE = "ONE";
         const TYPE_ROOM_GROUP = "GROUP";
         let imgUrl = "";
         let displayName = "";
+
 
         switch (inbox.room.type) {
             case TYPE_ROOM_ONE:
@@ -42,6 +43,7 @@ const InboxList = () => {
                 senderName={inbox.lastMessage.sender.displayName}
                 type={inbox.room.type}
                 lastMessageTime={inbox.lastMessage.createAt}
+                lastMessageReadBy={inbox.lastMessageReadBy}
             />
         );
     });

@@ -10,15 +10,15 @@
 }
 
 .inbox {
-     background-color: $mainLightColor;
-     transition: 0.2s;
-     cursor: pointer;
+    background-color: $mainLightColor;
+    transition: 0.2s;
+    cursor: pointer;
 
-     &:hover {
-          background-color: $hoverPurpleColor;
-          color: white;
-     }
-     
+    &:hover {
+        background-color: $hoverPurpleColor;
+        color: white;
+    }
+
     &__img {
         border-radius: 100%;
         overflow: hidden;
@@ -32,3 +32,49 @@
     }
 }
 
+.read-by {
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+
+    &__img {
+        top: 0.5rem;
+        right: 0;
+        position: absolute;
+        border-radius: 50%;
+        box-shadow: 0 0 3px $mainPurpleColor;
+        width: 15px;
+        height: 15px;
+    }
+
+    &__img--3 {
+        left: 1rem;
+    }
+    &__img--2 {
+        left: 2rem;
+        z-index: 1;
+    }
+    &__img--1 {
+        left: 3rem;
+        z-index: 2;
+    }
+    &__img--0 {
+        left: 4rem;
+        z-index: 3;
+        
+    }
+
+    &__overlay {
+        opacity: 0.5;
+        position: absolute;
+        background-color: $mainDarkColor;
+        color: white;
+        border-radius: 50%;
+        width: 15px;
+        height: 15px;
+        top: 0.5rem;
+        left: 4rem;
+        z-index: 5;
+        font-size: 1rem;
+    }
+}

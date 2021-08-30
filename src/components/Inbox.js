@@ -1,24 +1,40 @@
 import React from "react";
+import ReadBy from "./ReadBy";
 
-const Inbox = ({ imgUrl, displayName, lastMessage, senderName, type, lastMessageTime }) => {
+const Inbox = ({
+    imgUrl,
+    displayName,
+    lastMessage,
+    senderName,
+    type,
+    lastMessageTime,
+    lastMessageReadBy,
+}) => {
     const customStringToShow = (name) => {
         const MAX_OF_LENGTH = 20;
         return name.length >= MAX_OF_LENGTH ? name.slice(0, 17) + "..." : name;
     };
+
 
     const displaySenderName = (senderName) => {
         const TYPE_OF_GROUP = "GROUP";
         return type === TYPE_OF_GROUP ? senderName + ": " : "";
     };
 
+
     const displayLastMessageTime = (time) => {
-        let customTime = new Date(time);
-        const HOUR = customTime.getHours();
-        const MINUTES = customTime.getMinutes();
+        let convertTime = new Date(time);
+        let currentTime = new Date().getTime() - convertTime;
+        let realTime = new Date(currentTime);
+
+        const HOUR = realTime.getHours();
+        const MINUTES = realTime.getMinutes();
 
         const A_DAY = 24;
         const MIN_OF_HOUR = 1;
         const MIN_OF_MINUTE = 1;
+
+        if (HOUR >= A_DAY) return Math.floor(HOUR / 24) + "ngày";
 
         //a few hours
         if (HOUR < A_DAY && HOUR >= MIN_OF_HOUR) return HOUR + " giờ";
@@ -50,12 +66,13 @@ const Inbox = ({ imgUrl, displayName, lastMessage, senderName, type, lastMessage
             </div>
 
             <div className=" col-2 p-0 m-0">
-                <div className="d-flex flex-column">
+                <div className="d-flex flex-column ">
                     <div className="text-small mt-2 d-flex justify-content-end">
                         {displayLastMessageTime(lastMessageTime)}
                     </div>
+                    <ReadBy lastMessageReadBy={lastMessageReadBy}/>
                     <div
-                        className="text-small d-flex justify-content-end"
+                        className="text-small d-flex justify-content-end d-none"
                         style={{ opacity: `0.6` }}
                     >
                         ...

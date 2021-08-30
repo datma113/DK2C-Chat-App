@@ -8,8 +8,10 @@ import BoxChat from "./BoxChat";
 import HeaderOfBoxChat from "./HeaderOfBoxChat";
 const Home = () => {
     const authentication = useSelector((state) => state.authentication);
+    const currentIdBoxChat = useSelector((state) => state.currentIdBoxChat);
     const dispatch = useDispatch();
-
+    const NOT_EXISTS_CURRENT_ID_BOX_CHAT = 0;
+    
     useEffect(() => {
         dispatch(getTokenWhenRefreshPage());
     }, [dispatch]);
@@ -23,9 +25,13 @@ const Home = () => {
                     <div className="home__inbox-list col-3">
                         <InboxList />
                     </div>
-                    <div className="col-6">
-                        <HeaderOfBoxChat />
-                        <BoxChat />
+                    <div className="col-6 ">
+                        {currentIdBoxChat !== NOT_EXISTS_CURRENT_ID_BOX_CHAT && (
+                            <div>
+                                <HeaderOfBoxChat />
+                                <BoxChat />
+                            </div>
+                        )}
                     </div>
                     <div className="col-3 d-none d-lg-flex">
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores saepe

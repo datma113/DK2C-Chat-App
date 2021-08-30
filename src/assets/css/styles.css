@@ -254,6 +254,25 @@ a {
   font-size: 1rem;
 }
 
+.single-chat-box {
+  display: flex;
+}
+.single-chat-box--other {
+  flex-direction: row-reverse;
+}
+.single-chat-box__img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: thin solid gray;
+}
+.single-chat-box__message {
+  background-image: linear-gradient(to right top, #fbfbfb, #fafafa, #f8f8f9, #f7f7f8, #f6f5f7, #f2ebf6, #f1e1f3, #f1d6ee, #f4bee1, #f9a5cd, #fe8bb2, #ff6f91);
+  border: thin solid #5D3B78;
+  border-radius: 10px;
+  padding: 1.5rem 1rem;
+}
+
 /*variables*/
 
 /*# sourceMappingURL=styles.css.map */

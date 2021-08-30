@@ -1,28 +1,27 @@
 import axios from "axios";
-
+import {
+    API_SIGN_UP_CHECK_MAIL,
+    API_SIGN_UP_IMFORMATION,
+    API_SIGN_UP_VERIFY,
+} from "../redux/constants/api";
 function RegisterService() {}
-
-const URL = "http://localhost:8080/api/auth/signup/";
-const SAVE_IMFORMATION = "save_information";
-const CHECK_EMAIL = 'send_vetification_code'
-const VERIFY = 'verify'
 
 RegisterService.prototype = {
     registerUserAccountInitialStep(user) {
-        return axios.post(URL + SAVE_IMFORMATION, user);
+        return axios.post(API_SIGN_UP_IMFORMATION, user);
     },
-    
+
     registerUserAccountInitialStepRedo(user) {
-        return axios.put(URL + SAVE_IMFORMATION, user);
+        return axios.put(API_SIGN_UP_IMFORMATION, user);
     },
 
     registerUserAccountVerifyEmailStep(user) {
-        return axios.put(URL + CHECK_EMAIL, user);
+        return axios.put(API_SIGN_UP_CHECK_MAIL, user);
     },
 
     registerUserAccountVerifyOtpStep(user) {
-        return axios.post(URL + VERIFY, user)
-    }
+        return axios.post(API_SIGN_UP_VERIFY, user);
+    },
 };
 
 export default new RegisterService();

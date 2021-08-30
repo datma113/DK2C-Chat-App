@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import ReadBy from "./ReadBy";
-import { GET_CURRENT_NUMBER_ID_BOX_CHAT } from "../redux/constants/constants";
+import { GET_CURRENT_NUMBER_ID_BOX_CHAT, STORE_CURRENT_INBOX } from "../redux/constants/constants";
 
 const Inbox = ({
     boxChatId,
@@ -55,10 +55,20 @@ const Inbox = ({
             type: GET_CURRENT_NUMBER_ID_BOX_CHAT,
             id: boxChatId,
         });
+
+        let currentInbox = {
+            imgUrl,
+            displayName
+        }
+
+        dispatch({
+            type: STORE_CURRENT_INBOX,
+            currentInbox
+        });
     };
 
     return (
-        <div className="inbox row p-3 " onClick={() => gotoChatInbox()}>
+        <div className="inbox row p-3" onClick={() => gotoChatInbox()}>
             <div className="col-3 center">
                 <div className="inbox__img">
                     <img src={imgUrl} alt="" />

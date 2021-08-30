@@ -16,6 +16,7 @@ const BoxChat = () => {
         const getSelfSideClass = () => {
              return IS_SELF_SIDE ? "" : 'single-chat-box--other'
         }
+
         return (
             <div key={index} className={`single-chat-box mb-1 ${getSelfSideClass()}`}>
                 {" "}

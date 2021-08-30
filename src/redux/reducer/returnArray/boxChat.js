@@ -1,4 +1,4 @@
-import { STORE_MESSAGE_IN_BOX_CHAT } from "../constants/constants";
+import { STORE_MESSAGE_IN_BOX_CHAT } from "../../constants/constants";
 
 const initial = [];
 

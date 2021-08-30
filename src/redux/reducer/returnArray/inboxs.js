@@ -1,4 +1,4 @@
-import { STORE_INBOXS } from "../constants/constants";
+import { STORE_INBOXS } from "../../constants/constants";
 
 const initial = [];
 

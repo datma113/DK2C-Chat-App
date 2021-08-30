@@ -1,4 +1,4 @@
-import { CLEAR_MESSAGE_FROM_SERVER, SET_MESSAGE_FROM_SERVER } from "../constants/constants";
+import { CLEAR_MESSAGE_FROM_SERVER, SET_MESSAGE_FROM_SERVER } from "../../constants/constants";
 
 const initial = {};
 

@@ -10,6 +10,7 @@ export const LOGIN_FAILED = "LOGIN_FAILED";
 /**Inbox */
 export const STORE_INBOXS = "STORE_INBOXS";
 export const GET_INBOXS_FROM_SERVER = "GET_INBOXS_FROM_SERVER";
+export const STORE_CURRENT_INBOX = 'STORE_CURRENT_INBOX'
 
 /**box chat */
 export const GET_MESSAGE_IN_BOX_CHAT = "GET_MESSAGE_IN_BOX_CHAT";

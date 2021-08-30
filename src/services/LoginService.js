@@ -1,12 +1,10 @@
 import axios from "axios";
-
+import { API_SIGN_IN } from "../redux/constants/api";
 function LoginService() {}
-
-const URL = "http://localhost:8080/api/auth/signin";
 
 LoginService.prototype = {
     login(user) {
-        return axios.post(URL, user, { withCredentials: true }).then((resp) => {
+        return axios.post(API_SIGN_IN, user, { withCredentials: true }).then((resp) => {
             if (resp.data.accessToken) {
                 axios.interceptors.request.use(function (config) {
                     const token = `Bearer ${resp.data.accessToken}`;

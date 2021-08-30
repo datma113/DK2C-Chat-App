@@ -11,6 +11,9 @@
 .text-small {
      font-size: 1.5rem;
 }
+.text-medium {
+     font-size: 1.8rem;
+}
 
 .text-message-danger {
      color: red;
@@ -56,5 +59,12 @@
           left: calc(52% - 8rem);
      }
 }
+
+.center {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+
 
 

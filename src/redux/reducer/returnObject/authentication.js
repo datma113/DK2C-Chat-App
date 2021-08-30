@@ -1,4 +1,4 @@
-import { LOGIN_FAILED, LOGIN_SUCCESSFUL } from "../constants/constants";
+import { LOGIN_FAILED, LOGIN_SUCCESSFUL } from "../../constants/constants";
 
 let initialState = {
     isLoggin: false,

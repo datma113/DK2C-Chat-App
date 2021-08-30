@@ -1,4 +1,4 @@
-import { CLEAR_USER_INFO_LOGIN, STORE_PHONE_AND_PASSWORD_WHEN_LOGIN } from "../constants/constants";
+import { CLEAR_USER_INFO_LOGIN, STORE_PHONE_AND_PASSWORD_WHEN_LOGIN } from "../../constants/constants";
 
 const initial = {};
 

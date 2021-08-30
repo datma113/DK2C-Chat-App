@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTokenWhenRefreshPage } from "../../redux/action/actLogin";
 import Welcome from "../welcome/Welcome";
 import InboxList from "./InboxList";
+import BoxChat from "./BoxChat";
 const Home = () => {
     const authentication = useSelector((state) => state.authentication);
     const dispatch = useDispatch();
@@ -22,8 +23,7 @@ const Home = () => {
                         <InboxList />
                     </div>
                     <div className="home__general col-6">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores saepe
-                        deleniti eos, culpa nihil earum!
+                        <BoxChat />
                     </div>
                     <div className="home__general col-3 d-none d-lg-flex">
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores saepe

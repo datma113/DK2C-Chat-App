@@ -12,13 +12,11 @@ const InboxList = () => {
         dispatch(getInboxsFromServer());
     }, [dispatch]);
 
-
     const inboxsMap = inboxs.map((inbox, index) => {
         const TYPE_ROOM_ONE = "ONE";
         const TYPE_ROOM_GROUP = "GROUP";
         let imgUrl = "";
         let displayName = "";
-
 
         switch (inbox.room.type) {
             case TYPE_ROOM_ONE:
@@ -33,7 +31,6 @@ const InboxList = () => {
                 break;
         }
 
-
         return (
             <Inbox
                 key={index}
@@ -44,6 +41,7 @@ const InboxList = () => {
                 type={inbox.room.type}
                 lastMessageTime={inbox.lastMessage.createAt}
                 lastMessageReadBy={inbox.lastMessageReadBy}
+                boxChatId={inbox.id}
             />
         );
     });

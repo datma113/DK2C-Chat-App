@@ -1,7 +1,10 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import ReadBy from "./ReadBy";
+import { GET_CURRENT_NUMBER_ID_BOX_CHAT } from "../redux/constants/constants";
 
 const Inbox = ({
+    boxChatId,
     imgUrl,
     displayName,
     lastMessage,
@@ -10,17 +13,16 @@ const Inbox = ({
     lastMessageTime,
     lastMessageReadBy,
 }) => {
+    const dispatch = useDispatch();
     const customStringToShow = (name) => {
         const MAX_OF_LENGTH = 20;
         return name.length >= MAX_OF_LENGTH ? name.slice(0, 17) + "..." : name;
     };
 
-
     const displaySenderName = (senderName) => {
         const TYPE_OF_GROUP = "GROUP";
         return type === TYPE_OF_GROUP ? senderName + ": " : "";
     };
-
 
     const displayLastMessageTime = (time) => {
         let convertTime = new Date(time);
@@ -48,8 +50,15 @@ const Inbox = ({
         return "";
     };
 
+    const gotoChatInbox = () => {
+        dispatch({
+            type: GET_CURRENT_NUMBER_ID_BOX_CHAT,
+            id: boxChatId,
+        });
+    };
+
     return (
-        <div className="inbox row p-3 ">
+        <div className="inbox row p-3 " onClick={() => gotoChatInbox()}>
             <div className="col-3 center">
                 <div className="inbox__img">
                     <img src={imgUrl} alt="" />
@@ -70,7 +79,7 @@ const Inbox = ({
                     <div className="text-small mt-2 d-flex justify-content-end">
                         {displayLastMessageTime(lastMessageTime)}
                     </div>
-                    <ReadBy lastMessageReadBy={lastMessageReadBy}/>
+                    <ReadBy lastMessageReadBy={lastMessageReadBy} />
                     <div
                         className="text-small d-flex justify-content-end d-none"
                         style={{ opacity: `0.6` }}

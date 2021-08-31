@@ -12,6 +12,7 @@ const Inbox = ({
     type,
     lastMessageTime,
     lastMessageReadBy,
+    isActive,
 }) => {
     const dispatch = useDispatch();
     const customStringToShow = (name) => {
@@ -25,27 +26,37 @@ const Inbox = ({
     };
 
     const displayLastMessageTime = (time) => {
-        let convertTime = new Date(time);
-        let currentTime = new Date().getTime() - convertTime;
-        let realTime = new Date(currentTime);
+        const CONVERT_TIME = new Date(time);
+        const CURRENT_TIME = new Date();
 
-        const HOUR = realTime.getHours();
-        const MINUTES = realTime.getMinutes();
+        const LAST_MESSAGE_TIME_OF_USER = {
+            year: CONVERT_TIME.getFullYear(),
+            month: CONVERT_TIME.getMonth(),
+            date: CONVERT_TIME.getDate(),
+        };
 
-        const A_DAY = 24;
-        const MIN_OF_HOUR = 1;
-        const MIN_OF_MINUTE = 1;
+        const REAL_TIME = {
+            year: CURRENT_TIME.getFullYear() - LAST_MESSAGE_TIME_OF_USER.year,
+            month: CURRENT_TIME.getMonth() - LAST_MESSAGE_TIME_OF_USER.month,
+            date: CURRENT_TIME.getDate() - LAST_MESSAGE_TIME_OF_USER.date,
+            hour: CURRENT_TIME.getHours(),
+            minute: CURRENT_TIME.getMinutes()
+        };
 
-        if (HOUR >= A_DAY) return Math.floor(HOUR / 24) + "ngày";
+        //a few day
+        const A_DAY = 1
+        const MIN_OF_HOUR = 1
+        const MIN_OF_MINUTE = 60
+        if (REAL_TIME.date >= A_DAY) return REAL_TIME.date + " ngày";
 
-        //a few hours
-        if (HOUR < A_DAY && HOUR >= MIN_OF_HOUR) return HOUR + " giờ";
+        // //a few hours
+        if (REAL_TIME.date < A_DAY && REAL_TIME.hour >= MIN_OF_HOUR) return REAL_TIME.hour + " giờ";
 
-        //a few minutes
-        if (HOUR < MIN_OF_HOUR) return MINUTES + "phút";
+        // a few minutes
+        if (REAL_TIME.hour < MIN_OF_HOUR) return REAL_TIME.minute + "phút";
 
-        //a few seconds
-        if (HOUR < MIN_OF_HOUR && MINUTES < MIN_OF_MINUTE) return "vài giây";
+        // //a few seconds
+        if (REAL_TIME.hour < MIN_OF_HOUR && REAL_TIME.minute < MIN_OF_MINUTE) return "vài giây";
 
         return "";
     };
@@ -58,17 +69,21 @@ const Inbox = ({
 
         let currentInbox = {
             imgUrl,
-            displayName
-        }
+            displayName,
+        };
 
         dispatch({
             type: STORE_CURRENT_INBOX,
-            currentInbox
+            currentInbox,
         });
     };
 
+    const checkActiveOfInbox = () => {
+        return isActive ? "inbox--active" : "";
+    };
+
     return (
-        <div className="inbox row p-3" onClick={() => gotoChatInbox()}>
+        <div className={`inbox row p-3 ${checkActiveOfInbox()} `} onClick={() => gotoChatInbox()}>
             <div className="col-3 center">
                 <div className="inbox__img">
                     <img src={imgUrl} alt="" />

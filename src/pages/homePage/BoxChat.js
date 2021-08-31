@@ -12,7 +12,7 @@ const BoxChat = () => {
         const SENDER_ID = message.sender.id;
         const MY_ID = authentication.user.id;
         const IS_SELF_SIDE = SENDER_ID === MY_ID ? true : false;
-
+        
         const getSelfSideClass = () => {
              return IS_SELF_SIDE ? "" : 'single-chat-box--other'
         }
@@ -25,12 +25,13 @@ const BoxChat = () => {
             </div>
         );
     });
-
     useEffect(() => {
         dispatch(getMessageInBoxChat(currentIdBoxChat));
+        
     }, [dispatch, currentIdBoxChat]);
 
-    return <div>{boxChatMap}</div>;
+
+    return <div className="single-chat-box-container">{boxChatMap}</div>;
 };
 
 export default BoxChat;

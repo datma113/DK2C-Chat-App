@@ -25,7 +25,7 @@ const Home = () => {
                     <div className="home__inbox-list col-3">
                         <InboxList />
                     </div>
-                    <div className="col-6 ">
+                    <div className="col-6">
                         {currentIdBoxChat !== NOT_EXISTS_CURRENT_ID_BOX_CHAT && (
                             <div>
                                 <HeaderOfBoxChat />

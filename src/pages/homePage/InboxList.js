@@ -7,6 +7,7 @@ import { getInboxsFromServer } from "../../redux/action/actHome";
 const InboxList = () => {
     const dispatch = useDispatch();
     const inboxs = useSelector((state) => state.inboxs);
+    const currentIdBoxChat = useSelector(state => state.currentIdBoxChat)
 
     useEffect(() => {
         dispatch(getInboxsFromServer());
@@ -15,8 +16,9 @@ const InboxList = () => {
     const inboxsMap = inboxs.map((inbox, index) => {
         const TYPE_ROOM_ONE = "ONE";
         const TYPE_ROOM_GROUP = "GROUP";
+        const IS_ACTIVE = currentIdBoxChat === inbox.id
         let imgUrl = "";
-        let displayName = "";
+        let displayName = "";       
 
         switch (inbox.room.type) {
             case TYPE_ROOM_ONE:
@@ -42,6 +44,7 @@ const InboxList = () => {
                 lastMessageTime={inbox.lastMessage.createAt}
                 lastMessageReadBy={inbox.lastMessageReadBy}
                 boxChatId={inbox.id}
+                isActive={IS_ACTIVE}
             />
         );
     });

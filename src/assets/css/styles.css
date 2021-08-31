@@ -211,6 +211,11 @@ a {
   height: 100%;
 }
 
+.inbox--active {
+  background-color: #a166d1;
+  color: white;
+}
+
 .read-by {
   display: flex;
   align-items: flex-end;
@@ -254,6 +259,12 @@ a {
   font-size: 1rem;
 }
 
+.single-chat-box-container {
+  overflow: scroll;
+  overflow-x: hidden;
+  height: 77vh;
+}
+
 .single-chat-box {
   display: flex;
 }
@@ -271,11 +282,12 @@ a {
   border: thin solid #5D3B78;
   border-radius: 10px;
   padding: 1.5rem 1rem;
+  max-width: 60.5rem;
 }
 
 .header-box-chat {
-  background-color: #FBFBFB;
   padding: 2rem 1.5rem;
+  background-color: #FBFBFB;
 }
 .header-box-chat__img {
   padding: 0;

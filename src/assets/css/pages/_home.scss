@@ -32,6 +32,11 @@
     }
 }
 
+.inbox--active {
+    background-color: $hoverPurpleColor;
+    color: white;
+}
+
 .read-by {
     display: flex;
     align-items: flex-end;
@@ -77,10 +82,14 @@
         font-size: 1rem;
     }
 }
+.single-chat-box-container {
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 77vh;
+}
 
 .single-chat-box {
     display: flex;
-
     &--other {
         flex-direction: row-reverse;
     }
@@ -111,12 +120,13 @@
         border: thin solid $mainPurpleColor;
         border-radius: 10px;
         padding: 1.5rem 1rem;
+        max-width: 60.5rem;
     }
 }
 
 .header-box-chat {
-    background-color: $mainLightColor;
     padding: 2rem 1.5rem;
+    background-color: $mainLightColor;
 
     &__img {     
         padding: 0;

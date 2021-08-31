@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 
 const HeaderOfBoxChat = () => {
     const currentInbox = useSelector(state => state.currentInbox)
-    
     return (
         <div>
             <div className="row header-box-chat center">

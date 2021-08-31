@@ -1,5 +1,5 @@
 import axios from "axios";
-import { STORE_INBOXS, STORE_MESSAGE_IN_BOX_CHAT } from "../constants/constants";
+import { INITIALIZE_MESSAGE_IN_BOX_CHAT, STORE_INBOXS, STORE_MESSAGE_IN_BOX_CHAT } from "../constants/constants";
 import { API_GET_INBOXS, API_GET_MESSAGE_IN_CHAT_BOX } from "../constants/api";
 
 const storeInboxs = (inboxs) => {
@@ -27,12 +27,16 @@ const storeMessageInBoxChat = (message) => {
     };
 };
 
-export const getMessageInBoxChat = (inboxId) => {
+export const getMessageInBoxChat = (inboxId, page = 0) => {
     return (dispatch) => {
         return axios
-            .get(API_GET_MESSAGE_IN_CHAT_BOX + inboxId)
+            .get(API_GET_MESSAGE_IN_CHAT_BOX + inboxId + `?page=${page}`)
             .then((resp) => {
-                dispatch(storeMessageInBoxChat(resp.data.content));
+                if(page === 0) dispatch({
+                    type: INITIALIZE_MESSAGE_IN_BOX_CHAT,
+                    message: resp.data.content
+                }) 
+                else dispatch(storeMessageInBoxChat(resp.data.content));
             })
             .catch(() => dispatch(storeMessageInBoxChat([])));
     };

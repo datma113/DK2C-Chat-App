@@ -1,18 +1,16 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import AlwaysScrollToBottom from "../../components/AlwaysScrollToBottom";
 import { getMessageInBoxChat } from "../../redux/action/actHome";
-
-const AlwaysScrollToBottom = () => {
-    const elementRef = useRef();
-    useEffect(() => elementRef.current.scrollIntoView());
-    return <div ref={elementRef} />;
-};
 
 const BoxChat = () => {
     const dispatch = useDispatch();
     const boxChat = useSelector((state) => state.boxChat);
     const currentIdBoxChat = useSelector((state) => state.currentIdBoxChat);
     const authentication = useSelector((state) => state.authentication);
+    const [loadingOlderMessage, setloadingOlderMessage] = useState(0);
+    const [isInitialize, setisInitialize] = useState(true);
 
     const boxChatMap = boxChat.map((message, index) => {
         const SENDER_ID = message.sender.id;
@@ -35,14 +33,30 @@ const BoxChat = () => {
             </div>
         );
     });
+
     useEffect(() => {
-        dispatch(getMessageInBoxChat(currentIdBoxChat));
+        dispatch(getMessageInBoxChat(currentIdBoxChat, 0));
+        setisInitialize(true);
     }, [dispatch, currentIdBoxChat]);
 
+    const loadOlderMessageInBoxChat = (e) => {
+        const CURRENT_SCROLL_VALUE = e.target.scrollTop;
+        const HEIGHT_OF_SUM_MESSAGE = e.target.scrollHeight;
+        const SCROLL_VALUE_ZERO = 0;
+
+        if (CURRENT_SCROLL_VALUE === SCROLL_VALUE_ZERO) {
+            setisInitialize(false);
+            const LOADING = loadingOlderMessage + 1;
+            setloadingOlderMessage(LOADING);
+            dispatch(getMessageInBoxChat(currentIdBoxChat, LOADING));
+            e.target.scrollTop = HEIGHT_OF_SUM_MESSAGE - 100;
+        }
+    };
+
     return (
-        <div className="single-chat-box-container">
+        <div className="single-chat-box-container" onScroll={(e) => loadOlderMessageInBoxChat(e)}>
             {boxChatMap}
-            <AlwaysScrollToBottom />
+            {isInitialize && <AlwaysScrollToBottom />}
         </div>
     );
 };

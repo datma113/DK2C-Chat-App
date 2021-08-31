@@ -14,6 +14,12 @@
 .text-medium {
      font-size: 1.8rem;
 }
+.text-large {
+     font-size: 2.3rem;
+}
+.text-xlarge {
+     font-size: 2.8rem;
+}
 
 .text-message-danger {
      color: red;
@@ -66,5 +72,8 @@
      align-items: center;
 }
 
+.select-none {
+     user-select: none;
+}
 
 

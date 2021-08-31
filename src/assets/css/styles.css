@@ -53,6 +53,14 @@ a {
   font-size: 1.8rem;
 }
 
+.text-large {
+  font-size: 2.3rem;
+}
+
+.text-xlarge {
+  font-size: 2.8rem;
+}
+
 .text-message-danger {
   color: red;
   font-size: 1.5rem;
@@ -100,6 +108,10 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.select-none {
+  user-select: none;
 }
 
 .bg {
@@ -177,6 +189,18 @@ a {
   left: 0;
   top: 0;
   font-size: 2rem;
+}
+
+.carousel-btn {
+  width: 15px !important;
+  height: 15px !important;
+  display: block !important;
+  border-radius: 100% !important;
+  background-color: #5D3B78 !important;
+}
+
+.spe {
+  color: red !important;
 }
 
 /*pages*/

@@ -6,7 +6,7 @@ const HeaderOfBoxChat = () => {
     
     return (
         <div>
-            <div className="row header-box-chat">
+            <div className="row header-box-chat center">
                 <div className="col-1 header-box-chat__img">
                     <img src={currentInbox.imgUrl} alt="" />
                 </div>

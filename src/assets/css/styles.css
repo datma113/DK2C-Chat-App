@@ -187,7 +187,8 @@ a {
 }
 .home__inbox-list {
   overflow: scroll;
-  height: 99vh;
+  overflow-x: hidden;
+  height: 90vh;
   width: 38rem;
 }
 
@@ -262,7 +263,7 @@ a {
 .single-chat-box-container {
   overflow: scroll;
   overflow-x: hidden;
-  height: 77vh;
+  height: 75vh;
 }
 
 .single-chat-box {
@@ -282,12 +283,13 @@ a {
   border: thin solid #5D3B78;
   border-radius: 10px;
   padding: 1.5rem 1rem;
-  max-width: 60.5rem;
+  max-width: 50rem;
 }
 
 .header-box-chat {
   padding: 2rem 1.5rem;
   background-color: #FBFBFB;
+  height: 13vh;
 }
 .header-box-chat__img {
   padding: 0;

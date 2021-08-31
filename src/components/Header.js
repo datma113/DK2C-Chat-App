@@ -5,7 +5,7 @@ import logo from '../assets/image/LOGO.png'
 const Header = () => {
     return (
         <>
-            <nav className="navbar navbar-expand-lg row bg  align-items-center">
+            <nav className="navbar navbar-expand-lg row bg align-items-center">
                 <div className="container-fluid">
                     <button
                         className="navbar-toggler"

@@ -34,8 +34,7 @@ const Home = () => {
                         )}
                     </div>
                     <div className="col-3 d-none d-lg-flex">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores saepe
-                        deleniti eos, culpa nihil earum!
+                      NOTHING HERE
                     </div>
                 </div>
             )}

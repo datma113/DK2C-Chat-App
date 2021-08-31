@@ -41,15 +41,15 @@ const BoxChat = () => {
 
     const loadOlderMessageInBoxChat = (e) => {
         const CURRENT_SCROLL_VALUE = e.target.scrollTop;
-        const HEIGHT_OF_SUM_MESSAGE = e.target.scrollHeight;
-        const SCROLL_VALUE_ZERO = 0;
+        const SUM_OF_HEIGHT_MESSAGE = e.target.scrollHeight;
+        const SCROLL_TO_VALUE_ZERO = 0;
 
-        if (CURRENT_SCROLL_VALUE === SCROLL_VALUE_ZERO) {
+        if (CURRENT_SCROLL_VALUE === SCROLL_TO_VALUE_ZERO) {
             setisInitialize(false);
             const LOADING = loadingOlderMessage + 1;
             setloadingOlderMessage(LOADING);
             dispatch(getMessageInBoxChat(currentIdBoxChat, LOADING));
-            e.target.scrollTop = HEIGHT_OF_SUM_MESSAGE - 100;
+            e.target.scrollTop = SUM_OF_HEIGHT_MESSAGE - 100;
         }
     };
 

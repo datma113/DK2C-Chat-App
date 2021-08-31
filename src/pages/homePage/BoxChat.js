@@ -11,6 +11,7 @@ const BoxChat = () => {
     const authentication = useSelector((state) => state.authentication);
     const [loadingOlderMessage, setloadingOlderMessage] = useState(0);
     const [isInitialize, setisInitialize] = useState(true);
+    const [lenthOfTheFirstLoadingMessage, setlenthOfTheFirstLoadingMessage] = useState(0);
 
     const boxChatMap = boxChat.map((message, index) => {
         const SENDER_ID = message.sender.id;
@@ -44,12 +45,15 @@ const BoxChat = () => {
         const SUM_OF_HEIGHT_MESSAGE = e.target.scrollHeight;
         const SCROLL_TO_VALUE_ZERO = 0;
 
+        if (isInitialize) setlenthOfTheFirstLoadingMessage(SUM_OF_HEIGHT_MESSAGE);
+
         if (CURRENT_SCROLL_VALUE === SCROLL_TO_VALUE_ZERO) {
             setisInitialize(false);
             const LOADING = loadingOlderMessage + 1;
             setloadingOlderMessage(LOADING);
             dispatch(getMessageInBoxChat(currentIdBoxChat, LOADING));
-            e.target.scrollTop = SUM_OF_HEIGHT_MESSAGE - 100;
+            e.target.scrollTop =
+                SUM_OF_HEIGHT_MESSAGE - lenthOfTheFirstLoadingMessage * (LOADING - 1);
         }
     };
 

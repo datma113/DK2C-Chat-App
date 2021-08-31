@@ -17,6 +17,26 @@ a {
   font-weight: normal;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: white;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #5D3B78;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #a166d1;
+}
+
 /*components*/
 .text-title {
   font-weight: bold;
@@ -264,6 +284,7 @@ a {
   overflow: scroll;
   overflow-x: hidden;
   height: 75vh;
+  width: calc(100% + 7.5px);
 }
 
 .single-chat-box {

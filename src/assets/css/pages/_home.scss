@@ -87,6 +87,7 @@
     overflow: scroll;
     overflow-x: hidden;
     height: 75vh;
+    width: calc(100% + 7.5px)
 }
 
 .single-chat-box {

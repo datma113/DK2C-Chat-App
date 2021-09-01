@@ -12,18 +12,19 @@ const BoxChat = () => {
     const [loadingOlderMessage, setloadingOlderMessage] = useState(0);
     const [isInitialize, setisInitialize] = useState(true);
     const [lenthOfTheFirstLoadingMessage, setlenthOfTheFirstLoadingMessage] = useState(0);
-   
 
     useEffect(() => {
         dispatch(getMessageInBoxChat(currentIdBoxChat, 0));
         setisInitialize(true);
+        //when change other inbox, it will reset loading value to 0
+        setloadingOlderMessage(0)
     }, [dispatch, currentIdBoxChat]);
 
     const loadOlderMessageInBoxChat = (e) => {
         const CURRENT_SCROLL_VALUE = e.target.scrollTop;
         const SUM_OF_HEIGHT_MESSAGE = e.target.scrollHeight;
         const SCROLL_TO_VALUE_ZERO = 0;
-
+      
         if (isInitialize) setlenthOfTheFirstLoadingMessage(SUM_OF_HEIGHT_MESSAGE);
 
         if (CURRENT_SCROLL_VALUE === SCROLL_TO_VALUE_ZERO) {

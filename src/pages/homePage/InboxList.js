@@ -20,7 +20,6 @@ const InboxList = () => {
         const IS_ACTIVE = currentIdBoxChat === inbox.id;
         let imgUrl = "";
         let displayName = "";
-
         switch (inbox.room.type) {
             case TYPE_ROOM_ONE:
                 imgUrl = inbox.room.to.imageUrl;
@@ -43,7 +42,7 @@ const InboxList = () => {
                 senderName={inbox.lastMessage.sender.displayName}
                 type={inbox.room.type}
                 lastMessageTime={inbox.lastMessage.createAt}
-                lastMessageReadBy={inbox.lastMessageReadBy}
+                lastMessageReadBy={inbox.lastMessage.readbyes}
                 boxChatId={inbox.id}
                 isActive={IS_ACTIVE}
             />

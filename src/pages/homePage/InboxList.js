@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Inbox from "../../components/Inbox";
@@ -9,9 +9,15 @@ const InboxList = () => {
     const dispatch = useDispatch();
     const inboxs = useSelector((state) => state.inboxs);
     const currentIdBoxChat = useSelector((state) => state.currentIdBoxChat);
+    const [loadingOlderInboxs, setloadingOlderInboxs] = useState(1);
+
+    const loadingOlderFriendsInboxs = () => {
+        setloadingOlderInboxs((n) => n + 1);
+        dispatch(getInboxsFromServer(loadingOlderInboxs));
+    };
 
     useEffect(() => {
-        dispatch(getInboxsFromServer());
+        dispatch(getInboxsFromServer(0));
     }, [dispatch]);
 
     const inboxsMap = inboxs.map((inbox, index) => {
@@ -49,7 +55,17 @@ const InboxList = () => {
         );
     });
 
-    return <div> {inboxsMap} </div>;
+    return (
+        <div className="home__inbox-list col-3">
+            {inboxsMap}
+            <div
+                className="home__inbox-list__older-inboxs center"
+                onClick={() => loadingOlderFriendsInboxs()}
+            >
+                <p> xem thêm</p>
+            </div>
+        </div>
+    );
 };
 
 InboxList.propTypes = {

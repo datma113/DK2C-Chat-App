@@ -5,7 +5,8 @@ const initial = [];
 const reducer = (state = initial, action) => {
     let { type, inboxs } = action;
     if (type === STORE_INBOXS) {
-        return inboxs;
+        let newState = [...state, ...inboxs]
+        return newState;
     }
     return state;
 };

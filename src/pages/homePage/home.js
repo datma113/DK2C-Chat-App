@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTokenWhenRefreshPage } from "../../redux/action/actLogin";
@@ -10,6 +10,7 @@ import Carousel from "../../components/Carousel";
 const Home = () => {
     const authentication = useSelector((state) => state.authentication);
     const currentIdBoxChat = useSelector((state) => state.currentIdBoxChat);
+
     const dispatch = useDispatch();
     const NOT_EXISTS_CURRENT_ID_BOX_CHAT = 0;
 
@@ -23,9 +24,8 @@ const Home = () => {
 
             {authentication.isLoggin && (
                 <div className="home row">
-                    <div className="home__inbox-list col-3">
-                        <InboxList />
-                    </div>
+                    {/* col-3 */}
+                    <InboxList />
 
                     {currentIdBoxChat !== NOT_EXISTS_CURRENT_ID_BOX_CHAT ? (
                         <>

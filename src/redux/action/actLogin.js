@@ -74,11 +74,14 @@ export const getTokenWhenRefreshPage = () => {
                     type: LOGIN_SUCCESSFUL,
                     user: resp.data,
                 });
+                return Promise.resolve();
             })
             .catch(() => {
                 dispatch({
                     type: LOGIN_FAILED,
                 });
+                return Promise.reject();
+
             });
     };
 };

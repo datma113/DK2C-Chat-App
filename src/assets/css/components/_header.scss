@@ -3,6 +3,7 @@
     background-color: $mainPurpleColor;
     color: $mainLightColor;
     text-align: center;
+    z-index: 10;
 }
 .bg:hover .card__header {
     background-color: $blockHoverColor;

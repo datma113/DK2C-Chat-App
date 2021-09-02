@@ -250,6 +250,7 @@ a {
   background-color: #FBFBFB;
   transition: 0.2s;
   cursor: pointer;
+  width: 38rem;
 }
 .inbox:hover {
   background-color: #a166d1;
@@ -317,7 +318,7 @@ a {
 .single-chat-box-container {
   overflow: scroll;
   overflow-x: hidden;
-  height: 75vh;
+  height: 70vh;
   width: calc(100% + 7.5px);
 }
 
@@ -372,6 +373,39 @@ a {
 .header-box-chat__icon i:hover {
   color: #FBFBFB;
   background-color: rgba(161, 102, 209, 0.7);
+}
+
+.send-message-container {
+  position: relative;
+}
+.send-message-container__ta {
+  max-height: 7vh;
+  resize: none;
+  outline: none;
+  padding: 1rem 2rem;
+  overflow: hidden;
+  transition: 0.2s;
+  border-top: thin solid rgba(93, 59, 120, 0.3);
+  border-right: none;
+  border-left: none;
+  border-bottom: none;
+}
+.send-message-container__ta:focus, .send-message-container__ta:hover {
+  border-top: thin solid #5d3b78;
+}
+.send-message-container__icon {
+  position: absolute;
+  border-radius: 15px;
+  color: #5D3B78;
+  right: 0;
+  top: calc(50% - 25px);
+  transition: 0.2s;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.send-message-container__icon:hover {
+  background-color: #a166d1;
+  color: #FBFBFB;
 }
 
 /*variables*/

@@ -14,6 +14,7 @@ const InboxList = () => {
     const loadingOlderFriendsInboxs = () => {
         setloadingOlderInboxs((n) => n + 1);
         dispatch(getInboxsFromServer(loadingOlderInboxs));
+
     };
 
     useEffect(() => {

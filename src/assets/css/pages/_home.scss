@@ -7,7 +7,7 @@
         overflow-x: hidden;
         height: 88vh;
         width: 38rem;
-
+        
         &__older-inboxs {
             color: $mainPurpleColor;
             font-weight: bold;
@@ -25,7 +25,7 @@
     background-color: $mainLightColor;
     transition: 0.2s;
     cursor: pointer;
-
+    width: 38rem;
     &:hover {
         background-color: $hoverPurpleColor;
         color: white;
@@ -97,7 +97,7 @@
 .single-chat-box-container {
     overflow: scroll;
     overflow-x: hidden;
-    height: 75vh;
+    height: 70vh;   
     width: calc(100% + 7.5px);
 }
 

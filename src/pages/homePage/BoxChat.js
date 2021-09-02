@@ -38,7 +38,7 @@ const BoxChat = () => {
     };
 
     return (
-        <div className="single-chat-box-container" onScroll={(e) => loadOlderMessageInBoxChat(e)}>
+        <div className="single-chat-box-container pb-5" onScroll={(e) => loadOlderMessageInBoxChat(e)}>
             <MessageChat boxChat={boxChat} />
             {isInitialize && <AlwaysScrollToBottom />}
         </div>

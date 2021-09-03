@@ -25,7 +25,6 @@
     background-color: $mainLightColor;
     transition: 0.2s;
     cursor: pointer;
-    width: 38rem;
     &:hover {
         background-color: $hoverPurpleColor;
         color: white;
@@ -94,10 +93,16 @@
         font-size: 1rem;
     }
 }
+
+.box-chat-container {
+    height: 30vh;
+    background-color: red;
+}
+
 .single-chat-box-container {
     overflow: scroll;
     overflow-x: hidden;
-    height: 70vh;   
+    height: 100%;
     width: calc(100% + 7.5px);
 }
 
@@ -137,29 +142,34 @@
 }
 
 .header-box-chat {
-    padding: 2rem 1.5rem;
+    display: flex;
+    padding: 2rem 0;
+    margin: 0 -15px;
     background-color: $mainLightColor;
-    height: 13vh;
 
     &__img {
-        padding: 0;
+        margin: 0 2rem;
         box-shadow: 0 0 1px $mainPurpleColor;
         overflow: hidden;
         border-radius: 100%;
-        height: 60px;
         width: 60px;
-
+        height: 60px;
         img {
             width: 100%;
             height: 100%;
         }
     }
 
+    &__title {
+        flex-grow: 6;
+    }
+
     &__icon {
+        flex-grow: 1;
         display: flex;
         align-items: center;
         justify-content: flex-end;
-
+        margin-right: 1rem;
         i {
             padding: 1rem 1.5rem;
             margin: 0 0.25rem;

@@ -1,14 +1,13 @@
-@import '../variables/variables';
+@import "../variables/variables";
 * {
     margin: 0;
     padding: 0;
     font-size: 2rem;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 html {
     font-size: 62.5%;
     line-height: 1;
-    max-height: 100vh;
     overflow: hidden;
 }
 
@@ -23,19 +22,16 @@ a {
 
 /* Track */
 ::-webkit-scrollbar-track {
-     background-color: white;
+    background-color: white;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: $mainPurpleColor;
     border-radius: 10px;
-  
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: $hoverPurpleColor;
-    
 }
-

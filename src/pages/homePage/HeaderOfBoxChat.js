@@ -5,12 +5,12 @@ const HeaderOfBoxChat = () => {
     const currentInbox = useSelector(state => state.currentInbox)
     return (
         <div>
-            <div className="row header-box-chat center">
-                <div className="col-1 header-box-chat__img">
+            <div className="header-box-chat">
+                <div className="header-box-chat__img bg-dark">
                     <img src={currentInbox.imgUrl} alt="" />
                 </div>
-                <div className="col-9 font-weight-bold">{currentInbox.displayName}</div>
-                <div className="col-2 header-box-chat__icon">
+                <div className="header-box-chat__title font-weight-bold">{currentInbox.displayName}</div>
+                <div className=" header-box-chat__icon">
                     <i className="fas fa-search"></i>
                     <i className="fas fa-toggle-off"></i>
                 </div>

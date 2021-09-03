@@ -14,9 +14,9 @@ const SendMessage = () => {
     };
 
     return (
-        <div className="send-message-container col-12">
+        <div className="send-message-container">
             <textarea
-                className="send-message-container__ta w-100"
+                className="send-message-container__ta col-12"
                 type="text"
                 value={valueOfInput}
                 onChange={(e) => {

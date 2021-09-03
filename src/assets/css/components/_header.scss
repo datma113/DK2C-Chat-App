@@ -1,4 +1,4 @@
-@import '../variables/variables';
+@import "../variables/variables";
 .bg {
     background-color: $mainPurpleColor;
     color: $mainLightColor;
@@ -10,9 +10,8 @@
     color: $mainDarkColor;
 }
 .header:hover {
-    background-color: $hoverPurpleColor; 
+    background-color: $hoverPurpleColor;
     height: 100%;
-    
     color: aliceblue;
 }
 .header {
@@ -23,35 +22,22 @@
 .header__active {
     color: aliceblue;
     height: 100%;
-    // width: 100%;
     background-color: $hoverPurpleColor;
     min-height: 40px;
-    // border-radius: 100px;
-
 }
 .navbar {
     padding: 0;
     height: 10vh;
     min-height: 70px;
 }
-.dropdown 
-{
-    // background:white ;
+.dropdown {
     position: relative;
-   
+
     right: 30px;
-//    margin-right: 1000px !important; 
-    .dropdown-menu{
-        // display:flex ;
-        // justify-content: flex-end;
-        // align-items: flex-end;
+    .dropdown-menu {
         flex-direction: column;
         position: absolute;
-        // width: 200px;
-        // left: 10px;
+
         right: 0;
     }
 }
-
-
- 

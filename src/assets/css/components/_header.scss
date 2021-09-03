@@ -18,15 +18,21 @@
 .header {
     color: aliceblue;
     border-radius: 100px;
+    min-height: 40px;
 }
 .header__active {
     color: aliceblue;
     height: 100%;
     // width: 100%;
     background-color: $hoverPurpleColor;
-    
+    min-height: 40px;
     // border-radius: 100px;
 
+}
+.navbar {
+    padding: 0;
+    height: 10vh;
+    min-height: 70px;
 }
 
 

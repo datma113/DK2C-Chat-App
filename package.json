@@ -19,6 +19,7 @@
     "redux-thunk": "^2.3.0",
     "sass": "^1.38.0",
     "sockjs-client": "^1.5.2",
+    "stompjs": "^2.3.3",
     "sweetalert2": "^11.1.4",
     "web-vitals": "^1.1.2"
   },

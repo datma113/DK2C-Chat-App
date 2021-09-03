@@ -1,12 +1,12 @@
 import React, { useState } from "react";
+import { socketModule } from "../../module/socketModule";
 
 const SendMessage = () => {
     const [valueOfInput, setvalueOfInput] = useState("");
-
+    
     const sendMessageWithEnter = (e) => {
         const KEY_DOWN = e.key;
         const ENTER = "Enter";
-        console.log(e);
         if (KEY_DOWN === ENTER) {
             setvalueOfInput("");
             console.log(e.target.value);

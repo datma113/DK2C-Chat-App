@@ -4,6 +4,8 @@ const API = 'http://localhost:8080/api/'
 const AUTH = 'auth/'
 const SIGN_UP = 'signup'
 export const API_SIGN_IN = API + AUTH + 'signin'
+export const API_SIGN_OUT = API + AUTH + 'signout'
+
 export const API_GET_REFRESH_TOKEN = API + AUTH + 'refreshtoken'
 export const API_SIGN_UP_IMFORMATION = API + SIGN_UP + 'save_information'
 export const API_SIGN_UP_CHECK_MAIL = API + SIGN_UP + 'send_vetification_code'

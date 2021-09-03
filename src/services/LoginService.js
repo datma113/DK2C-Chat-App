@@ -17,12 +17,9 @@ LoginService.prototype = {
             return resp;
         });
     },
-    logout(){
-        // let cookie = cookieClient.load('refresh_token')
-        return axios.post(API_SIGN_OUT, { withCredentials: false }).then((resp) => {
-            return resp;
-        });
-    }
+    logout() {
+        return axios.post(API_SIGN_OUT, {}, { withCredentials: true });
+    },
 };
 
 export default new LoginService();

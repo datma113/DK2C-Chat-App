@@ -29,34 +29,20 @@ const Inbox = ({
         const CONVERT_TIME = new Date(time);
         const CURRENT_TIME = new Date();
 
+        const TIME = new Date(CURRENT_TIME - CONVERT_TIME) 
+
         const LAST_MESSAGE_TIME_OF_USER = {
-            year: CONVERT_TIME.getFullYear(),
-            month: CONVERT_TIME.getMonth(),
-            date: CONVERT_TIME.getDate(),
-        };
-
-        const REAL_TIME = {
-            year: CURRENT_TIME.getFullYear() - LAST_MESSAGE_TIME_OF_USER.year,
-            month: CURRENT_TIME.getMonth() - LAST_MESSAGE_TIME_OF_USER.month,
-            date: CURRENT_TIME.getDate() - LAST_MESSAGE_TIME_OF_USER.date,
-            hour: CURRENT_TIME.getHours(),
+            year: TIME.getFullYear(),
+            month: TIME.getMonth(),
+            date: TIME.getDate(),
+            hour: TIME.getHours(),
             minute: CURRENT_TIME.getMinutes()
-        };
+        };  
 
-        //a few day
-        const A_DAY = 1
-        const MIN_OF_HOUR = 1
-        const MIN_OF_MINUTE = 60
-        if (REAL_TIME.date >= A_DAY) return REAL_TIME.date + " ngày";
-
-        // //a few hours
-        if (REAL_TIME.date < A_DAY && REAL_TIME.hour >= MIN_OF_HOUR) return REAL_TIME.hour + " giờ";
-
-        // a few minutes
-        if (REAL_TIME.hour < MIN_OF_HOUR) return REAL_TIME.minute + "phút";
-
-        // //a few seconds
-        if (REAL_TIME.hour < MIN_OF_HOUR && REAL_TIME.minute < MIN_OF_MINUTE) return "vài giây";
+        if(LAST_MESSAGE_TIME_OF_USER.month) return LAST_MESSAGE_TIME_OF_USER.month + " tháng"
+        if(LAST_MESSAGE_TIME_OF_USER.date) return LAST_MESSAGE_TIME_OF_USER.date + " ngày"
+        if(LAST_MESSAGE_TIME_OF_USER.hour) return LAST_MESSAGE_TIME_OF_USER.hour + " giờ"
+        if(LAST_MESSAGE_TIME_OF_USER.minute) return LAST_MESSAGE_TIME_OF_USER.minute + " phút"
 
         return "";
     };

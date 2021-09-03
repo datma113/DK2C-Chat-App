@@ -1,4 +1,4 @@
-import { LOGIN_FAILED, LOGIN_SUCCESSFUL, LOGOUT_FAILED, LOGOUT_SUCCESSFUL } from "../../constants/constants";
+import { LOGIN_FAILED, LOGIN_SUCCESSFUL, LOGOUT_SUCCESSFUL } from "../../constants/constants";
 
 let initialState = {
   isLoggin: false,
@@ -22,12 +22,8 @@ const reducer = (state = initialState, action) => {
     case LOGOUT_SUCCESSFUL:
       return {
         isLoggin: false,
+        user: {}
       };
-    case LOGOUT_FAILED:
-        return {
-            isLoggin: true,
-            user,
-        }
     
     default:
       break;

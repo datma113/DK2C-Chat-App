@@ -2,8 +2,6 @@ import {
     CLEAR_MESSAGE_FROM_SERVER,
     LOGIN_FAILED,
     LOGIN_SUCCESSFUL,
-    LOGOUT_FAILED,
-    LOGOUT_SUCCESSFUL,
     SET_MESSAGE_FROM_SERVER,
     STORE_PHONE_AND_PASSWORD_WHEN_LOGIN,
 } from "../constants/constants";
@@ -16,7 +14,7 @@ export const storePhoneAndPasswordWhenLogin = (key, value) => {
     return {
         type: STORE_PHONE_AND_PASSWORD_WHEN_LOGIN,
         key,
-        value
+        value,
     };
 };
 
@@ -83,7 +81,6 @@ export const getTokenWhenRefreshPage = () => {
                     type: LOGIN_FAILED,
                 });
                 return Promise.reject();
-
             });
     };
 };
@@ -91,16 +88,12 @@ export const getTokenWhenRefreshPage = () => {
 export const logout = () => {
     return (dispatch) => {
         return LoginService.logout()
-            .then((resp) => {
+            .then(() => {
                 dispatch({
                     type: CLEAR_MESSAGE_FROM_SERVER,
                 });
+            
 
-                dispatch({
-                    type: LOGOUT_SUCCESSFUL,
-                    user: resp.data,
-                });
-                console.log("succ")
                 return Promise.resolve();
             })
             .catch((err) => {
@@ -108,14 +101,10 @@ export const logout = () => {
                     (err.response && err.response.data && err.response.data.message) ||
                     err.message ||
                     err.toString();
-                console.log(MESSAGE)
-                dispatch({
+                
+                    dispatch({
                     type: SET_MESSAGE_FROM_SERVER,
                     message: MESSAGE,
-                });
-
-                dispatch({
-                    type: LOGOUT_FAILED,
                 });
 
                 return Promise.reject(MESSAGE);

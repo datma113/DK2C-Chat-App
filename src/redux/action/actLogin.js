@@ -2,6 +2,8 @@ import {
     CLEAR_MESSAGE_FROM_SERVER,
     LOGIN_FAILED,
     LOGIN_SUCCESSFUL,
+    LOGOUT_FAILED,
+    LOGOUT_SUCCESSFUL,
     SET_MESSAGE_FROM_SERVER,
     STORE_PHONE_AND_PASSWORD_WHEN_LOGIN,
 } from "../constants/constants";
@@ -82,6 +84,41 @@ export const getTokenWhenRefreshPage = () => {
                 });
                 return Promise.reject();
 
+            });
+    };
+};
+
+export const logout = () => {
+    return (dispatch) => {
+        return LoginService.logout()
+            .then((resp) => {
+                dispatch({
+                    type: CLEAR_MESSAGE_FROM_SERVER,
+                });
+
+                dispatch({
+                    type: LOGOUT_SUCCESSFUL,
+                    user: resp.data,
+                });
+                console.log("succ")
+                return Promise.resolve();
+            })
+            .catch((err) => {
+                const MESSAGE =
+                    (err.response && err.response.data && err.response.data.message) ||
+                    err.message ||
+                    err.toString();
+                console.log(MESSAGE)
+                dispatch({
+                    type: SET_MESSAGE_FROM_SERVER,
+                    message: MESSAGE,
+                });
+
+                dispatch({
+                    type: LOGOUT_FAILED,
+                });
+
+                return Promise.reject(MESSAGE);
             });
     };
 };

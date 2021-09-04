@@ -57,10 +57,10 @@ const InboxList = () => {
     });
 
     return (
-        <div className="home__inbox-list col-3">
+        <div className="home__inbox-list">
             {inboxsMap}
             <div
-                className="home__inbox-list__older-inboxs center"
+                className="home__inbox-list__older-inboxs center mb-5"
                 onClick={() => loadingOlderFriendsInboxs()}
             >
                 <p> xem thêm</p>

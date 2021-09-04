@@ -29,20 +29,20 @@ const Inbox = ({
         const CONVERT_TIME = new Date(time);
         const CURRENT_TIME = new Date();
 
-        const TIME = new Date(CURRENT_TIME - CONVERT_TIME) 
+        const TIME = new Date(CURRENT_TIME - CONVERT_TIME);
 
         const LAST_MESSAGE_TIME_OF_USER = {
             year: TIME.getFullYear(),
             month: TIME.getMonth(),
             date: TIME.getDate(),
             hour: TIME.getHours(),
-            minute: CURRENT_TIME.getMinutes()
-        };  
+            minute: CURRENT_TIME.getMinutes(),
+        };
 
-        if(LAST_MESSAGE_TIME_OF_USER.month) return LAST_MESSAGE_TIME_OF_USER.month + " tháng"
-        if(LAST_MESSAGE_TIME_OF_USER.date) return LAST_MESSAGE_TIME_OF_USER.date + " ngày"
-        if(LAST_MESSAGE_TIME_OF_USER.hour) return LAST_MESSAGE_TIME_OF_USER.hour + " giờ"
-        if(LAST_MESSAGE_TIME_OF_USER.minute) return LAST_MESSAGE_TIME_OF_USER.minute + " phút"
+        if (LAST_MESSAGE_TIME_OF_USER.month) return LAST_MESSAGE_TIME_OF_USER.month + " tháng";
+        if (LAST_MESSAGE_TIME_OF_USER.date) return LAST_MESSAGE_TIME_OF_USER.date + " ngày";
+        if (LAST_MESSAGE_TIME_OF_USER.hour) return LAST_MESSAGE_TIME_OF_USER.hour + " giờ";
+        if (LAST_MESSAGE_TIME_OF_USER.minute) return LAST_MESSAGE_TIME_OF_USER.minute + " phút";
 
         return "";
     };

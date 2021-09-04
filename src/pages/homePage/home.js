@@ -29,21 +29,21 @@ const Home = () => {
             {!authentication.isLoggin && <Welcome />}
 
             {authentication.isLoggin && (
-                <div className="home row">
+                <div className="home">
                     {/* col-3 */}
                     <InboxList />
 
                     {currentIdBoxChat !== NOT_EXISTS_CURRENT_ID_BOX_CHAT ? (
                         <>
-                            <div className="col-6 box-chat-container">
+                            <div className="box-chat-container">
                                     <HeaderOfBoxChat />
                                     <BoxChat />
                                     <SendMessage />
                             </div>
-                            <div className="col-3 d-none d-lg-flex">NOTHING HERE</div>
+                            <div className="right">NOTHING HERE</div>
                         </>
                     ) : (
-                        <div className="col-9 d-flex align-items-center flex-column mt-5">
+                        <div className=" d-flex align-items-center flex-column mt-5">
                            <Introducing />
                         </div>
                     )}

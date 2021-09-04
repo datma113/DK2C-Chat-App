@@ -3,10 +3,12 @@
     flex-direction: row;
 
     &__inbox-list {
+        min-width: 38rem;
+        max-width: 38rem;
+        // width: 38rem;
         overflow: scroll;
         overflow-x: hidden;
-        height: 88vh;
-        width: 38rem;
+        height: 90vh;
         
         &__older-inboxs {
             color: $mainPurpleColor;
@@ -19,6 +21,7 @@
             }
         }
     }
+
 }
 
 .inbox {
@@ -95,56 +98,15 @@
 }
 
 .box-chat-container {
-    height: 30vh;
+    height: 90vh;
     background-color: red;
-}
-
-.single-chat-box-container {
-    overflow: scroll;
-    overflow-x: hidden;
-    height: 100%;
-    width: calc(100% + 7.5px);
-}
-
-.single-chat-box {
     display: flex;
-    &--other {
-        flex-direction: row-reverse;
-    }
-
-    &__img {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-    }
-
-    &__message {
-        background-image: linear-gradient(
-            to right top,
-            #fbfbfb,
-            #fafafa,
-            #f8f8f9,
-            #f7f7f8,
-            #f6f5f7,
-            #f2ebf6,
-            #f1e1f3,
-            #f1d6ee,
-            #f4bee1,
-            #f9a5cd,
-            #fe8bb2,
-            #ff6f91
-        );
-        border: thin solid $mainPurpleColor;
-        border-radius: 10px;
-        padding: 1.5rem 1rem;
-        max-width: 50rem;
-    }
+    flex-direction: column;
 }
 
 .header-box-chat {
     display: flex;
     padding: 2rem 0;
-    margin: 0 -15px;
     background-color: $mainLightColor;
 
     &__img {
@@ -182,4 +144,52 @@
             }
         }
     }
+}
+
+
+.single-chat-box-container {
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 70%;
+    width: calc(100% + 7.5px);
+}
+
+.single-chat-box {
+    display: flex;
+    &--other {
+        flex-direction: row-reverse;
+        margin-left: 10rem;
+    }
+
+    &__img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+
+    &__message {
+        background-image: linear-gradient(
+            to right top,
+            #fbfbfb,
+            #fafafa,
+            #f8f8f9,
+            #f7f7f8,
+            #f6f5f7,
+            #f2ebf6,
+            #f1e1f3,
+            #f1d6ee,
+            #f4bee1,
+            #f9a5cd,
+            #fe8bb2,
+            #ff6f91
+        );
+        border: thin solid $mainPurpleColor;
+        border-radius: 10px;
+        padding: 1.5rem 1rem;
+        max-width: 50rem;
+    }
+}
+
+.right {
+    flex-grow: 1;
 }

@@ -1,35 +1,6 @@
 .send-message-container {
-    position: relative;
-    
-    &__ta {
-        resize: none;
-        outline: none;
-        padding: 1rem 2rem;
-        overflow: hidden;
-        transition: 0.2s;
-        border: {
-            top: thin solid rgba($color: $mainPurpleColor, $alpha: 0.3);
-            right: none;
-            left: none;
-            bottom: none;
-        }
-        &:focus,
-        &:hover {
-            border-top: thin solid rgba($color: $mainPurpleColor, $alpha: 1);
-        }
-    }
-    &__icon {
-        position: absolute;
-        border-radius: 15px;
-        color: $mainPurpleColor;
-        right: 0;
-        top: calc(50% - 25px);
-        transition: 0.2s;
-        padding: 0.5rem 1rem;
-        cursor: pointer;
-        &:hover {
-            background-color: $hoverPurpleColor;
-            color: $mainLightColor;
-        }
-    }
+    background-color: yellow;
+    padding: 2rem 0;
+    flex-shrink: 0;
+
 }

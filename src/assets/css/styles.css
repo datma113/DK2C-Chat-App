@@ -334,7 +334,6 @@ a {
 
 .box-chat-container {
   height: 90vh;
-  background-color: red;
   display: flex;
   flex-direction: column;
 }
@@ -409,9 +408,26 @@ a {
 }
 
 .send-message-container {
-  background-color: yellow;
-  padding: 2rem 0;
   flex-shrink: 0;
+  display: flex;
+  border-top: thin solid #5D3B78;
+}
+.send-message-container__ta {
+  flex-grow: 2;
+  height: 100%;
+  resize: none;
+  outline: none;
+  border: none;
+}
+.send-message-container__icon-container i {
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.send-message-container__icon-container i:hover {
+  background-color: #a166d1;
+  color: #FBFBFB;
 }
 
 /*variables*/

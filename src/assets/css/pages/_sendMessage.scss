@@ -1,6 +1,27 @@
 .send-message-container {
-    background-color: yellow;
-    padding: 2rem 0;
     flex-shrink: 0;
+    display: flex;
+    border-top: thin solid $mainPurpleColor;
 
+    &__ta {
+        flex-grow: 2;
+        height: 100%;
+        resize: none;
+        outline: none;
+        border: none;
+    }
+
+    &__icon-container {
+
+        i {
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+            &:hover {
+                background-color: $hoverPurpleColor;
+                color: $mainLightColor;
+            }
+        }
+    }
 }

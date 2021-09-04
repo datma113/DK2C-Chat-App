@@ -99,7 +99,6 @@
 
 .box-chat-container {
     height: 90vh;
-    background-color: red;
     display: flex;
     flex-direction: column;
 }
@@ -150,7 +149,6 @@
 .single-chat-box-container {
     overflow: scroll;
     overflow-x: hidden;
-    
     width: calc(100% + 7.5px);
 }
 

@@ -24,7 +24,7 @@ export const getInboxsFromServer = (page) => {
     };
 };
 
-const storeMessageInBoxChat = (message) => {
+export const storeMessageInBoxChat = (message) => {
     return {
         type: STORE_MESSAGE_IN_BOX_CHAT,
         message,

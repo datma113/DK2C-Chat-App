@@ -1,19 +1,26 @@
 import {
     INITIALIZE_MESSAGE_IN_BOX_CHAT,
     STORE_MESSAGE_IN_BOX_CHAT,
+    UPDATE_MESSAGE_REALTIME,
 } from "../../constants/constants";
 
 const initial = [];
 
 const reducer = (state = initial, action) => {
-    let { type, message } = action;
-    if (type === INITIALIZE_MESSAGE_IN_BOX_CHAT) return message;
+    let { type, message, realTimeMessage } = action;
 
-    if (type === STORE_MESSAGE_IN_BOX_CHAT) {
-        let newState = [ ...message,...state];
-        return newState;
+    switch (type) {
+        case INITIALIZE_MESSAGE_IN_BOX_CHAT:
+            return message;
+        case STORE_MESSAGE_IN_BOX_CHAT:
+            let olderMessage = [...message, ...state];
+            return olderMessage;
+        case UPDATE_MESSAGE_REALTIME:
+            let updateRealTimeMessage = [...state, ...realTimeMessage];
+            return updateRealTimeMessage;
+        default:
+            break;
     }
-
     return state;
 };
 

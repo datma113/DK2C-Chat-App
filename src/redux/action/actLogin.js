@@ -75,7 +75,12 @@ export const getTokenWhenRefreshPage = () => {
                     type: LOGIN_SUCCESSFUL,
                     user: { ...resp.data, accessToken: token },
                 });
-                socketModule.connect(resp.data.id, token);
+                const USER_TO_CONNECT_SOCKET = {
+                    userId: resp.data.id,
+                    access_token: token
+                }
+                
+                socketModule.connect(USER_TO_CONNECT_SOCKET, dispatch)
                 return Promise.resolve();
             })
             .catch(() => {

@@ -29,15 +29,18 @@ const Inbox = ({
         const CONVERT_TIME = new Date(time);
         const CURRENT_TIME = new Date();
 
-        const TIME = new Date(CURRENT_TIME - CONVERT_TIME);
+        const DISPLAY_TIME = new Date(Math.abs(CURRENT_TIME - CONVERT_TIME));
+
+        const THE_FIRST_DAY = 1
 
         const LAST_MESSAGE_TIME_OF_USER = {
-            year: TIME.getFullYear(),
-            month: TIME.getMonth(),
-            date: TIME.getDate(),
-            hour: TIME.getHours(),
+            year: DISPLAY_TIME.getFullYear(),
+            month: DISPLAY_TIME.getMonth(),
+            date: DISPLAY_TIME.getDate() - THE_FIRST_DAY,
+            hour: DISPLAY_TIME.getHours(),
             minute: CURRENT_TIME.getMinutes(),
         };
+
 
         if (LAST_MESSAGE_TIME_OF_USER.month) return LAST_MESSAGE_TIME_OF_USER.month + " tháng";
         if (LAST_MESSAGE_TIME_OF_USER.date) return LAST_MESSAGE_TIME_OF_USER.date + " ngày";

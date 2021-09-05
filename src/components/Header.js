@@ -5,9 +5,10 @@ import logo from "../assets/image/LOGO.png";
 import Swal from "sweetalert2";
 
 import { logout } from "../redux/action/actLogin";
+import { useSelector } from "react-redux";
 const Header = () => {
     const dispatch = useDispatch();
-
+    const authentication = useSelector(state => state.authentication)
     const logoutHandle = () => {
         dispatch(logout())
             .then(() => {
@@ -76,7 +77,7 @@ const Header = () => {
                                 data-mdb-dropdown-animation="off"
                             >
                                 <img
-                                    src="https://mdbootstrap.com/img/new/avatars/2.jpg"
+                                    src={authentication.user.imageUrl}
                                     className="rounded-circle"
                                     height="25"
                                     alt=""

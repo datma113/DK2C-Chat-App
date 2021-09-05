@@ -1,23 +1,23 @@
 import SockJS from "sockjs-client";
 import Stomp from 'stompjs'
-
+import { UPDATE_MESSAGE_REALTIME } from "../redux/constants/constants";
 const socketModule = (function () {
     let stompClient = null;
 
-    function connect(userId, token = "") {
+    function connect(user, dispatch) {
         let socket = new SockJS("http://localhost:8080/ws");
         stompClient = Stomp.over(socket);
 
-        const user = {
-            userId,
-            access_token: token,
-        };
 
         const onConnected = () => {
             stompClient.subscribe(
-                "/user/queue/messages",
+                "/users/queue/messages",
                 function (resp) {
-                    console.log(`response: `,resp.body)
+                    const MESSAGE = [JSON.parse( resp.body)]
+                    dispatch({
+                        type: UPDATE_MESSAGE_REALTIME,
+                        realTimeMessage: MESSAGE
+                    })
                 }
               );
         }

@@ -244,7 +244,6 @@ a {
 
 .home {
   display: flex;
-  flex-direction: row;
 }
 .home__inbox-list {
   min-width: 38rem;
@@ -334,6 +333,7 @@ a {
 
 .box-chat-container {
   height: 90vh;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
@@ -381,17 +381,16 @@ a {
   position: relative;
   overflow: scroll;
   overflow-x: hidden;
-  width: calc(100% + 7.5px);
 }
 
 .single-chat-box {
   display: flex;
 }
-.single-chat-box--other {
+.single-chat-box--self {
   flex-direction: row-reverse;
   margin-left: 10rem;
 }
-.single-chat-box--self {
+.single-chat-box--other {
   margin-right: 10rem;
 }
 .single-chat-box__img {
@@ -400,11 +399,14 @@ a {
   border-radius: 50%;
 }
 .single-chat-box__message {
-  background-image: linear-gradient(to right top, #fbfbfb, #fafafa, #f8f8f9, #f7f7f8, #f6f5f7, #f2ebf6, #f1e1f3, #f1d6ee, #f4bee1, #f9a5cd, #fe8bb2, #ff6f91);
+  background-image: linear-gradient(to right top, #5D3B78, #fbfbfb, #fafafa, #f8f8f9, #f7f7f8, #f6f5f7, #f2ebf6, #f1e1f3, #f1d6ee, #5D3B78);
   border: thin solid #5D3B78;
   border-radius: 10px;
   padding: 1.5rem 1rem;
   max-width: 50rem;
+}
+.single-chat-box__message--self {
+  background-image: linear-gradient(to right top, #fbfbfb, #fafafa, #f8f8f9, #f7f7f8, #f6f5f7, #f2ebf6);
 }
 
 .right {

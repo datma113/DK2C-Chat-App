@@ -1,6 +1,5 @@
 .home {
     display: flex;
-    flex-direction: row;
 
     &__inbox-list {
         min-width: 38rem;
@@ -9,7 +8,7 @@
         overflow: scroll;
         overflow-x: hidden;
         height: 90vh;
-        
+
         &__older-inboxs {
             color: $mainPurpleColor;
             font-weight: bold;
@@ -21,7 +20,6 @@
             }
         }
     }
-
 }
 
 .inbox {
@@ -99,6 +97,7 @@
 
 .box-chat-container {
     height: 90vh;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
@@ -145,25 +144,21 @@
     }
 }
 
-
 .single-chat-box-container {
     position: relative;
     overflow: scroll;
     overflow-x: hidden;
-    width: calc(100% + 7.5px);
-    
-  
 }
 
 .single-chat-box {
     display: flex;
-    
-    &--other {
+
+    &--self {
         flex-direction: row-reverse;
         margin-left: 10rem;
     }
 
-    &--self {
+    &--other {
         margin-right: 10rem;
     }
 
@@ -176,6 +171,7 @@
     &__message {
         background-image: linear-gradient(
             to right top,
+            $mainPurpleColor,
             #fbfbfb,
             #fafafa,
             #f8f8f9,
@@ -184,15 +180,24 @@
             #f2ebf6,
             #f1e1f3,
             #f1d6ee,
-            #f4bee1,
-            #f9a5cd,
-            #fe8bb2,
-            #ff6f91
+            $mainPurpleColor
         );
         border: thin solid $mainPurpleColor;
         border-radius: 10px;
         padding: 1.5rem 1rem;
         max-width: 50rem;
+    }
+
+    &__message--self {
+        background-image: linear-gradient(
+            to right top,
+            #fbfbfb,
+            #fafafa,
+            #f8f8f9,
+            #f7f7f8,
+            #f6f5f7,
+            #f2ebf6
+        );
     }
 }
 

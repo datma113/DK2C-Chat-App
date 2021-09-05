@@ -8,12 +8,16 @@ const MessageChat = ({ boxChat }) => {
         const SENDER_ID = message.sender.id;
         const MY_ID = authentication.user.id;
         const IS_SELF_SIDE = SENDER_ID === MY_ID ? true : false;
-        const getSelfSideClass = () => {
-            return IS_SELF_SIDE ? "single-chat-box--other" : "single-chat-box--self";
+        const isSelfSideClass = () => {
+            return IS_SELF_SIDE ? "single-chat-box--self" : "single-chat-box--other";
+        };
+
+        const addSelfBackgroundClassForMessage = () => {
+            return IS_SELF_SIDE ? "single-chat-box__message--self" : "";
         };
 
         return (
-            <div key={index} className={`single-chat-box mb-1 ${getSelfSideClass()}`}>
+            <div key={index} className={`single-chat-box mb-1 ${isSelfSideClass()}`}>
                 <div>
                     <img
                         className="single-chat-box__img m-3"
@@ -21,7 +25,12 @@ const MessageChat = ({ boxChat }) => {
                         alt=""
                     />
                 </div>
-                <div className="single-chat-box__message mt-3"> {message.content} </div>
+                <div
+                    className={`single-chat-box__message ${addSelfBackgroundClassForMessage()} mt-3`}
+                >
+                    {" "}
+                    {message.content}{" "}
+                </div>
             </div>
         );
     });

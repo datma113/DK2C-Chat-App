@@ -13,7 +13,6 @@ const BoxChat = () => {
     const [isInitialize, setisInitialize] = useState(true);
     const [lenthOfTheFirstLoadingMessage, setlenthOfTheFirstLoadingMessage] = useState(0);
 
-    console.log(boxChat)
 
     useEffect(() => {
         dispatch(getMessageInBoxChat(currentIdBoxChat, 0));

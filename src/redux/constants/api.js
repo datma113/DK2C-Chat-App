@@ -7,9 +7,9 @@ export const API_SIGN_IN = API + AUTH + 'signin'
 export const API_SIGN_OUT = API + AUTH + 'signout'
 
 export const API_GET_REFRESH_TOKEN = API + AUTH + 'refreshtoken'
-export const API_SIGN_UP_IMFORMATION = API + SIGN_UP + 'save_information'
-export const API_SIGN_UP_CHECK_MAIL = API + SIGN_UP + 'send_vetification_code'
-export const API_SIGN_UP_VERIFY = API + SIGN_UP + 'verify'
+export const API_SIGN_UP_IMFORMATION = API + AUTH + SIGN_UP + 'save_information'
+export const API_SIGN_UP_CHECK_MAIL = API + AUTH + SIGN_UP + 'send_vetification_code'
+export const API_SIGN_UP_VERIFY = API + AUTH + SIGN_UP + 'verify'
 
 /** */
 export const API_GET_USER_WHEN_EXISTS_REFRESH_TOKEN = API + 'user/me'

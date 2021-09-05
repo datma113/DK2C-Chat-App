@@ -8,13 +8,10 @@ const socketModule = (function () {
         let socket = new SockJS("http://localhost:8080/ws");
         stompClient = Stomp.over(socket);
 
-
         const user = {
             userId,
             access_token: token,
         };
-
-        console.log(user)
 
         const onConnected = () => {
             stompClient.subscribe(

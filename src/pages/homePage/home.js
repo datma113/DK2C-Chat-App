@@ -20,7 +20,10 @@ const Home = () => {
     useEffect(() => {
         dispatch(getTokenWhenRefreshPage()).then(() => {
             setisLoading(false);
-        });
+        })
+        .then(() => {
+
+        })
     }, [dispatch]);
 
     return (
@@ -36,15 +39,15 @@ const Home = () => {
                     {currentIdBoxChat !== NOT_EXISTS_CURRENT_ID_BOX_CHAT ? (
                         <>
                             <div className="box-chat-container">
-                                    <HeaderOfBoxChat />
-                                    <BoxChat />
-                                    <SendMessage />
+                                <HeaderOfBoxChat />
+                                <BoxChat />
+                                <SendMessage idOfRoom={currentIdBoxChat}/>
                             </div>
                             <div className="right">NOTHING HERE</div>
                         </>
                     ) : (
                         <div className=" d-flex align-items-center flex-column mt-5">
-                           <Introducing />
+                            <Introducing />
                         </div>
                     )}
                 </div>

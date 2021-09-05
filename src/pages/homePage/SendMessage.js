@@ -1,19 +1,15 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
 import socketModule from "../../module/socketModule";
 
-const SendMessage = () => {
-    const authentication = useSelector((state) => state.authentication);
-
-    const getValueOfTA = (e) => {
-        console.log(e.target.value);
-    };
+const SendMessage = ({idOfRoom}) => {
+    const [messageToSend, setmessageToSend] = useState("")
+    
 
     const sendMessageToFriend = () => {
-        const USER_ID = authentication.user.id;
-        const USER_TOKEN = authentication.user.accessToken;
-
-        socketModule.connect(USER_ID, USER_TOKEN);
+            if(messageToSend.length) {
+               socketModule.sendMessageToOneFriend(idOfRoom, messageToSend, "text")
+               setmessageToSend("")
+            }
     };
 
     return (
@@ -21,9 +17,8 @@ const SendMessage = () => {
             <textarea
                 className="send-message-container__ta"
                 autoFocus={true}
-                onChange={(e) => {
-                    getValueOfTA(e);
-                }}
+                value={messageToSend}
+                onChange={(e) => setmessageToSend(e.target.value)}
             />
             <div className="center send-message-container__icon-container">
                 {" "}

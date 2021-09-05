@@ -8,6 +8,7 @@ import {
 import { API_GET_REFRESH_TOKEN, API_GET_USER_WHEN_EXISTS_REFRESH_TOKEN } from "../constants/api";
 import LoginService from "../../services/LoginService";
 import axios from "axios";
+import socketModule from '../../module/socketModule'
 
 export const storePhoneAndPasswordWhenLogin = (key, value) => {
     //key and value was created to save a dynamic object
@@ -74,6 +75,7 @@ export const getTokenWhenRefreshPage = () => {
                     type: LOGIN_SUCCESSFUL,
                     user: { ...resp.data, accessToken: token },
                 });
+                socketModule.connect(resp.data.id, token);
                 return Promise.resolve();
             })
             .catch(() => {

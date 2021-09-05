@@ -15,7 +15,7 @@ const socketModule = (function () {
 
         const onConnected = () => {
             stompClient.subscribe(
-                "/user/" + userId + "/queue/messages",
+                "/user/queue/messages",
                 function (resp) {
                     console.log(`response: `,resp.body)
                 }

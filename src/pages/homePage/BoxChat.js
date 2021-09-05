@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AlwaysScrollToBottom from "../../components/AlwaysScrollToBottom";
 import MessageChat from "../../components/MessageChat";
 import { getMessageInBoxChat } from "../../redux/action/actHome";
+import img from '../../assets/image/404.png'
 
 const BoxChat = () => {
     const dispatch = useDispatch();

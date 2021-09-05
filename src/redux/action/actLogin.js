@@ -72,7 +72,7 @@ export const getTokenWhenRefreshPage = () => {
             .then((resp) => {
                 dispatch({
                     type: LOGIN_SUCCESSFUL,
-                    user: resp.data,
+                    user: { ...resp.data, accessToken: token },
                 });
                 return Promise.resolve();
             })
@@ -92,7 +92,6 @@ export const logout = () => {
                 dispatch({
                     type: CLEAR_MESSAGE_FROM_SERVER,
                 });
-            
 
                 return Promise.resolve();
             })
@@ -101,8 +100,8 @@ export const logout = () => {
                     (err.response && err.response.data && err.response.data.message) ||
                     err.message ||
                     err.toString();
-                
-                    dispatch({
+
+                dispatch({
                     type: SET_MESSAGE_FROM_SERVER,
                     message: MESSAGE,
                 });

@@ -147,16 +147,24 @@
 
 
 .single-chat-box-container {
+    position: relative;
     overflow: scroll;
     overflow-x: hidden;
     width: calc(100% + 7.5px);
+    
+  
 }
 
 .single-chat-box {
     display: flex;
+    
     &--other {
         flex-direction: row-reverse;
         margin-left: 10rem;
+    }
+
+    &--self {
+        margin-right: 10rem;
     }
 
     &__img {

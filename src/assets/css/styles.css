@@ -378,6 +378,7 @@ a {
 }
 
 .single-chat-box-container {
+  position: relative;
   overflow: scroll;
   overflow-x: hidden;
   width: calc(100% + 7.5px);
@@ -389,6 +390,9 @@ a {
 .single-chat-box--other {
   flex-direction: row-reverse;
   margin-left: 10rem;
+}
+.single-chat-box--self {
+  margin-right: 10rem;
 }
 .single-chat-box__img {
   width: 50px;

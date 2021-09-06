@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import ReadBy from "./ReadBy";
 import { STORE_CURRENT_INBOX } from "../redux/constants/constants";
 import { storeCurrentIdOfInbox, storeCurrentRoomId } from "../redux/action/actHome";
-import { useSelector } from "react-redux";
 
 const Inbox = ({
     inboxId,
@@ -19,7 +18,6 @@ const Inbox = ({
     realTimeResponse,
 }) => {
     const dispatch = useDispatch();
-    const authentication = useSelector((state) => state.authentication);
     const limitStringToShow = (string) => {
         const MAX_OF_LENGTH = 20;
         return string.length >= MAX_OF_LENGTH ? string.slice(0, 17) + "..." : string;
@@ -81,7 +79,7 @@ const Inbox = ({
                 <div className="d-flex flex-column">
                     <div className=" text-medium">{limitStringToShow(displayName)}</div>
                     <div className="text-small" style={{ opacity: `0.6` }}>
-                        {displaySenderName(senderName) + limitStringToShow(lastMessage)}
+                        {limitStringToShow(lastMessage)}
                     </div>
                 </div>
             </div>

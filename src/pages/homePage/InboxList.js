@@ -47,7 +47,7 @@ const InboxList = () => {
                     ? "Bạn: " + realTimeResponse.content
                     : realTimeResponse.content;
             }
-
+            //return ""
             return inbox.lastMessage.content;
         };
 

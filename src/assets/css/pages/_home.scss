@@ -170,16 +170,16 @@
 
     &__message {
         background-image: linear-gradient(
-            to right top,
+            to left top,
             $mainPurpleColor,
-            #fbfbfb,
-            #fafafa,
+            #5462e0,
+            #5627d8,
             #f8f8f9,
             #f7f7f8,
             #f6f5f7,
             #f2ebf6,
             #f1e1f3,
-            #f1d6ee,
+            #5462e0,
             $mainPurpleColor
         );
         border: thin solid $mainPurpleColor;

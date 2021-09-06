@@ -1,15 +1,22 @@
 import React, { useState } from "react";
 import socketModule from "../../module/socketModule";
 
-const SendMessage = ({roomId}) => {
-    const [messageToSend, setmessageToSend] = useState("")
-    
+const SendMessage = ({ roomId }) => {
+    const [messageToSend, setmessageToSend] = useState("");
 
     const sendMessageToFriend = () => {
-            if(messageToSend.length) {
-               socketModule.sendMessageToOneFriend(roomId, messageToSend, "text")
-               setmessageToSend("")
-            }
+        if (messageToSend.length) {
+            socketModule.sendMessageToOneFriend(roomId, messageToSend, "text");
+            setmessageToSend("");
+        }
+    };
+
+    const handleEnterTextarea = (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            socketModule.sendMessageToOneFriend(roomId, messageToSend, "text");
+            setmessageToSend("");
+        }   
     };
 
     return (
@@ -19,6 +26,7 @@ const SendMessage = ({roomId}) => {
                 autoFocus={true}
                 value={messageToSend}
                 onChange={(e) => setmessageToSend(e.target.value)}
+                onKeyDown={(e) => handleEnterTextarea(e)}
             />
             <div className="center send-message-container__icon-container">
                 {" "}

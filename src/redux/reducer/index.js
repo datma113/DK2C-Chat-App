@@ -8,6 +8,7 @@ import boxChat from './returnArray/boxChat'
 import currentInboxId from './returnNumber/currentInboxId'
 import currentInbox from './returnObject/currentInbox'
 import currentRoomId from './returnNumber/currentRoomId'
+import realTimeResponse from './returnObject/realTimeResponse'
 const reducer = combineReducers({
      userLogin,
      userRegister,
@@ -17,7 +18,8 @@ const reducer = combineReducers({
      boxChat,
      currentInboxId,
      currentInbox,
-     currentRoomId
+     currentRoomId,
+     realTimeResponse
 })
 
 export default reducer

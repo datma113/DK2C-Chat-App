@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import ReadBy from "./ReadBy";
 import { STORE_CURRENT_INBOX } from "../redux/constants/constants";
 import { storeCurrentIdOfInbox, storeCurrentRoomId } from "../redux/action/actHome";
+import { useSelector } from "react-redux";
 
 const Inbox = ({
     inboxId,
@@ -14,12 +15,14 @@ const Inbox = ({
     lastMessageTime,
     lastMessageReadBy,
     isActive,
-    roomId
+    roomId,
+    realTimeResponse,
 }) => {
     const dispatch = useDispatch();
-    const customStringToShow = (name) => {
+    const authentication = useSelector((state) => state.authentication);
+    const limitStringToShow = (string) => {
         const MAX_OF_LENGTH = 20;
-        return name.length >= MAX_OF_LENGTH ? name.slice(0, 17) + "..." : name;
+        return string.length >= MAX_OF_LENGTH ? string.slice(0, 17) + "..." : string;
     };
 
     const displaySenderName = (senderName) => {
@@ -50,7 +53,7 @@ const Inbox = ({
 
     const gotoChatInbox = () => {
         dispatch(storeCurrentIdOfInbox(inboxId));
-        dispatch(storeCurrentRoomId(roomId))
+        dispatch(storeCurrentRoomId(roomId));
 
         let currentInbox = {
             imgUrl,
@@ -76,9 +79,9 @@ const Inbox = ({
 
             <div className=" col-7 ">
                 <div className="d-flex flex-column">
-                    <div className=" text-medium">{customStringToShow(displayName)}</div>
+                    <div className=" text-medium">{limitStringToShow(displayName)}</div>
                     <div className="text-small" style={{ opacity: `0.6` }}>
-                        {displaySenderName(senderName) + customStringToShow(lastMessage)}
+                        {displaySenderName(senderName) + limitStringToShow(lastMessage)}
                     </div>
                 </div>
             </div>

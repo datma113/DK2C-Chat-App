@@ -1,6 +1,6 @@
 import SockJS from "sockjs-client";
 import Stomp from 'stompjs'
-import { UPDATE_MESSAGE_REALTIME } from "../redux/constants/constants";
+import { STORE_REAL_TIME_RESPONSE, UPDATE_MESSAGE_REALTIME } from "../redux/constants/constants";
 const socketModule = (function () {
     let stompClient = null;
 
@@ -13,10 +13,16 @@ const socketModule = (function () {
             stompClient.subscribe(
                 "/users/queue/messages",
                 function (resp) {
-                    const MESSAGE = [JSON.parse( resp.body)]
+                    const data = JSON.parse(resp.body)
+                    const MESSAGE = [data]
                     dispatch({
                         type: UPDATE_MESSAGE_REALTIME,
                         realTimeMessage: MESSAGE
+                    })
+
+                    dispatch({
+                        type: STORE_REAL_TIME_RESPONSE,
+                        data
                     })
                 }
               );

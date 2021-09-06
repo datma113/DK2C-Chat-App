@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import ReadBy from "./ReadBy";
 import { STORE_CURRENT_INBOX } from "../redux/constants/constants";
-import { storeCurrentIdOfInbox } from "../redux/action/actHome";
+import { storeCurrentIdOfInbox, storeCurrentRoomId } from "../redux/action/actHome";
 
 const Inbox = ({
     inboxId,
@@ -14,6 +14,7 @@ const Inbox = ({
     lastMessageTime,
     lastMessageReadBy,
     isActive,
+    roomId
 }) => {
     const dispatch = useDispatch();
     const customStringToShow = (name) => {
@@ -49,12 +50,12 @@ const Inbox = ({
 
     const gotoChatInbox = () => {
         dispatch(storeCurrentIdOfInbox(inboxId));
+        dispatch(storeCurrentRoomId(roomId))
 
         let currentInbox = {
             imgUrl,
             displayName,
         };
-
         dispatch({
             type: STORE_CURRENT_INBOX,
             currentInbox,

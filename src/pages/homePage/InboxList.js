@@ -51,6 +51,7 @@ const InboxList = () => {
                 lastMessageTime={inbox.lastMessage.createAt}
                 lastMessageReadBy={inbox.lastMessage.readbyes}
                 inboxId={inbox.id}
+                roomId={inbox.room.id}
                 isActive={IS_ACTIVE}
             />
         );

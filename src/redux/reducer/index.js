@@ -5,8 +5,9 @@ import message from './returnObject/message'
 import authentication from './returnObject/authentication'
 import inboxs from './returnArray/inboxs'
 import boxChat from './returnArray/boxChat'
-import currentIdBoxChat from './returnNumber/currentIdBoxChat'
+import currentInboxId from './returnNumber/currentInboxId'
 import currentInbox from './returnObject/currentInbox'
+import currentRoomId from './returnNumber/currentRoomId'
 const reducer = combineReducers({
      userLogin,
      userRegister,
@@ -14,8 +15,9 @@ const reducer = combineReducers({
      authentication,
      inboxs,
      boxChat,
-     currentIdBoxChat,
-     currentInbox
+     currentInboxId,
+     currentInbox,
+     currentRoomId
 })
 
 export default reducer

@@ -8,17 +8,17 @@ import { getMessageInBoxChat } from "../../redux/action/actHome";
 const BoxChat = () => {
     const dispatch = useDispatch();
     const boxChat = useSelector((state) => state.boxChat);
-    const currentIdBoxChat = useSelector((state) => state.currentIdBoxChat);
+    const currentInboxId = useSelector((state) => state.currentInboxId);
     const [loadingOlderMessage, setloadingOlderMessage] = useState(0);
     const [isInitialize, setisInitialize] = useState(true);
     const [lenthOfTheFirstLoadingMessage, setlenthOfTheFirstLoadingMessage] = useState(0);
 
     useEffect(() => {
-        dispatch(getMessageInBoxChat(currentIdBoxChat, 0));
+        dispatch(getMessageInBoxChat(currentInboxId, 0));
         setisInitialize(true);
         //when change other inbox, it will reset loading value to 0
         setloadingOlderMessage(0)
-    }, [dispatch, currentIdBoxChat]);
+    }, [dispatch, currentInboxId]);
 
     const loadOlderMessageInBoxChat = (e) => {
         const CURRENT_SCROLL_VALUE = e.target.scrollTop;
@@ -31,7 +31,7 @@ const BoxChat = () => {
             setisInitialize(false);
             const LOADING = loadingOlderMessage + 1;
             setloadingOlderMessage(LOADING);
-            dispatch(getMessageInBoxChat(currentIdBoxChat, LOADING));
+            dispatch(getMessageInBoxChat(currentInboxId, LOADING));
             e.target.scrollTop =
                 SUM_OF_HEIGHT_MESSAGE - lenthOfTheFirstLoadingMessage * (LOADING - 1);
         }

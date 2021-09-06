@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import socketModule from "../../module/socketModule";
 
-const SendMessage = ({idOfRoom}) => {
+const SendMessage = ({roomId}) => {
     const [messageToSend, setmessageToSend] = useState("")
     
 
     const sendMessageToFriend = () => {
             if(messageToSend.length) {
-               socketModule.sendMessageToOneFriend(idOfRoom, messageToSend, "text")
+               socketModule.sendMessageToOneFriend(roomId, messageToSend, "text")
                setmessageToSend("")
             }
     };

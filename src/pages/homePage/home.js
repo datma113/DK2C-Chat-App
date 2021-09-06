@@ -12,7 +12,8 @@ import Introducing from "./Introducing";
 import SendMessage from "./SendMessage";
 const Home = () => {
     const authentication = useSelector((state) => state.authentication);
-    const currentIdBoxChat = useSelector((state) => state.currentIdBoxChat);
+    const currentInboxId = useSelector((state) => state.currentInboxId);
+    const currentRoomId = useSelector(state => state.currentRoomId)
     const [isLoading, setisLoading] = useState(true);
     const dispatch = useDispatch();
     const NOT_EXISTS_CURRENT_ID_BOX_CHAT = 0;
@@ -35,12 +36,12 @@ const Home = () => {
                     {/* col-3 */}
                     <InboxList />
 
-                    {currentIdBoxChat !== NOT_EXISTS_CURRENT_ID_BOX_CHAT ? (
+                    {currentInboxId !== NOT_EXISTS_CURRENT_ID_BOX_CHAT ? (
                         <>
                             <div className="box-chat-container">
                                 <HeaderOfBoxChat />
                                 <BoxChat />
-                                <SendMessage idOfRoom={currentIdBoxChat} />
+                                <SendMessage roomId={currentRoomId} />
                             </div>
                             <div className="right">NOTHING HERE</div>
                         </>

@@ -50,7 +50,7 @@ const InboxList = () => {
                 type={inbox.room.type}
                 lastMessageTime={inbox.lastMessage.createAt}
                 lastMessageReadBy={inbox.lastMessage.readbyes}
-                boxChatId={inbox.id}
+                inboxId={inbox.id}
                 isActive={IS_ACTIVE}
             />
         );

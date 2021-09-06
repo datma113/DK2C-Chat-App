@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
     INITIALIZE_MESSAGE_IN_BOX_CHAT,
+    STORE_CURRENT_NUMBER_ID_INBOX,
     STORE_INBOXS,
     STORE_MESSAGE_IN_BOX_CHAT,
 } from "../constants/constants";
@@ -44,5 +45,12 @@ export const getMessageInBoxChat = (inboxId, page = 0) => {
                 else dispatch(storeMessageInBoxChat(resp.data.content));
             })
             .catch(() => dispatch(storeMessageInBoxChat([])));
+    };
+};
+
+export const storeCurrentIdOfInbox = (id) => {
+    return {
+        type: STORE_CURRENT_NUMBER_ID_INBOX,
+        id
     };
 };

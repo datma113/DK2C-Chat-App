@@ -1,10 +1,11 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import ReadBy from "./ReadBy";
-import { GET_CURRENT_NUMBER_ID_BOX_CHAT, STORE_CURRENT_INBOX } from "../redux/constants/constants";
+import { STORE_CURRENT_INBOX } from "../redux/constants/constants";
+import { storeCurrentIdOfInbox } from "../redux/action/actHome";
 
 const Inbox = ({
-    boxChatId,
+    inboxId,
     imgUrl,
     displayName,
     lastMessage,
@@ -28,10 +29,8 @@ const Inbox = ({
     const displayLastMessageTime = (time) => {
         const CONVERT_TIME = new Date(time);
         const CURRENT_TIME = new Date();
-
         const DISPLAY_TIME = new Date(Math.abs(CURRENT_TIME - CONVERT_TIME));
-
-        const THE_FIRST_DAY = 1
+        const THE_FIRST_DAY = 1;
 
         const LAST_MESSAGE_TIME_OF_USER = {
             year: DISPLAY_TIME.getFullYear(),
@@ -41,20 +40,15 @@ const Inbox = ({
             minute: CURRENT_TIME.getMinutes(),
         };
 
-
         if (LAST_MESSAGE_TIME_OF_USER.month) return LAST_MESSAGE_TIME_OF_USER.month + " tháng";
         if (LAST_MESSAGE_TIME_OF_USER.date) return LAST_MESSAGE_TIME_OF_USER.date + " ngày";
         if (LAST_MESSAGE_TIME_OF_USER.hour) return LAST_MESSAGE_TIME_OF_USER.hour + " giờ";
         if (LAST_MESSAGE_TIME_OF_USER.minute) return LAST_MESSAGE_TIME_OF_USER.minute + " phút";
-
-        return "";
+        return "vài giây";
     };
 
     const gotoChatInbox = () => {
-        dispatch({
-            type: GET_CURRENT_NUMBER_ID_BOX_CHAT,
-            id: boxChatId,
-        });
+        dispatch(storeCurrentIdOfInbox(inboxId));
 
         let currentInbox = {
             imgUrl,

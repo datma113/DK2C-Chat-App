@@ -24,6 +24,11 @@ const socketModule = (function () {
                         type: STORE_REAL_TIME_RESPONSE,
                         data
                     })
+
+                    dispatch({
+                        type: 'UPDATE_LAST_MESSAGE_IN_INBOX',
+                        lastMessage: data
+                    })
                 }
               );
         }

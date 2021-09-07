@@ -8,7 +8,7 @@ import {
 } from "../constants/constants";
 import { API_GET_INBOXS, API_GET_MESSAGE_IN_CHAT_BOX } from "../constants/api";
 
-const storeInboxs = (inboxs) => {
+export const storeInboxs = (inboxs) => {
     return {
         type: STORE_INBOXS,
         inboxs,

@@ -17,7 +17,7 @@ function App() {
         <Router>
             <HelmetProvider >
             <Helmet>
-                <title>hehe</title>
+                <title>dkc app</title>
             </Helmet>
             </HelmetProvider>
             <div className="App">

@@ -27,12 +27,17 @@ const Inbox = ({
 
         const THE_FIRST_DAY = 1;
 
+        const MILISECONDS = DISPLAY_TIME.getTime();
+        const SECONDS = Math.floor(MILISECONDS / 1000);
+        const MINUTE = Math.floor(SECONDS / 60);
+        const HOURS = Math.floor(MINUTE / 60);
+
         const LAST_MESSAGE_TIME_OF_USER = {
             year: DISPLAY_TIME.getFullYear(),
             month: DISPLAY_TIME.getMonth(),
             date: DISPLAY_TIME.getDate() - THE_FIRST_DAY,
-            hour: DISPLAY_TIME.getHours() - 7,
-            minute: CURRENT_TIME.getMinutes(),
+            hour: HOURS,
+            minute: MINUTE,
         };
 
         if (LAST_MESSAGE_TIME_OF_USER.month) return LAST_MESSAGE_TIME_OF_USER.month + " tháng";

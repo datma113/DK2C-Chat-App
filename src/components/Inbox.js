@@ -25,7 +25,6 @@ const Inbox = ({
         const CURRENT_TIME = new Date();
         const DISPLAY_TIME = new Date(Math.abs(CURRENT_TIME - LAST_MESSAGE_TIME));
 
-
         const THE_FIRST_DAY = 1;
 
         const LAST_MESSAGE_TIME_OF_USER = {
@@ -35,7 +34,6 @@ const Inbox = ({
             hour: DISPLAY_TIME.getHours() - 7,
             minute: CURRENT_TIME.getMinutes(),
         };
-       
 
         if (LAST_MESSAGE_TIME_OF_USER.month) return LAST_MESSAGE_TIME_OF_USER.month + " tháng";
         if (LAST_MESSAGE_TIME_OF_USER.date) return LAST_MESSAGE_TIME_OF_USER.date + " ngày";

@@ -9,13 +9,10 @@ const Inbox = ({
     imgUrl,
     displayName,
     lastMessage,
-    senderName,
-    type,
     lastMessageTime,
     lastMessageReadBy,
     isActive,
     roomId,
-    realTimeResponse,
 }) => {
     const dispatch = useDispatch();
     const limitStringToShow = (string) => {
@@ -23,24 +20,22 @@ const Inbox = ({
         return string.length >= MAX_OF_LENGTH ? string.slice(0, 17) + "..." : string;
     };
 
-    const displaySenderName = (senderName) => {
-        const TYPE_OF_GROUP = "GROUP";
-        return type === TYPE_OF_GROUP ? senderName + ": " : "";
-    };
-
     const displayLastMessageTime = (time) => {
-        const CONVERT_TIME = new Date(time);
+        const LAST_MESSAGE_TIME = new Date(time);
         const CURRENT_TIME = new Date();
-        const DISPLAY_TIME = new Date(Math.abs(CURRENT_TIME - CONVERT_TIME));
+        const DISPLAY_TIME = new Date(Math.abs(CURRENT_TIME - LAST_MESSAGE_TIME));
+
+
         const THE_FIRST_DAY = 1;
 
         const LAST_MESSAGE_TIME_OF_USER = {
             year: DISPLAY_TIME.getFullYear(),
             month: DISPLAY_TIME.getMonth(),
             date: DISPLAY_TIME.getDate() - THE_FIRST_DAY,
-            hour: DISPLAY_TIME.getHours(),
+            hour: DISPLAY_TIME.getHours() - 7,
             minute: CURRENT_TIME.getMinutes(),
         };
+       
 
         if (LAST_MESSAGE_TIME_OF_USER.month) return LAST_MESSAGE_TIME_OF_USER.month + " tháng";
         if (LAST_MESSAGE_TIME_OF_USER.date) return LAST_MESSAGE_TIME_OF_USER.date + " ngày";

@@ -8,10 +8,9 @@ import Proptypes from "prop-types";
 const InboxList = () => {
     const dispatch = useDispatch();
     const inboxs = useSelector((state) => state.inboxs);
-    const currentIdBoxChat = useSelector((state) => state.currentIdBoxChat);
-    const realTimeResponse = useSelector((state) => state.realTimeResponse);
+    const currentInboxId = useSelector((state) => state.currentInboxId);
     const [loadingOlderInboxs, setloadingOlderInboxs] = useState(1);
-    console.log(inboxs)
+   
     const loadingOlderFriendsInboxs = () => {
         setloadingOlderInboxs((n) => n + 1);
         dispatch(getInboxsFromServer(loadingOlderInboxs));
@@ -25,9 +24,9 @@ const InboxList = () => {
     const inboxsMap = inboxs.map((inbox, index) => {
         const TYPE_ROOM_ONE = "ONE";
         const TYPE_ROOM_GROUP = "GROUP";
-        const IS_ACTIVE = currentIdBoxChat === inbox.id;
+        const IS_ACTIVE = currentInboxId === inbox.id;
         const CURRENT_ROOM_ID = inbox.room.id;
-     
+
         let imgUrl = "";
         let displayName = "";
         switch (inbox.room.type) {
@@ -50,13 +49,12 @@ const InboxList = () => {
                 displayName={displayName}
                 lastMessage={inbox.lastMessage.content}
                 senderName={inbox.lastMessage.sender.displayName}
-                type={inbox.room.type}
                 lastMessageTime={inbox.lastMessage.createAt}
                 lastMessageReadBy={inbox.lastMessage.readbyes}
                 inboxId={inbox.id}
                 roomId={CURRENT_ROOM_ID}
                 isActive={IS_ACTIVE}
-                realTimeResponse={realTimeResponse}
+
             />
         );
     });

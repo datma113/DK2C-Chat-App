@@ -1,4 +1,4 @@
-import { STORE_INBOXS } from "../../constants/constants";
+import { STORE_INBOXS, UPDATE_LAST_MESSAGE_IN_INBOX } from "../../constants/constants";
 
 const initial = [];
 
@@ -8,7 +8,7 @@ const reducer = (state = initial, action) => {
         let newState = [...state, ...inboxs];
         return newState;
     }
-    if (type === "UPDATE_LAST_MESSAGE_IN_INBOX") {
+    if (type === UPDATE_LAST_MESSAGE_IN_INBOX) {
         let realTimeInbox = [...state];
         state.forEach((inbox, index) => {
             if (inbox.room.id === lastMessage.roomId) {
@@ -16,6 +16,13 @@ const reducer = (state = initial, action) => {
                 realTimeInbox[index].lastMessage.readbyes = [];
             }
         });
+        realTimeInbox.sort((a, b) => {
+            const timeA = new Date(a.lastMessage.createAt);
+            const timeB = new Date(b.lastMessage.createAt);
+
+            return timeB - timeA;
+        });
+
         return realTimeInbox;
     }
 

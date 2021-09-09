@@ -13,6 +13,7 @@ const Inbox = ({
     lastMessageReadBy,
     isActive,
     roomId,
+    senderName
 }) => {
     const dispatch = useDispatch();
     const limitStringToShow = (string) => {
@@ -73,11 +74,11 @@ const Inbox = ({
                 </div>
             </div>
 
-            <div className=" col-7 ">
+            <div className="col-7">
                 <div className="d-flex flex-column">
                     <div className=" text-medium">{limitStringToShow(displayName)}</div>
                     <div className="text-small" style={{ opacity: `0.6` }}>
-                        {limitStringToShow(lastMessage)}
+                        {senderName + limitStringToShow(lastMessage)}
                     </div>
                 </div>
             </div>

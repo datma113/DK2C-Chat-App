@@ -10,29 +10,38 @@ const InboxList = () => {
     const inboxs = useSelector((state) => state.inboxs);
     const currentInboxId = useSelector((state) => state.currentInboxId);
     const [loadingOlderInboxs, setloadingOlderInboxs] = useState(1);
-   
+    const authentication = useSelector((state) => state.authentication);
+
     const loadingOlderFriendsInboxs = () => {
         setloadingOlderInboxs((n) => n + 1);
         dispatch(getInboxsFromServer(loadingOlderInboxs));
     };
-
+    console.log(inboxs);
     useEffect(() => {
         dispatch(getInboxsFromServer(0));
     }, [dispatch]);
 
+    const senderNameOfTypeOne = (isMyself) => {
+        return isMyself ? "Bạn: " : "";
+    };
 
     const inboxsMap = inboxs.map((inbox, index) => {
         const TYPE_ROOM_ONE = "ONE";
         const TYPE_ROOM_GROUP = "GROUP";
         const IS_ACTIVE = currentInboxId === inbox.id;
         const CURRENT_ROOM_ID = inbox.room.id;
+        const MY_ID = authentication.user.id;
+        const SENDER_ID = inbox.lastMessage.sender.id;
+        const IS_MYSELF = MY_ID === SENDER_ID ? true : false;
 
         let imgUrl = "";
         let displayName = "";
+        let senderName = "";
         switch (inbox.room.type) {
             case TYPE_ROOM_ONE:
                 imgUrl = inbox.room.to.imageUrl;
                 displayName = inbox.room.to.displayName;
+                senderName = senderNameOfTypeOne(IS_MYSELF);
                 break;
             case TYPE_ROOM_GROUP:
                 imgUrl = inbox.room.imageUrl;
@@ -41,6 +50,7 @@ const InboxList = () => {
             default:
                 break;
         }
+        // senderName={inbox.lastMessage.sender.displayName}
 
         return (
             <Inbox
@@ -48,13 +58,12 @@ const InboxList = () => {
                 imgUrl={imgUrl}
                 displayName={displayName}
                 lastMessage={inbox.lastMessage.content}
-                senderName={inbox.lastMessage.sender.displayName}
                 lastMessageTime={inbox.lastMessage.createAt}
                 lastMessageReadBy={inbox.lastMessage.readbyes}
                 inboxId={inbox.id}
                 roomId={CURRENT_ROOM_ID}
                 isActive={IS_ACTIVE}
-
+                senderName={senderName}
             />
         );
     });

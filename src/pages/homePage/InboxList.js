@@ -25,6 +25,10 @@ const InboxList = () => {
         return isMyself ? "Bạn: " : "";
     };
 
+    const senderNameOfTypeGroup = (isMyself, senderName) => {
+        return isMyself ? "Ban: " : senderName+": ";
+    };
+
     const inboxsMap = inboxs.map((inbox, index) => {
         const TYPE_ROOM_ONE = "ONE";
         const TYPE_ROOM_GROUP = "GROUP";
@@ -33,6 +37,7 @@ const InboxList = () => {
         const MY_ID = authentication.user.id;
         const SENDER_ID = inbox.lastMessage.sender.id;
         const IS_MYSELF = MY_ID === SENDER_ID ? true : false;
+        const NAME_OF_LAST_SENDER = inbox.lastMessage.sender.displayName;
 
         let imgUrl = "";
         let displayName = "";
@@ -46,11 +51,11 @@ const InboxList = () => {
             case TYPE_ROOM_GROUP:
                 imgUrl = inbox.room.imageUrl;
                 displayName = inbox.room.name;
+                senderName = senderNameOfTypeGroup(IS_MYSELF, NAME_OF_LAST_SENDER);
                 break;
             default:
                 break;
         }
-        // senderName={inbox.lastMessage.sender.displayName}
 
         return (
             <Inbox

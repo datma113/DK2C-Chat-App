@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import ReadBy from "./ReadBy";
-import { STORE_CURRENT_INBOX } from "../redux/constants/constants";
+import { RESET_NEW_MESSAGE, STORE_CURRENT_INBOX } from "../redux/constants/constants";
 import { storeCurrentIdOfInbox, storeCurrentRoomId } from "../redux/action/actHome";
 
 const Inbox = ({
@@ -63,7 +63,7 @@ const Inbox = ({
         });
 
         dispatch({
-            type: "RESET_NEW_MESSAGE",
+            type: RESET_NEW_MESSAGE,
             inboxId
         })
     };

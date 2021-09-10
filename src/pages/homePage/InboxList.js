@@ -11,8 +11,6 @@ const InboxList = () => {
     const currentInboxId = useSelector((state) => state.currentInboxId);
     const [loadingOlderInboxs, setloadingOlderInboxs] = useState(1);
     const authentication = useSelector((state) => state.authentication);
-    
-    console.log(inboxs)
     const loadingOlderFriendsInboxs = () => {
         setloadingOlderInboxs((n) => n + 1);
         dispatch(getInboxsFromServer(loadingOlderInboxs));
@@ -20,7 +18,6 @@ const InboxList = () => {
     useEffect(() => {
         dispatch(getInboxsFromServer(0));
     }, [dispatch]);
-
     const senderNameOfTypeOne = (isMyself) => {
         return isMyself ? "Bạn: " : "";
     };
@@ -82,6 +79,7 @@ const InboxList = () => {
 
     return (
         <div className="home__inbox-list">
+           
             {inboxsMap}
             <div
                 className="home__inbox-list__older-inboxs center mb-5"

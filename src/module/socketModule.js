@@ -7,15 +7,20 @@ import {
 } from "../redux/constants/constants";
 const socketModule = (function () {
     let stompClient = null;
+    let newMessage = 0
+
+    const isSelfSide = (myId, senderId) => {
+        return myId === senderId ? true : false;
+    };
 
     function connect(user, dispatch) {
         let socket = new SockJS("http://localhost:8080/ws");
         stompClient = Stomp.over(socket);
-
         const onConnected = () => {
             stompClient.subscribe("/users/queue/messages", function (resp) {
                 const data = JSON.parse(resp.body);
                 const MESSAGE = [data];
+
                 dispatch({
                     type: UPDATE_MESSAGE_REALTIME,
                     realTimeMessage: MESSAGE,
@@ -30,6 +35,16 @@ const socketModule = (function () {
                     type: UPDATE_LAST_MESSAGE_IN_INBOX,
                     lastMessage: data,
                 });
+
+                const MY_ID = user.userId
+                const SENDER_ID = data.sender.id
+                let notify = newMessage >=5 ? "+5" : ++newMessage
+                if (!isSelfSide(MY_ID, SENDER_ID)) {
+                    document.title = `(${notify}) DKC APP`
+                } else {
+                    newMessage = 0
+                }
+
             });
         };
 

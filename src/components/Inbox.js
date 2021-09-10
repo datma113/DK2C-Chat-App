@@ -64,8 +64,10 @@ const Inbox = ({
 
         dispatch({
             type: RESET_NEW_MESSAGE,
-            inboxId
-        })
+            inboxId,
+        });
+
+        document.title = "DKC App"
     };
 
     const checkActiveOfInbox = () => {
@@ -78,8 +80,11 @@ const Inbox = ({
             : "";
     };
 
+  
+
     return (
         <div className={`inbox row p-3 ${checkActiveOfInbox()} `} onClick={() => gotoChatInbox()}>
+          
             <div className="col-3 center">
                 <div className="inbox__img">
                     <img src={imgUrl} alt="" />

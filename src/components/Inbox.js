@@ -14,6 +14,7 @@ const Inbox = ({
     isActive,
     roomId,
     senderName,
+    newMessageOfInbox,
 }) => {
     const dispatch = useDispatch();
     const limitStringToShow = (string) => {
@@ -60,10 +61,21 @@ const Inbox = ({
             type: STORE_CURRENT_INBOX,
             currentInbox,
         });
+
+        dispatch({
+            type: "RESET_NEW_MESSAGE",
+            inboxId
+        })
     };
 
     const checkActiveOfInbox = () => {
         return isActive ? "inbox--active" : "";
+    };
+
+    const isExistNewMessage = () => {
+        return newMessageOfInbox.countNewMessage > 0 && !newMessageOfInbox.isMyself
+            ? "inbox__new-message"
+            : "";
     };
 
     return (
@@ -77,7 +89,10 @@ const Inbox = ({
             <div className="col-7">
                 <div className="d-flex flex-column">
                     <div className=" text-medium">{limitStringToShow(displayName)}</div>
-                    <div className="text-small" style={{ opacity: `0.6` }}>
+                    <div
+                        className={`text-small ${isExistNewMessage()} `}
+                        style={{ opacity: `0.6` }}
+                    >
                         {limitStringToShow(senderName + lastMessage)}
                     </div>
                 </div>

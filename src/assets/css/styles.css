@@ -282,6 +282,11 @@ a {
   width: 100%;
   height: 100%;
 }
+.inbox__new-message {
+  font-weight: bold;
+  color: black;
+  opacity: 1 !important;
+}
 
 .inbox--active {
   background-color: #a166d1;

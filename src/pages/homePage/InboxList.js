@@ -11,6 +11,8 @@ const InboxList = () => {
     const currentInboxId = useSelector((state) => state.currentInboxId);
     const [loadingOlderInboxs, setloadingOlderInboxs] = useState(1);
     const authentication = useSelector((state) => state.authentication);
+    
+    console.log(inboxs)
     const loadingOlderFriendsInboxs = () => {
         setloadingOlderInboxs((n) => n + 1);
         dispatch(getInboxsFromServer(loadingOlderInboxs));
@@ -32,6 +34,7 @@ const InboxList = () => {
         const TYPE_ROOM_GROUP = "GROUP";
         const IS_ACTIVE = currentInboxId === inbox.id;
         const CURRENT_ROOM_ID = inbox.room.id;
+       
         const MY_ID = authentication.user.id;
         const SENDER_ID = inbox.lastMessage.sender.id;
         const IS_MYSELF = MY_ID === SENDER_ID ? true : false;
@@ -55,6 +58,11 @@ const InboxList = () => {
                 break;
         }
 
+        const newMessageOfInbox = {
+            isMyself: IS_MYSELF,
+            countNewMessage: inbox.countNewMessage
+        }
+
         return (
             <Inbox
                 key={index}
@@ -67,6 +75,7 @@ const InboxList = () => {
                 roomId={CURRENT_ROOM_ID}
                 isActive={IS_ACTIVE}
                 senderName={senderName}
+                newMessageOfInbox={newMessageOfInbox}
             />
         );
     });

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import ReadBy from "./ReadBy";
 import { RESET_NEW_MESSAGE, STORE_CURRENT_INBOX } from "../redux/constants/constants";
 import { storeCurrentIdOfInbox, storeCurrentRoomId } from "../redux/action/actHome";
+import newMessageSingleton from '../module/newMessageSingleton'
 
 const Inbox = ({
     inboxId,
@@ -52,6 +53,10 @@ const Inbox = ({
     const gotoChatInbox = () => {
         dispatch(storeCurrentIdOfInbox(inboxId));
         dispatch(storeCurrentRoomId(roomId));
+        
+        //reset number of new Message when click into inbox
+        let newMessage = newMessageSingleton.getInsance()
+        newMessage.resetNewMessageRealTime()
 
         let currentInbox = {
             imgUrl,

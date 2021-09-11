@@ -5,12 +5,20 @@ import {
     UPDATE_LAST_MESSAGE_IN_INBOX,
     UPDATE_MESSAGE_REALTIME,
 } from "../redux/constants/constants";
+
+import newMessageSingleton from "./newMessageSingleton";
 const socketModule = (function () {
     let stompClient = null;
-    let newMessage = 0
+    let newMessage = newMessageSingleton.getInsance();
 
     const isSelfSide = (myId, senderId) => {
         return myId === senderId ? true : false;
+    };
+
+    const getNotifyNewMessage = (message) => {
+        if (message.newMessageRealTime >= 5) return "5+";
+        message.increaseNewMesasgeByOne();
+        return message.getNewMessageRealTime();
     };
 
     function connect(user, dispatch) {
@@ -36,15 +44,18 @@ const socketModule = (function () {
                     lastMessage: data,
                 });
 
-                const MY_ID = user.userId
-                const SENDER_ID = data.sender.id
-                let notify = newMessage >=5 ? "+5" : ++newMessage
-                if (!isSelfSide(MY_ID, SENDER_ID)) {
-                    document.title = `(${notify}) DKC APP`
-                } else {
-                    newMessage = 0
-                }
+                const MY_ID = user.userId;
+                const SENDER_ID = data.sender.id;
 
+                let notify = getNotifyNewMessage(newMessage);
+
+                if (!isSelfSide(MY_ID, SENDER_ID)) {
+                    document.title = `(${notify}) DKC APP`;
+                } else {
+                    newMessage.resetNewMessageRealTime();
+                    document.title = `DKC APP`;
+
+                }
             });
         };
 

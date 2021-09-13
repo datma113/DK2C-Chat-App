@@ -1,14 +1,20 @@
-import { RESET_NEW_MESSAGE, STORE_INBOXS, UPDATE_LAST_MESSAGE_IN_INBOX } from "../../constants/constants";
+import {
+    RESET_NEW_MESSAGE,
+    STORE_INBOXS,
+    STORE_OLDER_INBOXS,
+    UPDATE_LAST_MESSAGE_IN_INBOX,
+} from "../../constants/constants";
 
 const initial = [];
 
 const reducer = (state = initial, action) => {
-    let { type, inboxs, lastMessage, inboxId } = action;
+    let { type, inboxs, lastMessage, inboxId, olderInboxs } = action;
 
     switch (type) {
         case STORE_INBOXS:
-            let newState = [...state, ...inboxs];
-            return newState;
+            return inboxs;
+        case STORE_OLDER_INBOXS:
+            return [...state, ...olderInboxs];
 
         case UPDATE_LAST_MESSAGE_IN_INBOX:
             let realTimeInbox = [...state];

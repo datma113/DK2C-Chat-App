@@ -4,15 +4,15 @@ let NewMessaage = (function () {
     function initial() {
         return {
             newMessageRealTime: 0,
-            increaseNewMesasgeByOne: function() {
+            increaseNewMesasgeByOne: function () {
                 this.newMessageRealTime++;
             },
             getNewMessageRealTime() {
                 return this.newMessageRealTime;
             },
             resetNewMessageRealTime() {
-                 this.newMessageRealTime = 0
-            }
+                this.newMessageRealTime = 0;
+            },
         };
     }
 
@@ -24,4 +24,4 @@ let NewMessaage = (function () {
     };
 })();
 
-export default NewMessaage
+export default NewMessaage;

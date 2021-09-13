@@ -54,7 +54,6 @@ const socketModule = (function () {
                 } else {
                     newMessage.resetNewMessageRealTime();
                     document.title = `DKC APP`;
-
                 }
             });
         };

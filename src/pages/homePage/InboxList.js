@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Inbox from "../../components/Inbox";
-import { getInboxsFromServer } from "../../redux/action/actHome";
+import { getInboxsFromServer, getOlderInboxsFromServer } from "../../redux/action/actHome";
 import Proptypes from "prop-types";
 
 const InboxList = () => {
@@ -11,12 +11,15 @@ const InboxList = () => {
     const currentInboxId = useSelector((state) => state.currentInboxId);
     const [loadingOlderInboxs, setloadingOlderInboxs] = useState(1);
     const authentication = useSelector((state) => state.authentication);
+    
+    
     const loadingOlderFriendsInboxs = () => {
         setloadingOlderInboxs((n) => n + 1);
-        dispatch(getInboxsFromServer(loadingOlderInboxs));
+        dispatch(getOlderInboxsFromServer(loadingOlderInboxs));
     };
+
     useEffect(() => {
-        dispatch(getInboxsFromServer(0));
+        dispatch(getInboxsFromServer());
     }, [dispatch]);
     const senderNameOfTypeOne = (isMyself) => {
         return isMyself ? "Bạn: " : "";

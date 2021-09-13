@@ -83,9 +83,7 @@ const Inbox = ({
         return newMessageOfInbox.countNewMessage > 0 && !newMessageOfInbox.isMyself
             ? "inbox__new-message"
             : "";
-    };
-
-  
+    };  
 
     return (
         <div className={`inbox row p-3 ${checkActiveOfInbox()} `} onClick={() => gotoChatInbox()}>

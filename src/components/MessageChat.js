@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 const MessageChat = ({ boxChat }) => {
     const authentication = useSelector((state) => state.authentication);
 
-    const boxChatMap = boxChat.map((message, index) => {
+    const boxChatMap = boxChat.map((message, index, originalBoxChat) => {
         const SENDER_ID = message.sender.id;
         const MY_ID = authentication.user.id;
         const IS_SELF_SIDE = SENDER_ID === MY_ID ? true : false;
@@ -16,13 +16,22 @@ const MessageChat = ({ boxChat }) => {
             return IS_SELF_SIDE ? "single-chat-box__message--self" : "";
         };
 
+        const hideImageWhenDupplicateSender = (senderId) => {
+            const THE_FIRST_MESSAGE = 0;
+            if (index > THE_FIRST_MESSAGE) {
+                const PREVIOUS_SENDER_ID = originalBoxChat[index - 1].sender.id;
+                return PREVIOUS_SENDER_ID === senderId ? "d-none" : "";
+            }
+            return "";
+        };
+
         return (
             <div key={index} className={`single-chat-box mb-1 ${isSelfSideClass()}`}>
-                <div>
+                <div className="single-chat-box__img m-3">
                     <img
-                        className="single-chat-box__img m-3"
                         src={message.sender.imageUrl}
                         alt=""
+                        className={hideImageWhenDupplicateSender(SENDER_ID)}
                     />
                 </div>
                 <div

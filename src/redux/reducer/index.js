@@ -19,7 +19,7 @@ const reducer = combineReducers({
      currentInboxId,
      currentInbox,
      currentRoomId,
-     realTimeResponse
+     realTimeResponse,
 })
 
 export default reducer

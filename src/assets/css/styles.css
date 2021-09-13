@@ -338,9 +338,9 @@ a {
 
 .box-chat-container {
   height: 90vh;
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
+  width: 72.5rem;
 }
 
 .header-box-chat {
@@ -402,6 +402,11 @@ a {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  overflow: hidden;
+}
+.single-chat-box__img img {
+  width: 100%;
+  height: 100%;
 }
 .single-chat-box__message {
   background-image: linear-gradient(to left top, #5D3B78, #5462e0, #5627d8, #f8f8f9, #f7f7f8, #f6f5f7, #f2ebf6, #f1e1f3, #5462e0, #5D3B78);

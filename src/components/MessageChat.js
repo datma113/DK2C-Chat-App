@@ -18,7 +18,7 @@ const MessageChat = ({ boxChat }) => {
 
         const addSelfSideReaction = () => {
             const REACTION_CLASS = "single-chat-box__message__reaction-container";
-            return IS_SELF_SIDE ? REACTION_CLASS + "--other" : REACTION_CLASS + "--self";
+            return IS_SELF_SIDE ? REACTION_CLASS + "--self" : REACTION_CLASS + "--other";
         };
 
         const hideImageWhenDupplicateSender = (senderId) => {
@@ -45,14 +45,13 @@ const MessageChat = ({ boxChat }) => {
                     {" "}
                     {message.content}{" "}
                     <div
-                        className={`single-chat-box__message__reaction-container ${addSelfSideReaction()}`}
+                        className={`single-chat-box__message__reaction-container  ${addSelfSideReaction()}`}
                     >
-                        <div className={`single-chat-box__message__reaction-container__reaction`}>
-                            lis
-                        </div>
                         <div
-                            className={`single-chat-box__message__reaction-container__list-reaction`}
-                        >
+                            className={`single-chat-box__message__reaction-container__reaction `}
+                        ></div>
+                        <div className={`single-chat-box__message__reaction-container__reaction-list `}>
+                        list list list list
                         </div>
                     </div>
                 </div>

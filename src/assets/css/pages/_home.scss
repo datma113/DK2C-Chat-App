@@ -201,23 +201,35 @@
         position: relative;
 
         &__reaction-container {
-            position: absolute;
-            bottom: -1.5rem;
+            position: relative;
+            bottom: 0rem;
 
-            &__list-reaction {
+            &__reaction {
                 display: block;
                 width: 30px;
                 height: 30px;
-                background-color: red;
+                background-color: yellow;
                 overflow: hidden;
                 border-radius: 100%;
+                cursor: pointer;
+                position: absolute;
+
+                transition: 0.2s;
+                &:hover {
+                    background-color: blue;
+                }
+            }
+
+            &__reaction-list {
+                position: absolute;
+                
             }
 
             &--self {
-                right: 10%;
+                left: -1rem;
             }
             &--other {
-                left: 10%;
+                left: 0;
             }
         }
     }

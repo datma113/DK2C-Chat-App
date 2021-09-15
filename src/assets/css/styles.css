@@ -418,22 +418,31 @@ a {
   position: relative;
 }
 .single-chat-box__message__reaction-container {
-  position: absolute;
-  bottom: -1.5rem;
+  position: relative;
+  bottom: 0rem;
 }
-.single-chat-box__message__reaction-container__list-reaction {
+.single-chat-box__message__reaction-container__reaction {
   display: block;
   width: 30px;
   height: 30px;
-  background-color: red;
+  background-color: yellow;
   overflow: hidden;
   border-radius: 100%;
+  cursor: pointer;
+  position: absolute;
+  transition: 0.2s;
+}
+.single-chat-box__message__reaction-container__reaction:hover {
+  background-color: blue;
+}
+.single-chat-box__message__reaction-container__reaction-list {
+  position: absolute;
 }
 .single-chat-box__message__reaction-container--self {
-  right: 10%;
+  left: -1rem;
 }
 .single-chat-box__message__reaction-container--other {
-  left: 10%;
+  left: 0;
 }
 .single-chat-box__message--self {
   background-image: linear-gradient(to right top, #fbfbfb, #fafafa, #f8f8f9, #f7f7f8, #f6f5f7, #f2ebf6);

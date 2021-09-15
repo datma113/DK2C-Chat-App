@@ -390,6 +390,7 @@ a {
 
 .single-chat-box {
   display: flex;
+  user-select: none;
 }
 .single-chat-box--self {
   flex-direction: row-reverse;
@@ -414,9 +415,31 @@ a {
   border-radius: 10px;
   padding: 1.5rem 1rem;
   max-width: 50rem;
+  position: relative;
+}
+.single-chat-box__message__reaction-container {
+  position: absolute;
+  bottom: -1.5rem;
+}
+.single-chat-box__message__reaction-container__list-reaction {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  overflow: hidden;
+  border-radius: 100%;
+}
+.single-chat-box__message__reaction-container--self {
+  right: 10%;
+}
+.single-chat-box__message__reaction-container--other {
+  left: 10%;
 }
 .single-chat-box__message--self {
   background-image: linear-gradient(to right top, #fbfbfb, #fafafa, #f8f8f9, #f7f7f8, #f6f5f7, #f2ebf6);
+}
+.single-chat-box:hover {
+  color: lightblue;
 }
 
 .right {

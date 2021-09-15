@@ -16,6 +16,11 @@ const MessageChat = ({ boxChat }) => {
             return IS_SELF_SIDE ? "single-chat-box__message--self" : "";
         };
 
+        const addSelfSideReaction = () => {
+            const REACTION_CLASS = "single-chat-box__message__reaction-container";
+            return IS_SELF_SIDE ? REACTION_CLASS + "--other" : REACTION_CLASS + "--self";
+        };
+
         const hideImageWhenDupplicateSender = (senderId) => {
             const THE_FIRST_MESSAGE = 0;
             if (index > THE_FIRST_MESSAGE) {
@@ -39,6 +44,17 @@ const MessageChat = ({ boxChat }) => {
                 >
                     {" "}
                     {message.content}{" "}
+                    <div
+                        className={`single-chat-box__message__reaction-container ${addSelfSideReaction()}`}
+                    >
+                        <div className={`single-chat-box__message__reaction-container__reaction`}>
+                            lis
+                        </div>
+                        <div
+                            className={`single-chat-box__message__reaction-container__list-reaction`}
+                        >
+                        </div>
+                    </div>
                 </div>
             </div>
         );

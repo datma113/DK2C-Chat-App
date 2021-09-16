@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import Reactions from "./Reactions";
 
 const MessageChat = ({ boxChat }) => {
     const authentication = useSelector((state) => state.authentication);
@@ -51,17 +52,14 @@ const MessageChat = ({ boxChat }) => {
                     <div className={`single-chat-box__message__reaction-container`}>
                         <div
                             className={`single-chat-box__message__reaction-container__reaction  ${addSelfSideReaction()}`}
-                        >
-                            
-                        </div>
+                        ></div>
                         <div
                             className={`
                             single-chat-box__message__reaction-container__reaction-list
                              ${addSelfSideReactionList()}
-                          
                             `}
                         >
-                            list list list list
+                            <Reactions />
                         </div>
                     </div>
                 </div>

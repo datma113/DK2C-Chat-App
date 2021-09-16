@@ -1,0 +1,14 @@
+.single-reaction-container {
+    display: flex;
+    padding: 0.5rem 1rem;
+    &__icon {
+        color: $mainLightColor;
+        padding: 0.5rem;
+        margin-right: 0.5rem;
+        transform: scale(1);
+        transition: 0.2s;
+        &:hover {
+            transform: scale(1.4);
+        }
+    }
+}

@@ -226,18 +226,18 @@
             }
             &__reaction-list {
                 position: absolute;
-                top: -3.5rem;
-                width: 15rem;
-                background-color: red;
+                top: -4.5rem;
                 border-radius: 10rem;
+                background-color: $mainPurpleColor;
+                box-shadow: 0 0 5px black;
                 transition: 0.2s;
                 opacity: 0;
                 cursor: pointer;
                 &--self {
-                    left: -7rem;
+                    left: -15rem;
                 }
                 &--other {
-                    right: -7rem;
+                    right: -15rem;
                 }
             }
 

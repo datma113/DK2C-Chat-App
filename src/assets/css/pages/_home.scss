@@ -213,12 +213,10 @@
                 border-radius: 100%;
                 cursor: pointer;
                 position: absolute;
-
                 transition: 0.2s;
                 &:hover {
                     background-color: blue;
                 }
-
                 &--self {
                     left: -1rem;
                 }
@@ -226,20 +224,25 @@
                     right: -1rem;
                 }
             }
-
             &__reaction-list {
                 position: absolute;
                 top: -3.5rem;
                 width: 15rem;
                 background-color: red;
                 border-radius: 10rem;
-                
+                transition: 0.2s;
+                opacity: 0;
+                cursor: pointer;
                 &--self {
                     left: -7rem;
                 }
                 &--other {
                     right: -7rem;
                 }
+            }
+
+            &:hover &__reaction-list {
+               opacity: 1;
             }
         }
     }

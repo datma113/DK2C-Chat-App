@@ -51,11 +51,14 @@ const MessageChat = ({ boxChat }) => {
                     <div className={`single-chat-box__message__reaction-container`}>
                         <div
                             className={`single-chat-box__message__reaction-container__reaction  ${addSelfSideReaction()}`}
-                        ></div>
+                        >
+                            
+                        </div>
                         <div
                             className={`
                             single-chat-box__message__reaction-container__reaction-list
-                             ${addSelfSideReactionList()} 
+                             ${addSelfSideReactionList()}
+                          
                             `}
                         >
                             list list list list

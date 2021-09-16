@@ -447,12 +447,18 @@ a {
   width: 15rem;
   background-color: red;
   border-radius: 10rem;
+  transition: 0.2s;
+  opacity: 0;
+  cursor: pointer;
 }
 .single-chat-box__message__reaction-container__reaction-list--self {
   left: -7rem;
 }
 .single-chat-box__message__reaction-container__reaction-list--other {
   right: -7rem;
+}
+.single-chat-box__message__reaction-container:hover .single-chat-box__message__reaction-container__reaction-list {
+  opacity: 1;
 }
 .single-chat-box__message--self {
   background-image: linear-gradient(to right top, #fbfbfb, #fafafa, #f8f8f9, #f7f7f8, #f6f5f7, #f2ebf6);

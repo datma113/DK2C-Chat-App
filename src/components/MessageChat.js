@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import CurrentReactionExpressed from "./CurrentReactionExpressed";
 import Reactions from "./Reactions";
 
 const MessageChat = ({ boxChat }) => {
     const authentication = useSelector((state) => state.authentication);
-
     const boxChatMap = boxChat.map((message, index, originalBoxChat) => {
         const SENDER_ID = message.sender.id;
         const MY_ID = authentication.user.id;
@@ -61,6 +61,9 @@ const MessageChat = ({ boxChat }) => {
                         >
                             <Reactions />
                         </div>
+                        <CurrentReactionExpressed
+                            reactions={message.reactions}
+                        />
                     </div>
                 </div>
             </div>

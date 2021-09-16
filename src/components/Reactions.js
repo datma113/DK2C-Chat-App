@@ -11,7 +11,9 @@ const Reactions = () => {
     ];
 
     const reactionsMap = REACTIONS_TYPE.map((reaction, index) => {
-        return <i className={`${reaction.className} single-reaction-container__icon`}></i>;
+        return (
+            <i key={index} className={`${reaction.className} single-reaction-container__icon`}></i>
+        );
     });
     return <div className="single-reaction-container">{reactionsMap}</div>;
 };

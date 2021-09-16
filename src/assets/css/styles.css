@@ -235,6 +235,18 @@ a {
   transform: scale(1.4);
 }
 
+.current-reactions-expressed {
+  display: inline-block;
+  background-color: #FBFBFB;
+  box-shadow: 0 0 5px black;
+  width: auto;
+  border-radius: 50rem;
+  padding: 0.5rem 2rem;
+}
+.current-reactions-expressed i {
+  margin-right: 1rem;
+}
+
 /*pages*/
 .welcome-container {
   border-radius: 3rem;
@@ -434,7 +446,6 @@ a {
 }
 .single-chat-box__message__reaction-container {
   position: relative;
-  bottom: 0rem;
 }
 .single-chat-box__message__reaction-container__reaction {
   display: block;
@@ -446,6 +457,7 @@ a {
   cursor: pointer;
   position: absolute;
   transition: 0.2s;
+  bottom: -3rem;
 }
 .single-chat-box__message__reaction-container__reaction:hover {
   background-color: blue;
@@ -458,7 +470,7 @@ a {
 }
 .single-chat-box__message__reaction-container__reaction-list {
   position: absolute;
-  top: -4.5rem;
+  top: -1.5rem;
   border-radius: 10rem;
   background-color: #5D3B78;
   box-shadow: 0 0 5px black;

@@ -12,6 +12,8 @@ const BoxChat = () => {
     const [loadingOlderMessage, setloadingOlderMessage] = useState(0);
     const [isInitialize, setisInitialize] = useState(true);
     const [lenthOfTheFirstLoadingMessage, setlenthOfTheFirstLoadingMessage] = useState(0);
+    
+
     useEffect(() => {
         dispatch(getMessageInBoxChat(currentInboxId, 0));
         setisInitialize(true);

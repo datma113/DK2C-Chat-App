@@ -12,3 +12,17 @@
         }
     }
 }
+
+
+.current-reactions-expressed {
+    display: inline-block;
+    background-color: $mainLightColor;
+    box-shadow: 0 0 5px black;
+    width: auto;
+    border-radius: 50rem;
+    padding: 0.5rem 2rem;
+
+    & i {
+        margin-right: 1rem;
+    }
+}

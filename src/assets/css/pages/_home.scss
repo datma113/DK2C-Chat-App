@@ -202,7 +202,6 @@
 
         &__reaction-container {
             position: relative;
-            bottom: 0rem;
 
             &__reaction {
                 display: block;
@@ -214,6 +213,7 @@
                 cursor: pointer;
                 position: absolute;
                 transition: 0.2s;
+                bottom: -3rem;
                 &:hover {
                     background-color: blue;
                 }
@@ -226,7 +226,7 @@
             }
             &__reaction-list {
                 position: absolute;
-                top: -4.5rem;
+                top: -1.5rem;
                 border-radius: 10rem;
                 background-color: $mainPurpleColor;
                 box-shadow: 0 0 5px black;

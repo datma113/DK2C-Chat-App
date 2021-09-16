@@ -17,7 +17,11 @@ const MessageChat = ({ boxChat }) => {
         };
 
         const addSelfSideReaction = () => {
-            const REACTION_CLASS = "single-chat-box__message__reaction-container";
+            const REACTION_CLASS = "single-chat-box__message__reaction-container__reaction";
+            return IS_SELF_SIDE ? REACTION_CLASS + "--self" : REACTION_CLASS + "--other";
+        };
+        const addSelfSideReactionList = () => {
+            const REACTION_CLASS = "single-chat-box__message__reaction-container__reaction-list";
             return IS_SELF_SIDE ? REACTION_CLASS + "--self" : REACTION_CLASS + "--other";
         };
 
@@ -44,14 +48,17 @@ const MessageChat = ({ boxChat }) => {
                 >
                     {" "}
                     {message.content}{" "}
-                    <div
-                        className={`single-chat-box__message__reaction-container  ${addSelfSideReaction()}`}
-                    >
+                    <div className={`single-chat-box__message__reaction-container`}>
                         <div
-                            className={`single-chat-box__message__reaction-container__reaction `}
+                            className={`single-chat-box__message__reaction-container__reaction  ${addSelfSideReaction()}`}
                         ></div>
-                        <div className={`single-chat-box__message__reaction-container__reaction-list `}>
-                        list list list list
+                        <div
+                            className={`
+                            single-chat-box__message__reaction-container__reaction-list
+                             ${addSelfSideReactionList()} 
+                            `}
+                        >
+                            list list list list
                         </div>
                     </div>
                 </div>

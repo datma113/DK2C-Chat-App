@@ -218,18 +218,28 @@
                 &:hover {
                     background-color: blue;
                 }
+
+                &--self {
+                    left: -1rem;
+                }
+                &--other {
+                    right: -1rem;
+                }
             }
 
             &__reaction-list {
                 position: absolute;
+                top: -3.5rem;
+                width: 15rem;
+                background-color: red;
+                border-radius: 10rem;
                 
-            }
-
-            &--self {
-                left: -1rem;
-            }
-            &--other {
-                left: 0;
+                &--self {
+                    left: -7rem;
+                }
+                &--other {
+                    right: -7rem;
+                }
             }
         }
     }

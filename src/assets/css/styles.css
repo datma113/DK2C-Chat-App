@@ -237,6 +237,8 @@ a {
 
 .current-reactions-expressed {
   display: inline-block;
+  position: relative;
+  left: 8rem;
   background-color: #FBFBFB;
   box-shadow: 0 0 5px black;
   width: auto;
@@ -444,9 +446,6 @@ a {
   max-width: 50rem;
   position: relative;
 }
-.single-chat-box__message__reaction-container {
-  position: relative;
-}
 .single-chat-box__message__reaction-container__reaction {
   display: block;
   width: 30px;
@@ -457,32 +456,33 @@ a {
   cursor: pointer;
   position: absolute;
   transition: 0.2s;
-  bottom: -3rem;
+  bottom: -2rem;
 }
 .single-chat-box__message__reaction-container__reaction:hover {
   background-color: blue;
 }
 .single-chat-box__message__reaction-container__reaction--self {
-  left: -1rem;
+  left: 0;
 }
 .single-chat-box__message__reaction-container__reaction--other {
-  right: -1rem;
+  right: 0;
 }
 .single-chat-box__message__reaction-container__reaction-list {
   position: absolute;
-  top: -1.5rem;
+  bottom: 1.5rem;
   border-radius: 10rem;
   background-color: #5D3B78;
   box-shadow: 0 0 5px black;
   transition: 0.2s;
   opacity: 0;
   cursor: pointer;
+  z-index: 9;
 }
 .single-chat-box__message__reaction-container__reaction-list--self {
-  left: -15rem;
+  left: -12rem;
 }
 .single-chat-box__message__reaction-container__reaction-list--other {
-  right: -15rem;
+  right: -12rem;
 }
 .single-chat-box__message__reaction-container:hover .single-chat-box__message__reaction-container__reaction-list {
   opacity: 1;

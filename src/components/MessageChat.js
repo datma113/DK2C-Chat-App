@@ -61,10 +61,10 @@ const MessageChat = ({ boxChat }) => {
                         >
                             <Reactions />
                         </div>
-                        <CurrentReactionExpressed
+                    </div>
+                    <CurrentReactionExpressed
                             reactions={message.reactions}
                         />
-                    </div>
                 </div>
             </div>
         );

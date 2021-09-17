@@ -16,13 +16,11 @@ const CurrentReactionExpressed = ({ reactions = [] }) => {
     const isEmptyReaction = () => {
         return reactions.length ? "" : "d-none";
     };
-    
-    const REACTIONS_UNIQUE = [...new Set(reactions)];
 
-    console.log(REACTIONS_UNIQUE)
+    const REACTIONS_UNIQUE = [...new Set(reactions.map((reaction) => reaction.type))];
 
-    const reactionsMap = reactions.map((reaction, index) => {
-        return <i className={checkReactions(reaction.type)}> </i>;
+    const reactionsMap = REACTIONS_UNIQUE.map((reaction, index) => {
+        return <i key={index} className={checkReactions(reaction)}> </i>;
     });
     return <div className={`current-reactions-expressed ${isEmptyReaction()}`}>{reactionsMap}</div>;
 };

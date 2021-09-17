@@ -201,8 +201,6 @@
         position: relative;
 
         &__reaction-container {
-            position: relative;
-
             &__reaction {
                 display: block;
                 width: 30px;
@@ -213,31 +211,32 @@
                 cursor: pointer;
                 position: absolute;
                 transition: 0.2s;
-                bottom: -3rem;
+                bottom: -2rem;
                 &:hover {
                     background-color: blue;
                 }
                 &--self {
-                    left: -1rem;
+                    left: 0;
                 }
                 &--other {
-                    right: -1rem;
+                    right: 0;
                 }
             }
             &__reaction-list {
                 position: absolute;
-                top: -1.5rem;
+                bottom: 1.5rem;
                 border-radius: 10rem;
                 background-color: $mainPurpleColor;
                 box-shadow: 0 0 5px black;
                 transition: 0.2s;
                 opacity: 0;
                 cursor: pointer;
+                z-index: 9;
                 &--self {
-                    left: -15rem;
+                    left: -12rem;
                 }
                 &--other {
-                    right: -15rem;
+                    right: -12rem;
                 }
             }
 

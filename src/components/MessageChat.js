@@ -59,7 +59,7 @@ const MessageChat = ({ boxChat }) => {
                              ${addSelfSideReactionList()}
                             `}
                         >
-                            <Reactions />
+                            <Reactions messageId={message.id} myId={MY_ID}/>
                         </div>
                     </div>
                     <CurrentReactionExpressed

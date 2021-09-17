@@ -7,7 +7,7 @@ import {
     STORE_MESSAGE_IN_BOX_CHAT,
     STORE_OLDER_INBOXS,
 } from "../constants/constants";
-import { API_GET_INBOXS, API_GET_MESSAGE_IN_CHAT_BOX } from "../constants/api";
+import { API_EXPRESS_REACTION_TO_MESSAGE, API_GET_INBOXS, API_GET_MESSAGE_IN_CHAT_BOX } from "../constants/api";
 
 export const storeInboxs = (inboxs) => {
     return {
@@ -80,4 +80,19 @@ export const storeCurrentRoomId = (id) => {
         type: STORE_CURRENT_ROOM_ID,
         id
     }
+}
+
+export const expressReactionToMessage = (messageId, reaction) => {
+    return axios.post(API_EXPRESS_REACTION_TO_MESSAGE + messageId, reaction)
+    .then((resp) => {
+        console.log(`success`)
+    })
+    .catch(err => {
+        const MESSAGE =
+                    (err.response && err.response.data && err.response.data.message) ||
+                    err.message ||
+                    err.toString();
+        console.log(MESSAGE)
+    })
+
 }

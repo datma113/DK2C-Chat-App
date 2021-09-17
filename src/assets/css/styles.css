@@ -439,11 +439,12 @@ a {
   height: 100%;
 }
 .single-chat-box__message {
+  word-wrap: break-word;
   background-image: linear-gradient(to left top, #5D3B78, #5462e0, #5627d8, #f8f8f9, #f7f7f8, #f6f5f7, #f2ebf6, #f1e1f3, #5462e0, #5D3B78);
   border: thin solid #5D3B78;
   border-radius: 10px;
   padding: 1.5rem 1rem;
-  max-width: 50rem;
+  max-width: 45rem;
   position: relative;
 }
 .single-chat-box__message__reaction-container__reaction {

@@ -20,7 +20,11 @@ const CurrentReactionExpressed = ({ reactions = [] }) => {
     const REACTIONS_UNIQUE = [...new Set(reactions.map((reaction) => reaction.type))];
 
     const reactionsMap = REACTIONS_UNIQUE.map((reaction, index) => {
-        return <i key={index} className={checkReactions(reaction)}> </i>;
+        return (
+            <i key={index} className={checkReactions(reaction)}>
+                {" "}
+            </i>
+        );
     });
     return <div className={`current-reactions-expressed ${isEmptyReaction()}`}>{reactionsMap}</div>;
 };

@@ -181,6 +181,7 @@
     }
 
     &__message {
+        word-wrap: break-word;
         background-image: linear-gradient(
             to left top,
             $mainPurpleColor,
@@ -197,7 +198,7 @@
         border: thin solid $mainPurpleColor;
         border-radius: 10px;
         padding: 1.5rem 1rem;
-        max-width: 50rem;
+        max-width: 45rem;
         position: relative;
 
         &__reaction-container {

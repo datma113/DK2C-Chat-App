@@ -1,18 +1,33 @@
 import React from "react";
+import { expressReactionToMessage } from "../redux/action/actHome";
 
-const Reactions = () => {
+const Reactions = ({ messageId, myId }) => {
     const REACTIONS_TYPE = [
-        { type: "HAHA", className: "far fa-grin-squint text-warning" },
-        { type: "SAD", className: "fas fa-thumbs-up  text-primary" },
-        { type: "DISLIKE", className: "fas fa-thumbs-down  text-light" },
-        { type: "LIKE", className: "fas fa-sad-tear  text-light" },
-        { type: "LOVE", className: "fas fa-heart text-danger" },
-        { type: "WOW", className: "fas fa-angry text-warning" },
+        { type: "LIKE", className: "fas fa-thumbs-up  text-primary" },
+        { type: "LOVE", className: " fas fa-heart text-danger " },
+        { type: "HAHA", className: "fas fa-grin-squint-tears  text-light" },
+        { type: "WOW", className: "fas fa-surprise text-warning" },
+        { type: "SAD", className: "fas fa-sad-tear  text-light" },
+        { type: "ANGRY", className: "fas fa-angry text-warning" },
     ];
 
+    const expressReaction = (type) => {
+        const REACTION = {
+            type,
+            reactByUserId: myId,
+        };
+        console.log(REACTION)
+        expressReactionToMessage(messageId, REACTION);
+    };
     const reactionsMap = REACTIONS_TYPE.map((reaction, index) => {
         return (
-            <i key={index} className={`${reaction.className} single-reaction-container__icon`}></i>
+            <i
+                key={index}
+                className={`${reaction.className} single-reaction-container__icon`}
+                onClick={() => {
+                    expressReaction(reaction.type);
+                }}
+            ></i>
         );
     });
     return <div className="single-reaction-container">{reactionsMap}</div>;

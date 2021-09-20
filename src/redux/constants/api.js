@@ -12,6 +12,9 @@ export const API_GET_REFRESH_TOKEN = API + AUTH + 'refreshtoken'
 export const API_SIGN_UP_IMFORMATION = API + AUTH + SIGN_UP + 'save_information'
 export const API_SIGN_UP_CHECK_MAIL = API + AUTH + SIGN_UP + 'send_vetification_code'
 export const API_SIGN_UP_VERIFY = API + AUTH + SIGN_UP + 'verify'
+/**Friend */
+
+export const API_GET_FRIENDS_LIST = API + 'friends'
 
 /**Chat */
 export const API_GET_INBOXS = API + 'inboxs'

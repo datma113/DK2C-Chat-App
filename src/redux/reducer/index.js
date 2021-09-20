@@ -9,6 +9,7 @@ import currentInboxId from './returnNumber/currentInboxId'
 import currentInbox from './returnObject/currentInbox'
 import currentRoomId from './returnNumber/currentRoomId'
 import realTimeResponse from './returnObject/realTimeResponse'
+import friendsList from './returnArray/friendsList'
 const reducer = combineReducers({
      userLogin,
      userRegister,
@@ -20,6 +21,7 @@ const reducer = combineReducers({
      currentInbox,
      currentRoomId,
      realTimeResponse,
+     friendsList,
 })
 
 export default reducer

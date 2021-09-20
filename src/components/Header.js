@@ -45,7 +45,7 @@ const Header = () => {
                     <NavLink
                         className="nav-item col-2  header p-2"
                         activeClassName="nav-item col-2   header__active  p-2"
-                        to="/welcome"
+                        to="/friends"
                     >
                         <i className="fas fa-users"></i>{" "}
                     </NavLink>

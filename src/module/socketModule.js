@@ -22,8 +22,10 @@ const socketModule = (function () {
     };
 
     function connect(user, dispatch) {
-        let socket = new SockJS("http://localhost:8080/ws");
+        const WEB_SOCKET_URL = process.env.REACT_APP_WEB_SOCKET
+        let socket = new SockJS(WEB_SOCKET_URL);
         stompClient = Stomp.over(socket);
+        
         const onConnected = () => {
             stompClient.subscribe("/users/queue/messages", function (resp) {
                 const data = JSON.parse(resp.body);

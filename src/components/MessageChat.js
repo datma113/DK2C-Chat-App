@@ -5,6 +5,8 @@ import Reactions from "./Reactions";
 
 const MessageChat = ({ boxChat }) => {
     const authentication = useSelector((state) => state.authentication);
+    const currentRoomId = useSelector((state) => state.currentRoomId);
+
     const boxChatMap = boxChat.map((message, index, originalBoxChat) => {
         const SENDER_ID = message.sender.id;
         const MY_ID = authentication.user.id;
@@ -59,7 +61,7 @@ const MessageChat = ({ boxChat }) => {
                              ${addSelfSideReactionList()}
                             `}
                         >
-                            <Reactions messageId={message.id} myId={MY_ID}/>
+                            <Reactions roomId={currentRoomId} messageId={message.id} myId={MY_ID}/>
                         </div>
                     </div>
                     <CurrentReactionExpressed

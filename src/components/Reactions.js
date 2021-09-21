@@ -1,7 +1,8 @@
 import React from "react";
+import socketModule from "../module/socketModule";
 import { expressReactionToMessage } from "../redux/action/actHome";
 
-const Reactions = ({ messageId, myId }) => {
+const Reactions = ({ messageId, myId, roomId }) => {
     const REACTIONS_TYPE = [
         { type: "LIKE", className: "fas fa-thumbs-up  text-primary" },
         { type: "LOVE", className: " fas fa-heart text-danger " },
@@ -13,11 +14,14 @@ const Reactions = ({ messageId, myId }) => {
 
     const expressReaction = (type) => {
         const REACTION = {
+            roomId,
+            messageId,
             type,
-            reactByUserId: myId,
+            userId: myId,
         };
         console.log(REACTION)
-        expressReactionToMessage(messageId, REACTION);
+        socketModule.expressReaction(REACTION)
+
     };
     const reactionsMap = REACTIONS_TYPE.map((reaction, index) => {
         return (

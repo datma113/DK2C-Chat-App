@@ -6,7 +6,7 @@ const SendMessage = ({ roomId }) => {
 
     const sendMessageToFriend = () => {
         if (messageToSend.length) {
-            socketModule.sendMessageToOneFriend(roomId, messageToSend, "text");
+            socketModule.sendMessageToOneFriend(roomId, messageToSend, "TEXT");
             setmessageToSend("");
         }
     };
@@ -14,9 +14,9 @@ const SendMessage = ({ roomId }) => {
     const handleEnterTextarea = (e) => {
         if (e.key === "Enter") {
             e.preventDefault();
-            socketModule.sendMessageToOneFriend(roomId, messageToSend, "text");
+            socketModule.sendMessageToOneFriend(roomId, messageToSend, "TEXT");
             setmessageToSend("");
-        }   
+        }
     };
 
     return (

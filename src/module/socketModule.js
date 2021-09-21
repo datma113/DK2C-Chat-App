@@ -25,7 +25,7 @@ const socketModule = (function () {
         const WEB_SOCKET_URL = process.env.REACT_APP_WEB_SOCKET
         let socket = new SockJS(WEB_SOCKET_URL);
         stompClient = Stomp.over(socket);
-        
+
         const onConnected = () => {
             stompClient.subscribe("/users/queue/messages", function (resp) {
                 const data = JSON.parse(resp.body);
@@ -58,6 +58,12 @@ const socketModule = (function () {
                     document.title = `DKC APP`;
                 }
             });
+
+            stompClient.subscribe("/users/queue/reaction", function(resp)  {
+                const data = JSON.parse(resp.body);
+                const MESSAGE = [data];
+                console.log(MESSAGE)
+            })
         };
 
         stompClient.connect(user, onConnected);
@@ -76,6 +82,10 @@ const socketModule = (function () {
         stompClient.send("/app/chat", {}, JSON.stringify(FRIEND));
     }
 
+    function expressReaction(reaction) {
+        stompClient.send("/app/reaction", {}, JSON.stringify(reaction));
+    }
+
     return {
         connect: function (userId, token) {
             connect(userId, token);
@@ -86,6 +96,9 @@ const socketModule = (function () {
         sendMessageToOneFriend: function (roomId, content, type) {
             sendMessageToOneFriend(roomId, content, type);
         },
+        expressReaction: function(reaction) {
+            expressReaction(reaction)
+        }
     };
 })();
 export default socketModule;

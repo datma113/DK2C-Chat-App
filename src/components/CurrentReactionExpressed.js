@@ -4,11 +4,11 @@ const CurrentReactionExpressed = ({ reactions = [] }) => {
     const checkReactions = (type) => {
         const REACTION = {
             HAHA: "far fa-grin-squint text-warning",
-            SAD: "fas fa-thumbs-up  text-primary",
-            DISLIKE: "fas fa-thumbs-down  text-ligh",
-            LIKE: "fas fa-thumbs-down  text-ligh",
-            LOVE: "fas fa-heart text-danger",
-            WOW: "fas fa-angry text-warning",
+            SAD: "fas fa-sad-tear ",
+            ANGRY: "fas fa-angry text-warning",
+            LIKE: "fas fa-thumbs-up  text-primary",
+            LOVE: "fas fa-heart text-danger ",
+            WOW: "fas fa-surprise text-warning",
         };
         return REACTION[type] || [];
     };

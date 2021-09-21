@@ -31,6 +31,14 @@ export const login = (user) => {
                     type: LOGIN_SUCCESSFUL,
                     user: resp.data,
                 });
+                
+                const USER_TO_CONNECT_SOCKET = {
+                    userId: resp.data.id,
+                    access_token: resp.data.accessToken
+                }
+                
+                socketModule.connect(USER_TO_CONNECT_SOCKET, dispatch)
+
                 return Promise.resolve();
             })
             .catch((err) => {

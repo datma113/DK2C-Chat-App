@@ -1,4 +1,6 @@
-const API = 'http://localhost:8080/api/'
+// const API = 'http://localhost:8080/api/'
+
+const API = process.env.REACT_APP_BASE_URL
 
 /**authentication */
 const AUTH = 'auth/'

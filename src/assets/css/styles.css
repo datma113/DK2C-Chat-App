@@ -238,7 +238,6 @@ a {
 .current-reactions-expressed {
   display: inline-block;
   position: relative;
-  left: 8rem;
   background-color: #FBFBFB;
   box-shadow: 0 0 5px black;
   width: auto;

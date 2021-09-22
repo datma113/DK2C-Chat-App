@@ -1,6 +1,5 @@
 import React from "react";
 import socketModule from "../module/socketModule";
-import { expressReactionToMessage } from "../redux/action/actHome";
 
 const Reactions = ({ messageId, myId, roomId }) => {
     const REACTIONS_TYPE = [

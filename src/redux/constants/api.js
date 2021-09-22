@@ -1,5 +1,3 @@
-// const API = 'http://localhost:8080/api/'
-
 const API = process.env.REACT_APP_BASE_URL
 
 /**authentication */
@@ -18,4 +16,3 @@ export const API_SIGN_UP_VERIFY = API + AUTH + SIGN_UP + 'verify'
 /**Chat */
 export const API_GET_INBOXS = API + 'inboxs'
 export const API_GET_MESSAGE_IN_CHAT_BOX = API + 'messages/inbox/'
-export const API_EXPRESS_REACTION_TO_MESSAGE = API + 'messages/react/'

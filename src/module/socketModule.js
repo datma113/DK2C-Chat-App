@@ -61,8 +61,11 @@ const socketModule = (function () {
 
             stompClient.subscribe("/users/queue/reaction", function(resp)  {
                 const data = JSON.parse(resp.body);
-                const MESSAGE = [data];
-                console.log(MESSAGE)
+                
+                dispatch({
+                    type: 'UPDATE_REACTION_REALTIME',
+                    messageWithRealTimeReactionSocket: data,
+                });
             })
         };
 

@@ -203,16 +203,16 @@
 
         &__reaction-container {
             &__reaction {
-                display: block;
                 width: 30px;
                 height: 30px;
-                background-color: yellow;
+                background-color: $mainPurpleColor;
                 overflow: hidden;
                 border-radius: 100%;
                 cursor: pointer;
                 position: absolute;
                 transition: 0.2s;
                 bottom: -2rem;
+                
                 &:hover {
                     background-color: blue;
                 }

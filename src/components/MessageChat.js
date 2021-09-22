@@ -37,6 +37,21 @@ const MessageChat = ({ boxChat }) => {
             return "";
         };
 
+        const showTheFirstReactionsIfExists = () => {
+            const REACTION = {
+                HAHA: "far fa-grin-squint text-warning",
+                SAD: "fas fa-sad-tear ",
+                ANGRY: "fas fa-angry text-warning",
+                LIKE: "fas fa-thumbs-up  text-primary",
+                LOVE: "fas fa-heart text-danger ",
+                WOW: "fas fa-surprise text-warning",
+            };
+            let iconClassName = "fas fa-thumbs-up  text-primary";
+
+            if (message.reactions.length > 0) iconClassName = REACTION[message.reactions[0].type];
+            return iconClassName;
+        };
+
         return (
             <div key={index} className={`single-chat-box mb-1 ${isSelfSideClass()}`}>
                 <div className="single-chat-box__img m-3">
@@ -53,20 +68,22 @@ const MessageChat = ({ boxChat }) => {
                     {message.content}{" "}
                     <div className={`single-chat-box__message__reaction-container`}>
                         <div
-                            className={`single-chat-box__message__reaction-container__reaction  ${addSelfSideReaction()}`}
-                        ></div>
+                            className={`single-chat-box__message__reaction-container__reaction ${addSelfSideReaction()}
+                            center
+                            `}
+                        >
+                            <i className={showTheFirstReactionsIfExists()}></i>
+                        </div>
                         <div
                             className={`
                             single-chat-box__message__reaction-container__reaction-list
                              ${addSelfSideReactionList()}
                             `}
                         >
-                            <Reactions roomId={currentRoomId} messageId={message.id} myId={MY_ID}/>
+                            <Reactions roomId={currentRoomId} messageId={message.id} myId={MY_ID} />
                         </div>
                     </div>
-                    <CurrentReactionExpressed
-                            reactions={message.reactions}
-                        />
+                    <CurrentReactionExpressed reactions={message.reactions} />
                 </div>
             </div>
         );

@@ -447,10 +447,9 @@ a {
   position: relative;
 }
 .single-chat-box__message__reaction-container__reaction {
-  display: block;
   width: 30px;
   height: 30px;
-  background-color: yellow;
+  background-color: #5D3B78;
   overflow: hidden;
   border-radius: 100%;
   cursor: pointer;

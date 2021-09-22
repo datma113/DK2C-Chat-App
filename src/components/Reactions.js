@@ -18,7 +18,6 @@ const Reactions = ({ messageId, myId, roomId }) => {
             type,
             userId: myId,
         };
-        console.log(REACTION)
         socketModule.expressReaction(REACTION)
 
     };

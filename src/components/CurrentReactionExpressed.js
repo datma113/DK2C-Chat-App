@@ -17,9 +17,13 @@ const CurrentReactionExpressed = ({ reactions = [] }) => {
         return reactions.length ? "" : "d-none";
     };
 
+    const limitReactions = (reactions) => {
+        return reactions.length > 3 ? reactions.slice(0, 3) : reactions
+    }
+
     const REACTIONS_UNIQUE = [...new Set(reactions.map((reaction) => reaction.type))];
 
-    const reactionsMap = REACTIONS_UNIQUE.map((reaction, index) => {
+    const reactionsMap = limitReactions(REACTIONS_UNIQUE).map((reaction, index) => {
         return (
             <i key={index} className={checkReactions(reaction)}>
                 {" "}

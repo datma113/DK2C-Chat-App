@@ -4,6 +4,7 @@ import {
     STORE_REAL_TIME_RESPONSE,
     UPDATE_LAST_MESSAGE_IN_INBOX,
     UPDATE_MESSAGE_REALTIME,
+    UPDATE_REACTION_REALTIME,
 } from "../redux/constants/constants";
 
 import newMessageSingleton from "./newMessageSingleton";
@@ -63,7 +64,7 @@ const socketModule = (function () {
                 const data = JSON.parse(resp.body);
                 
                 dispatch({
-                    type: 'UPDATE_REACTION_REALTIME',
+                    type: UPDATE_REACTION_REALTIME,
                     messageWithRealTimeReactionSocket: data,
                 });
             })

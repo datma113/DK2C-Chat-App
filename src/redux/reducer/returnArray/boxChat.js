@@ -2,6 +2,7 @@ import {
     INITIALIZE_MESSAGE_IN_BOX_CHAT,
     STORE_MESSAGE_IN_BOX_CHAT,
     UPDATE_MESSAGE_REALTIME,
+    UPDATE_REACTION_REALTIME,
 } from "../../constants/constants";
 
 const initial = [];
@@ -21,7 +22,7 @@ const reducer = (state = initial, action) => {
             let realTimeMessageState = [...state, ...realTimeMessage];
             return realTimeMessageState;
 
-        case "UPDATE_REACTION_REALTIME":
+        case UPDATE_REACTION_REALTIME:
             let messageWithRealTimeReaction = [...state];
 
             messageWithRealTimeReaction.forEach((message, index) => {
@@ -33,7 +34,7 @@ const reducer = (state = initial, action) => {
                         reactByUserId: messageWithRealTimeReactionSocket.reactByUser.id,
                         type: messageWithRealTimeReactionSocket.type,
                     };
-                    messageWithRealTimeReaction[index].reactions.push(REACTION);
+                    messageWithRealTimeReaction[index].reactions.unshift(REACTION);
                 }
             });
             return messageWithRealTimeReaction;
@@ -42,5 +43,6 @@ const reducer = (state = initial, action) => {
     }
     return state;
 };
+
 
 export default reducer;

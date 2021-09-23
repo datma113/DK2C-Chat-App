@@ -419,6 +419,7 @@ a {
 .single-chat-box {
   display: flex;
   user-select: none;
+  margin-top: 2rem;
 }
 .single-chat-box--self {
   flex-direction: row-reverse;
@@ -446,10 +447,17 @@ a {
   max-width: 45rem;
   position: relative;
 }
+.single-chat-box__message:hover .single-chat-box__message__reaction-container__reaction {
+  display: flex;
+}
+.single-chat-box__message__reaction-container {
+  transition: 0.2s;
+}
 .single-chat-box__message__reaction-container__reaction {
   width: 30px;
   height: 30px;
-  background-color: #5D3B78;
+  border: thin solid #262626;
+  background-color: #FBFBFB;
   overflow: hidden;
   border-radius: 100%;
   cursor: pointer;
@@ -458,7 +466,7 @@ a {
   bottom: -2rem;
 }
 .single-chat-box__message__reaction-container__reaction:hover {
-  background-color: blue;
+  background-color: #FF6F91;
 }
 .single-chat-box__message__reaction-container__reaction--self {
   left: 0;
@@ -468,12 +476,12 @@ a {
 }
 .single-chat-box__message__reaction-container__reaction-list {
   position: absolute;
-  bottom: 1.5rem;
+  bottom: 0;
   border-radius: 10rem;
   background-color: #5D3B78;
   box-shadow: 0 0 5px black;
   transition: 0.2s;
-  opacity: 0;
+  display: none;
   cursor: pointer;
   z-index: 9;
 }
@@ -484,7 +492,7 @@ a {
   right: -12rem;
 }
 .single-chat-box__message__reaction-container:hover .single-chat-box__message__reaction-container__reaction-list {
-  opacity: 1;
+  display: flex;
 }
 .single-chat-box__message--self {
   background-image: linear-gradient(to right top, #fbfbfb, #fafafa, #f8f8f9, #f7f7f8, #f6f5f7, #f2ebf6);

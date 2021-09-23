@@ -30,18 +30,19 @@ const socketModule = (function () {
         const onConnected = () => {
             stompClient.subscribe("/users/queue/messages", function (resp) {
                 const data = JSON.parse(resp.body);
-                const MESSAGE = [data];
-
-                dispatch({
-                    type: UPDATE_MESSAGE_REALTIME,
-                    realTimeMessage: MESSAGE,
-                });
+                const MESSAGE = [{...data, reactions: []}];
 
                 dispatch({
                     type: STORE_REAL_TIME_RESPONSE,
                     data,
                 });
 
+                dispatch({
+                    type: UPDATE_MESSAGE_REALTIME,
+                    realTimeMessage: MESSAGE,
+                });
+
+             
                 dispatch({
                     type: UPDATE_LAST_MESSAGE_IN_INBOX,
                     lastMessage: data,

@@ -158,7 +158,7 @@
 .single-chat-box {
     display: flex;
     user-select: none;
-
+    margin-top: 2rem;
     &--self {
         flex-direction: row-reverse;
         margin-left: 10rem;
@@ -201,20 +201,27 @@
         max-width: 45rem;
         position: relative;
 
+        &:hover &__reaction-container__reaction {
+            display: flex;
+        }
+
         &__reaction-container {
+            transition: 0.2s;
+
             &__reaction {
                 width: 30px;
                 height: 30px;
-                background-color: $mainPurpleColor;
+                border: thin solid $mainDarkColor;
+                background-color: $mainLightColor;
                 overflow: hidden;
                 border-radius: 100%;
                 cursor: pointer;
                 position: absolute;
                 transition: 0.2s;
                 bottom: -2rem;
-                
+
                 &:hover {
-                    background-color: blue;
+                    background-color: $focusLightPinkColor;
                 }
                 &--self {
                     left: 0;
@@ -223,14 +230,15 @@
                     right: 0;
                 }
             }
+
             &__reaction-list {
                 position: absolute;
-                bottom: 1.5rem;
+                bottom: 0;
                 border-radius: 10rem;
                 background-color: $mainPurpleColor;
                 box-shadow: 0 0 5px black;
                 transition: 0.2s;
-                opacity: 0;
+                display: none;
                 cursor: pointer;
                 z-index: 9;
                 &--self {
@@ -242,7 +250,7 @@
             }
 
             &:hover &__reaction-list {
-               opacity: 1;
+                display: flex;
             }
         }
     }

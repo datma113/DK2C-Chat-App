@@ -47,8 +47,9 @@ const MessageChat = ({ boxChat }) => {
                 WOW: "fas fa-surprise text-warning",
             };
             let iconClassName = "fas fa-thumbs-up  text-primary";
-
-            if (message.reactions.length > 0) iconClassName = REACTION[message.reactions[0].type];
+            
+            //bug
+            //if (message.reactions) iconClassName = REACTION[message.reactions[0].type];
             return iconClassName;
         };
 

@@ -205,6 +205,10 @@
             display: flex;
         }
 
+        &__time-send-message {
+            color: gray;
+        }
+
         &__reaction-container {
             transition: 0.2s;
 

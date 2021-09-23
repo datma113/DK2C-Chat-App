@@ -11,6 +11,7 @@ const MessageChat = ({ boxChat }) => {
         const SENDER_ID = message.sender.id;
         const MY_ID = authentication.user.id;
         const IS_SELF_SIDE = SENDER_ID === MY_ID ? true : false;
+
         const isSelfSideClass = () => {
             return IS_SELF_SIDE ? "single-chat-box--self" : "single-chat-box--other";
         };
@@ -29,10 +30,26 @@ const MessageChat = ({ boxChat }) => {
         };
 
         const hideImageWhenDupplicateSender = (senderId) => {
-            const THE_FIRST_MESSAGE = 0;
-            if (index > THE_FIRST_MESSAGE) {
+            const THE_FIRST_INDEX_MESSAGE = 0;
+            if (index > THE_FIRST_INDEX_MESSAGE) {
                 const PREVIOUS_SENDER_ID = originalBoxChat[index - 1].sender.id;
                 return PREVIOUS_SENDER_ID === senderId ? "d-none" : "";
+            }
+            return "";
+        };
+
+        const showTimeSendMessage = () => {
+            const TIME_CREATED = new Date(message.createAt);
+            const TIME_SHOWED = `${TIME_CREATED.getHours()}:${TIME_CREATED.getMinutes()}`;
+
+            const THE_LAST_INDEX_MESSAGE = originalBoxChat.length - 1;
+            const THE_FIRST_INDEX_MESSAGE = 0;
+
+            if (index === THE_LAST_INDEX_MESSAGE) return TIME_SHOWED;
+            else if (index > THE_FIRST_INDEX_MESSAGE) {
+                const NEXT_SENDER_ID = originalBoxChat[index + 1].sender.id;
+                const CURRENT_SENDER_ID = message.sender.id;
+                return CURRENT_SENDER_ID !== NEXT_SENDER_ID ? TIME_SHOWED : "";
             }
             return "";
         };
@@ -47,7 +64,7 @@ const MessageChat = ({ boxChat }) => {
                 WOW: "fas fa-surprise text-warning",
             };
             let iconClassName = "fas fa-thumbs-up  text-primary";
-            
+
             //bug
             //if (message.reactions) iconClassName = REACTION[message.reactions[0].type];
             return iconClassName;
@@ -85,6 +102,9 @@ const MessageChat = ({ boxChat }) => {
                         </div>
                     </div>
                     <CurrentReactionExpressed reactions={message.reactions} />
+                    <p className="single-chat-box__message__time-send-message text-small mt-2">
+                        {showTimeSendMessage()}
+                    </p>
                 </div>
             </div>
         );

@@ -450,6 +450,9 @@ a {
 .single-chat-box__message:hover .single-chat-box__message__reaction-container__reaction {
   display: flex;
 }
+.single-chat-box__message__time-send-message {
+  color: gray;
+}
 .single-chat-box__message__reaction-container {
   transition: 0.2s;
 }

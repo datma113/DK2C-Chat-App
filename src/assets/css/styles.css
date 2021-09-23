@@ -467,6 +467,7 @@ a {
   position: absolute;
   transition: 0.2s;
   bottom: -2rem;
+  display: none;
 }
 .single-chat-box__message__reaction-container__reaction:hover {
   background-color: #FF6F91;
@@ -499,9 +500,6 @@ a {
 }
 .single-chat-box__message--self {
   background-image: linear-gradient(to right top, #fbfbfb, #fafafa, #f8f8f9, #f7f7f8, #f6f5f7, #f2ebf6);
-}
-.single-chat-box:hover {
-  color: lightblue;
 }
 
 .right {

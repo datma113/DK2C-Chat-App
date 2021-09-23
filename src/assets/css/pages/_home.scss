@@ -223,6 +223,7 @@
                 position: absolute;
                 transition: 0.2s;
                 bottom: -2rem;
+                display: none;
 
                 &:hover {
                     background-color: $focusLightPinkColor;
@@ -269,9 +270,6 @@
             #f6f5f7,
             #f2ebf6
         );
-    }
-    &:hover {
-        color: lightblue;
     }
 }
 

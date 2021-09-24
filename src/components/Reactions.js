@@ -11,7 +11,7 @@ const Reactions = ({ messageId, myId, roomId }) => {
         { type: "ANGRY", className: "fas fa-angry text-warning" },
     ];
 
-    const expressReaction = (type) => {
+    const expressReaction = (e, type) => {
         const REACTION = {
             roomId,
             messageId,
@@ -19,15 +19,14 @@ const Reactions = ({ messageId, myId, roomId }) => {
             userId: myId,
         };
         socketModule.expressReaction(REACTION)
-
     };
     const reactionsMap = REACTIONS_TYPE.map((reaction, index) => {
         return (
             <i
                 key={index}
                 className={`${reaction.className} single-reaction-container__icon`}
-                onClick={() => {
-                    expressReaction(reaction.type);
+                onClick={(e) => {
+                    expressReaction(e, reaction.type);
                 }}
             ></i>
         );

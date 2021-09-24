@@ -12,14 +12,12 @@ const CurrentReactionExpressed = ({ reactions = [] }) => {
         };
         return REACTION[type] || [];
     };
-
     const isEmptyReaction = () => {
         return reactions.length ? "" : "d-none";
     };
-
     const limitReactions = (reactions) => {
-        return reactions.length > 3 ? reactions.slice(0, 3) : reactions
-    }
+        return reactions.length > 3 ? reactions.slice(0, 3) : reactions;
+    };
 
     const REACTIONS_UNIQUE = [...new Set(reactions.map((reaction) => reaction.type))];
 

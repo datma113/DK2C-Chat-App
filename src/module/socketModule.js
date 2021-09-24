@@ -68,6 +68,7 @@ const socketModule = (function () {
                     type: UPDATE_REACTION_REALTIME,
                     messageWithRealTimeReactionSocket: data,
                 });
+
             })
         };
 

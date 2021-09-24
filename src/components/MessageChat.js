@@ -71,7 +71,11 @@ const MessageChat = ({ boxChat }) => {
         };
 
         return (
-            <div key={index} className={`single-chat-box mb-1 ${isSelfSideClass()}`}>
+            <div
+                key={index}
+                className={`single-chat-box mb-1 ${isSelfSideClass()}`}
+                id={message.id}
+            >
                 <div className="single-chat-box__img m-3">
                     <img
                         src={message.sender.imageUrl}

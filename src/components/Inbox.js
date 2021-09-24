@@ -12,6 +12,7 @@ const Inbox = ({
     lastMessage,
     lastMessageTime,
     lastMessageReadBy,
+    lastMessageId,
     isActive,
     roomId,
     senderName,
@@ -53,6 +54,7 @@ const Inbox = ({
     const gotoChatInbox = () => {
         dispatch(storeCurrentIdOfInbox(inboxId));
         dispatch(storeCurrentRoomId(roomId));
+        
         
         //reset number of new Message when click into inbox
         let newMessage = newMessageSingleton.getInsance()

@@ -6,7 +6,7 @@ import Reactions from "./Reactions";
 const MessageChat = ({ boxChat }) => {
     const authentication = useSelector((state) => state.authentication);
     const currentRoomId = useSelector((state) => state.currentRoomId);
-
+    console.log(boxChat);
     const boxChatMap = boxChat.map((message, index, originalBoxChat) => {
         const SENDER_ID = message.sender.id;
         const MY_ID = authentication.user.id;
@@ -65,8 +65,7 @@ const MessageChat = ({ boxChat }) => {
             };
             let iconClassName = "fas fa-thumbs-up  text-primary";
 
-            //bug
-            //if (message.reactions) iconClassName = REACTION[message.reactions[0].type];
+            if (message.reactions.length > 0) iconClassName = REACTION[message.reactions[0].type];
             return iconClassName;
         };
 

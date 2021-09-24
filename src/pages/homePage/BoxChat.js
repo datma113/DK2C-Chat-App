@@ -16,6 +16,7 @@ const BoxChat = () => {
         //when change other inbox, it will reset loading value to 0
         setloadingOlderMessage(0);
         setisInitialize(true);
+
     }, [dispatch, currentInboxId]);
 
     const loadOlderMessageInBoxChat = (e) => {
@@ -41,7 +42,7 @@ const BoxChat = () => {
 
     return (
         <div
-            className="single-chat-box-container pr-0 pb-5 bg-dark"
+            className="single-chat-box-container pr-0 pb-5"
             onScroll={(e) => loadOlderMessageInBoxChat(e)}
             onMouseEnter={() => setFalseInitialWhenMouseEnter()}
         >

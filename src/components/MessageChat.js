@@ -6,7 +6,6 @@ import Reactions from "./Reactions";
 const MessageChat = ({ boxChat }) => {
     const authentication = useSelector((state) => state.authentication);
     const currentRoomId = useSelector((state) => state.currentRoomId);
-    console.log(boxChat);
     const boxChatMap = boxChat.map((message, index, originalBoxChat) => {
         const SENDER_ID = message.sender.id;
         const MY_ID = authentication.user.id;
@@ -40,7 +39,11 @@ const MessageChat = ({ boxChat }) => {
 
         const showTimeSendMessage = () => {
             const TIME_CREATED = new Date(message.createAt);
-            const TIME_SHOWED = `${TIME_CREATED.getHours()}:${TIME_CREATED.getMinutes()}`;
+            const TIME_SHOWED = `${TIME_CREATED.getHours()}:${
+                TIME_CREATED.getMinutes() < 9
+                    ? `0${TIME_CREATED.getMinutes()}`
+                    : TIME_CREATED.getMinutes()
+            }`;
 
             const THE_LAST_INDEX_MESSAGE = originalBoxChat.length - 1;
             const THE_FIRST_INDEX_MESSAGE = 0;
@@ -64,8 +67,10 @@ const MessageChat = ({ boxChat }) => {
                 WOW: "fas fa-surprise text-warning",
             };
             let iconClassName = "fas fa-thumbs-up  text-primary";
-
-            if (message.reactions.length > 0) iconClassName = REACTION[message.reactions[0].type];
+            const THE_FIRST_REACTION = 0;
+            const MIN_OF_REACTIONS_LENGTH = 0;
+            if (message.reactions.length > MIN_OF_REACTIONS_LENGTH)
+                iconClassName = REACTION[message.reactions[THE_FIRST_REACTION].type];
             return iconClassName;
         };
 

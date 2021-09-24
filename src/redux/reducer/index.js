@@ -9,6 +9,7 @@ import currentInboxId from './returnNumber/currentInboxId'
 import currentInbox from './returnObject/currentInbox'
 import currentRoomId from './returnNumber/currentRoomId'
 import realTimeResponse from './returnObject/realTimeResponse'
+import isScrollBottom from './returnBoolean/isScrollBottom'
 const reducer = combineReducers({
      userLogin,
      userRegister,
@@ -20,6 +21,7 @@ const reducer = combineReducers({
      currentInbox,
      currentRoomId,
      realTimeResponse,
+     isScrollBottom
 })
 
 export default reducer

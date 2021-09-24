@@ -1,13 +1,20 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import socketModule from "../../module/socketModule";
+import { SCROLL_BOTTOM_WHEN_SEND_MESSAGE } from "../../redux/constants/constants";
 
 const SendMessage = ({ roomId }) => {
     const [messageToSend, setmessageToSend] = useState("");
-
+    const dispatch = useDispatch();
     const sendMessageToFriend = () => {
         if (messageToSend.length) {
             socketModule.sendMessageToOneFriend(roomId, messageToSend, "TEXT");
             setmessageToSend("");
+
+            dispatch({
+                type: SCROLL_BOTTOM_WHEN_SEND_MESSAGE,
+                status: true,
+            });
         }
     };
 
@@ -16,6 +23,10 @@ const SendMessage = ({ roomId }) => {
             e.preventDefault();
             socketModule.sendMessageToOneFriend(roomId, messageToSend, "TEXT");
             setmessageToSend("");
+            dispatch({
+                type: SCROLL_BOTTOM_WHEN_SEND_MESSAGE,
+                status: true,
+            });
         }
     };
 

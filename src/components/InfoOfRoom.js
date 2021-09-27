@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import EditRoomName from "../modal/EditRoomName";
 
 const InfoOfRoom = () => {
     const currentInbox = useSelector((state) => state.currentInbox);
@@ -7,8 +8,9 @@ const InfoOfRoom = () => {
     return (
         <div className="info-room center">
             <img className="info-room__img" src={currentInbox.imgUrl} alt="" />
-            <p>{currentInbox.displayName} &nbsp;
-            <i className="fas fa-edit info-room__edit"></i>
+            <p>
+                {currentInbox.displayName} &nbsp;
+                <EditRoomName />
             </p>
         </div>
     );

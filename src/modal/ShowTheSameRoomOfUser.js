@@ -9,7 +9,12 @@ const ShowTheSameRoomOfUser = () => {
 
     return (
         <>
-            <TagOfOptionRoom id="theSameRoom" colorIcon="text-primary" classIcon="fas fa-users" text="xem nhóm chung" />
+            <TagOfOptionRoom
+                id="theSameRoom"
+                colorIcon="text-primary"
+                classIcon="fas fa-users"
+                text="xem nhóm chung"
+            />
             <MyCustomModal
                 inner={renderTheSameRoomComp()}
                 headerTitle="nhóm chung"

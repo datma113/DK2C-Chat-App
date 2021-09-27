@@ -9,10 +9,10 @@ const TagOfOptionRoom = ({ id, classIcon, text, colorIcon}) => {
                 data-mdb-target={`#${id}`}
                 className="row option-room"
             >
-                <div className={`col-3 center ${colorIcon}`}>
+                <div className={`col-2 center ${colorIcon}`}>
                     <i className={classIcon}></i>
                 </div>
-                <div className="col-9"> {text} </div>
+                <div className="col-10"> {text} </div>
             </div>
         </>
     );

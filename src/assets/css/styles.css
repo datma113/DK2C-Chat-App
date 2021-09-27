@@ -369,6 +369,7 @@ a {
   display: flex;
   flex-direction: column;
   width: 72.5rem;
+  border-right: thin solid #dddddd;
 }
 
 .header-box-chat {
@@ -503,11 +504,6 @@ a {
   background-image: linear-gradient(to right top, #fbfbfb, #fafafa, #f8f8f9, #f7f7f8, #f6f5f7, #f2ebf6);
 }
 
-.info-room-right {
-  flex-grow: 1;
-  background-color: #FBFBFB;
-}
-
 .send-message-container {
   flex-shrink: 0;
   display: flex;
@@ -529,6 +525,15 @@ a {
 .send-message-container__icon-container i:hover {
   background-color: #a166d1;
   color: #FBFBFB;
+}
+
+.info-room-right {
+  flex-grow: 1;
+  background-color: #FBFBFB;
+}
+.info-room-right__scroll {
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .info-room-header {

@@ -32,8 +32,10 @@ const Home = () => {
                             </div>
                             <div className="info-room-right">
                                 <HeaderOfInfoRoom />
-                                <InfoOfRoom/>
-                                <OptionOfRoom />
+                                <div className="info-room-right__scroll">
+                                    <InfoOfRoom />
+                                    <OptionOfRoom />
+                                </div>
                             </div>
                         </>
                     ) : (

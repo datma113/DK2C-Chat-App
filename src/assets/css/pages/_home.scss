@@ -105,6 +105,8 @@
     display: flex;
     flex-direction: column;
     width: 72.5rem;
+    border-right: thin solid #dddddd;
+
 }
 
 .header-box-chat {
@@ -272,9 +274,4 @@
             #f2ebf6
         );
     }
-}
-
-.info-room-right {
-    flex-grow: 1;
-    background-color: $mainLightColor;
 }

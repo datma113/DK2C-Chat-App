@@ -35,6 +35,7 @@ const TextInput = ({
                 className="w-100 input-container__input text-center"
                 placeholder=" "
                 id={id}
+                spellCheck={false}
                 defaultValue={initialValue}
                 autoComplete="off"
                 onChange={(e) => {

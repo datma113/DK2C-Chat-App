@@ -1,6 +1,19 @@
 import React from "react";
+import TextInput from "../components/TextInput";
 
-const EditRoomName = () => {
+const EditRoomName = ({ currentInbox }) => {
+    const renderEditRoomName = () => {
+        return (
+            <div className="edit-room-name center flex-column">
+                <img className="edit-room-name__img" src={currentInbox.imgUrl} alt="" />
+                <p className="text-center text-medium mb-5 mt-3">
+                    Bạn chắc chắn có muốn đổi tên nhóm? khi xác nhận, tên nhóm mới sẽ hiển thị với
+                    tất cả thành viên
+                </p>
+                <TextInput id="editRoomNameInput" label="Nhập tên nhóm mới" type="text" />
+            </div>
+        );
+    };
     return (
         <>
             <i
@@ -11,36 +24,36 @@ const EditRoomName = () => {
             ></i>
 
             <div
-                class="modal fade"
+                className="modal fade"
                 id="editRoomName"
-                tabindex="-1"
+                tabIndex="-1"
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
             >
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">
-                               Đổi tên nhóm
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">
+                                Đổi tên nhóm
                             </h5>
                             <button
                                 type="button"
-                                class="btn-close"
+                                className="btn-close"
                                 data-mdb-dismiss="modal"
                                 aria-label="Close"
                             ></button>
                         </div>
-                        <div class="modal-body">Đôi tên nhóm</div>
-                        <div class="modal-footer">
+                        <div className="modal-body">{renderEditRoomName()}</div>
+                        <div className="modal-footer">
                             <button
                                 type="button"
-                                class="btn btn-lg btn-light"
+                                className="btn btn-lg btn-light"
                                 data-mdb-dismiss="modal"
                             >
-                                Close
+                                Hủy
                             </button>
-                            <button type="button" class="btn btn-lg btn-secondary">
-                                Save changes
+                            <button type="button" className="btn btn-lg btn-secondary">
+                                Xác nhận
                             </button>
                         </div>
                     </div>

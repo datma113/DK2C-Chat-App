@@ -8,10 +8,10 @@ const InfoOfRoom = () => {
     return (
         <div className="info-room center">
             <img className="info-room__img" src={currentInbox.imgUrl} alt="" />
-            <p>
+            <div>
                 {currentInbox.displayName} &nbsp;
-                <EditRoomName />
-            </p>
+                <EditRoomName currentInbox={currentInbox}/>
+            </div>
         </div>
     );
 };

@@ -110,6 +110,7 @@
 .header-box-chat {
     display: flex;
     padding: 2rem 0;
+    height: 10rem;
     background-color: $mainLightColor;
 
     &__img {
@@ -273,6 +274,7 @@
     }
 }
 
-.right {
+.info-room-right {
     flex-grow: 1;
+    background-color: $mainLightColor;
 }

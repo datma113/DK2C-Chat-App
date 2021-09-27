@@ -6,6 +6,9 @@ import BoxChat from "./BoxChat";
 import HeaderOfBoxChat from "./HeaderOfBoxChat";
 import Introducing from "./Introducing";
 import SendMessage from "./SendMessage";
+import HeaderOfInfoRoom from "../../components/HeaderOfInfoRoom";
+import InfoOfRoom from "../../components/InfoOfRoom";
+import OptionOfRoom from "./OptionOfRoom";
 const Home = () => {
     const authentication = useSelector((state) => state.authentication);
     const currentInboxId = useSelector((state) => state.currentInboxId);
@@ -27,7 +30,11 @@ const Home = () => {
                                 <BoxChat />
                                 <SendMessage roomId={currentRoomId} />
                             </div>
-                            <div className="right">NOTHING HERE</div>
+                            <div className="info-room-right">
+                                <HeaderOfInfoRoom />
+                                <InfoOfRoom/>
+                                <OptionOfRoom />
+                            </div>
                         </>
                     ) : (
                         <div className=" d-flex align-items-center flex-column mt-5">

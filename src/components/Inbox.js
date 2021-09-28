@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import ReadBy from "./ReadBy";
-import { RESET_NEW_MESSAGE, STORE_CURRENT_INBOX } from "../redux/constants/constants";
-import { storeCurrentIdOfInbox, storeCurrentRoomId } from "../redux/action/actHome";
+import { RESET_NEW_MESSAGE } from "../redux/constants/constants";
+import { storeCurrentIdOfInbox, storeCurrentInbox, storeCurrentRoomId } from "../redux/action/actHome";
 import newMessageSingleton from '../module/newMessageSingleton'
 
 const Inbox = ({
@@ -63,10 +63,7 @@ const Inbox = ({
             imgUrl,
             displayName,
         };
-        dispatch({
-            type: STORE_CURRENT_INBOX,
-            currentInbox,
-        });
+        dispatch(storeCurrentInbox(currentInbox));
 
         dispatch({
             type: RESET_NEW_MESSAGE,

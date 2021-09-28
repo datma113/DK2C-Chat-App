@@ -16,3 +16,6 @@ export const API_SIGN_UP_VERIFY = API + AUTH + SIGN_UP + 'verify'
 /**Chat */
 export const API_GET_INBOXS = API + 'inboxs'
 export const API_GET_MESSAGE_IN_CHAT_BOX = API + 'messages/inbox/'
+
+/**info room */
+export const API_EDIT_ROOM_NAME = API + 'rooms/rename/'

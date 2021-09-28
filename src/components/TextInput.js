@@ -61,7 +61,7 @@ const TextInput = ({
 export default TextInput;
 
 TextInput.propTypes = {
-    id: PropTypes.number,
+    id: PropTypes.string,
     label: PropTypes.string,
     type: PropTypes.string,
     checkRegex: PropTypes.func,

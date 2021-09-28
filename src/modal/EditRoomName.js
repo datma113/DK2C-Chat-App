@@ -1,16 +1,27 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import TextInput from "../components/TextInput";
+import { editRoomName, storeRoomName } from "../redux/action/actInfoRoom";
 
 const EditRoomName = ({ currentInbox }) => {
+    const roomName = useSelector((state) => state.roomName);
+    const currentRoomId = useSelector((state) => state.currentRoomId);
+
     const renderEditRoomName = () => {
         return (
             <div className="edit-room-name center flex-column">
                 <img className="edit-room-name__img" src={currentInbox.imgUrl} alt="" />
                 <p className="text-center text-medium mb-5 mt-3">
                     Bạn chắc chắn có muốn đổi tên nhóm? khi xác nhận, tên nhóm mới sẽ hiển thị với
-                    tất cả thành viên
+                    tất cả thành viên.
                 </p>
-                <TextInput id="editRoomNameInput" label="Nhập tên nhóm mới" type="text" />
+                <TextInput
+                    id="editRoomNameInput"
+                    label="Nhập tên nhóm mới"
+                    type="text"
+                    functionToDispatch={storeRoomName}
+                    keyStoreToReducer="name"
+                />
             </div>
         );
     };
@@ -52,7 +63,14 @@ const EditRoomName = ({ currentInbox }) => {
                             >
                                 Hủy
                             </button>
-                            <button type="button" className="btn btn-lg btn-secondary">
+                            <button
+                                type="button"
+                                className="btn btn-lg btn-secondary"
+                                data-mdb-dismiss="modal"
+                                onClick={() => {
+                                    editRoomName(currentRoomId, roomName);
+                                }}
+                            >
                                 Xác nhận
                             </button>
                         </div>

@@ -6,6 +6,7 @@ import Reactions from "./Reactions";
 const MessageChat = ({ boxChat }) => {
     const authentication = useSelector((state) => state.authentication);
     const currentRoomId = useSelector((state) => state.currentRoomId);
+
     const boxChatMap = boxChat.map((message, index, originalBoxChat) => {
         const SENDER_ID = message.sender.id;
         const MY_ID = authentication.user.id;
@@ -90,8 +91,7 @@ const MessageChat = ({ boxChat }) => {
                 <div
                     className={`single-chat-box__message ${addSelfBackgroundClassForMessage()} mt-3`}
                 >
-                    {" "}
-                    {message.content}{" "}
+                    {message.content}
                     <div className={`single-chat-box__message__reaction-container`}>
                         <div
                             className={`single-chat-box__message__reaction-container__reaction ${addSelfSideReaction()}

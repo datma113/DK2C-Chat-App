@@ -12,7 +12,6 @@ const Inbox = ({
     lastMessage,
     lastMessageTime,
     lastMessageReadBy,
-    lastMessageId,
     isActive,
     roomId,
     senderName,

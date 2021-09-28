@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import TextInput from "../components/TextInput";
 import { editRoomName, storeRoomName } from "../redux/action/actInfoRoom";
@@ -6,7 +7,7 @@ import { editRoomName, storeRoomName } from "../redux/action/actInfoRoom";
 const EditRoomName = ({ currentInbox }) => {
     const roomName = useSelector((state) => state.roomName);
     const currentRoomId = useSelector((state) => state.currentRoomId);
-
+    const dispatch = useDispatch()
     const renderEditRoomName = () => {
         return (
             <div className="edit-room-name center flex-column">
@@ -68,7 +69,7 @@ const EditRoomName = ({ currentInbox }) => {
                                 className="btn btn-lg btn-secondary"
                                 data-mdb-dismiss="modal"
                                 onClick={() => {
-                                    editRoomName(currentRoomId, roomName);
+                                    dispatch(editRoomName(currentRoomId, roomName));
                                 }}
                             >
                                 Xác nhận

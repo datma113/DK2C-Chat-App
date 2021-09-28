@@ -106,7 +106,6 @@
     flex-direction: column;
     width: 72.5rem;
     border-right: thin solid #dddddd;
-
 }
 
 .header-box-chat {
@@ -114,7 +113,6 @@
     padding: 2rem 0;
     height: 10rem;
     background-color: $mainLightColor;
-
     &__img {
         margin: 0 2rem;
         box-shadow: 0 0 1px $mainPurpleColor;
@@ -130,6 +128,8 @@
 
     &__title {
         flex-grow: 6;
+        max-width: 50rem;
+        word-wrap: break-word;
     }
 
     &__icon {

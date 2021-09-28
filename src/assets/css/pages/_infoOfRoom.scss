@@ -2,6 +2,7 @@
 .info-room-right {
      flex-grow: 1;
      background-color: $mainLightColor;
+
      &__scroll {
           overflow-y: scroll;
           overflow-x: hidden;
@@ -21,6 +22,7 @@
      height: 15rem;
      background-color: white;
      flex-direction: column;
+     
      &__img {
           height: 6rem;
           width: 6rem;

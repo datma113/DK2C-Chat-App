@@ -3,12 +3,13 @@ import {
     STORE_INBOXS,
     STORE_OLDER_INBOXS,
     UPDATE_LAST_MESSAGE_IN_INBOX,
+    UPDATE_ROOM_NAME,
 } from "../../constants/constants";
 
 const initial = [];
 
 const reducer = (state = initial, action) => {
-    let { type, inboxs, lastMessage, inboxId, olderInboxs } = action;
+    let { type, inboxs, lastMessage, inboxId, olderInboxs, newRoomName, roomId } = action;
 
     switch (type) {
         case STORE_INBOXS:
@@ -18,7 +19,7 @@ const reducer = (state = initial, action) => {
 
         case UPDATE_LAST_MESSAGE_IN_INBOX:
             let realTimeInbox = [...state];
-            state.forEach((inbox, index) => {
+            realTimeInbox.forEach((inbox, index) => {
                 if (inbox.room.id === lastMessage.roomId) {
                     realTimeInbox[index].lastMessage = lastMessage;
                     realTimeInbox[index].lastMessage.readbyes = [];
@@ -35,12 +36,21 @@ const reducer = (state = initial, action) => {
 
         case RESET_NEW_MESSAGE:
             let newStateWhenResetNewMessage = [...state];
-            state.forEach((inbox, index) => {
+            newStateWhenResetNewMessage.forEach((inbox, index) => {
                 if (inbox.id === inboxId) {
                     newStateWhenResetNewMessage[index].countNewMessage = 0;
                 }
             });
             return newStateWhenResetNewMessage;
+
+        case UPDATE_ROOM_NAME:
+            let newStateWhenEditRoomName = [...state];
+            newStateWhenEditRoomName.forEach((inbox, index) => {
+                if (inbox.room.id === roomId) {
+                    newStateWhenEditRoomName[index].room.name = newRoomName;
+                }
+            });
+            return newStateWhenEditRoomName;
         default:
             break;
     }

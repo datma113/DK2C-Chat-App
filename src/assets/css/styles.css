@@ -396,6 +396,8 @@ a {
 }
 .header-box-chat__title {
   flex-grow: 6;
+  max-width: 50rem;
+  word-wrap: break-word;
 }
 .header-box-chat__icon {
   flex-grow: 1;

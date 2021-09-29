@@ -11,6 +11,7 @@ import currentRoomId from './returnNumber/currentRoomId'
 import realTimeResponse from './returnObject/realTimeResponse'
 import isScrollBottom from './returnBoolean/isScrollBottom'
 import roomName from './returnObject/roomName'
+import membersInRoom from './returnArray/membersInRoom'
 
 const reducer = combineReducers({
      userLogin,
@@ -24,7 +25,8 @@ const reducer = combineReducers({
      currentRoomId,
      realTimeResponse,
      isScrollBottom,
-     roomName
+     roomName,
+     membersInRoom
 })
 
 export default reducer

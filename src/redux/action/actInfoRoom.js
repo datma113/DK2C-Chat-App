@@ -1,6 +1,7 @@
 import axios from "axios";
-import { API_EDIT_ROOM_NAME } from "../constants/api";
+import { API_EDIT_ROOM_NAME, API_GET_MEMBERS_IN_ROOM } from "../constants/api";
 import {
+    STORE_MEMBERS_IN_ROOM,
     STORE_ROOM_NAME,
     UPDATE_NAME_OF_HEADER_CHAT_WHEN_EDIT_ROOM_NAME,
     UPDATE_ROOM_NAME,
@@ -35,3 +36,16 @@ export const editRoomName = (id, name) => {
             return Promise.resolve(resp.data);
         });
 };
+
+const storeMembersInRoom = members => {
+    return {
+        type: STORE_MEMBERS_IN_ROOM,
+        members
+    }
+}
+export const getMembersInRoom = (roomId) => {
+    return dispatch => axios.get(API_GET_MEMBERS_IN_ROOM + roomId)
+    .then((resp) => {
+        dispatch(storeMembersInRoom(resp.data))
+    })
+}

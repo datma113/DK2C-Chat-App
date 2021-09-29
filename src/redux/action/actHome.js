@@ -7,7 +7,6 @@ import {
     STORE_INBOXS,
     STORE_MESSAGE_IN_BOX_CHAT,
     STORE_OLDER_INBOXS,
-    UPDATE_NAME_OF_HEADER_CHAT_WHEN_EDIT_ROOM_NAME,
 } from "../constants/constants";
 import { API_GET_INBOXS, API_GET_MESSAGE_IN_CHAT_BOX } from "../constants/api";
 

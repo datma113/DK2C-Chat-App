@@ -2,8 +2,9 @@
 .info-room-right {
      flex-grow: 1;
      background-color: $mainLightColor;
-
+    
      &__scroll {
+          height: calc(90vh - 10rem);
           overflow-y: scroll;
           overflow-x: hidden;
      }
@@ -42,5 +43,15 @@
      border-bottom: thin solid silver;
      &:hover {
           background-color: gray;
+     }
+}
+
+.edit-room-name {
+
+     &__img {
+          width: 100px;
+          height: 100px;
+          border-radius: 100%;
+
      }
 }

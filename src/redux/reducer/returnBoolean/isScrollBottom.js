@@ -12,6 +12,7 @@ const reducer = (state = initial, action) => {
         console.log(status);
         return status;
     }
+    
     if (type === RESET_STATUS_OF_SCROLL_BOTTOM_IN_BOX_CHAT) return status;
     return state;
 };

@@ -34,7 +34,7 @@ const Home = () => {
                                 <HeaderOfInfoRoom />
                                 <div className="info-room-right__scroll">
                                     <InfoOfRoom />
-                                    <OptionOfRoom />
+                                    <OptionOfRoom roomId={currentRoomId}/>
                                 </div>
                             </div>
                         </>

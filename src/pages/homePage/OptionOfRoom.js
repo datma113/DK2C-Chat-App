@@ -1,15 +1,15 @@
 import React from "react";
 import CreateRoom from "../../modal/CreateRoom";
-import ShowTheSameRoomOfUser from "../../modal/ShowTheSameRoomOfUser";
+import MembersInRoom from "../../modal/MembersInRoom";
 import BlockUser from "../../modal/BlockUser";
 import ViewPersonalPage from "../../modal/ViewPersonalPage";
 import ReportUser from "../../modal/ReportUser";
 import DeleteConversation from "../../modal/DeleteConversation";
 
-const OptionOfRoom = () => {
+const OptionOfRoom = ({roomId}) => {
     return (
         <>
-            <ShowTheSameRoomOfUser />
+            <MembersInRoom  roomId={roomId}/>
             <CreateRoom />
             <ViewPersonalPage />
             <BlockUser />

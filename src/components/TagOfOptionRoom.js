@@ -1,6 +1,6 @@
 import React from "react";
 
-const TagOfOptionRoom = ({ id, classIcon, text, colorIcon}) => {
+const TagOfOptionRoom = ({ id, classIcon, text, colorIcon, functionWhenClick }) => {
     return (
         <>
             <div
@@ -8,6 +8,7 @@ const TagOfOptionRoom = ({ id, classIcon, text, colorIcon}) => {
                 data-mdb-toggle="modal"
                 data-mdb-target={`#${id}`}
                 className="row option-room"
+                onClick={functionWhenClick}
             >
                 <div className={`col-2 center ${colorIcon}`}>
                     <i className={classIcon}></i>

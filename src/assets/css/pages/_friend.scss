@@ -19,13 +19,14 @@
             }
         }
     }
+    
     &__friendRequest-list {
         // min-width: 38rem;
         // max-width: 38rem;
         overflow: scroll;
         overflow-x: hidden;
         height: 85vh;
-
+        
         &__older-friends {
             color: $mainPurpleColor;
             font-weight: bold;
@@ -52,9 +53,14 @@
     cursor: pointer;
     &:hover {
         background-color: $hoverPurpleColor;
-        // color: white;
+        color: white;
     }
-
+    &__display{
+        &:hover {
+            // color: $hoverPurpleColor;
+            color: white;
+        }
+    }
     &__img {
         border-radius: 100%;
         overflow: hidden;
@@ -69,8 +75,8 @@
     &__imgGroup {
         border-radius: 100%;
         overflow: hidden;
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
 
         img {
             width: 100%;

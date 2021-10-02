@@ -1,16 +1,16 @@
 import {
-    STORE_FRIENDS_LIST
+    STORE_FRIENDS_REQUEST
 }
 from "../../constants/constants";
 const initial = [];
 const reducer = (state = initial, action) => {
-    let { type, friends } = action;
+    let { type, friendsRequest } = action;
 
     switch (type) {
        
-        case STORE_FRIENDS_LIST:
-            state = friends
-            return state
+        case STORE_FRIENDS_REQUEST:
+           state = friendsRequest
+            return state;
         default:
             break;
     }

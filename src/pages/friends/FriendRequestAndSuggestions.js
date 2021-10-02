@@ -1,8 +1,11 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import addFriendImg from '../../assets/image/add-friends.png';
 import FriendRequest from './FriendRequest';
 
 const FriendRequestAndSuggestions = () => {
+    
+   const friendsRequestFromStore = useSelector((state) => state.friendsRequest);
     return (
         <div className="row container">
             <div className="col-12  " >
@@ -24,7 +27,7 @@ const FriendRequestAndSuggestions = () => {
             <br />
             <div className=" friendhome__friendRequest-list col-12 gap-3">
                 <div className="col-12" style={{ height: "20px" }}></div>
-                <div className=" col-12"><h4>&nbsp;Lời mời kết bạn</h4></div>
+                <div className=" col-12"><h4>&nbsp;Lời mời kết bạn ({friendsRequestFromStore.length})</h4></div>
                 <div>
                     <FriendRequest />
 

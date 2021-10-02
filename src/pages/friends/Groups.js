@@ -1,9 +1,10 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import groupImg from '../../assets/image/group.png';
-import FriendRequest from './FriendRequest';
 import ListGroups from './ListGroups';
 
 const Groups = () => {
+    const groupsList =  useSelector((state) => state.groups);
     return (
         <div className="row container">
             <div className="col-12  " >
@@ -26,9 +27,9 @@ const Groups = () => {
             <br />
             <div className=" friendhome__friendRequest-list col-12 gap-3">
                 <div className="col-12" style={{ height: "20px" }}></div>
-                <div className=" col-12"><h4>&nbsp;Tất cả (10)</h4></div>
+                <div className=" col-12"><h4>&nbsp;Tất cả ({groupsList.length})</h4></div>
                 <div>
-                   <ListGroups/>
+                   <ListGroups groupsList={groupsList}/>
                 </div>
                
             </div>

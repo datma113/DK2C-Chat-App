@@ -5,14 +5,19 @@ import FriendRequestAndSuggestions from './FriendRequestAndSuggestions'
 import addFriendImg from '../../assets/image/add-friends.png';
 import groupImg from '../../assets/image/group.png';
 import { useDispatch, useSelector } from "react-redux";
-import { getFriendsListFromServer } from '../../redux/action/actFriends'
+import { getFriendsListFromServer, getFriendsRequestFromServer, getGroupsChatList } from '../../redux/action/actFriends'
 import Groups from './Groups';
 const FriendHome = () => {
     const dispatch = useDispatch();
-    const [index, setindex] = useState(-1)
-    const friendsList = useSelector((state) => state.friendsList);
+    let [index, setindex] = useState(-2)
+    const friendsListFromStore = useSelector((state) => state.friendsList);
+    let friendsList = [...friendsListFromStore]
+   
     useEffect(() => {
         dispatch(getFriendsListFromServer());
+        dispatch(getFriendsRequestFromServer());
+        dispatch(getGroupsChatList());
+
 
     }, [])
     const changeOptions = (option) => {
@@ -23,8 +28,6 @@ const FriendHome = () => {
         <div className="friendhome">
 
             <div className="friendhome__friend-list" >
-                {/* {friendsList.length()} */}
-                {/* <GroupOrFriendsOption /> */}
                 <div>
                     <div className="friend row p-3  " onClick={() => changeOptions(-1)}>
 
@@ -57,13 +60,12 @@ const FriendHome = () => {
                 </div>
 
                 <hr className="" />
-                <h4>&nbsp;&nbsp;Bạn bè (5)</h4>
-                <ListFriends />
-                {/* <div style={{ height: "2000px" }}></div> */}
+                <h4>&nbsp;&nbsp;Bạn bè ({friendsList.length})</h4>
+                <ListFriends friends={friendsList} />
             </div>
 
             <div className="col-9">
-                {index === -1 ? <FriendRequestAndSuggestions /> : <Groups/>}
+                {index === -1 ? <FriendRequestAndSuggestions  /> : <Groups />}
             </div>
 
         </div>

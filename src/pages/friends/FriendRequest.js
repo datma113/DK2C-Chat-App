@@ -1,37 +1,68 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
+import { acceptFriendRequest, declineFriendRequest, getFriendsListFromServer } from '../../redux/action/actFriends';
 const FriendRequest = () => {
-    let friendRequestArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
-    const friendRequestArrMap = friendRequestArr.map((fr, index) => {
+   const dispatch = useDispatch();
+   const friendsRequestFromStore = useSelector((state) => state.friendsRequest);
+    
+    const [friendsRequest, setfriendsRequest] = useState(friendsRequestFromStore)
+    const acceptFriendRequestOnClick = (friendRequest,index) =>{
+        console.log(friendRequest.id)
+        dispatch(acceptFriendRequest(friendRequest.id))
+        dispatch(getFriendsListFromServer)
+        let temp = [...friendsRequest]
+        temp.splice(index,1)
+        setfriendsRequest(temp)
+        Swal.fire(
+            'Kết bạn thành công!',
+            `Bạn và ${friendRequest.displayName} đã trở thành bạn bè`,
+            'success'
+          )
+    }
+    const declineFriendRequestOnClick = (friendRequest,index) =>{
+        dispatch(declineFriendRequest(friendRequest.id));
+        let temp = [...friendsRequest]
+        temp.splice(index,1)
+        setfriendsRequest(temp)
+        Swal.fire(
+            'Đã từ chối lời mời kết bạn!',
+            `Bạn đã từ chối lời mời kết bạn của ${friendRequest.displayName}`,
+            'success'
+          )
+    }
+    const friendRequestArrMap = friendsRequest.map((friendRequest, index) => {
 
-        return <div > <div className="p-3 card">
+        return <div key={index}> <div className="p-3 card">
 
             <div className="card-body row">
                 <div className="col-1">
                     <div className="friend__img">
-                        <img src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/scoop_on_cat_poop_other/1800x1200_scoop_on_cat_poop_other.jpg?resize=600px:*" alt="" />
+                        <img src={friendRequest.from.imageUrl} alt="" />
                     </div>
                 </div>
                 <div className="col-9">
-                    <h5 className="card-title ">Full name of Friend</h5>
+                    <h5 className="card-title friend__display" type="button"><b>{friendRequest.from.displayName}</b></h5>
                     <p>
-                        <h6>Some messgae from friend request</h6>
+                        <h6>{friendRequest.createAt}</h6>
+                        <h6>"Message (Chưa có)"</h6>
+
                     </p>
                 </div>
 
                 <div className=" col-2 ">
-                    <button type="button" className="btn btn-light  ">Từ chối</button> &nbsp;
-                    <button type="button" className="btnFriendAccept btn btn-primary ">Xác nhận</button>
+                    <button type="button" className="btn btn-light" onClick={()=>declineFriendRequestOnClick(friendRequest.from,index)}>Từ chối</button> &nbsp;
+                    <button type="button" className="btnFriendAccept btn btn-primary " onClick={()=>acceptFriendRequestOnClick(friendRequest.from)}>Xác nhận</button>
 
                 </div>
             </div>
         </div>
-        <br></br>
+            <br></br>
         </div>
     })
     return (
         <>
-           
+
 
             <div className=" ">
                 {friendRequestArrMap}

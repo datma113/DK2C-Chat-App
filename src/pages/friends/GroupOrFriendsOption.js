@@ -3,7 +3,6 @@ import addFriendImg from '../../assets/image/add-friends.png';
 import groupImg from '../../assets/image/group.png';
 
 const GroupOrFriendsOption = () => {
-    const [index, setindex] = useState(-1)
     return (
         <div>
             <div className="friend row p-3  ">

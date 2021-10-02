@@ -10,6 +10,9 @@ import currentInbox from './returnObject/currentInbox'
 import currentRoomId from './returnNumber/currentRoomId'
 import realTimeResponse from './returnObject/realTimeResponse'
 import friendsList from './returnArray/friendsList'
+import friendsRequest from './returnArray/friendsRequest'
+import groups from './returnArray/groupsChat'
+
 const reducer = combineReducers({
      userLogin,
      userRegister,
@@ -22,6 +25,8 @@ const reducer = combineReducers({
      currentRoomId,
      realTimeResponse,
      friendsList,
+     friendsRequest,
+     groups
 })
 
 export default reducer

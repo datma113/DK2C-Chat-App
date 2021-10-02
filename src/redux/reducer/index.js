@@ -9,6 +9,9 @@ import currentInboxId from './returnNumber/currentInboxId'
 import currentInbox from './returnObject/currentInbox'
 import currentRoomId from './returnNumber/currentRoomId'
 import realTimeResponse from './returnObject/realTimeResponse'
+import friendsList from './returnArray/friendsList'
+import friendsRequest from './returnArray/friendsRequest'
+import groups from './returnArray/groupsChat'
 import isScrollBottom from './returnBoolean/isScrollBottom'
 import roomName from './returnObject/roomName'
 import membersInRoom from './returnArray/membersInRoom'
@@ -24,6 +27,9 @@ const reducer = combineReducers({
      currentInbox,
      currentRoomId,
      realTimeResponse,
+     friendsList,
+     friendsRequest,
+     groups,
      isScrollBottom,
      roomName,
      membersInRoom

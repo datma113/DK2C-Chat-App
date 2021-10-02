@@ -24,7 +24,7 @@ const Login = () => {
 
     const LOGIN_FIELDS = [
         {
-            label: "Số điện thoại",
+            label: "Tài khoản",
             type: "text",
             regexPattern: /[\D]/g,
             keyStoreToReducer: "username",

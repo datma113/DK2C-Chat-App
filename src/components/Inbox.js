@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import ReadBy from "./ReadBy";
-import { RESET_NEW_MESSAGE, STORE_CURRENT_INBOX } from "../redux/constants/constants";
-import { storeCurrentIdOfInbox, storeCurrentRoomId } from "../redux/action/actHome";
+import { RESET_NEW_MESSAGE } from "../redux/constants/constants";
+import { storeCurrentIdOfInbox, storeCurrentInbox, storeCurrentRoomId } from "../redux/action/actHome";
 import newMessageSingleton from '../module/newMessageSingleton'
 
 const Inbox = ({
@@ -16,6 +16,7 @@ const Inbox = ({
     roomId,
     senderName,
     newMessageOfInbox,
+    typeOfRoom
 }) => {
     const dispatch = useDispatch();
     const limitStringToShow = (string) => {
@@ -54,6 +55,7 @@ const Inbox = ({
         dispatch(storeCurrentIdOfInbox(inboxId));
         dispatch(storeCurrentRoomId(roomId));
         
+        
         //reset number of new Message when click into inbox
         let newMessage = newMessageSingleton.getInsance()
         newMessage.resetNewMessageRealTime()
@@ -61,11 +63,9 @@ const Inbox = ({
         let currentInbox = {
             imgUrl,
             displayName,
+            type: typeOfRoom
         };
-        dispatch({
-            type: STORE_CURRENT_INBOX,
-            currentInbox,
-        });
+        dispatch(storeCurrentInbox(currentInbox));
 
         dispatch({
             type: RESET_NEW_MESSAGE,

@@ -105,13 +105,14 @@
     display: flex;
     flex-direction: column;
     width: 72.5rem;
+    border-right: thin solid #dddddd;
 }
 
 .header-box-chat {
     display: flex;
     padding: 2rem 0;
+    height: 10rem;
     background-color: $mainLightColor;
-
     &__img {
         margin: 0 2rem;
         box-shadow: 0 0 1px $mainPurpleColor;
@@ -127,6 +128,8 @@
 
     &__title {
         flex-grow: 6;
+        max-width: 50rem;
+        word-wrap: break-word;
     }
 
     &__icon {
@@ -158,7 +161,7 @@
 .single-chat-box {
     display: flex;
     user-select: none;
-
+    margin-top: 2rem;
     &--self {
         flex-direction: row-reverse;
         margin-left: 10rem;
@@ -201,20 +204,32 @@
         max-width: 45rem;
         position: relative;
 
+        &:hover &__reaction-container__reaction {
+            display: flex;
+        }
+
+        &__time-send-message {
+            color: gray;
+        }
+
         &__reaction-container {
+            transition: 0.2s;
+
             &__reaction {
-                display: block;
                 width: 30px;
                 height: 30px;
-                background-color: yellow;
+                border: thin solid $mainDarkColor;
+                background-color: $mainLightColor;
                 overflow: hidden;
                 border-radius: 100%;
                 cursor: pointer;
                 position: absolute;
                 transition: 0.2s;
                 bottom: -2rem;
+                display: none;
+
                 &:hover {
-                    background-color: blue;
+                    background-color: $focusLightPinkColor;
                 }
                 &--self {
                     left: 0;
@@ -223,14 +238,15 @@
                     right: 0;
                 }
             }
+
             &__reaction-list {
                 position: absolute;
-                bottom: 1.5rem;
+                bottom: 0;
                 border-radius: 10rem;
                 background-color: $mainPurpleColor;
                 box-shadow: 0 0 5px black;
                 transition: 0.2s;
-                opacity: 0;
+                display: none;
                 cursor: pointer;
                 z-index: 9;
                 &--self {
@@ -242,7 +258,7 @@
             }
 
             &:hover &__reaction-list {
-               opacity: 1;
+                display: flex;
             }
         }
     }
@@ -258,11 +274,4 @@
             #f2ebf6
         );
     }
-    &:hover {
-        color: lightblue;
-    }
-}
-
-.right {
-    flex-grow: 1;
 }

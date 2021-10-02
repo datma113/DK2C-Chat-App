@@ -35,6 +35,7 @@ const TextInput = ({
                 className="w-100 input-container__input text-center"
                 placeholder=" "
                 id={id}
+                spellCheck={false}
                 defaultValue={initialValue}
                 autoComplete="off"
                 onChange={(e) => {
@@ -60,7 +61,7 @@ const TextInput = ({
 export default TextInput;
 
 TextInput.propTypes = {
-    id: PropTypes.number,
+    id: PropTypes.string,
     label: PropTypes.string,
     type: PropTypes.string,
     checkRegex: PropTypes.func,

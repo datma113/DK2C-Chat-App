@@ -12,7 +12,6 @@ const InboxList = () => {
     const [loadingOlderInboxs, setloadingOlderInboxs] = useState(1);
     const authentication = useSelector((state) => state.authentication);
     
-    
     const loadingOlderFriendsInboxs = () => {
         setloadingOlderInboxs((n) => n + 1);
         dispatch(getOlderInboxsFromServer(loadingOlderInboxs));
@@ -21,6 +20,7 @@ const InboxList = () => {
     useEffect(() => {
         dispatch(getInboxsFromServer());
     }, [dispatch]);
+    
     const senderNameOfTypeOne = (isMyself) => {
         return isMyself ? "Bạn: " : "";
     };
@@ -76,6 +76,7 @@ const InboxList = () => {
                 isActive={IS_ACTIVE}
                 senderName={senderName}
                 newMessageOfInbox={newMessageOfInbox}
+                typeOfRoom={inbox.room.type}
             />
         );
     });

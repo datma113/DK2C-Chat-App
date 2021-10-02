@@ -4,6 +4,7 @@ import {
     STORE_REAL_TIME_RESPONSE,
     UPDATE_LAST_MESSAGE_IN_INBOX,
     UPDATE_MESSAGE_REALTIME,
+    UPDATE_REACTION_REALTIME,
 } from "../redux/constants/constants";
 
 import newMessageSingleton from "./newMessageSingleton";
@@ -22,23 +23,26 @@ const socketModule = (function () {
     };
 
     function connect(user, dispatch) {
-        let socket = new SockJS("http://localhost:8080/ws");
+        const WEB_SOCKET_URL = process.env.REACT_APP_WEB_SOCKET
+        let socket = new SockJS(WEB_SOCKET_URL);
         stompClient = Stomp.over(socket);
+
         const onConnected = () => {
             stompClient.subscribe("/users/queue/messages", function (resp) {
                 const data = JSON.parse(resp.body);
-                const MESSAGE = [data];
-
-                dispatch({
-                    type: UPDATE_MESSAGE_REALTIME,
-                    realTimeMessage: MESSAGE,
-                });
+                const MESSAGE = [{...data, reactions: []}];
 
                 dispatch({
                     type: STORE_REAL_TIME_RESPONSE,
                     data,
                 });
 
+                dispatch({
+                    type: UPDATE_MESSAGE_REALTIME,
+                    realTimeMessage: MESSAGE,
+                });
+
+             
                 dispatch({
                     type: UPDATE_LAST_MESSAGE_IN_INBOX,
                     lastMessage: data,
@@ -56,6 +60,16 @@ const socketModule = (function () {
                     document.title = `DKC APP`;
                 }
             });
+
+            stompClient.subscribe("/users/queue/reaction", function(resp)  {
+                const data = JSON.parse(resp.body);
+                
+                dispatch({
+                    type: UPDATE_REACTION_REALTIME,
+                    messageWithRealTimeReactionSocket: data,
+                });
+
+            })
         };
 
         stompClient.connect(user, onConnected);
@@ -74,6 +88,10 @@ const socketModule = (function () {
         stompClient.send("/app/chat", {}, JSON.stringify(FRIEND));
     }
 
+    function expressReaction(reaction) {
+        stompClient.send("/app/reaction", {}, JSON.stringify(reaction));
+    }
+
     return {
         connect: function (userId, token) {
             connect(userId, token);
@@ -84,6 +102,9 @@ const socketModule = (function () {
         sendMessageToOneFriend: function (roomId, content, type) {
             sendMessageToOneFriend(roomId, content, type);
         },
+        expressReaction: function(reaction) {
+            expressReaction(reaction)
+        }
     };
 })();
 export default socketModule;

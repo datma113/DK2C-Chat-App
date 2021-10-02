@@ -6,12 +6,14 @@ import BoxChat from "./BoxChat";
 import HeaderOfBoxChat from "./HeaderOfBoxChat";
 import Introducing from "./Introducing";
 import SendMessage from "./SendMessage";
+import HeaderOfInfoRoom from "../../components/HeaderOfInfoRoom";
+import InfoOfRoom from "../../components/InfoOfRoom";
+import OptionOfRoom from "./OptionOfRoom";
 const Home = () => {
     const authentication = useSelector((state) => state.authentication);
     const currentInboxId = useSelector((state) => state.currentInboxId);
     const currentRoomId = useSelector((state) => state.currentRoomId);
     const NOT_EXISTS_CURRENT_ID_BOX_CHAT = 0;
-
     return (
         <div>
             {!authentication.isLoggin && <Welcome />}
@@ -28,7 +30,13 @@ const Home = () => {
                                 <BoxChat />
                                 <SendMessage roomId={currentRoomId} />
                             </div>
-                            <div className="right">NOTHING HERE</div>
+                            <div className="info-room-right">
+                                <HeaderOfInfoRoom />
+                                <div className="info-room-right__scroll">
+                                    <InfoOfRoom />
+                                    <OptionOfRoom roomId={currentRoomId}/>
+                                </div>
+                            </div>
                         </>
                     ) : (
                         <div className=" d-flex align-items-center flex-column mt-5">

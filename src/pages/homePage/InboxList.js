@@ -34,7 +34,7 @@ const InboxList = () => {
         const TYPE_ROOM_GROUP = "GROUP";
         const IS_ACTIVE = currentInboxId === inbox.id;
         const CURRENT_ROOM_ID = inbox.room.id;
-       
+        
         const MY_ID = authentication.user.id;
         const SENDER_ID = inbox.lastMessage.sender.id;
         const IS_MYSELF = MY_ID === SENDER_ID ? true : false;

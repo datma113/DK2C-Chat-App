@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import addFriendImg from '../../assets/image/add-friends.png';
 import FriendRequest from './FriendRequest';
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ListFriends from './ListFriends'
 import FriendRequestAndSuggestions from './FriendRequestAndSuggestions'
-
 import addFriendImg from '../../assets/image/add-friends.png';
 import groupImg from '../../assets/image/group.png';
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +11,7 @@ const FriendHome = () => {
     let [index, setindex] = useState(-2)
     const friendsListFromStore = useSelector((state) => state.friendsList);
     let friendsList = [...friendsListFromStore]
-   
+
     useEffect(() => {
         dispatch(getFriendsListFromServer());
         dispatch(getFriendsRequestFromServer());
@@ -65,7 +64,7 @@ const FriendHome = () => {
             </div>
 
             <div className="col-9">
-                {index === -1 ? <FriendRequestAndSuggestions  /> : <Groups />}
+                {index === -1 ? <FriendRequestAndSuggestions /> : <Groups />}
             </div>
 
         </div>

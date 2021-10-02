@@ -2,7 +2,7 @@ const API = process.env.REACT_APP_BASE_URL
 
 /**authentication */
 const AUTH = 'auth/'
-const SIGN_UP = 'signup'
+const SIGN_UP = 'signup/'
 const ROOM = 'rooms/'
 
 export const API_SIGN_IN = API + AUTH + 'signin'

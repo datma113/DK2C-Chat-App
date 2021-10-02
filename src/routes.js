@@ -3,10 +3,9 @@ import Register from "./pages/welcome/Register";
 import Home from "./pages/homePage/Home";
 import NotFound from "./pages/404/NotFound";
 import FriendHome from "./pages/friends/FriendHome";
-import ListFriends from "./pages/friends/ListFriends";
 
 const routes = [
-     { path: ["/","/message"], component: Home, exact: true },
+     { path: ["/"], component: Home, exact: true },
      { path: ["/login"], component: Login, exact: true },
      { path: ["/register"], component: Register, exact: true },
      { path: ["/friends"], component: FriendHome, exact: true },

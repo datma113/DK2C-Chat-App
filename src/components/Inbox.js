@@ -16,6 +16,7 @@ const Inbox = ({
     roomId,
     senderName,
     newMessageOfInbox,
+    typeOfRoom
 }) => {
     const dispatch = useDispatch();
     const limitStringToShow = (string) => {
@@ -62,6 +63,7 @@ const Inbox = ({
         let currentInbox = {
             imgUrl,
             displayName,
+            type: typeOfRoom
         };
         dispatch(storeCurrentInbox(currentInbox));
 

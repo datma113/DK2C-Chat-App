@@ -76,6 +76,7 @@ const InboxList = () => {
                 isActive={IS_ACTIVE}
                 senderName={senderName}
                 newMessageOfInbox={newMessageOfInbox}
+                typeOfRoom={inbox.room.type}
             />
         );
     });

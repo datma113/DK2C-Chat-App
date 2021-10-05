@@ -11,7 +11,7 @@ const InboxList = () => {
     const currentInboxId = useSelector((state) => state.currentInboxId);
     const [loadingOlderInboxs, setloadingOlderInboxs] = useState(1);
     const authentication = useSelector((state) => state.authentication);
-    
+
     const loadingOlderFriendsInboxs = () => {
         setloadingOlderInboxs((n) => n + 1);
         dispatch(getOlderInboxsFromServer(loadingOlderInboxs));
@@ -20,13 +20,13 @@ const InboxList = () => {
     useEffect(() => {
         dispatch(getInboxsFromServer());
     }, [dispatch]);
-    
+
     const senderNameOfTypeOne = (isMyself) => {
         return isMyself ? "Bạn: " : "";
     };
 
     const senderNameOfTypeGroup = (isMyself, senderName) => {
-        return isMyself ? "Bạn: " : senderName+": ";
+        return isMyself ? "Bạn: " : senderName + ": ";
     };
 
     const inboxsMap = inboxs.map((inbox, index) => {
@@ -34,11 +34,13 @@ const InboxList = () => {
         const TYPE_ROOM_GROUP = "GROUP";
         const IS_ACTIVE = currentInboxId === inbox.id;
         const CURRENT_ROOM_ID = inbox.room.id;
-        
+
         const MY_ID = authentication.user.id;
-        const SENDER_ID = inbox.lastMessage.sender.id;
+        const SENDER_ID = inbox.lastMessage.sender ? inbox.lastMessage.sender.id : "";
         const IS_MYSELF = MY_ID === SENDER_ID ? true : false;
-        const NAME_OF_LAST_SENDER = inbox.lastMessage.sender.displayName;
+        const NAME_OF_LAST_SENDER = inbox.lastMessage.sender
+            ? inbox.lastMessage.sender.displayName
+            : "thông báo";
 
         let imgUrl = "";
         let displayName = "";
@@ -60,8 +62,8 @@ const InboxList = () => {
 
         const newMessageOfInbox = {
             isMyself: IS_MYSELF,
-            countNewMessage: inbox.countNewMessage
-        }
+            countNewMessage: inbox.countNewMessage,
+        };
 
         return (
             <Inbox
@@ -83,7 +85,6 @@ const InboxList = () => {
 
     return (
         <div className="home__inbox-list">
-           
             {inboxsMap}
             <div
                 className="home__inbox-list__older-inboxs center mb-5"

@@ -1,8 +1,9 @@
 import React from "react";
 
 const SendImage = () => {
-    const test = (e) => {
-        console.log(e.target.file);
+    const handleSendImageEvent = (e) => {
+         const IMAGES = e.target.files
+        console.log(e.target.files);
     };
 
     return (
@@ -14,9 +15,9 @@ const SendImage = () => {
                 id="sendingFile"
                 name="image"
                 accept="image/gif,image/jpeg,image/jpg,image/png"
-                multiple=""
+                multiple
                 data-original-title="upload photos"
-                onChange={(e) => test(e)}
+                onChange={(e) => handleSendImageEvent(e)}
             />
         </label>
     );

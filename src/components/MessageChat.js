@@ -92,11 +92,9 @@ const MessageChat = ({ boxChat }) => {
                     className={`single-chat-box__message ${addSelfBackgroundClassForMessage()} mt-3`}
                 >
                     {message.content}
-                    <div className={`single-chat-box__message__reaction-container`}>
+                    <div className={`single-chat-box__message__reaction-container `}>
                         <div
-                            className={`single-chat-box__message__reaction-container__reaction ${addSelfSideReaction()}
-                            center
-                            `}
+                            className={`single-chat-box__message__reaction-container__reaction ${addSelfSideReaction()} center `}
                         >
                             <i className={showTheFirstReactionsIfExists()}></i>
                         </div>

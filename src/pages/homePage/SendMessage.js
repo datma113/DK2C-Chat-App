@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import socketModule from "../../module/socketModule";
 import { SCROLL_BOTTOM_WHEN_SEND_MESSAGE } from "../../redux/constants/constants";
+import SendImage from "./SendImage";
 
 const SendMessage = ({ roomId }) => {
     const [messageToSend, setmessageToSend] = useState("");
@@ -40,7 +41,7 @@ const SendMessage = ({ roomId }) => {
                 onKeyDown={(e) => handleEnterTextarea(e)}
             />
             <div className="center send-message-container__icon-container">
-                {" "}
+                <SendImage />
                 <i className="fab fa-telegram-plane" onClick={() => sendMessageToFriend()}></i>
             </div>
         </div>

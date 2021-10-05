@@ -18,7 +18,7 @@ const FriendHome = () => {
         dispatch(getGroupsChatList());
 
 
-    }, [])
+    }, [dispatch])
     const changeOptions = (option) => {
         setindex(option)
     }

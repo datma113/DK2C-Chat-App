@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import MessageChatByType from "./MessageChatByType";
+import SystemMessageInChat from "./SystemMessageInChat";
 
 const MessageChat = ({ boxChat }) => {
     const authentication = useSelector((state) => state.authentication);
@@ -9,7 +10,7 @@ const MessageChat = ({ boxChat }) => {
     const boxChatMap = boxChat.map((message, index, originalBoxChat) => {
         switch (message.type) {
             case "SYSTEM":
-                return <div>system</div>;
+                return <SystemMessageInChat key={index} message={message} />;
             case "TEXT":
                 return (
                     <MessageChatByType
@@ -22,7 +23,7 @@ const MessageChat = ({ boxChat }) => {
                     />
                 );
             case "VIDEO":
-                const VIDEO_SENDED = message.content
+                const VIDEO_SENDED = message.content;
                 return (
                     <MessageChatByType
                         key={index}
@@ -34,8 +35,8 @@ const MessageChat = ({ boxChat }) => {
                         videoSended={VIDEO_SENDED}
                     />
                 );
-                case "IMAGE": 
-                const IMAGE_SENDED = message.content
+            case "IMAGE":
+                const IMAGE_SENDED = message.content;
                 return (
                     <MessageChatByType
                         key={index}
@@ -48,7 +49,7 @@ const MessageChat = ({ boxChat }) => {
                     />
                 );
             default:
-                return <> </>
+                return <> </>;
         }
     });
     return <div>{boxChatMap}</div>;

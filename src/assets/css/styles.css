@@ -690,6 +690,16 @@ a {
   border-radius: 100%;
 }
 
+.system-message {
+  margin: 1rem 0;
+}
+.system-message__content {
+  background-color: #FF6F91;
+  color: #FBFBFB;
+  border-radius: 100px;
+  padding: 0.25rem 2rem;
+}
+
 /*variables*/
 
 /*# sourceMappingURL=styles.css.map */

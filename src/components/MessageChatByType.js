@@ -38,7 +38,12 @@ const MessageChatByType = ({
         const THE_FIRST_INDEX_MESSAGE = 0;
 
         const IS_EXIST_PREVIOUS_MESSAGE = THE_PREVIOUS_MESSAGE ?? false;
-        if (index > THE_FIRST_INDEX_MESSAGE && IS_EXIST_PREVIOUS_MESSAGE) {
+        const TYPE_SYSTEM_MESSAGE = "SYSTEM";
+        if (
+            index > THE_FIRST_INDEX_MESSAGE &&
+            IS_EXIST_PREVIOUS_MESSAGE &&
+            THE_PREVIOUS_MESSAGE.type !== TYPE_SYSTEM_MESSAGE
+        ) {
             const PREVIOUS_SENDER_ID = THE_PREVIOUS_MESSAGE.sender.id;
             return PREVIOUS_SENDER_ID === senderId ? "d-none" : "";
         }

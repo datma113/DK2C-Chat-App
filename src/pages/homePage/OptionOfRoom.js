@@ -1,11 +1,11 @@
 import React from "react";
-import CreateRoom from "../../modal/CreateRoom";
 import MembersInRoom from "../../modal/MembersInRoom";
 import BlockUser from "../../modal/BlockUser";
 import ViewPersonalPage from "../../modal/ViewPersonalPage";
 import ReportUser from "../../modal/ReportUser";
 import DeleteConversation from "../../modal/DeleteConversation";
 import { useSelector } from "react-redux";
+import AddNewMembers from "../../modal/AddNewMembers";
 
 const OptionOfRoom = ({ roomId }) => {
     const currentInbox = useSelector((state) => state.currentInbox);
@@ -16,7 +16,7 @@ const OptionOfRoom = ({ roomId }) => {
             {currentInbox.type === TYPE_ROOM_GROUP && (
                 <div>
                     <MembersInRoom roomId={roomId} />
-                    <CreateRoom />
+                    <AddNewMembers />
                     <ViewPersonalPage />
                     <BlockUser />
                     <ReportUser />

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_EDIT_ROOM_NAME, API_GET_MEMBERS_IN_ROOM } from "../constants/api";
+import { API_ADD_NEW_MEMBERS, API_EDIT_ROOM_NAME, API_GET_MEMBERS_IN_ROOM } from "../constants/api";
 import {
     STORE_MEMBERS_IN_ROOM,
     STORE_ROOM_NAME,
@@ -47,5 +47,15 @@ export const getMembersInRoom = (roomId) => {
     return dispatch => axios.get(API_GET_MEMBERS_IN_ROOM + roomId)
     .then((resp) => {
         dispatch(storeMembersInRoom(resp.data))
+    })
+}
+
+export const addNewMembers = (members, roomId) => {
+    return axios.post(API_ADD_NEW_MEMBERS + roomId, members)
+    .then(resp => {
+        return Promise.resolve()
+    })
+    .catch(err => {
+        console.log(err);
     })
 }

@@ -1,6 +1,6 @@
 import React from "react";
 
-const MyCustomModal = ({ id, headerTitle, inner }) => {
+const MyCustomModal = ({ id, headerTitle, inner, functionWhenClick, isDisabledConfirmBtn }) => {
     return (
         <>
             <div
@@ -14,7 +14,7 @@ const MyCustomModal = ({ id, headerTitle, inner }) => {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="exampleModalLabel">
-                               {headerTitle}
+                                {headerTitle}
                             </h5>
                             <button
                                 type="button"
@@ -27,13 +27,20 @@ const MyCustomModal = ({ id, headerTitle, inner }) => {
                         <div className="modal-footer">
                             <button
                                 type="button"
-                                className="btn btn-secondary"
+                                className="btn btn-light btn-lg"
                                 data-mdb-dismiss="modal"
                             >
-                                x
+                                Hủy
                             </button>
-                            <button type="button" className="btn btn-primary">
-                                Save changes
+                            <button
+                                type="button"
+                                className={`btn btn-primary btn-lg ${
+                                    isDisabledConfirmBtn ? "disabled" : ""
+                                }`}
+                                onClick={functionWhenClick}
+                                data-mdb-dismiss="modal"
+                            >
+                                xác nhận
                             </button>
                         </div>
                     </div>

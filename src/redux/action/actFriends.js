@@ -5,7 +5,6 @@ import {
 } from "../constants/constants";
 
 export const storeFriendsList = (friends) => {
-    console.log("store actFriend:" + friends.length)
     return {
         type: STORE_FRIENDS_LIST,
         friends,
@@ -17,8 +16,6 @@ export const getFriendsListFromServer = () => {
             .get(API_GET_FRIENDS_LIST)
             .then((resp) => {
                 dispatch(storeFriendsList(resp.data.content));
-
-
             })
             .catch(() => dispatch(storeFriendsList([])));
     };

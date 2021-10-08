@@ -55,3 +55,10 @@
 
      }
 }
+
+.add-new-member-container {
+     transition: 0.2s;
+     &:hover {
+          background-color: $hoverPurpleColor;
+     }
+}

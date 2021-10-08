@@ -41,7 +41,7 @@ const SendMessage = ({ roomId }) => {
                 onKeyDown={(e) => handleEnterTextarea(e)}
             />
             <div className="center send-message-container__icon-container">
-                <SendImage />
+                <SendImage roomId={roomId}/>
                 <i className="fab fa-telegram-plane" onClick={() => sendMessageToFriend()}></i>
             </div>
         </div>

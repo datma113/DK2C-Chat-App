@@ -54,7 +54,7 @@ const BoxChat = () => {
             onScroll={(e) => loadOlderMessageInBoxChat(e)}
             onMouseEnter={() => setFalseInitialWhenMouseEnter()}
         >
-            <MessageChat boxChat={boxChat} />
+            <MessageChat  boxChat={boxChat} />
             {isInitialize && <AlwaysScrollToBottom />}
             {isScrollBottom && <AlwaysScrollToBottom />}
         </div>

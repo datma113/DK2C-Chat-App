@@ -8,7 +8,11 @@ import {
     STORE_MESSAGE_IN_BOX_CHAT,
     STORE_OLDER_INBOXS,
 } from "../constants/constants";
-import { API_GET_INBOXS, API_GET_MESSAGE_IN_CHAT_BOX } from "../constants/api";
+import {
+    API_GET_FILE_URL_WHEN_SENDED,
+    API_GET_INBOXS,
+    API_GET_MESSAGE_IN_CHAT_BOX,
+} from "../constants/api";
 
 export const storeInboxs = (inboxs) => {
     return {
@@ -17,12 +21,12 @@ export const storeInboxs = (inboxs) => {
     };
 };
 
-const storeOlderInboxs = olderInboxs => {
+const storeOlderInboxs = (olderInboxs) => {
     return {
         type: STORE_OLDER_INBOXS,
-        olderInboxs
-    }
-}
+        olderInboxs,
+    };
+};
 
 export const getOlderInboxsFromServer = (page) => {
     return (dispatch) => {
@@ -33,7 +37,7 @@ export const getOlderInboxsFromServer = (page) => {
             })
             .catch(() => dispatch(storeInboxs([])));
     };
-}
+};
 
 export const getInboxsFromServer = () => {
     return (dispatch) => {
@@ -72,20 +76,41 @@ export const getMessageInBoxChat = (inboxId, page = 0) => {
 export const storeCurrentIdOfInbox = (id) => {
     return {
         type: STORE_CURRENT_NUMBER_ID_INBOX,
-        id
+        id,
     };
 };
 
 export const storeCurrentRoomId = (id) => {
     return {
         type: STORE_CURRENT_ROOM_ID,
-        id
-    }
-}
+        id,
+    };
+};
 
 export const storeCurrentInbox = (currentInbox) => {
     return {
         type: STORE_CURRENT_INBOX,
         currentInbox,
-    }
-}
+    };
+};
+
+export const getURLOfFileWhenSended = (files) => {
+    const CONFIG_HEADER_MULTIPART_FORM_DATA = {
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+    };
+    return axios
+        .post(API_GET_FILE_URL_WHEN_SENDED, files, CONFIG_HEADER_MULTIPART_FORM_DATA)
+        .then((resp) => {
+            return Promise.resolve(resp.data);
+        })
+        .catch((err) => {
+            const MESSAGE =
+                (err.response && err.response.data && err.response.data.message) ||
+                err.message ||
+                err.toString();
+
+            return Promise.reject(MESSAGE);
+        });
+};

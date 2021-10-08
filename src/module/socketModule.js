@@ -23,14 +23,14 @@ const socketModule = (function () {
     };
 
     function connect(user, dispatch) {
-        const WEB_SOCKET_URL = process.env.REACT_APP_WEB_SOCKET
+        const WEB_SOCKET_URL = process.env.REACT_APP_WEB_SOCKET;
         let socket = new SockJS(WEB_SOCKET_URL);
         stompClient = Stomp.over(socket);
 
         const onConnected = () => {
             stompClient.subscribe("/users/queue/messages", function (resp) {
                 const data = JSON.parse(resp.body);
-                const MESSAGE = [{...data, reactions: []}];
+                const MESSAGE = [{ ...data, reactions: [] }];
 
                 dispatch({
                     type: STORE_REAL_TIME_RESPONSE,
@@ -42,7 +42,6 @@ const socketModule = (function () {
                     realTimeMessage: MESSAGE,
                 });
 
-             
                 dispatch({
                     type: UPDATE_LAST_MESSAGE_IN_INBOX,
                     lastMessage: data,
@@ -61,15 +60,14 @@ const socketModule = (function () {
                 }
             });
 
-            stompClient.subscribe("/users/queue/reaction", function(resp)  {
+            stompClient.subscribe("/users/queue/reaction", function (resp) {
                 const data = JSON.parse(resp.body);
-                
+
                 dispatch({
                     type: UPDATE_REACTION_REALTIME,
                     messageWithRealTimeReactionSocket: data,
                 });
-
-            })
+            });
         };
 
         stompClient.connect(user, onConnected);
@@ -102,9 +100,9 @@ const socketModule = (function () {
         sendMessageToOneFriend: function (roomId, content, type) {
             sendMessageToOneFriend(roomId, content, type);
         },
-        expressReaction: function(reaction) {
-            expressReaction(reaction)
-        }
+        expressReaction: function (reaction) {
+            expressReaction(reaction);
+        },
     };
 })();
 export default socketModule;

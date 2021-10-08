@@ -698,11 +698,12 @@ a {
 }
 
 .system-message {
-  margin: 1rem 0;
+  margin: 0.25rem 0;
 }
 .system-message__content {
   background-color: #FF6F91;
   color: #FBFBFB;
+  max-width: 30rem;
   border-radius: 100px;
   padding: 0.25rem 2rem;
 }

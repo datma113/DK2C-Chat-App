@@ -53,6 +53,7 @@ export const getMembersInRoom = (roomId) => {
 export const addNewMembers = (members, roomId) => {
     return axios.post(API_ADD_NEW_MEMBERS + roomId, members)
     .then(resp => {
+        console.log(resp.data)
         return Promise.resolve()
     })
     .catch(err => {

@@ -53,10 +53,12 @@ const MessageChatByType = ({
 
         const THE_LAST_INDEX_MESSAGE = originalBoxChat.length - 1;
         const THE_FIRST_INDEX_MESSAGE = 0;
-
+        const THE_NEXT_MESSAGE = originalBoxChat[index + 1];
+        const TYPE_OF_MESSAGE = "SYSTEM";
+       
         if (index === THE_LAST_INDEX_MESSAGE) return TIME_SHOWED;
-        else if (index > THE_FIRST_INDEX_MESSAGE) {
-            const NEXT_SENDER_ID = originalBoxChat[index + 1].sender.id;
+        else if (index > THE_FIRST_INDEX_MESSAGE && THE_NEXT_MESSAGE.type !== TYPE_OF_MESSAGE) {
+            const NEXT_SENDER_ID = THE_NEXT_MESSAGE.sender.id;
             const CURRENT_SENDER_ID = message.sender.id;
             return CURRENT_SENDER_ID !== NEXT_SENDER_ID ? TIME_SHOWED : "";
         }

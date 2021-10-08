@@ -32,6 +32,8 @@ const socketModule = (function () {
                 const data = JSON.parse(resp.body);
                 const MESSAGE = [{ ...data, reactions: [] }];
 
+                console.log(data);
+
                 dispatch({
                     type: STORE_REAL_TIME_RESPONSE,
                     data,

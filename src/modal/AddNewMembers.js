@@ -23,7 +23,7 @@ const AddNewMembers = () => {
 
     const changeStateMembersNeedToAdd = (e, friendId) => {
         const STATUS_OF_CHECKBOX = e.target.checked;
-       
+
         const friendInserted = {
             addByUserId: authentication.user.id,
             userId: friendId,
@@ -33,15 +33,17 @@ const AddNewMembers = () => {
 
         if (STATUS_OF_CHECKBOX) friendsAddedClone.push(friendInserted);
         else friendsAddedClone = friendsAddedClone.filter((friend) => friend.userId !== friendId);
-        
-        checkEmptyFriendsAdded(friendsAddedClone.length)
+
+        checkEmptyFriendsAdded(friendsAddedClone.length);
         setfriends_added(friendsAddedClone);
     };
 
-  
-
     const confirmAddNewMember = () => {
-        addNewMembers(friendsAdded, currentRoomId).then(() => {});
+        addNewMembers(friendsAdded, currentRoomId).then(() => {
+            let friendsAddedClone = [...friendsAdded];
+            friendsAddedClone.length = 0;
+            setfriends_added(friendsAddedClone);
+        });
     };
 
     const friendListMap = friendsList.map((friend, index) => {

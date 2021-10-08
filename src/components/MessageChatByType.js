@@ -34,10 +34,12 @@ const MessageChatByType = ({
     };
 
     const hideImageWhenDupplicateSender = (senderId) => {
+        const THE_PREVIOUS_MESSAGE = originalBoxChat[index - 1];
         const THE_FIRST_INDEX_MESSAGE = 0;
-        const IS_EXIST_PREVIOUS_MESSAGE = originalBoxChat[index - 1].sender ?? false;
+
+        const IS_EXIST_PREVIOUS_MESSAGE = THE_PREVIOUS_MESSAGE ?? false;
         if (index > THE_FIRST_INDEX_MESSAGE && IS_EXIST_PREVIOUS_MESSAGE) {
-            const PREVIOUS_SENDER_ID = originalBoxChat[index - 1].sender.id;
+            const PREVIOUS_SENDER_ID = THE_PREVIOUS_MESSAGE.sender.id;
             return PREVIOUS_SENDER_ID === senderId ? "d-none" : "";
         }
         return "";
@@ -55,7 +57,7 @@ const MessageChatByType = ({
         const THE_FIRST_INDEX_MESSAGE = 0;
         const THE_NEXT_MESSAGE = originalBoxChat[index + 1];
         const TYPE_OF_MESSAGE = "SYSTEM";
-       
+
         if (index === THE_LAST_INDEX_MESSAGE) return TIME_SHOWED;
         else if (index > THE_FIRST_INDEX_MESSAGE && THE_NEXT_MESSAGE.type !== TYPE_OF_MESSAGE) {
             const NEXT_SENDER_ID = THE_NEXT_MESSAGE.sender.id;

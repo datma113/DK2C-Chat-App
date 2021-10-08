@@ -31,8 +31,7 @@ const socketModule = (function () {
             stompClient.subscribe("/users/queue/messages", function (resp) {
                 const data = JSON.parse(resp.body);
                 const MESSAGE = [{ ...data, reactions: [] }];
-
-                console.log(data);
+                const TYPE_MESSAGE_SYSTEM = "SYSTEM";
 
                 dispatch({
                     type: STORE_REAL_TIME_RESPONSE,
@@ -49,16 +48,18 @@ const socketModule = (function () {
                     lastMessage: data,
                 });
 
-                const MY_ID = user.userId;
-                const SENDER_ID = data.sender.id;
+                if (data.type !== TYPE_MESSAGE_SYSTEM) {
+                    const MY_ID = user.userId;
+                    const SENDER_ID = data.sender.id;
 
-                let notify = getNotifyNewMessage(newMessage);
+                    let notify = getNotifyNewMessage(newMessage);
 
-                if (!isSelfSide(MY_ID, SENDER_ID)) {
-                    document.title = `(${notify}) DKC APP`;
-                } else {
-                    newMessage.resetNewMessageRealTime();
-                    document.title = `DKC APP`;
+                    if (!isSelfSide(MY_ID, SENDER_ID)) {
+                        document.title = `(${notify}) DKC APP`;
+                    } else {
+                        newMessage.resetNewMessageRealTime();
+                        document.title = `DKC APP`;
+                    }
                 }
             });
 

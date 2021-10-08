@@ -1,16 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 import TagOfOptionRoom from "../components/TagOfOptionRoom";
-import { getMembersInRoom } from "../redux/action/actInfoRoom";
 import MyCustomModal from "./MyCustomModal";
 
-const MembersInRoom = ({ roomId }) => {
+const MembersInRoom = () => {
     const membersInRoom = useSelector((state) => state.membersInRoom);
-    const dispatch = useDispatch();
 
     const loadMembersInRoom = () => {
-        dispatch(getMembersInRoom(roomId));
     };
 
     const membersInRoomMap = membersInRoom.map((member, index) => {

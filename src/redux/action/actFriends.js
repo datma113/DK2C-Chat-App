@@ -15,7 +15,8 @@ export const getFriendsListFromServer = () => {
         return axios
             .get(API_GET_FRIENDS_LIST)
             .then((resp) => {
-                dispatch(storeFriendsList(resp.data.content));
+                dispatch(storeFriendsList(resp.data.content))
+                return Promise.resolve(resp.data.content)
             })
             .catch(() => dispatch(storeFriendsList([])));
     };

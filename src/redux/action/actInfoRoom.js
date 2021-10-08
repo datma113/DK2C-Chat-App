@@ -3,6 +3,7 @@ import { API_ADD_NEW_MEMBERS, API_EDIT_ROOM_NAME, API_GET_MEMBERS_IN_ROOM } from
 import {
     STORE_MEMBERS_IN_ROOM,
     STORE_ROOM_NAME,
+    UPDATE_MEMBERS_IN_ROOM,
     UPDATE_NAME_OF_HEADER_CHAT_WHEN_EDIT_ROOM_NAME,
     UPDATE_ROOM_NAME,
 } from "../constants/constants";
@@ -28,7 +29,7 @@ export const editRoomName = (id, name) => {
             dispatch({
                 type: UPDATE_ROOM_NAME,
                 roomId: id,
-                newRoomName: resp.data
+                newRoomName: resp.data,
             });
 
             dispatch(updateNameOfHeaderChatWhenEditRoomName(name.name));
@@ -37,25 +38,33 @@ export const editRoomName = (id, name) => {
         });
 };
 
-const storeMembersInRoom = members => {
+const storeMembersInRoom = (members) => {
     return {
         type: STORE_MEMBERS_IN_ROOM,
-        members
-    }
-}
+        members,
+    };
+};
 export const getMembersInRoom = (roomId) => {
-    return dispatch => axios.get(API_GET_MEMBERS_IN_ROOM + roomId)
-    .then((resp) => {
-        dispatch(storeMembersInRoom(resp.data))
-    })
-}
+    return (dispatch) =>
+        axios.get(API_GET_MEMBERS_IN_ROOM + roomId).then((resp) => {
+            dispatch(storeMembersInRoom(resp.data));
+        });
+};
 
 export const addNewMembers = (members, roomId) => {
-    return axios.post(API_ADD_NEW_MEMBERS + roomId, members)
-    .then(resp => {
-        return Promise.resolve()
-    })
-    .catch(err => {
-        console.log(err);
-    })
-}
+    return axios
+        .post(API_ADD_NEW_MEMBERS + roomId, members)
+        .then((resp) => {
+            return Promise.resolve(resp.data);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
+
+export const updateNewMembersInRoom = (members) => {
+    return {
+        type: UPDATE_MEMBERS_IN_ROOM,
+        members,
+    };
+};

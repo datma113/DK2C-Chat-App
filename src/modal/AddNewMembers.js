@@ -3,13 +3,14 @@ import { useSelector } from "react-redux";
 import TagOfOptionRoom from "../components/TagOfOptionRoom";
 import MyCustomModal from "./MyCustomModal";
 import Friend from "../pages/friends/Friend";
-import { addNewMembers } from "../redux/action/actInfoRoom";
+import { addNewMembers, updateNewMembersInRoom } from "../redux/action/actInfoRoom";
+import { useDispatch } from "react-redux";
 
 const AddNewMembers = ({ friendsList }) => {
     const authentication = useSelector((state) => state.authentication);
     const currentRoomId = useSelector((state) => state.currentRoomId);
     const membersInRoom = useSelector((state) => state.membersInRoom);
-
+    const dispatch = useDispatch();
     const [friendsAdded, setfriendsAdded] = useState([]);
 
     const [isEmptyFriendsAdded, setIsEmptyFriendsAdded] = useState(true);
@@ -37,23 +38,23 @@ const AddNewMembers = ({ friendsList }) => {
         setfriendsAdded(friendsAddedClone);
     };
 
-    const confirmAddNewMember = () => {
-        addNewMembers(friendsAdded, currentRoomId).then(() => {
-            let friendsAddedClone = [...friendsAdded];
-
-            friendsAddedClone.length = 0;
-
-            setfriendsAdded(friendsAddedClone);
-        });
-    };
-
     const convertMembersInRoomData = membersInRoom.map((member) => member.user.id);
 
     const filterMembersAlreadyInRoom = friendsList.filter((friend) => {
         const FRIEND_ID = friend.friend.id;
         return !convertMembersInRoomData.includes(FRIEND_ID);
     });
-   
+
+    const confirmAddNewMember = () => {
+        addNewMembers(friendsAdded, currentRoomId).then((newMembersInRoom) => {
+            let friendsAddedClone = [...friendsAdded];
+            friendsAddedClone.length = 0;
+            setfriendsAdded(friendsAddedClone);
+        
+            dispatch(updateNewMembersInRoom(newMembersInRoom))
+        });
+    };
+
     const friendListMap = filterMembersAlreadyInRoom.map((friend, index) => {
         return (
             <div className="add-new-member-container row" key={index}>
@@ -74,7 +75,7 @@ const AddNewMembers = ({ friendsList }) => {
     });
 
     const renderAddNewMembers = () => {
-        return <>{friendListMap}</>;
+        return friendListMap.length > 0 ? friendListMap : <div>không có ai</div>;
     };
     return (
         <>

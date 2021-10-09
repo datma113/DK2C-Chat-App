@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import MembersInRoom from "../../modal/MembersInRoom";
 import BlockUser from "../../modal/BlockUser";
 import ViewPersonalPage from "../../modal/ViewPersonalPage";
@@ -7,7 +7,6 @@ import DeleteConversation from "../../modal/DeleteConversation";
 import { useDispatch, useSelector } from "react-redux";
 import AddNewMembers from "../../modal/AddNewMembers";
 import { getFriendsListFromServer } from "../../redux/action/actFriends";
-import { getMembersInRoom } from "../../redux/action/actInfoRoom";
 
 const OptionOfRoom = ({ roomId }) => {
     const currentInbox = useSelector((state) => state.currentInbox);
@@ -16,9 +15,6 @@ const OptionOfRoom = ({ roomId }) => {
 
     useEffect(() => {
         dispatch(getFriendsListFromServer());
-
-        dispatch(getMembersInRoom(roomId));
-
     }, [dispatch, roomId]);
     
     const TYPE_ROOM_ONE = "ONE";
@@ -27,10 +23,9 @@ const OptionOfRoom = ({ roomId }) => {
         <>
             {currentInbox.type === TYPE_ROOM_GROUP && (
                 <div>
-                    <MembersInRoom />
+                    <MembersInRoom roomId={roomId} />
                     <AddNewMembers
-                        friendsList={friendsList}
-                      
+                        friendsList={friendsList}                  
                     />
                     <ViewPersonalPage />
                     <BlockUser />

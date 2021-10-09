@@ -3,14 +3,12 @@ import { useSelector } from "react-redux";
 import TagOfOptionRoom from "../components/TagOfOptionRoom";
 import MyCustomModal from "./MyCustomModal";
 import Friend from "../pages/friends/Friend";
-import { addNewMembers, updateNewMembersInRoom } from "../redux/action/actInfoRoom";
-import { useDispatch } from "react-redux";
+import { addNewMembers } from "../redux/action/actInfoRoom";
 
 const AddNewMembers = ({ friendsList }) => {
     const authentication = useSelector((state) => state.authentication);
     const currentRoomId = useSelector((state) => state.currentRoomId);
     const membersInRoom = useSelector((state) => state.membersInRoom);
-    const dispatch = useDispatch();
     const [friendsAdded, setfriendsAdded] = useState([]);
 
     const [isEmptyFriendsAdded, setIsEmptyFriendsAdded] = useState(true);
@@ -38,22 +36,22 @@ const AddNewMembers = ({ friendsList }) => {
         setfriendsAdded(friendsAddedClone);
     };
 
-    const convertMembersInRoomData = membersInRoom.map((member) => member.user.id);
-
-    const filterMembersAlreadyInRoom = friendsList.filter((friend) => {
-        const FRIEND_ID = friend.friend.id;
-        return !convertMembersInRoomData.includes(FRIEND_ID);
-    });
-
     const confirmAddNewMember = () => {
         addNewMembers(friendsAdded, currentRoomId).then((newMembersInRoom) => {
             let friendsAddedClone = [...friendsAdded];
             friendsAddedClone.length = 0;
             setfriendsAdded(friendsAddedClone);
-        
-            dispatch(updateNewMembersInRoom(newMembersInRoom))
         });
     };
+  
+    const convertMembersInRoomData = membersInRoom.map((member) =>{
+        return member.user.id
+    } );
+
+    const filterMembersAlreadyInRoom = friendsList.filter((friend) => {
+        const FRIEND_ID = friend.friend.id;
+        return !convertMembersInRoomData.includes(FRIEND_ID);
+    });
 
     const friendListMap = filterMembersAlreadyInRoom.map((friend, index) => {
         return (

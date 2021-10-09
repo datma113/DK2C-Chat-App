@@ -2,13 +2,14 @@ import React from "react";
 import { useSelector } from "react-redux";
 import TagOfOptionRoom from "../components/TagOfOptionRoom";
 import MyCustomModal from "./MyCustomModal";
+import { getMembersInRoom } from "../redux/action/actInfoRoom";
+import { useDispatch } from "react-redux";
 
-const MembersInRoom = () => {
+const MembersInRoom = ({roomId}) => {
+    const dispatch = useDispatch()
+
     const membersInRoom = useSelector((state) => state.membersInRoom);
-
-    const loadMembersInRoom = () => {
-    };
-
+   
     const membersInRoomMap = membersInRoom.map((member, index) => {
         return (
             <div key={index} className="row p-3">
@@ -36,7 +37,7 @@ const MembersInRoom = () => {
                 colorIcon="text-primary"
                 classIcon="fas fa-users"
                 text="Xem thành viên"
-                functionWhenClick={() => loadMembersInRoom()}
+                functionWhenClick={() => dispatch(getMembersInRoom(roomId))}
             />
             <MyCustomModal
                 inner={renderMemberInRoom()}

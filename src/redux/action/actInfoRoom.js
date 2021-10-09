@@ -3,7 +3,6 @@ import { API_ADD_NEW_MEMBERS, API_EDIT_ROOM_NAME, API_GET_MEMBERS_IN_ROOM } from
 import {
     STORE_MEMBERS_IN_ROOM,
     STORE_ROOM_NAME,
-    UPDATE_MEMBERS_IN_ROOM,
     UPDATE_NAME_OF_HEADER_CHAT_WHEN_EDIT_ROOM_NAME,
     UPDATE_ROOM_NAME,
 } from "../constants/constants";
@@ -38,7 +37,7 @@ export const editRoomName = (id, name) => {
         });
 };
 
-const storeMembersInRoom = (members) => {
+export const storeMembersInRoom = (members) => {
     return {
         type: STORE_MEMBERS_IN_ROOM,
         members,
@@ -62,9 +61,3 @@ export const addNewMembers = (members, roomId) => {
         });
 };
 
-export const updateNewMembersInRoom = (members) => {
-    return {
-        type: UPDATE_MEMBERS_IN_ROOM,
-        members,
-    };
-};

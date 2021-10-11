@@ -22,35 +22,6 @@ const Login = () => {
     const message = useSelector((state) => state.message);
     const authentication = useSelector((state) => state.authentication);
 
-    const LOGIN_FIELDS = [
-        {
-            label: "Tài khoản",
-            type: "text",
-            regexPattern: /[\D]/g,
-            keyStoreToReducer: "username",
-        },
-        {
-            label: "Mật khẩu",
-            type: "password",
-            regexPattern: /[\w]/g,
-            keyStoreToReducer: "password",
-        },
-    ];
-
-    const loginMap = LOGIN_FIELDS.map((field, index) => {
-        return (
-            <TextInput
-                key={index}
-                id={index}
-                label={field.label}
-                type={field.type}
-                regexPattern={field.regexPattern}
-                functionToDispatch={storePhoneAndPasswordWhenLogin}
-                keyStoreToReducer={field.keyStoreToReducer}
-            />
-        );
-    });
-
     const loginHandle = () => {
         dispatch(login(userLogin))
             .then(() => {
@@ -64,6 +35,41 @@ const Login = () => {
                 });
             });
     };
+
+    const LOGIN_FIELDS = [
+        {
+            label: "Tài khoản",
+            type: "text",
+            regexPattern: /[\D]/g,
+            keyStoreToReducer: "username",
+        },
+        {
+            label: "Mật khẩu",
+            type: "password",
+            regexPattern: /[\w]/g,
+            keyStoreToReducer: "password",
+            eventWhenEnter: loginHandle
+        },
+    ];
+
+    const loginMap = LOGIN_FIELDS.map((field, index) => {
+        return (
+            <TextInput
+                key={index}
+                id={index}
+                label={field.label}
+                type={field.type}
+                regexPattern={field.regexPattern}
+                functionToDispatch={storePhoneAndPasswordWhenLogin}
+                keyStoreToReducer={field.keyStoreToReducer}
+                eventWhenEnter={field.eventWhenEnter}
+            />
+        );
+    });
+
+   
+
+    
 
     const gobackHome = () => {
         history.push("/");

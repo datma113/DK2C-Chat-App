@@ -4,11 +4,7 @@ const NotFound = () => {
     return (
         <div>
             <div className="row">
-                {/* <div className="col-3"></div> */}
                 <img src={img_404}  alt=""/>
-                {/* <div className="col-3"></div> */}
-
-                
             </div>
         </div>
     )

@@ -9,7 +9,6 @@ const reducer = (state = initial, action) => {
     let { type, status } = action;
 
     if (type === SCROLL_BOTTOM_WHEN_SEND_MESSAGE) {
-        console.log(status);
         return status;
     }
     

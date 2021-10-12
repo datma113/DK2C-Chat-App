@@ -20,7 +20,8 @@ export const API_GET_FRIENDS_LIST = API + 'friends'
 export const API_GET_FRIENDS_REQUEST = API + 'friend-request/'
 
 /**Chat */
-export const API_GET_INBOXS = API + 'inboxs'
+export const API_INBOXS = API + 'inboxs/'
+export const API_GET_INBOX_BY_ID = API + 'inboxs/ofRoomId/' 
 export const API_GET_MESSAGE_IN_CHAT_BOX = API + 'messages/inbox/'
 export const API_GET_FILE_URL_WHEN_SENDED = API + 'file'
 

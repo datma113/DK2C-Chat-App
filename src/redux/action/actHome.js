@@ -10,7 +10,7 @@ import {
 } from "../constants/constants";
 import {
     API_GET_FILE_URL_WHEN_SENDED,
-    API_GET_INBOXS,
+    API_INBOXS,
     API_GET_MESSAGE_IN_CHAT_BOX,
 } from "../constants/api";
 
@@ -31,7 +31,7 @@ const storeOlderInboxs = (olderInboxs) => {
 export const getOlderInboxsFromServer = (page) => {
     return (dispatch) => {
         return axios
-            .get(API_GET_INBOXS + "?page=" + page)
+            .get(API_INBOXS + "?page=" + page)
             .then((resp) => {
                 dispatch(storeOlderInboxs(resp.data.content));
             })
@@ -42,7 +42,7 @@ export const getOlderInboxsFromServer = (page) => {
 export const getInboxsFromServer = () => {
     return (dispatch) => {
         return axios
-            .get(API_GET_INBOXS)
+            .get(API_INBOXS)
             .then((resp) => {
                 dispatch(storeInboxs(resp.data.content));
             })

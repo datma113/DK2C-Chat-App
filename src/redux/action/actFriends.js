@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_GET_FRIENDS_LIST, API_GET_FRIENDS_REQUEST, API_GET_INBOXS } from "../constants/api";
+import { API_GET_FRIENDS_LIST, API_GET_FRIENDS_REQUEST, API_INBOXS } from "../constants/api";
 import {
     STORE_FRIENDS_LIST, STORE_FRIENDS_REQUEST, STORE_GROUPS_LIST,
 } from "../constants/constants";
@@ -47,7 +47,7 @@ export const storeGroupsChatList = (groups) => {
 export const getGroupsChatList = () => {
     return (dispatch) => {
         return axios
-            .get(API_GET_INBOXS + "?type=GROUP")
+            .get(API_INBOXS + "?type=GROUP")
             .then((resp) => {
                 dispatch(storeGroupsChatList(resp.data.content));
 

@@ -1,18 +1,25 @@
 import axios from "axios";
-import { API_ADD_NEW_MEMBERS, API_CREATE_NEW_ROOM, API_EDIT_ROOM_NAME, API_GET_MEMBERS_IN_ROOM } from "../constants/api";
+import {
+    API_ADD_NEW_MEMBERS,
+    API_CREATE_NEW_ROOM,
+    API_EDIT_ROOM_NAME,
+    API_GET_MEMBERS_IN_ROOM,
+    API_INBOXS,
+} from "../constants/api";
 import {
     STORE_MEMBERS_IN_ROOM,
     STORE_ROOM_NAME,
     UPDATE_NAME_OF_HEADER_CHAT_WHEN_EDIT_ROOM_NAME,
     UPDATE_NEW_ROOM_REALTIME,
     UPDATE_ROOM_NAME,
+    DELETE_CONVERSATION,
 } from "../constants/constants";
 export const storeRoomName = (key, value) => {
     //key and value was created to save a dynamic object
     return {
         type: STORE_ROOM_NAME,
         key,
-        value
+        value,
     };
 };
 
@@ -65,19 +72,34 @@ export const addNewMembers = (members, roomId) => {
 const updateNewRoomRealtime = (room) => {
     return {
         type: UPDATE_NEW_ROOM_REALTIME,
-        newRoom: room
-    }
-}
+        newRoom: room,
+    };
+};
 
 export const createNewRoom = (room) => {
-    return dispatch => {
-        return axios.post(API_CREATE_NEW_ROOM, room)
-        .then((resp) => {
-            dispatch(updateNewRoomRealtime(resp.data))
-        })
-        .catch(err => {
-            console.log(err);
-        })
-    }
-   
-}
+    return (dispatch) => {
+        return axios
+            .post(API_CREATE_NEW_ROOM, room)
+            .then((resp) => {
+                dispatch(updateNewRoomRealtime(resp.data));
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+};
+
+export const deleteConvesation = (roomId) => {
+    return (dispatch) => {
+        return axios
+            .delete(API_INBOXS + roomId)
+            .then(() => {
+                dispatch({
+                    type: DELETE_CONVERSATION,
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+};

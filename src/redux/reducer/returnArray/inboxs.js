@@ -2,6 +2,7 @@ import {
     RESET_NEW_MESSAGE,
     STORE_INBOXS,
     STORE_OLDER_INBOXS,
+
     UPDATE_LAST_MESSAGE_IN_INBOX,
     UPDATE_NEW_ROOM_REALTIME,
     UPDATE_ROOM_NAME,
@@ -10,7 +11,8 @@ import {
 const initial = [];
 
 const reducer = (state = initial, action) => {
-    let { type, inboxs, lastMessage, inboxId, olderInboxs, newRoomName, roomId, newRoom } = action;
+    let { type, inboxs, lastMessage, inboxId, olderInboxs, newRoomName, roomId, newRoom } =
+        action;
 
     switch (type) {
         case STORE_INBOXS:
@@ -54,8 +56,9 @@ const reducer = (state = initial, action) => {
             return newStateWhenEditRoomName;
 
         case UPDATE_NEW_ROOM_REALTIME:
-            console.log(`than2h cong`);
-            return [newRoom , ...state];
+            return [newRoom, ...state];
+
+     
 
         default:
             break;

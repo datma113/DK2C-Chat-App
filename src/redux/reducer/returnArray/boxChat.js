@@ -1,4 +1,5 @@
 import {
+    DELETE_CONVERSATION,
     INITIALIZE_MESSAGE_IN_BOX_CHAT,
     STORE_MESSAGE_IN_BOX_CHAT,
     UPDATE_MESSAGE_REALTIME,
@@ -38,6 +39,8 @@ const reducer = (state = initial, action) => {
                 }
             });
             return messageWithRealTimeReaction;
+        case DELETE_CONVERSATION:
+            return [];
         default:
             break;
     }

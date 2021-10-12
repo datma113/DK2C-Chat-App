@@ -1,7 +1,6 @@
 import SockJS from "sockjs-client";
 import Stomp from "stompjs";
 import {
-    STORE_REAL_TIME_RESPONSE,
     UPDATE_LAST_MESSAGE_IN_INBOX,
     UPDATE_MESSAGE_REALTIME,
     UPDATE_REACTION_REALTIME,
@@ -32,11 +31,6 @@ const socketModule = (function () {
                 const data = JSON.parse(resp.body);
                 const MESSAGE = [{ ...data, reactions: [] }];
                 const TYPE_MESSAGE_SYSTEM = "SYSTEM";
-
-                dispatch({
-                    type: STORE_REAL_TIME_RESPONSE,
-                    data,
-                });
 
                 dispatch({
                     type: UPDATE_MESSAGE_REALTIME,

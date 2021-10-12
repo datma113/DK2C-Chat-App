@@ -29,6 +29,10 @@ const CreateRoom = () => {
         dispatch(createNewRoom(room));
     };
 
+    const isDisabledConfirmBtn = () => {
+          return roomName.name ? false : true
+    }
+
     const renderCreateRoom = () => {
         return (
             <div className="mt-5 center">
@@ -56,6 +60,7 @@ const CreateRoom = () => {
                 headerTitle="Tạo nhóm"
                 id="createRoom"
                 functionWhenClick={() => createNewRoomHandle()}
+                isDisabledConfirmBtn={isDisabledConfirmBtn()}
             />
         </>
     );

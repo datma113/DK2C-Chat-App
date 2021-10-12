@@ -11,7 +11,6 @@ const InboxList = () => {
     const currentInboxId = useSelector((state) => state.currentInboxId);
     const [loadingOlderInboxs, setloadingOlderInboxs] = useState(1);
     const authentication = useSelector((state) => state.authentication);
-
     const loadingOlderFriendsInboxs = () => {
         setloadingOlderInboxs((n) => n + 1);
         dispatch(getOlderInboxsFromServer(loadingOlderInboxs));
@@ -45,8 +44,10 @@ const InboxList = () => {
         let imgUrl = "";
         let displayName = "";
         let senderName = "";
+        let senderId = "";
         switch (inbox.room.type) {
             case TYPE_ROOM_ONE:
+                senderId = inbox.room.to.id;
                 imgUrl = inbox.room.to.imageUrl;
                 displayName = inbox.room.to.displayName;
                 senderName = senderNameOfTypeOne(IS_MYSELF);
@@ -79,6 +80,7 @@ const InboxList = () => {
                 senderName={senderName}
                 newMessageOfInbox={newMessageOfInbox}
                 typeOfRoom={inbox.room.type}
+                senderId={senderId}
             />
         );
     });

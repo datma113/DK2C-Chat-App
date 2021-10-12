@@ -61,7 +61,7 @@ export const addNewMembers = (members, roomId) => {
         });
 };
 
-export const createnewRoom = (room) => {
+export const createNewRoom = (room) => {
     return axios.post(API_CREATE_NEW_ROOM, room)
     .then((resp) => {
         console.log(resp.data);

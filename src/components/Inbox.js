@@ -21,6 +21,7 @@ const Inbox = ({
     senderName,
     newMessageOfInbox,
     typeOfRoom,
+    senderId
 }) => {
     const dispatch = useDispatch();
     const limitStringToShow = (string) => {
@@ -67,6 +68,7 @@ const Inbox = ({
         newMessage.resetNewMessageRealTime();
 
         let currentInbox = {
+            senderId,
             imgUrl,
             displayName,
             type: typeOfRoom,

@@ -11,6 +11,7 @@ const MembersInRoom = ({roomId}) => {
     const membersInRoom = useSelector((state) => state.membersInRoom);
    
     const membersInRoomMap = membersInRoom.map((member, index) => {
+       
         return (
             <div key={index} className="row p-3">
                 <div className="member-in-room col-2 mb-3">

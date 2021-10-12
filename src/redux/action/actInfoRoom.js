@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_ADD_NEW_MEMBERS, API_EDIT_ROOM_NAME, API_GET_MEMBERS_IN_ROOM } from "../constants/api";
+import { API_ADD_NEW_MEMBERS, API_CREATE_NEW_ROOM, API_EDIT_ROOM_NAME, API_GET_MEMBERS_IN_ROOM } from "../constants/api";
 import {
     STORE_MEMBERS_IN_ROOM,
     STORE_ROOM_NAME,
@@ -11,7 +11,7 @@ export const storeRoomName = (key, value) => {
     return {
         type: STORE_ROOM_NAME,
         key,
-        value,
+        value
     };
 };
 
@@ -61,3 +61,12 @@ export const addNewMembers = (members, roomId) => {
         });
 };
 
+export const createnewRoom = (room) => {
+    return axios.post(API_CREATE_NEW_ROOM, room)
+    .then((resp) => {
+        console.log(resp.data);
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}

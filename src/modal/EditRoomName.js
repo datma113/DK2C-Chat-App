@@ -3,11 +3,17 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import TextInput from "../components/TextInput";
 import { editRoomName, storeRoomName } from "../redux/action/actInfoRoom";
+import { CLEAR_ROOM_NAME } from "../redux/constants/constants";
 
 const EditRoomName = ({ currentInbox }) => {
     const roomName = useSelector((state) => state.roomName);
     const currentRoomId = useSelector((state) => state.currentRoomId);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
+    const isDisabled = () => {
+        return roomName.name ? "" : "disabled";
+    };
+
     const renderEditRoomName = () => {
         return (
             <div className="edit-room-name center flex-column">
@@ -66,10 +72,14 @@ const EditRoomName = ({ currentInbox }) => {
                             </button>
                             <button
                                 type="button"
-                                className="btn btn-lg btn-secondary"
+                                className={`btn btn-lg btn-secondary ${isDisabled()}`}
                                 data-mdb-dismiss="modal"
                                 onClick={() => {
-                                    dispatch(editRoomName(currentRoomId, roomName));
+                                    dispatch(editRoomName(currentRoomId, roomName)).then(() =>
+                                        dispatch({
+                                            type: CLEAR_ROOM_NAME,
+                                        })
+                                    );
                                 }}
                             >
                                 Xác nhận

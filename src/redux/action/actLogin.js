@@ -15,7 +15,7 @@ export const storePhoneAndPasswordWhenLogin = (key, value) => {
     return {
         type: STORE_PHONE_AND_PASSWORD_WHEN_LOGIN,
         key,
-        value,
+        value
     };
 };
 

@@ -2,8 +2,12 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import ReadBy from "./ReadBy";
 import { RESET_NEW_MESSAGE } from "../redux/constants/constants";
-import { storeCurrentIdOfInbox, storeCurrentInbox, storeCurrentRoomId } from "../redux/action/actHome";
-import newMessageSingleton from '../module/newMessageSingleton'
+import {
+    storeCurrentIdOfInbox,
+    storeCurrentInbox,
+    storeCurrentRoomId,
+} from "../redux/action/actHome";
+import newMessageSingleton from "../module/newMessageSingleton";
 
 const Inbox = ({
     inboxId,
@@ -16,12 +20,15 @@ const Inbox = ({
     roomId,
     senderName,
     newMessageOfInbox,
-    typeOfRoom
+    typeOfRoom,
 }) => {
     const dispatch = useDispatch();
     const limitStringToShow = (string) => {
-        const MAX_OF_LENGTH = 20;
-        return string.length >= MAX_OF_LENGTH ? string.slice(0, 17) + "..." : string;
+        if (string) {
+            const MAX_OF_LENGTH = 20;
+            return string.length >= MAX_OF_LENGTH ? string.slice(0, 17) + "..." : string;
+        }
+        return ""
     };
 
     const displayLastMessageTime = (time) => {
@@ -54,16 +61,15 @@ const Inbox = ({
     const gotoChatInbox = () => {
         dispatch(storeCurrentIdOfInbox(inboxId));
         dispatch(storeCurrentRoomId(roomId));
-        
-        
+
         //reset number of new Message when click into inbox
-        let newMessage = newMessageSingleton.getInsance()
-        newMessage.resetNewMessageRealTime()
+        let newMessage = newMessageSingleton.getInsance();
+        newMessage.resetNewMessageRealTime();
 
         let currentInbox = {
             imgUrl,
             displayName,
-            type: typeOfRoom
+            type: typeOfRoom,
         };
         dispatch(storeCurrentInbox(currentInbox));
 
@@ -72,7 +78,7 @@ const Inbox = ({
             inboxId,
         });
 
-        document.title = "DKC App"
+        document.title = "DKC App";
     };
 
     const checkActiveOfInbox = () => {
@@ -83,11 +89,10 @@ const Inbox = ({
         return newMessageOfInbox.countNewMessage > 0 && !newMessageOfInbox.isMyself
             ? "inbox__new-message"
             : "";
-    };  
+    };
 
     return (
         <div className={`inbox row p-3 ${checkActiveOfInbox()} `} onClick={() => gotoChatInbox()}>
-          
             <div className="col-3 center">
                 <div className="inbox__img">
                     <img src={imgUrl} alt="" />

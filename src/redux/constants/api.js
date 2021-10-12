@@ -25,6 +25,7 @@ export const API_GET_MESSAGE_IN_CHAT_BOX = API + 'messages/inbox/'
 export const API_GET_FILE_URL_WHEN_SENDED = API + 'file'
 
 /**info room */
+export const API_CREATE_NEW_ROOM = API + ROOM
 export const API_EDIT_ROOM_NAME = API + ROOM + 'rename/'
 export const API_GET_MEMBERS_IN_ROOM = API + ROOM + 'members/'
 export const  API_ADD_NEW_MEMBERS = API + ROOM + 'members/'

@@ -4,7 +4,10 @@ import { useSelector } from "react-redux";
 const HeaderOfBoxChat = () => {
     const currentInbox = useSelector((state) => state.currentInbox);
     const limidDisplayName = (string) => {
-        return string.length > 20 ? string.slice(0, 25) + "..." : string;
+        if (string) {
+            return string.length > 20 ? string.slice(0, 25) + "..." : string;
+        }
+        return "";
     };
     return (
         <div>

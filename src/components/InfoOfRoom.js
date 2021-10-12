@@ -5,7 +5,8 @@ import EditRoomName from "../modal/EditRoomName";
 const InfoOfRoom = () => {
     const currentInbox = useSelector((state) => state.currentInbox);
     const limidDisplayName = (string) => {
-        return string.length > 15 ? string.slice(0, 15) + "..." : string;
+        if (string) return string.length > 15 ? string.slice(0, 15) + "..." : string;
+        return "";
     };
     return (
         <div className="info-room center">

@@ -422,6 +422,7 @@ a {
   position: relative;
   overflow: scroll;
   overflow-x: hidden;
+  height: 90vh;
 }
 
 .single-chat-box {

@@ -4,6 +4,7 @@ import {
     STORE_MEMBERS_IN_ROOM,
     STORE_ROOM_NAME,
     UPDATE_NAME_OF_HEADER_CHAT_WHEN_EDIT_ROOM_NAME,
+    UPDATE_NEW_ROOM_REALTIME,
     UPDATE_ROOM_NAME,
 } from "../constants/constants";
 export const storeRoomName = (key, value) => {
@@ -61,12 +62,22 @@ export const addNewMembers = (members, roomId) => {
         });
 };
 
+const updateNewRoomRealtime = (room) => {
+    return {
+        type: UPDATE_NEW_ROOM_REALTIME,
+        newRoom: room
+    }
+}
+
 export const createNewRoom = (room) => {
-    return axios.post(API_CREATE_NEW_ROOM, room)
-    .then((resp) => {
-        console.log(resp.data);
-    })
-    .catch(err => {
-        console.log(err);
-    })
+    return dispatch => {
+        return axios.post(API_CREATE_NEW_ROOM, room)
+        .then((resp) => {
+            dispatch(updateNewRoomRealtime(resp.data))
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+   
 }

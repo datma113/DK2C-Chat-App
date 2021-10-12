@@ -15,7 +15,6 @@ const InboxList = () => {
         setloadingOlderInboxs((n) => n + 1);
         dispatch(getOlderInboxsFromServer(loadingOlderInboxs));
     };
-
     useEffect(() => {
         dispatch(getInboxsFromServer());
     }, [dispatch]);

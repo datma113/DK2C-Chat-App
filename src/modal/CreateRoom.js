@@ -1,15 +1,15 @@
 import React from "react";
 import TagOfOptionRoom from "../components/TagOfOptionRoom";
 import MyCustomModal from "./MyCustomModal";
-
 import TextInput from "../components/TextInput";
 import { createNewRoom, storeRoomName } from "../redux/action/actInfoRoom";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 const CreateRoom = () => {
     const roomName = useSelector((state) => state.roomName);
     const authentication = useSelector((state) => state.authentication);
     const currentInbox = useSelector((state) => state.currentInbox);
-    
+    const dispatch = useDispatch()
     const createNewRoomHandle = () => {
         const MY_ID = authentication.user.id;
         const ROOM_TYPE_GROUP = 'GROUP'
@@ -22,10 +22,11 @@ const CreateRoom = () => {
                     addByUserId: MY_ID,
                 },
             ],
-            type: ROOM_TYPE_GROUP
+            type: ROOM_TYPE_GROUP,
+            imageUrl: "./image/LOGO.png"
         };
 
-        createNewRoom(room);
+        dispatch(createNewRoom(room));
     };
 
     const renderCreateRoom = () => {

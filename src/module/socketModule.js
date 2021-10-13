@@ -1,3 +1,4 @@
+import axios from "axios";
 import SockJS from "sockjs-client";
 import Stomp from "stompjs";
 import {
@@ -5,6 +6,7 @@ import {
     UPDATE_MESSAGE_REALTIME,
     UPDATE_REACTION_REALTIME,
 } from "../redux/constants/constants";
+import { API_GET_INBOX_BY_ID } from "../redux/constants/api";
 
 import newMessageSingleton from "./newMessageSingleton";
 const socketModule = (function () {
@@ -37,9 +39,12 @@ const socketModule = (function () {
                     realTimeMessage: MESSAGE,
                 });
 
-                dispatch({
-                    type: UPDATE_LAST_MESSAGE_IN_INBOX,
-                    lastMessage: data,
+                axios.get(API_GET_INBOX_BY_ID + data.roomId).then((resp) => {
+                    dispatch({
+                        type: UPDATE_LAST_MESSAGE_IN_INBOX,
+                        lastMessage: data,
+                        inbox: resp.data,
+                    });
                 });
 
                 if (data.type !== TYPE_MESSAGE_SYSTEM) {

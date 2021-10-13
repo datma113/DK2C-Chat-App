@@ -2,7 +2,6 @@ import {
     RESET_NEW_MESSAGE,
     STORE_INBOXS,
     STORE_OLDER_INBOXS,
-
     UPDATE_LAST_MESSAGE_IN_INBOX,
     UPDATE_NEW_ROOM_REALTIME,
     UPDATE_ROOM_NAME,
@@ -11,7 +10,7 @@ import {
 const initial = [];
 
 const reducer = (state = initial, action) => {
-    let { type, inboxs, lastMessage, inboxId, olderInboxs, newRoomName, roomId, newRoom } =
+    let { type, inbox, inboxs, lastMessage, inboxId, olderInboxs, newRoomName, roomId, newRoom } =
         action;
 
     switch (type) {
@@ -22,13 +21,20 @@ const reducer = (state = initial, action) => {
 
         case UPDATE_LAST_MESSAGE_IN_INBOX:
             let realTimeInbox = [...state];
-            realTimeInbox.forEach((inbox, index) => {
-                if (inbox.room.id === lastMessage.roomId) {
-                    realTimeInbox[index].lastMessage = lastMessage;
-                    realTimeInbox[index].lastMessage.readbyes = [];
-                    realTimeInbox[index].countNewMessage++;
-                }
-            });
+
+            let convertCurrentInboxToIdArray = realTimeInbox.map((inbox) => inbox.room.id);
+            const checkNewMessageIsInsideInboxs = convertCurrentInboxToIdArray.includes(
+                lastMessage.roomId
+            );
+            if (checkNewMessageIsInsideInboxs) {
+                const indexOfInbox = convertCurrentInboxToIdArray.indexOf(lastMessage.roomId);
+                realTimeInbox[indexOfInbox].lastMessage = lastMessage;
+                realTimeInbox[indexOfInbox].lastMessage.readbyes = [];
+                realTimeInbox[indexOfInbox].countNewMessage++;
+            } else {
+                return [inbox, ...realTimeInbox];
+            }
+
             realTimeInbox.sort((a, b) => {
                 const timeA = new Date(a.lastMessage.createAt);
                 const timeB = new Date(b.lastMessage.createAt);
@@ -57,8 +63,6 @@ const reducer = (state = initial, action) => {
 
         case UPDATE_NEW_ROOM_REALTIME:
             return [newRoom, ...state];
-
-     
 
         default:
             break;

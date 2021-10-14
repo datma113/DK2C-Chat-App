@@ -65,7 +65,7 @@ export const acceptFriendRequest = (id) => {
     return (dispatch) => {
         return axios
             .put(API_GET_FRIENDS_REQUEST + id)
-            .then((resp) => {})
+            .then(() => {})
             .catch(() => dispatch(storeGroupsChatList([])));
     };
 };

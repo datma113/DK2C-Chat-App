@@ -18,6 +18,8 @@ export const API_SIGN_UP_VERIFY = API + AUTH + SIGN_UP + 'verify'
 
 export const API_GET_FRIENDS_LIST = API + 'friends'
 export const API_GET_FRIENDS_REQUEST = API + 'friend-request/'
+/**Profile */
+export const API_GET_USER_INFO = API + 'user/me'
 
 /**Chat */
 export const API_INBOXS = API + 'inboxs/'

@@ -19,15 +19,18 @@ export const API_SIGN_UP_VERIFY = API + AUTH + SIGN_UP + 'verify'
 export const API_GET_FRIENDS_LIST = API + 'friends'
 export const API_GET_FRIENDS_REQUEST = API + 'friend-request/'
 
-/**Chat */
+/**inbox */
 export const API_INBOXS = API + 'inboxs/'
 export const API_GET_INBOX_BY_ID = API + 'inboxs/ofRoomId/' 
 export const API_GET_INBOX_BY_FRIEND_ID = API + 'inboxs/with/'
+
+/**Chat */
 export const API_GET_MESSAGE_IN_CHAT_BOX = API + 'messages/inbox/'
-export const API_GET_FILE_URL_WHEN_SENDED = API + 'file'
+export const API_GET_FILE_URL_WHEN_SENDED = API + 'file/'
 
 /**info room */
 export const API_CREATE_NEW_ROOM = API + ROOM
 export const API_EDIT_ROOM_NAME = API + ROOM + 'rename/'
 export const API_GET_MEMBERS_IN_ROOM = API + ROOM + 'members/'
 export const  API_ADD_NEW_MEMBERS = API + ROOM + 'members/'
+export const API_OUT_ROOM = API + ROOM + 'leave/'

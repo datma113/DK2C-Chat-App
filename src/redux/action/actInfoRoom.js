@@ -5,6 +5,7 @@ import {
     API_EDIT_ROOM_NAME,
     API_GET_MEMBERS_IN_ROOM,
     API_INBOXS,
+    API_OUT_ROOM,
 } from "../constants/api";
 import {
     STORE_MEMBERS_IN_ROOM,
@@ -13,6 +14,7 @@ import {
     UPDATE_NEW_ROOM_REALTIME,
     UPDATE_ROOM_NAME,
     DELETE_CONVERSATION,
+    OUT_ROOM,
 } from "../constants/constants";
 export const storeRoomName = (key, value) => {
     //key and value was created to save a dynamic object
@@ -103,3 +105,16 @@ export const deleteConvesation = (roomId) => {
             });
     };
 };
+
+export const outRoom = (roomId, inboxId) => {
+    return dispatch => axios.post(API_OUT_ROOM + roomId)
+    .then(() => {
+        dispatch({
+            type: OUT_ROOM,
+            inboxId
+        })
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}

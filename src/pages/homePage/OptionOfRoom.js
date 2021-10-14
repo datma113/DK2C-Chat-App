@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AddNewMembers from "../../modal/AddNewMembers";
 import { getFriendsListFromServer } from "../../redux/action/actFriends";
 import CreateRoom from "../../modal/CreateRoom";
+import OutRoom from "../../modal/OutRoom";
 
 const OptionOfRoom = ({ roomId }) => {
     const currentInbox = useSelector((state) => state.currentInbox);
@@ -30,6 +31,7 @@ const OptionOfRoom = ({ roomId }) => {
                     <BlockUser />
                     <ReportUser />
                     <DeleteConversation />
+                    <OutRoom  inboxId={currentInbox} roomId={roomId}/>
                 </div>
             )}
 

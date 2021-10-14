@@ -38,7 +38,6 @@ function App() {
         
          
     }, [dispatch]);
-    console.log(userProfile.displayName)
 
 
     return (

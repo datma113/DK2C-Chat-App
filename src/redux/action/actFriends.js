@@ -19,7 +19,7 @@ export const storeFriendsList = (friends) => {
     };
 };
 export const getFriendsListFromServer = () => {
-    return (dispatch) => {
+    return  (dispatch) => {
         return axios
             .get(API_GET_FRIENDS_LIST)
             .then((resp) => {

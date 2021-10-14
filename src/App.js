@@ -7,6 +7,9 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getTokenWhenRefreshPage } from "./redux/action/actLogin";
 import Loading from "./components/Loading";
+import ProfileModal from "./pages/profile/ProfileModal";
+import { getUserInfoFromServer } from "./redux/action/actProfile";
+import { getFriendsListFromServer, getFriendsRequestFromServer, getGroupsChatList } from "./redux/action/actFriends";
 
 function App() {
     const mapRoutes = routes.map((route, index) => {
@@ -17,20 +20,36 @@ function App() {
     const authentication = useSelector((state) => state.authentication);
     const dispatch = useDispatch()
     const [isLoading, setisLoading] = useState(true);
+    const userProfile = useSelector(state => state.user_info)
 
     useEffect(() => {
+
         dispatch(getTokenWhenRefreshPage())
             .then(() => {
                 setisLoading(false);
             })
-            .then(() => {});
+            .then(() => {
+                
+                dispatch(getUserInfoFromServer()) 
+                dispatch(getFriendsListFromServer());
+                dispatch(getFriendsRequestFromServer());
+                dispatch(getGroupsChatList());
+            });
+        
+         
     }, [dispatch]);
+
+
     return (
         <Router>
             {isLoading && <Loading />}
-           
+
+
+
             <div className="App">
+
                 {authentication.isLoggin && <Header />}
+                <ProfileModal userProfile={userProfile} />
                 <Switch>{mapRoutes}</Switch>
             </div>
         </Router>

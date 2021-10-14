@@ -709,6 +709,25 @@ a {
   padding: 0.25rem 2rem;
 }
 
+.profile__img {
+  border-radius: 100%;
+  overflow: hidden;
+  width: 60px;
+  height: 60px;
+  background-color: aqua;
+}
+.profile__img img {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 100 px;
+  padding: 100 px;
+}
+.profile__detail input {
+  margin-bottom: 10px;
+  padding-left: 10px;
+  width: 100%;
+}
+
 /*variables*/
 
 /*# sourceMappingURL=styles.css.map */

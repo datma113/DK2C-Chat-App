@@ -86,10 +86,12 @@ const Header = () => {
                             </div>
                             <ul className="dropdown-menu ">
                                 <li className="p-1">
-                                    <h3 className="dropdown-item" href="#">
+                                    <h3 className="dropdown-item" href="#"   data-mdb-toggle="modal"
+                                    data-mdb-target="#exampleModal">
                                         Hồ sơ
                                     </h3>
                                 </li>
+                              
                                 <li>
                                     <h3 className="dropdown-item" href="#">
                                         Cài đặt
@@ -107,6 +109,10 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
+                {/* a */}
+
+
+                {/* a */}
             </div>
         </>
     );

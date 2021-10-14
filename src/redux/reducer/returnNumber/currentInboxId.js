@@ -1,11 +1,18 @@
-import {STORE_CURRENT_NUMBER_ID_INBOX} from "../../constants/constants"
+import { RESET_CURRENT_INBOX_ID, STORE_CURRENT_INBOX_ID } from "../../constants/constants";
 const initial = 0;
 
 const reducer = (state = initial, action) => {
     let { type, id } = action;
-    if (type === STORE_CURRENT_NUMBER_ID_INBOX) {
-        return id;
+
+    switch (type) {
+        case STORE_CURRENT_INBOX_ID:
+            return id;
+        case RESET_CURRENT_INBOX_ID:
+            return 0;
+        default:
+            break;
     }
+
     return state;
 };
 

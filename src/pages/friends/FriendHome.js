@@ -21,6 +21,7 @@ const FriendHome = () => {
     }, [dispatch])
     const changeOptions = (option) => {
         setindex(option)
+        
     }
 
     return (
@@ -62,7 +63,9 @@ const FriendHome = () => {
                 <h4>&nbsp;&nbsp;Bạn bè ({friendsList.length})</h4>
                 <ListFriends friends={friendsList} />
             </div>
-
+            {
+                
+            }
             <div className="col-9">
                 {index === -1 ? <FriendRequestAndSuggestions /> : <Groups />}
             </div>

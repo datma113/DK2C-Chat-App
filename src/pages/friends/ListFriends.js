@@ -1,12 +1,23 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { getInboxByFriendId } from "../../redux/action/actFriends";
 import Friend from "./Friend";
 
 const ListFriends = () => {
     const friendsList = useSelector((state) => state.friendsList);
-
-    const listFriendMap = friendsList.map((friendObj, index) => {
-        return <Friend key={index} friendObj={friendObj} />;
+    const dispatch = useDispatch()
+    const gotoChatboxByFriendId = (friendId) => {
+        dispatch(getInboxByFriendId(friendId))
+    };
+    const listFriendMap = friendsList.map((friend, index) => {
+        return (
+            <Friend
+                key={index}
+                friend={friend}
+                functionWhenClick={() => gotoChatboxByFriendId(friend.friend.id)}
+            />
+        );
     });
     return (
         <div>

@@ -3,16 +3,16 @@ import { useDispatch } from "react-redux";
 import socketModule from "../../module/socketModule";
 import { SCROLL_BOTTOM_WHEN_SEND_MESSAGE } from "../../redux/constants/constants";
 import SendImage from "./SendImage";
-import Picker, { SKIN_TONE_MEDIUM_DARK } from "emoji-picker-react";
+import Picker from "emoji-picker-react";
+import shotcutEmojiMap from "../../module/emoji";
+import { allEmojiShotcut } from "../../module/emoji";
 
 const SendMessage = ({ roomId }) => {
     const [messageToSend, setmessageToSend] = useState("");
-    const [chosenEmoji, setChosenEmoji] = useState(null);
     const [isShowEmojiExpress, setisShowEmojiExpress] = useState(false);
     const dispatch = useDispatch();
 
     const onEmojiClick = (event, emojiObject) => {
-        setChosenEmoji(emojiObject);
         setmessageToSend(messageToSend + " " + emojiObject.emoji);
     };
     const sendMessageToFriend = () => {
@@ -38,10 +38,17 @@ const SendMessage = ({ roomId }) => {
                 status: true,
             });
         }
-        
+
         if (e.key === "Escape") {
             setisShowEmojiExpress(false);
         }
+    };
+
+    const regexHotkeyExpressEmoji = (text) => {
+        allEmojiShotcut.forEach((emoji) => {
+            if (text.includes(emoji))
+                setmessageToSend(text.replaceAll(emoji, shotcutEmojiMap.get(emoji)));
+        });
     };
 
     const toggleEmojiExpressShowed = (currentStatus) => setisShowEmojiExpress(!currentStatus);
@@ -51,7 +58,11 @@ const SendMessage = ({ roomId }) => {
                 className="send-message-container__ta"
                 autoFocus={true}
                 value={messageToSend}
-                onChange={(e) => setmessageToSend(e.target.value)}
+                onChange={(e) => {
+                    const TEXT = e.target.value;
+                    setmessageToSend(TEXT);
+                    regexHotkeyExpressEmoji(TEXT);
+                }}
                 onKeyDown={(e) => handleEnterTextarea(e)}
             />
             <div className="center send-message-container__icon-container">
@@ -65,11 +76,7 @@ const SendMessage = ({ roomId }) => {
                         isShowEmojiExpress ? "" : "d-none"
                     } `}
                 >
-                    <Picker
-                        onEmojiClick={onEmojiClick}
-                        skinTone={SKIN_TONE_MEDIUM_DARK}
-                        disableSearchBar={true}
-                    />
+                    <Picker onEmojiClick={onEmojiClick} disableSearchBar={true} />
                 </div>
                 <i
                     className="fas fa-angle-double-right text-primary"

@@ -42,6 +42,10 @@ const FriendHome = () => {
     }, [dispatch]);
     const changeOptions = (option) => {
         setindex(option);
+
+        dispatch({
+            type: RESET_CURRENT_INBOX_ID
+        })
     };
 
     return (

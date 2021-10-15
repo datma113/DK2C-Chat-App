@@ -13,6 +13,7 @@ import OutRoom from "../../modal/OutRoom";
 const OptionOfRoom = ({ roomId }) => {
     const currentInbox = useSelector((state) => state.currentInbox);
     const friendsList = useSelector((state) => state.friendsList);
+    const currentInboxId = useSelector(state => state.currentInboxId)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -31,7 +32,7 @@ const OptionOfRoom = ({ roomId }) => {
                     <BlockUser />
                     <ReportUser />
                     <DeleteConversation />
-                    <OutRoom  inboxId={currentInbox} roomId={roomId}/>
+                    <OutRoom  inboxId={currentInboxId} roomId={roomId}/>
                 </div>
             )}
 

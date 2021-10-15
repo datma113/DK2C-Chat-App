@@ -15,6 +15,7 @@ import {
     UPDATE_ROOM_NAME,
     DELETE_CONVERSATION,
     OUT_ROOM,
+    RESET_CURRENT_INBOX_ID,
 } from "../constants/constants";
 export const storeRoomName = (key, value) => {
     //key and value was created to save a dynamic object
@@ -107,14 +108,20 @@ export const deleteConvesation = (roomId) => {
 };
 
 export const outRoom = (roomId, inboxId) => {
-    return dispatch => axios.post(API_OUT_ROOM + roomId)
-    .then(() => {
-        dispatch({
-            type: OUT_ROOM,
-            inboxId
-        })
-    })
-    .catch(err => {
-        console.log(err);
-    })
-}
+    return (dispatch) =>
+        axios
+            .post(API_OUT_ROOM + roomId)
+            .then(() => {
+                dispatch({
+                    type: OUT_ROOM,
+                    inboxId,
+                });
+
+                dispatch({
+                    type: RESET_CURRENT_INBOX_ID,
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+};

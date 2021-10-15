@@ -34,7 +34,6 @@ const InboxList = () => {
         const CURRENT_ROOM_ID = inbox.room.id;
 
         const MY_ID = authentication.user.id;
-        console.log(inbox);
         const SENDER_ID = inbox.lastMessage.sender ? inbox.lastMessage.sender.id : "";
         const IS_MYSELF = MY_ID === SENDER_ID ? true : false;
 

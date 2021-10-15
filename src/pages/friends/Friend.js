@@ -12,6 +12,7 @@ const Friend = ({friend, functionWhenClick}) => {
             <div className="col-9 d-flex align-items-center">
                 <div className=" text-medium">{friend.friend.displayName}</div>
             </div>
+            
         </div>
     );
 };

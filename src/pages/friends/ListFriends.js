@@ -6,9 +6,9 @@ import Friend from "./Friend";
 
 const ListFriends = () => {
     const friendsList = useSelector((state) => state.friendsList);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const gotoChatboxByFriendId = (friendId) => {
-        dispatch(getInboxByFriendId(friendId))
+        dispatch(getInboxByFriendId(friendId));
     };
     const listFriendMap = friendsList.map((friend, index) => {
         return (

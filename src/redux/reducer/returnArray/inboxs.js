@@ -67,8 +67,7 @@ const reducer = (state = initial, action) => {
 
         case OUT_ROOM:
             let newStateWhenOutRoom = [...state];
-            // console.log(inbox.id === inboxId);
-            // newStateWhenOutRoom = newStateWhenOutRoom.filter((inbox) => inbox.id !== inboxId);
+             newStateWhenOutRoom = newStateWhenOutRoom.filter((inbox) => inbox.id !== inboxId);
             return newStateWhenOutRoom;
         default:
             break;

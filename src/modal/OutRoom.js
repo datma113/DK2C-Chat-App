@@ -12,8 +12,7 @@ const OutRoom = ({roomId, inboxId}) => {
       };
 
       const outRoomHandle = () => {
-           console.log(inboxId);
-         //dispatch(outRoom(roomId, inboxId))
+         dispatch(outRoom(roomId, inboxId))
       }
       return (
           <>

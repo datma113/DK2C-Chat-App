@@ -23,6 +23,7 @@ const Inbox = ({
     typeOfRoom,
     senderId
 }) => {
+    
     const dispatch = useDispatch();
     const limitStringToShow = (string) => {
         if (string) {

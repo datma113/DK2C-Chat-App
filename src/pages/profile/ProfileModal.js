@@ -4,6 +4,7 @@ import ProfileDetail from './ProfileDetail'
 import UserNameInput from './UserNameInput'
 import UserNameLabel from './UserNameLabel'
 
+
 const ProfileModal = (props) => {
     let userProfile =props.userProfile
     const [nameChange, setnameChange] = useState(0)
@@ -12,6 +13,7 @@ const ProfileModal = (props) => {
         else setnameChange(0)
         // setnameChange(indexOfNameElement)
     }
+
     return (
         <div onClick={()=>onNameChange(0)}>
             <div
@@ -33,6 +35,8 @@ const ProfileModal = (props) => {
                             </div>
 
                             <ProfileDetail user={userProfile} />
+                           
+
                         </div>
                         <div className="modal-footer">
 

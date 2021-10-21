@@ -106,7 +106,7 @@ const Inbox = ({
                         className={`text-small ${isExistNewMessage()} `}
                         style={{ opacity: `0.6` }}
                     >
-                        {limitStringToShow(senderName + lastMessage.content)}
+                        {limitStringToShow(senderName + (lastMessage?.content ?? ""))}
                     </div>
                 </div>
             </div>
@@ -114,9 +114,9 @@ const Inbox = ({
             <div className=" col-2 p-0 m-0">
                 <div className="d-flex flex-column ">
                     <div className="text-small mt-2 d-flex justify-content-end">
-                        {displayLastMessageTime(lastMessage.createAt)}
+                        {displayLastMessageTime(lastMessage?.createAt ?? "")}
                     </div>
-                    <ReadBy lastMessageReadBy={lastMessage.readbyes} />
+                    <ReadBy lastMessageReadBy={lastMessage?.readbyes ?? []} />
                     <div
                         className="text-small d-flex justify-content-end d-none"
                         style={{ opacity: `0.6` }}

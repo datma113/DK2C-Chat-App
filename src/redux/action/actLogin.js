@@ -8,14 +8,14 @@ import {
 import { API_GET_REFRESH_TOKEN, API_GET_USER_WHEN_EXISTS_REFRESH_TOKEN } from "../constants/api";
 import LoginService from "../../services/LoginService";
 import axios from "axios";
-import socketModule from '../../module/socketModule'
+import socketModule from "../../module/socketModule";
 
 export const storePhoneAndPasswordWhenLogin = (key, value) => {
     //key and value was created to save a dynamic object
     return {
         type: STORE_PHONE_AND_PASSWORD_WHEN_LOGIN,
         key,
-        value
+        value,
     };
 };
 
@@ -31,13 +31,13 @@ export const login = (user) => {
                     type: LOGIN_SUCCESSFUL,
                     user: resp.data,
                 });
-                
+
                 const USER_TO_CONNECT_SOCKET = {
                     userId: resp.data.id,
-                    access_token: resp.data.accessToken
-                }
-                
-                socketModule.connect(USER_TO_CONNECT_SOCKET, dispatch)
+                    access_token: resp.data.accessToken,
+                };
+
+                socketModule.connect(USER_TO_CONNECT_SOCKET, dispatch);
 
                 return Promise.resolve();
             })
@@ -85,10 +85,10 @@ export const getTokenWhenRefreshPage = () => {
                 });
                 const USER_TO_CONNECT_SOCKET = {
                     userId: resp.data.id,
-                    access_token: token
-                }
-                
-                socketModule.connect(USER_TO_CONNECT_SOCKET, dispatch)
+                    access_token: token,
+                };
+
+                socketModule.connect(USER_TO_CONNECT_SOCKET, dispatch);
                 return Promise.resolve();
             })
             .catch(() => {

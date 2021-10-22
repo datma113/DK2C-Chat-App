@@ -66,7 +66,7 @@ const AddNewMembers = ({ friendsList }) => {
                     />
                 </div>
                 <label className="col-11" htmlFor={`addNewMembers${index}`}>
-                    <Friend key={index} friendObj={friend} />
+                    <Friend key={index} friend={friend} />
                 </label>
             </div>
         );

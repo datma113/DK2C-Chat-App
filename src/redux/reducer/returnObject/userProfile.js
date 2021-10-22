@@ -6,8 +6,7 @@ const initial = {};
 const reducer = (state = initial, action) => {
     let { type, user_info } = action;
 
-    switch (type) {
-       
+    switch (type) {   
         case STORE_USER_INFO:
             state = user_info
             return state

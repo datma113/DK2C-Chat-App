@@ -23,6 +23,8 @@ const socketModule = (function () {
         return message.getNewMessageRealTime();
     };
 
+    
+
     function connect(user, dispatch) {
         const WEB_SOCKET_URL = process.env.REACT_APP_WEB_SOCKET;
         let socket = new SockJS(WEB_SOCKET_URL);

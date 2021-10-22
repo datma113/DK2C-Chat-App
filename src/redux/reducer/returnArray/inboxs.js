@@ -1,4 +1,5 @@
 import {
+    OUT_ROOM,
     RESET_NEW_MESSAGE,
     STORE_INBOXS,
     STORE_OLDER_INBOXS,
@@ -64,6 +65,10 @@ const reducer = (state = initial, action) => {
         case UPDATE_NEW_ROOM_REALTIME:
             return [newRoom, ...state];
 
+        case OUT_ROOM:
+            let newStateWhenOutRoom = [...state];
+             newStateWhenOutRoom = newStateWhenOutRoom.filter((inbox) => inbox.id !== inboxId);
+            return newStateWhenOutRoom;
         default:
             break;
     }

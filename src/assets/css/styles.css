@@ -525,6 +525,7 @@ a {
 }
 .send-message-container__icon-container {
   margin: 0 1rem;
+  position: relative;
 }
 .send-message-container__icon-container i {
   padding: 1rem 1.5rem;
@@ -535,6 +536,11 @@ a {
 .send-message-container__icon-container i:hover {
   background-color: #a166d1;
   color: #FBFBFB;
+}
+.send-message-container__icon-container__emoji-express {
+  position: absolute;
+  bottom: 6rem;
+  right: 0;
 }
 
 .friendhome {

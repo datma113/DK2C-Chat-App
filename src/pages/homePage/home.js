@@ -13,7 +13,6 @@ const Home = () => {
     const authentication = useSelector((state) => state.authentication);
     const currentInboxId = useSelector((state) => state.currentInboxId);
     const currentRoomId = useSelector((state) => state.currentRoomId);
-    const NOT_EXISTS_CURRENT_ID_BOX_CHAT = 0;
     return (
         <div>
             {!authentication.isLoggin && <Welcome />}
@@ -23,7 +22,7 @@ const Home = () => {
                     {/* col-3 */}
                     <InboxList />
 
-                    {currentInboxId !== NOT_EXISTS_CURRENT_ID_BOX_CHAT ? (
+                    {currentInboxId ? (
                         <>
                             <div className="box-chat-container">
                                 <HeaderOfBoxChat />

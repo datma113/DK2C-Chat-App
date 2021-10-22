@@ -11,10 +11,12 @@ const InboxList = () => {
     const currentInboxId = useSelector((state) => state.currentInboxId);
     const [loadingOlderInboxs, setloadingOlderInboxs] = useState(1);
     const authentication = useSelector((state) => state.authentication);
+    
     const loadingOlderFriendsInboxs = () => {
         setloadingOlderInboxs((n) => n + 1);
         dispatch(getOlderInboxsFromServer(loadingOlderInboxs));
     };
+
     useEffect(() => {
         dispatch(getInboxsFromServer());
     }, [dispatch]);
@@ -34,16 +36,15 @@ const InboxList = () => {
         const CURRENT_ROOM_ID = inbox.room.id;
 
         const MY_ID = authentication.user.id;
-        const SENDER_ID = inbox.lastMessage.sender ? inbox.lastMessage.sender.id : "";
+        const SENDER_ID = inbox.lastMessage?.sender.id ?? "";
         const IS_MYSELF = MY_ID === SENDER_ID ? true : false;
-        const NAME_OF_LAST_SENDER = inbox.lastMessage.sender
-            ? inbox.lastMessage.sender.displayName
-            : "thông báo";
-
+        const NAME_OF_LAST_SENDER = inbox.lastMessage?.sender.displayName ?? "thông báo"
+     
         let imgUrl = "";
         let displayName = "";
         let senderName = "";
         let senderId = "";
+
         switch (inbox.room.type) {
             case TYPE_ROOM_ONE:
                 senderId = inbox.room.to.id;
@@ -70,9 +71,7 @@ const InboxList = () => {
                 key={index}
                 imgUrl={imgUrl}
                 displayName={displayName}
-                lastMessage={inbox.lastMessage.content}
-                lastMessageTime={inbox.lastMessage.createAt}
-                lastMessageReadBy={inbox.lastMessage.readbyes}
+                lastMessage={inbox.lastMessage}
                 inboxId={inbox.id}
                 roomId={CURRENT_ROOM_ID}
                 isActive={IS_ACTIVE}

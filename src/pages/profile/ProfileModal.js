@@ -5,17 +5,24 @@ import UserNameInput from "./UserNameInput";
 import UserNameLabel from "./UserNameLabel";
 
 
-const ProfileModal = (props) => {
+const ProfileModal = ({userProfile}) => {
 
-    let userProfile = props.userProfile;
-    const [nameChange, setnameChange] = useState(0);
-    const onNameChange = () => {
-        if (nameChange === 0) setnameChange(1);
-        else setnameChange(0);
+    const [isShowInputField, setisShowInputField] = useState(false);
+    const DISPLAY_NAME_INPUT_ID = 'displayNameInputId'
+
+    const onNameChange = (e) => {
+        setisShowInputField(!isShowInputField)
     };
 
+    const notToggleDisplayNameInputField = (e) => {
+        const ID_OF_INPUT_FIELD = e.target.id
+        if(isShowInputField && ID_OF_INPUT_FIELD !== DISPLAY_NAME_INPUT_ID) {
+            setisShowInputField(false)
+        }
+    }
+
     return (
-        <div onClick={() => onNameChange(0)}>
+        <div onClick={(e) => notToggleDisplayNameInputField(e)}>
             <div
                 className="modal fade"
                 id="exampleModal"
@@ -39,10 +46,12 @@ const ProfileModal = (props) => {
                                     src={userProfile.imageUrl}
                                     alt="Avatar"
                                 />
-                                {nameChange === 0 ? (
-                                    <UserNameLabel user={userProfile} onNameChange={onNameChange} />
+                                {isShowInputField ? (
+                                    <UserNameInput user={userProfile} id={DISPLAY_NAME_INPUT_ID}/>
+
                                 ) : (
-                                    <UserNameInput user={userProfile} />
+                                    <UserNameLabel user={userProfile} onNameChange={(e) => onNameChange(e)} />
+
                                 )}
                             </div>
 

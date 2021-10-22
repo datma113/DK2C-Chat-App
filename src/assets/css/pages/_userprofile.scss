@@ -25,3 +25,17 @@
   }
 
 }
+.custom-select-tag {
+  cursor: pointer;
+  max-height: 20rem;
+  z-index: -2;
+  
+  &__container-option {
+    height: 20rem;
+  }
+}
+
+.test{
+  overflow: hidden;
+  z-index: 99;
+}

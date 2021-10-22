@@ -37,7 +37,11 @@ a {
 }
 
 .modal-dialog {
-  margin-top: 17rem;
+  margin-top: 10rem;
+}
+
+.modal {
+  overflow: hidden;
 }
 
 /*components*/
@@ -730,8 +734,22 @@ a {
 }
 .profile__detail input {
   margin-bottom: 10px;
-  padding-left: 10px;
   width: 100%;
+  padding: 0.5rem 2rem;
+}
+
+.custom-select-tag {
+  cursor: pointer;
+  max-height: 20rem;
+  z-index: -2;
+}
+.custom-select-tag__container-option {
+  height: 20rem;
+}
+
+.test {
+  overflow: hidden;
+  z-index: 99;
 }
 
 /*variables*/

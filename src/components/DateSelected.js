@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 
-const DateSelected = () => {
-    const [currentYear, setcurrentYear] = useState(2000);
-    const [currentMonth, setcurrentMonth] = useState(2);
-    const [currentDay, setcurrentDay] = useState(15);
+const DateSelected = ({ userDOB }) => {
+    const [day, setday] = useState(userDOB.day)
+    const [month, setmonth] = useState(userDOB.month)
+    const [year, setyear] = useState(userDOB.year)
+
 
     const isLeap = (year) => new Date(year, 1, 29).getDate() === 29;
 
@@ -34,10 +35,10 @@ const DateSelected = () => {
         return DAY_30.includes(month) ? dayRender(MONTH_30_DAY) : dayRender(MONTH_31_DAY);
     };
 
-    const IS_LEAP_YEAR = isLeap(currentYear);
-    const DAYS_WITH_ACCURATE_MONTH = dayChecked(IS_LEAP_YEAR, currentMonth);
+    const IS_LEAP_YEAR = isLeap(year);
+    const DAYS_WITH_ACCURATE_MONTH = dayChecked(IS_LEAP_YEAR, month);
     const dayRenderMap = DAYS_WITH_ACCURATE_MONTH.map((day, index) => (
-        <option key={index}>{day}</option>
+        <option key={index}> {day}</option>
     ));
 
     return (
@@ -48,11 +49,9 @@ const DateSelected = () => {
                 </label>
                 <select
                     className="form-control text-center text-small custom-select-tag"
+                    onChange={(e) => {setday(e.target.value)}}
                     id="day"
-                    onChange={(e) => {
-                        setcurrentDay(e.target.value);
-                    }}
-                    defaultValue={currentDay}
+                    value={day}
                 >
                     {dayRenderMap}
                 </select>
@@ -63,9 +62,9 @@ const DateSelected = () => {
                 </label>
                 <select
                     className="form-control text-center text-small custom-select-tag"
+                    onChange={(e) => {setmonth(e.target.value)}}
                     id="month"
-                    onChange={(e) => setcurrentMonth(Number(e.target.value))}
-                    defaultValue={currentMonth}
+                    value={month}
                 >
                     {monthRenderMap}
                 </select>
@@ -76,9 +75,9 @@ const DateSelected = () => {
                 </label>
                 <select
                     className="form-control text-center text-small custom-select-tag"
+                    onChange={(e) => {setyear(e.target.value)}}
                     id="year"
-                    onChange={(e) => setcurrentYear(e.target.value)}
-                    defaultValue={currentYear}
+                    value={year}
                 >
                     {yearRenderMap}
                 </select>

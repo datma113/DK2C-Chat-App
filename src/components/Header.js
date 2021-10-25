@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 
 import { logout } from "../redux/action/actLogin";
 import { useSelector } from "react-redux";
+import { getUserInfoFromServer } from "../redux/action/actProfile";
 const Header = () => {
     const dispatch = useDispatch();
     const authentication = useSelector(state => state.authentication)
@@ -78,8 +79,7 @@ const Header = () => {
                             >
                                 <img
                                     src={authentication.user.imageUrl}
-                                    className="rounded-circle"
-                                    height="25"
+                                    className="header-img"
                                     alt=""
                                     loading="lazy"
                                 />
@@ -87,7 +87,9 @@ const Header = () => {
                             <ul className="dropdown-menu ">
                                 <li className="p-1">
                                     <h3 className="dropdown-item" href="#"   data-mdb-toggle="modal"
-                                    data-mdb-target="#exampleModal">
+                                    data-mdb-target="#exampleModal"
+                                    onClick={() => dispatch(getUserInfoFromServer())}
+                                    >
                                         Hồ sơ
                                     </h3>
                                 </li>

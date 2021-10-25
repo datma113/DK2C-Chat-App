@@ -2,7 +2,7 @@ const API = process.env.REACT_APP_BASE_URL;
 
 /**authentication */
 const API_AUTH = API + "auth/";
-const API_SIGN_UP = API_AUTH + "signup";
+const API_SIGN_UP = API_AUTH + "signup/";
 const API_ROOM = API + "rooms/";
 
 export const API_SIGN_IN = API_AUTH + "signin";

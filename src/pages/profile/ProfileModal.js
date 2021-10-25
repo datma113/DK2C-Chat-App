@@ -4,25 +4,27 @@ import ProfileDetail from "./ProfileDetail";
 import UserNameInput from "./UserNameInput";
 import UserNameLabel from "./UserNameLabel";
 
-
-const ProfileModal = ({userProfile}) => {
-
+const ProfileModal = ({ userProfile }) => {
     const [isShowInputField, setisShowInputField] = useState(false);
-    const DISPLAY_NAME_INPUT_ID = 'displayNameInputId'
+    const DISPLAY_NAME_INPUT_ID = "displayNameInputId";
 
     const onNameChange = (e) => {
-        setisShowInputField(!isShowInputField)
+        setisShowInputField(!isShowInputField);
     };
 
     const notToggleDisplayNameInputField = (e) => {
-        const ID_OF_INPUT_FIELD = e.target.id
-        if(isShowInputField && ID_OF_INPUT_FIELD !== DISPLAY_NAME_INPUT_ID) {
-            setisShowInputField(false)
+        const ID_OF_INPUT_FIELD = e.target.id;
+        if (isShowInputField && ID_OF_INPUT_FIELD !== DISPLAY_NAME_INPUT_ID) {
+            setisShowInputField(false);
         }
-    }
+    };
 
     return (
-        <div onClick={(e) => notToggleDisplayNameInputField(e)}>
+        <div
+            onClick={(e) => {
+                notToggleDisplayNameInputField(e);
+            }}
+        >
             <div
                 className="modal fade"
                 id="exampleModal"
@@ -47,17 +49,16 @@ const ProfileModal = ({userProfile}) => {
                                     alt="Avatar"
                                 />
                                 {isShowInputField ? (
-                                    <UserNameInput user={userProfile} id={DISPLAY_NAME_INPUT_ID}/>
-
+                                    <UserNameInput user={userProfile} id={DISPLAY_NAME_INPUT_ID} />
                                 ) : (
-                                    <UserNameLabel user={userProfile} onNameChange={(e) => onNameChange(e)} />
-
+                                    <UserNameLabel
+                                        user={userProfile}
+                                        onNameChange={(e) => onNameChange(e)}
+                                    />
                                 )}
                             </div>
 
                             <ProfileDetail user={userProfile} />
-                           
-
                         </div>
                         <div className="modal-footer">
                             <button

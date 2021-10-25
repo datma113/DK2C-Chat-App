@@ -1,8 +1,15 @@
 import React from "react";
 import DateSelected from "../../components/DateSelected";
 
-const ProfileDetail = (props) => {
-    let user = props.user;
+const ProfileDetail = ({ user }) => {
+    const DOB_TIME = Object.entries(user).length ? new Date(user.dateOfBirth) : new Date()
+
+
+    const USER_DOB = {
+        year: DOB_TIME.getFullYear(),
+        day: DOB_TIME.getDate(),
+        month: DOB_TIME.getMonth() + 1,
+    };
 
     return (
         <div className="container row ">
@@ -17,7 +24,7 @@ const ProfileDetail = (props) => {
                     <input value={user.email || "đang tải"} disabled className="text-small" />
                 </div>
 
-                <DateSelected />
+                <DateSelected userDOB={USER_DOB} />
             </div>
         </div>
     );

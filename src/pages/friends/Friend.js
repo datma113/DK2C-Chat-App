@@ -1,6 +1,6 @@
 import React from "react";
 
-const Friend = ({ friend, functionWhenClick, gotoChat }) => {
+const Friend = ({ friend, functionWhenClick, gotoChat, clickToOption, isShowFriendsOption }) => {
     return (
         <div className="friend row p-3 center" onClick={functionWhenClick}>
             <div className="col-3 center">
@@ -14,20 +14,20 @@ const Friend = ({ friend, functionWhenClick, gotoChat }) => {
             </div>
 
             <div
-                className="col-1 option-friend-inbox"
-                onClick={(e) => {
-                    e.stopPropagation();
-                    console.log(e.target, this);
-                }}
+                className="col-1 option-friend-inbox "
+                id={`fo${friend.friend.id}`}
+                onClick={clickToOption}
             >
-                <div className="center flex-column option-friend-inbox__options">
+                <div
+                    className={`center flex-column option-friend-inbox__options ${isShowFriendsOption}`}
+                >
                     <div
-                        className="option-friend-inbox__options__element text-small"
+                        className={`option-friend-inbox__options__element  text-small`}
                         onClick={gotoChat}
                     >
                         Nhắn tin
                     </div>
-                    <div className="option-friend-inbox__options__element text-small">
+                    <div className={`option-friend-inbox__options__element text-small`}>
                         xem thông tin
                     </div>
                 </div>

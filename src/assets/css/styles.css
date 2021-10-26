@@ -668,6 +668,9 @@ a {
   top: 0;
   padding: 1rem;
 }
+.option-friend-inbox__options--show {
+  display: block;
+}
 .option-friend-inbox__options__element {
   padding: 0.25rem 1rem;
   border-radius: 7.5px;
@@ -676,9 +679,6 @@ a {
 .option-friend-inbox__options__element:hover {
   background-color: #a166d1;
   box-shadow: 0 0 10px #dddddd;
-}
-.option-friend-inbox:hover .option-friend-inbox__options {
-  display: block;
 }
 
 .info-room-right {

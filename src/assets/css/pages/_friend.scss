@@ -135,6 +135,10 @@
         top: 0;
         padding: 1rem;
 
+        &--show {
+            display: block;
+        }
+
         &__element {
             padding: 0.25rem 1rem;
             border-radius: 7.5px;
@@ -147,7 +151,5 @@
         }
     }
 
-    &:hover &__options {
-        display: block;
-    }
+    
 }

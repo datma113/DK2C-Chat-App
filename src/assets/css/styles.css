@@ -305,6 +305,7 @@ a {
   overflow: scroll;
   overflow-x: hidden;
   height: 90vh;
+  background-color: white;
 }
 .home__inbox-list__older-inboxs {
   color: #5D3B78;

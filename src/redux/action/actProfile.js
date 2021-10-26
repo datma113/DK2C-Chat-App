@@ -1,6 +1,6 @@
 import axios from "axios";
 import { API_CHANGE_PASSWORD, API_CHANGE_USER_IMAGE, API_GET_USER_INFO } from "../constants/api";
-import { STORE_OLD_AND_NEW_PASSWORD, STORE_USER_INFO } from "../constants/constants";
+import { STORE_OLD_AND_NEW_PASSWORD, STORE_USER_INFO, UPDATE_USER_INFO_IMAGE } from "../constants/constants";
 export const storeUserInfo = (user_info) => {
     return {
         type: STORE_USER_INFO,
@@ -56,7 +56,12 @@ export const changeUserImage = (image) => {
         axios
             .put(API_CHANGE_USER_IMAGE, image, CONFIG_HEADER_MULTIPART_FORM_DATA)
             .then((resp) => {
-                console.log(resp.data);
+                const newImageUrl = resp.data.imageUrl
+                
+                dispatch({
+                    type: UPDATE_USER_INFO_IMAGE,
+                    newImageUrl
+                })
             })
             .catch((err) => {
                 console.log(err);

@@ -1,15 +1,16 @@
-import {
-    STORE_USER_INFO
-}
-from "../../constants/constants";
+import { STORE_USER_INFO, UPDATE_USER_INFO_IMAGE } from "../../constants/constants";
 const initial = {};
 const reducer = (state = initial, action) => {
-    let { type, user_info } = action;
+    let { type, user_info, newImageUrl } = action;
 
-    switch (type) {   
+    switch (type) {
         case STORE_USER_INFO:
-            state = user_info
-            return state
+            return user_info;
+        case UPDATE_USER_INFO_IMAGE:
+            return {
+                ...state,
+                imageUrl: newImageUrl,
+            };
         default:
             break;
     }

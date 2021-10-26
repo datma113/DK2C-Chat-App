@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import logo from "../assets/image/LOGO.png";
@@ -9,8 +9,13 @@ import { useSelector } from "react-redux";
 import { getUserInfoFromServer } from "../redux/action/actProfile";
 const Header = () => {
     const dispatch = useDispatch();
-    const authentication = useSelector((state) => state.authentication);
+    const userInfo = useSelector((state) => state.userInfo);
 
+    useEffect(() => {
+        dispatch(getUserInfoFromServer());
+    }, [dispatch]);
+
+    console.log(userInfo);
     const history = useHistory();
     const logoutHandle = () => {
         dispatch(logout())
@@ -58,12 +63,7 @@ const Header = () => {
                             aria-expanded="false"
                             data-mdb-dropdown-animation="off"
                         >
-                            <img
-                                src={authentication.user.imageUrl}
-                                className="header-img"
-                                alt=""
-                                loading="lazy"
-                            />
+                            <img src={userInfo.imageUrl} className="header-img" alt="" loading="lazy" />
                         </div>
                         <ul className="dropdown-menu ">
                             <li className="p-1">
@@ -72,7 +72,6 @@ const Header = () => {
                                     href="#"
                                     data-mdb-toggle="modal"
                                     data-mdb-target="#openMyInfoModal"
-                                    onClick={() => dispatch(getUserInfoFromServer())}
                                 >
                                     Hồ sơ
                                 </p>

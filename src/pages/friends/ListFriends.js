@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { deleteFriends, getInboxByFriendId, getUserProfile } from "../../redux/action/actFriends";
+import { RESET_CURRENT_INBOX_ID, RESET_CURRENT_ROOM_ID } from "../../redux/constants/constants";
 import Friend from "./Friend";
 
 const ListFriends = () => {
@@ -38,7 +39,16 @@ const ListFriends = () => {
     };
 
     const deleteFriend = (friendId) => {
-        dispatch(deleteFriends(friendId))
+        dispatch(deleteFriends(friendId)).then(() => {
+
+            dispatch({
+                type: RESET_CURRENT_INBOX_ID,
+            });
+            
+            dispatch({
+                type: RESET_CURRENT_ROOM_ID,
+            });
+        });
     };
 
     const listFriendMap = friendsList.map((friend, index) => {

@@ -11,6 +11,7 @@ import {
     STORE_FRIENDS_REQUEST,
     STORE_FRIEND_PROFILE,
     STORE_GROUPS_LIST,
+    UPDATE_FRIENDS_AFTER_DELETE,
 } from "../constants/constants";
 import { storeCurrentIdOfInbox, storeCurrentInbox, storeCurrentRoomId } from "./actHome";
 
@@ -146,7 +147,11 @@ export const getUserProfile = (userId) => {
 export const deleteFriends = (friendId) => {
     return dispatch => axios.delete(API_FRIENDS + friendId)
     .then((resp) => {
-        console.log(resp.data);
+        dispatch({
+            type: UPDATE_FRIENDS_AFTER_DELETE,
+            friendId
+        })
+        return Promise.resolve()
     })
     .catch((err) => {
         console.log(err);

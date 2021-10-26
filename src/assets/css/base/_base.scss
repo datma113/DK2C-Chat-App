@@ -12,28 +12,23 @@ html {
 }
 
 body {
-    background-image: linear-gradient(
-        to bottom,
-        #5d3b78,
-        #7d4383,
-        #9c4b8b,
-        #bc5490,
-        #da5e92,
-        #e46195,
-        #ee6597,
-        #f86899,
-        #f1649f,
-        #e961a5,
-        #e05fab,
-        #d65db1
+    background: rgb(251, 251, 251);
+    background: linear-gradient(
+        180deg,
+        rgba(251, 251, 251, 1) 0%,
+        rgba(240, 229, 249, 1) 20%,
+        rgba(239, 205, 240, 0.7458333675266982) 36%,
+        rgba(240, 132, 179, 0.43771011822697825) 57%,
+        rgba(218, 94, 146, 0.4321078773306197) 73%,
+        rgba(156, 75, 139, 0.4573179613642332) 89%,
+        rgba(93, 59, 120, 0.40689779329700626) 96%
     );
     background-repeat: no-repeat;
     background-size: cover;
     width: 100vw;
     height: 100vh;
     z-index: -9;
-  
-}   
+}
 
 a {
     text-decoration: none;

@@ -1,6 +1,6 @@
 import axios from "axios";
 import {
-    API_GET_FRIENDS_LIST,
+    API_FRIENDS,
     API_GET_FRIENDS_REQUEST,
     API_GET_INBOX_BY_FRIEND_ID,
     API_GET_USER_PROFILE,
@@ -23,7 +23,7 @@ export const storeFriendsList = (friends) => {
 export const getFriendsListFromServer = () => {
     return (dispatch) => {
         return axios
-            .get(API_GET_FRIENDS_LIST)
+            .get(API_FRIENDS)
             .then((resp) => {
                 dispatch(storeFriendsList(resp.data.content));
                 return Promise.resolve(resp.data.content);
@@ -142,3 +142,13 @@ export const getUserProfile = (userId) => {
                 console.log(err);
             });
 };
+
+export const deleteFriends = (friendId) => {
+    return dispatch => axios.delete(API_FRIENDS + friendId)
+    .then((resp) => {
+        console.log(resp.data);
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+}

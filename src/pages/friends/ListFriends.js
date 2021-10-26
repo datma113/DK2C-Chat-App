@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { getInboxByFriendId, getUserProfile } from "../../redux/action/actFriends";
+import { deleteFriends, getInboxByFriendId, getUserProfile } from "../../redux/action/actFriends";
 import Friend from "./Friend";
 
 const ListFriends = () => {
@@ -37,6 +37,10 @@ const ListFriends = () => {
         setindexOfFriendsOption(-1);
     };
 
+    const deleteFriend = (friendId) => {
+        dispatch(deleteFriends(friendId))
+    };
+
     const listFriendMap = friendsList.map((friend, index) => {
         const ID = friend.friend.id;
 
@@ -57,6 +61,9 @@ const ListFriends = () => {
                 }}
                 mouseLeave={() => hideOptionWhenCloseModal()}
                 profile={friendProfile}
+                deleteFriend={() => {
+                    deleteFriend(ID);
+                }}
             />
         );
     });

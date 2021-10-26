@@ -12,7 +12,8 @@ html {
 }
 
 body {
-  background-image: linear-gradient(to bottom, #5d3b78, #7d4383, #9c4b8b, #bc5490, #da5e92, #e46195, #ee6597, #f86899, #f1649f, #e961a5, #e05fab, #d65db1);
+  background: #fbfbfb;
+  background: linear-gradient(180deg, #fbfbfb 0%, #f0e5f9 20%, rgba(239, 205, 240, 0.7458333675) 36%, rgba(240, 132, 179, 0.4377101182) 57%, rgba(218, 94, 146, 0.4321078773) 73%, rgba(156, 75, 139, 0.4573179614) 89%, rgba(93, 59, 120, 0.4068977933) 96%);
   background-repeat: no-repeat;
   background-size: cover;
   width: 100vw;
@@ -276,7 +277,7 @@ a {
   border-radius: 1rem;
   box-shadow: 0 0 30px #FBFBFB, 0 0 40px #262626, 0 0 20px #FFA900;
   padding: 3rem 0;
-  background-color: #FBFBFB;
+  background-color: white;
   margin-top: 5rem;
 }
 .welcome-container__image {

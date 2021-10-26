@@ -11,11 +11,9 @@ const Friend = ({
     viewProfile,
     profile,
     mouseLeave,
+    deleteFriend
 }) => {
-    const deleteFriend = () => {
-        console.log(`done`);
-    };
-
+    
     const FRIEND_ID = friend.friend.id;
     return (
         <div className="friend row p-3 center" onClick={functionWhenClick}>
@@ -52,7 +50,7 @@ const Friend = ({
 
                     <DeleteFriend
                         id={FRIEND_ID}
-                        deleteFriend={() => deleteFriend()}
+                        deleteFriend={deleteFriend}
                         onMouseLeave={mouseLeave}
                     />
                 </div>

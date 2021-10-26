@@ -17,12 +17,14 @@ import HeaderOfInfoRoom from "../../components/HeaderOfInfoRoom";
 import InfoOfRoom from "../../components/InfoOfRoom";
 import OptionOfRoom from "../homePage/OptionOfRoom";
 import { RESET_CURRENT_INBOX_ID, RESET_CURRENT_ROOM_ID } from "../../redux/constants/constants";
+import { useHistory } from "react-router";
 const FriendHome = () => {
     const dispatch = useDispatch();
     const friendsListFromStore = useSelector((state) => state.friendsList);
     const currentInboxId = useSelector((state) => state.currentInboxId);
     const currentRoomId = useSelector((state) => state.currentRoomId);
-
+    const authentication = useSelector((state) => state.authentication);
+    const history = useHistory();
     let [index, setindex] = useState(-2);
 
     let friendsList = [...friendsListFromStore];
@@ -33,72 +35,77 @@ const FriendHome = () => {
         dispatch(getGroupsChatList());
 
         dispatch({
-            type: RESET_CURRENT_INBOX_ID
-        })
+            type: RESET_CURRENT_INBOX_ID,
+        });
         dispatch({
-            type: RESET_CURRENT_ROOM_ID
-        })
-
+            type: RESET_CURRENT_ROOM_ID,
+        });
     }, [dispatch]);
     const changeOptions = (option) => {
         setindex(option);
 
         dispatch({
-            type: RESET_CURRENT_INBOX_ID
-        })
+            type: RESET_CURRENT_INBOX_ID,
+        });
     };
 
     return (
-        <div className="friendhome bg-light">
-            <div className="friendhome__friend-list">
-                <div>
-                    <div className="friend row p-3  " onClick={() => changeOptions(-1)}>
-                        <div className="col-3 center">
-                            <div className="friend__img">
-                                <img src={addFriendImg} alt="" />
+        <div>
+            {authentication.isLoggin ? (
+                <div className="friendhome bg-light">
+                    <div className="friendhome__friend-list">
+                        <div>
+                            <div className="friend row p-3  " onClick={() => changeOptions(-1)}>
+                                <div className="col-3 center">
+                                    <div className="friend__img">
+                                        <img src={addFriendImg} alt="" />
+                                    </div>
+                                </div>
+
+                                <div className="col-9 d-flex align-items-center">
+                                    <div className=" text-medium">Danh sách kết bạn</div>
+                                </div>
+                            </div>
+                            <div className="friend row p-3 " onClick={() => changeOptions(-2)}>
+                                <div className="col-3 center">
+                                    <div className="friend__img">
+                                        <img src={groupImg} alt="" />
+                                    </div>
+                                </div>
+
+                                <div className="col-9 d-flex align-items-center">
+                                    <div className=" text-medium">Danh sách nhóm</div>
+                                </div>
                             </div>
                         </div>
 
-                        <div className="col-9 d-flex align-items-center">
-                            <div className=" text-medium">Danh sách kết bạn</div>
-                        </div>
+                        <hr className="" />
+                        <h4>&nbsp;&nbsp;Bạn bè ({friendsList.length})</h4>
+                        <ListFriends friends={friendsList} />
                     </div>
-                    <div className="friend row p-3 " onClick={() => changeOptions(-2)}>
-                        <div className="col-3 center">
-                            <div className="friend__img">
-                                <img src={groupImg} alt="" />
+                    {currentInboxId ? (
+                        <>
+                            <div className="box-chat-container">
+                                <HeaderOfBoxChat />
+                                <BoxChat />
+                                <SendMessage roomId={currentRoomId} />
                             </div>
+                            <div className="info-room-right">
+                                <HeaderOfInfoRoom />
+                                <div className="info-room-right__scroll">
+                                    <InfoOfRoom />
+                                    <OptionOfRoom roomId={currentRoomId} />
+                                </div>
+                            </div>
+                        </>
+                    ) : (
+                        <div className="col-9">
+                            {index === -1 ? <FriendRequestAndSuggestions /> : <Groups />}
                         </div>
-
-                        <div className="col-9 d-flex align-items-center">
-                            <div className=" text-medium">Danh sách nhóm</div>
-                        </div>
-                    </div>
+                    )}
                 </div>
-
-                <hr className="" />
-                <h4>&nbsp;&nbsp;Bạn bè ({friendsList.length})</h4>
-                <ListFriends friends={friendsList} />
-            </div>
-            {currentInboxId ? (
-                <>
-                    <div className="box-chat-container">
-                        <HeaderOfBoxChat />
-                        <BoxChat />
-                        <SendMessage roomId={currentRoomId} />
-                    </div>
-                    <div className="info-room-right">
-                        <HeaderOfInfoRoom />
-                        <div className="info-room-right__scroll">
-                            <InfoOfRoom />
-                            <OptionOfRoom roomId={currentRoomId} />
-                        </div>
-                    </div>
-                </>
             ) : (
-                <div className="col-9">
-                    {index === -1 ? <FriendRequestAndSuggestions /> : <Groups />}
-                </div>
+                <div> {history.push("/not-found")} </div>
             )}
         </div>
     );

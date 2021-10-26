@@ -555,9 +555,10 @@ a {
 .friendhome__friend-list {
   min-width: 38rem;
   max-width: 38rem;
-  overflow: scroll;
+  overflow-y: scroll;
   overflow-x: hidden;
   height: 90vh;
+  z-index: 99;
 }
 .friendhome__friend-list__older-friends {
   color: #5D3B78;
@@ -648,6 +649,36 @@ a {
 .groupImg {
   border-radius: 50%;
   width: 100px;
+}
+
+.option-friend-inbox {
+  user-select: none;
+  position: relative;
+  color: black;
+}
+.option-friend-inbox__options {
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 0 10px #dddddd;
+  border-radius: 7.5px;
+  display: none;
+  transition: 0.2s;
+  z-index: 9;
+  left: -13rem;
+  top: 0;
+  padding: 1rem;
+}
+.option-friend-inbox__options__element {
+  padding: 0.25rem 1rem;
+  border-radius: 7.5px;
+  transition: 0.2s;
+}
+.option-friend-inbox__options__element:hover {
+  background-color: #a166d1;
+  box-shadow: 0 0 10px #dddddd;
+}
+.option-friend-inbox:hover .option-friend-inbox__options {
+  display: block;
 }
 
 .info-room-right {

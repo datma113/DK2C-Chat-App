@@ -187,19 +187,7 @@
 
     &__message {
         word-wrap: break-word;
-        background-image: linear-gradient(
-            to left top,
-            $mainPurpleColor,
-            #5462e0,
-            #5627d8,
-            #f8f8f9,
-            #f7f7f8,
-            #f6f5f7,
-            #f2ebf6,
-            #f1e1f3,
-            #5462e0,
-            $mainPurpleColor
-        );
+        background-color: $mySideColor;
         border: thin solid $mainPurpleColor;
         border-radius: 10px;
         padding: 1.5rem 1rem;

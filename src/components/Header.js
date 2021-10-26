@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import logo from "../assets/image/LOGO.png";
 import Swal from "sweetalert2";
 
@@ -10,10 +10,13 @@ import { getUserInfoFromServer } from "../redux/action/actProfile";
 const Header = () => {
     const dispatch = useDispatch();
     const authentication = useSelector((state) => state.authentication);
+    
+    const history = useHistory();
     const logoutHandle = () => {
         dispatch(logout())
             .then(() => {
                 window.location.reload();
+                history.push("/")
             })
             .catch((err) => {
                 Swal.fire({

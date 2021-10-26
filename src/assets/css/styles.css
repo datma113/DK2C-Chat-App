@@ -273,8 +273,9 @@ a {
   box-shadow: 0 0 30px #FBFBFB, 0 0 40px #262626, 0 0 20px #FFA900;
   padding: 3rem 0;
   background-color: #FBFBFB;
+  margin-top: 5rem;
 }
-mainDarkColor .welcome-container__image {
+.welcome-container__image {
   width: 30rem;
   height: 30rem;
   display: block;
@@ -465,7 +466,7 @@ mainDarkColor .welcome-container__image {
 }
 .single-chat-box__message {
   word-wrap: break-word;
-  background-image: linear-gradient(to left top, #5D3B78, #5462e0, #5627d8, #f8f8f9, #f7f7f8, #f6f5f7, #f2ebf6, #f1e1f3, #5462e0, #5D3B78);
+  background-color: #a8d5e3;
   border: thin solid #5D3B78;
   border-radius: 10px;
   padding: 1.5rem 1rem;
@@ -792,6 +793,13 @@ mainDarkColor .welcome-container__image {
 .test {
   overflow: hidden;
   z-index: 99;
+}
+
+.change-pass-container {
+  background-color: white;
+  padding: 2rem 4rem;
+  border-radius: 5px;
+  box-shadow: 0 0 30px #FBFBFB, 0 0 40px #262626, 0 0 20px #FFA900;
 }
 
 /*variables*/

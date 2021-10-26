@@ -1,7 +1,6 @@
 import React from "react";
 
-const FriendProfile = ({ viewProfile, id, profile }) => {
-
+const FriendProfile = ({ viewProfile, id, profile, onMouseLeave }) => {
     return (
         <>
             <div
@@ -20,6 +19,7 @@ const FriendProfile = ({ viewProfile, id, profile }) => {
                 tabIndex="1"
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
+                onMouseLeave={onMouseLeave}
             >
                 <div className="modal-dialog">
                     <div className="modal-content">

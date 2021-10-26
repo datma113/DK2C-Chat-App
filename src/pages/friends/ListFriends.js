@@ -7,7 +7,7 @@ import Friend from "./Friend";
 const ListFriends = () => {
     const friendsList = useSelector((state) => state.friendsList);
     const [indexOfFriendsOption, setindexOfFriendsOption] = useState(-1);
-    const friendProfile = useSelector(state => state.friendProfile)
+    const friendProfile = useSelector((state) => state.friendProfile);
 
     const dispatch = useDispatch();
 
@@ -15,10 +15,9 @@ const ListFriends = () => {
         dispatch(getInboxByFriendId(friendId));
     };
 
-    const handleClickToOption = (e, index) => {
+    const handleClickToOption = (e, friendId, index) => {
         e.stopPropagation();
-
-        setindexOfFriendsOption(index);
+        e.target.id === `fo${friendId}` && setindexOfFriendsOption(index);
     };
 
     const isShowfriendsOption = (index) => {
@@ -29,12 +28,18 @@ const ListFriends = () => {
         setindexOfFriendsOption(-1);
     };
 
-    const viewProfile = (friendId) => {
-        dispatch(getUserProfile(friendId))
-    }
+    const viewProfile = (e, friendId) => {
+        e.stopPropagation();
+        dispatch(getUserProfile(friendId));
+    };
+
+    const hideOptionWhenCloseModal = () => {
+        setindexOfFriendsOption(-1);
+    };
 
     const listFriendMap = friendsList.map((friend, index) => {
         const ID = friend.friend.id;
+
         return (
             <Friend
                 key={index}
@@ -44,12 +49,13 @@ const ListFriends = () => {
                     dispatch(getInboxByFriendId(ID)).then(() => setindexOfFriendsOption(-1));
                 }}
                 clickToOption={(e) => {
-                    handleClickToOption(e, index);
+                    handleClickToOption(e, ID, index);
                 }}
                 isShowFriendsOption={isShowfriendsOption(index)}
-                viewProfile={() => {
-                    viewProfile(ID)
+                viewProfile={(e) => {
+                    viewProfile(e, ID);
                 }}
+                mouseLeave={() => hideOptionWhenCloseModal()}
                 profile={friendProfile}
             />
         );

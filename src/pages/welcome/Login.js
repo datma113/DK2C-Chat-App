@@ -67,10 +67,6 @@ const Login = () => {
         );
     });
 
-    const gobackHome = () => {
-        history.push("/");
-    };
-
     useEffect(() => {
         dispatch(getTokenWhenRefreshPage());
         dispatch({
@@ -108,10 +104,7 @@ const Login = () => {
 
             {authentication.isLoggin && (
                 <div>
-                    <div>bạn đã login rồi. Quay lại trang chủ</div>
-                    <div className="btn btn-danger btn-welcome" onClick={gobackHome}>
-                        Quay về trang chủ
-                    </div>
+                   {history.push("/")}
                 </div>
             )}
         </div>

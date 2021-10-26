@@ -178,6 +178,10 @@ a {
   cursor: pointer;
 }
 
+.header-left {
+  width: 90vw;
+}
+
 .completed-step {
   display: block;
   height: 0.5rem;

@@ -5,7 +5,7 @@ const API_AUTH = API + "auth/";
 const API_SIGN_UP = API_AUTH + "signup/";
 const API_ROOM = API + "rooms/";
 const API_USER = API + "user/";
-const API_ME = API + "me/";
+const API_ME = API_USER + "me/";
 
 export const API_SIGN_IN = API_AUTH + "signin";
 export const API_SIGN_OUT = API_AUTH + "signout";
@@ -22,9 +22,9 @@ export const API_GET_FRIENDS_LIST = API + "friends";
 export const API_GET_FRIENDS_REQUEST = API + "friend-request/";
 /**Profile */
 export const API_GET_USER_INFO = API_ME;
-export const API_CHANGE_PASSWORD = API_USER + "me/changePassword";
+export const API_CHANGE_PASSWORD = API_ME + "changePassword";
 export const API_GET_USER_PROFILE = API_USER + "viewProfile/";
-
+export const API_CHANGE_USER_IMAGE = API_ME + "changeImage"
 /**inbox */
 export const API_INBOXS = API + "inboxs/";
 export const API_GET_INBOX_BY_ID = API_INBOXS + "ofRoomId/";

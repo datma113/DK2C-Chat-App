@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { changeUserImage } from "../../redux/action/actProfile";
 
 import ProfileDetail from "./ProfileDetail";
 import UserNameInput from "./UserNameInput";
@@ -6,6 +8,7 @@ import UserNameLabel from "./UserNameLabel";
 
 const ProfileModal = ({ userProfile }) => {
     const [isShowInputField, setisShowInputField] = useState(false);
+    const dispatch = useDispatch();
     const DISPLAY_NAME_INPUT_ID = "displayNameInputId";
 
     const onNameChange = (e) => {
@@ -17,6 +20,15 @@ const ProfileModal = ({ userProfile }) => {
         if (isShowInputField && ID_OF_INPUT_FIELD !== DISPLAY_NAME_INPUT_ID) {
             setisShowInputField(false);
         }
+    };
+
+    const handleChangeUserImage = (e) => {
+        const IMAGES = e.target.files;
+        const formData = new FormData();
+
+        formData.append("files", IMAGES[0]);
+        
+        dispatch(changeUserImage(formData));
     };
 
     return (
@@ -48,12 +60,25 @@ const ProfileModal = ({ userProfile }) => {
                         <div className="modal-body " style={{ height: "500px" }}>
                             <div className="text-center">
                                 {" "}
-                                <img
-                                    type="button"
-                                    className="profile__img"
-                                    src={userProfile.imageUrl}
-                                    alt="Avatar"
-                                />
+                                <label htmlFor="userImage">
+                                    <img
+                                        type="button"
+                                        className="profile__img"
+                                        src={userProfile.imageUrl}
+                                        alt="Avatar"
+                                    />
+                                    <i className="fas fa-camera m-1"></i>
+                                    <input
+                                        className="d-none"
+                                        type="file"
+                                        id="userImage"
+                                        name="image"
+                                        accept="image/gif,image/jpeg,image/jpg,image/png"
+                                        multiple
+                                        data-original-title="upload photos"
+                                        onChange={(e) => handleChangeUserImage(e)}
+                                    />
+                                </label>
                                 {isShowInputField ? (
                                     <UserNameInput user={userProfile} id={DISPLAY_NAME_INPUT_ID} />
                                 ) : (
@@ -65,7 +90,6 @@ const ProfileModal = ({ userProfile }) => {
                             </div>
 
                             <ProfileDetail user={userProfile} />
-                          
                         </div>
                         <div className="modal-footer">
                             <button

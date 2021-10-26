@@ -1,9 +1,15 @@
 import React from "react";
-import img from '../assets/image/bg1.png'
+import img1 from "../assets/image/bg1.png";
+import img2 from "../assets/image/bg2.png";
+import img3 from "../assets/image/bg3.png";
 
 const Carousel = () => {
     return (
-        <div id="carouselExampleCaptions" className="carousel select-none slide col-12" data-mdb-ride="carousel">
+        <div
+            id="carouselExampleCaptions"
+            className="carousel select-none slide col-12"
+            data-mdb-ride="carousel"
+        >
             <div className="carousel-indicators">
                 <button
                     type="button"
@@ -30,36 +36,24 @@ const Carousel = () => {
             </div>
             <div className="carousel-inner">
                 <div className="carousel-item active">
-                    <img
-                        src={img}
-                        className="d-block w-100"
-                        alt="..."
-                    />
+                    <img src={img1} className="d-block w-100" alt="..." />
                     <div className="carousel-caption d-none d-md-block text-dark mb-3">
                         <h5 className="text-secondary">Chat nhóm với đồng nghiệp</h5>
-                        <p >Tiện dụng hơn trong làm việc nhóm </p>
+                        <p>Tiện dụng hơn trong làm việc nhóm </p>
                     </div>
                 </div>
                 <div className="carousel-item">
-                    <img
-                         src={img}
-                        className="d-block w-100"
-                        alt="..."
-                    />
+                    <img src={img2} className="d-block w-100" alt="..." />
                     <div className="carousel-caption d-none d-md-block text-dark mb-3">
-                        <h5 className="text-secondary" >Giải quyết vấn đề hiệu quả</h5>
-                        <p >Trao đổi thông tin mọi lúc</p>
+                        <h5 className="text-secondary">Giải quyết vấn đề hiệu quả</h5>
+                        <p>Trao đổi thông tin mọi lúc</p>
                     </div>
                 </div>
                 <div className="carousel-item">
-                    <img
-                         src={img}
-                        className="d-block w-100"
-                        alt="..."
-                    />
+                    <img src={img3} className="d-block w-100" alt="..." />
                     <div className="carousel-caption d-none d-md-block text-dark mb-3">
-                        <h5 className="text-secondary" >Trại nghiệm tốt</h5>
-                        <p >Giải quyết công việc cùng nhau hiệu quả</p>
+                        <h5 className="text-secondary">Trại nghiệm tốt</h5>
+                        <p>Giải quyết công việc cùng nhau hiệu quả</p>
                     </div>
                 </div>
             </div>

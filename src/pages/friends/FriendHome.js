@@ -49,7 +49,7 @@ const FriendHome = () => {
     };
 
     return (
-        <div className="friendhome">
+        <div className="friendhome bg-light">
             <div className="friendhome__friend-list">
                 <div>
                     <div className="friend row p-3  " onClick={() => changeOptions(-1)}>

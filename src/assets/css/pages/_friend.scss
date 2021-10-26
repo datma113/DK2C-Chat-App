@@ -7,7 +7,6 @@
         overflow-y: scroll;
         overflow-x: hidden;
         height: 90vh;
-        z-index: 99;
 
         &__older-friends {
             color: $mainPurpleColor;
@@ -127,10 +126,9 @@
         position: absolute;
         background-color: white;
         box-shadow: 0 0 10px #dddddd;
-        border-radius: 7.5px;
+        border-radius: 4px;
         display: none;
         transition: 0.2s;
-        z-index: 9;
         left: -13rem;
         top: 0;
         padding: 1rem;
@@ -141,7 +139,7 @@
 
         &__element {
             padding: 0.25rem 1rem;
-            border-radius: 7.5px;
+            border-radius: 4px;
             transition: 0.2s;
 
             &:hover {

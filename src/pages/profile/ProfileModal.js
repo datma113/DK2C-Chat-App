@@ -27,17 +27,23 @@ const ProfileModal = ({ userProfile }) => {
         >
             <div
                 className="modal fade"
-                id="exampleModal"
+                id="openMyInfoModal"
                 tabIndex="-1"
-                aria-labelledby="exampleModalLabel"
+                aria-labelledby="openMyInfoModallabel"
                 aria-hidden="true"
             >
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">
+                            <h5 className="modal-title" id="openMyInfoModallabel">
                                 Thông tin cá nhân
                             </h5>
+                            <button
+                                type="button"
+                                className="btn-close"
+                                data-mdb-dismiss="modal"
+                                aria-label="Close"
+                            ></button>
                         </div>
                         <div className="modal-body " style={{ height: "500px" }}>
                             <div className="text-center">
@@ -59,6 +65,7 @@ const ProfileModal = ({ userProfile }) => {
                             </div>
 
                             <ProfileDetail user={userProfile} />
+                          
                         </div>
                         <div className="modal-footer">
                             <button

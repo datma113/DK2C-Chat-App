@@ -48,7 +48,7 @@ const Login = () => {
             type: "password",
             regexPattern: /[\w]/g,
             keyStoreToReducer: "password",
-            eventWhenEnter: loginHandle
+            eventWhenEnter: loginHandle,
         },
     ];
 
@@ -66,10 +66,6 @@ const Login = () => {
             />
         );
     });
-
-   
-
-    
 
     const gobackHome = () => {
         history.push("/");
@@ -89,7 +85,7 @@ const Login = () => {
     return (
         <div>
             {!authentication.isLoggin && (
-                <div className={`d-flex justify-content-center mt-5 ${ANIMATE_ZOOM_IN}`}>
+                <div className={`d-flex justify-content-center mt-5 ${ANIMATE_ZOOM_IN} `}>
                     <div className="col-lg-4 d-flex flex-column align-items-center justify-content-center welcome-container">
                         <img src={logo} alt="" className="welcome-container__logo " />
                         <p className="text-title mt-3">Đăng nhập để tiếp tục !</p>

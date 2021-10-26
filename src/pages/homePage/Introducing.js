@@ -4,7 +4,7 @@ import Carousel from "../../components/Carousel";
 const Introducing = () => {
     return (
         <>
-            <div className="text-large">
+            <div className="text-large ">
                 Chào mừng đến với <b className="text-xlarge"> CDK Chat </b>{" "}
             </div>
             <div className="text-medium text-center w-50">

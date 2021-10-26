@@ -11,6 +11,15 @@ html {
   overflow: hidden;
 }
 
+body {
+  background-image: linear-gradient(to bottom, #5d3b78, #7d4383, #9c4b8b, #bc5490, #da5e92, #e46195, #ee6597, #f86899, #f1649f, #e961a5, #e05fab, #d65db1);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  z-index: -9;
+}
+
 a {
   text-decoration: none;
   font-weight: normal;
@@ -161,12 +170,12 @@ a {
 
 .dropdown {
   position: relative;
-  right: 30px;
 }
 .dropdown .dropdown-menu {
+  left: -3rem;
   flex-direction: column;
   position: absolute;
-  right: 0;
+  cursor: pointer;
 }
 
 .completed-step {
@@ -260,11 +269,12 @@ a {
 
 /*pages*/
 .welcome-container {
-  border-radius: 3rem;
-  box-shadow: 0 0 15px rgba(93, 59, 120, 0.1);
+  border-radius: 1rem;
+  box-shadow: 0 0 30px #FBFBFB, 0 0 40px #262626, 0 0 20px #FFA900;
   padding: 3rem 0;
+  background-color: #FBFBFB;
 }
-.welcome-container__image {
+mainDarkColor .welcome-container__image {
   width: 30rem;
   height: 30rem;
   display: block;
@@ -521,6 +531,7 @@ a {
   flex-shrink: 0;
   display: flex;
   border-top: thin solid #5D3B78;
+  background-color: white;
 }
 .send-message-container__ta {
   flex-grow: 2;
@@ -558,7 +569,6 @@ a {
   overflow-y: scroll;
   overflow-x: hidden;
   height: 90vh;
-  z-index: 99;
 }
 .friendhome__friend-list__older-friends {
   color: #5D3B78;
@@ -660,10 +670,9 @@ a {
   position: absolute;
   background-color: white;
   box-shadow: 0 0 10px #dddddd;
-  border-radius: 7.5px;
+  border-radius: 4px;
   display: none;
   transition: 0.2s;
-  z-index: 9;
   left: -13rem;
   top: 0;
   padding: 1rem;
@@ -673,7 +682,7 @@ a {
 }
 .option-friend-inbox__options__element {
   padding: 0.25rem 1rem;
-  border-radius: 7.5px;
+  border-radius: 4px;
   transition: 0.2s;
 }
 .option-friend-inbox__options__element:hover {

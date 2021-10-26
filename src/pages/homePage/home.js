@@ -38,7 +38,7 @@ const Home = () => {
                             </div>
                         </>
                     ) : (
-                        <div className=" d-flex align-items-center flex-column mt-5">
+                        <div className=" d-flex align-items-center flex-column bg-light">
                             <Introducing />
                         </div>
                     )}

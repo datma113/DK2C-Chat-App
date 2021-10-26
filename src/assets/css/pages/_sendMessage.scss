@@ -2,6 +2,7 @@
     flex-shrink: 0;
     display: flex;
     border-top: thin solid $mainPurpleColor;
+    background-color: white;
 
     &__ta {
         flex-grow: 2;

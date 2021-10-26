@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { getUserInfoFromServer } from "../redux/action/actProfile";
 const Header = () => {
     const dispatch = useDispatch();
-    const authentication = useSelector(state => state.authentication)
+    const authentication = useSelector((state) => state.authentication);
     const logoutHandle = () => {
         dispatch(logout())
             .then(() => {
@@ -86,33 +86,35 @@ const Header = () => {
                             </div>
                             <ul className="dropdown-menu ">
                                 <li className="p-1">
-                                    <h3 className="dropdown-item" href="#"   data-mdb-toggle="modal"
-                                    data-mdb-target="#exampleModal"
-                                    onClick={() => dispatch(getUserInfoFromServer())}
+                                    <p
+                                        className="dropdown-item text-small"
+                                        href="#"
+                                        data-mdb-toggle="modal"
+                                        data-mdb-target="#openMyInfoModal"
+                                        onClick={() => dispatch(getUserInfoFromServer())}
                                     >
                                         Hồ sơ
-                                    </h3>
+                                    </p>
                                 </li>
-                              
+
                                 <li>
-                                    <h3 className="dropdown-item" href="#">
+                                    <p className="dropdown-item text-small" href="#">
                                         Cài đặt
-                                    </h3>
+                                    </p>
                                 </li>
                                 <li>
                                     <hr className="dropdown-divider" />
                                 </li>
                                 <li type="button" onClick={() => logoutHandle()}>
-                                    <h3 className="dropdown-item text-danger">
+                                    <p className="dropdown-item text-danger text-small">
                                         <i className="fas fa-sign-out-alt fa-1x"></i> Đăng xuất
-                                    </h3>
+                                    </p>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 {/* a */}
-
 
                 {/* a */}
             </div>

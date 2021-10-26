@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { getInboxByFriendId } from "../../redux/action/actFriends";
+import { getInboxByFriendId, getUserProfile } from "../../redux/action/actFriends";
 import Friend from "./Friend";
 
 const ListFriends = () => {
     const friendsList = useSelector((state) => state.friendsList);
     const [indexOfFriendsOption, setindexOfFriendsOption] = useState(-1);
+    const friendProfile = useSelector(state => state.friendProfile)
+
     const dispatch = useDispatch();
 
     const gotoChatboxByFriendId = (friendId) => {
@@ -27,6 +29,10 @@ const ListFriends = () => {
         setindexOfFriendsOption(-1);
     };
 
+    const viewProfile = (friendId) => {
+        dispatch(getUserProfile(friendId))
+    }
+
     const listFriendMap = friendsList.map((friend, index) => {
         const ID = friend.friend.id;
         return (
@@ -41,6 +47,10 @@ const ListFriends = () => {
                     handleClickToOption(e, index);
                 }}
                 isShowFriendsOption={isShowfriendsOption(index)}
+                viewProfile={() => {
+                    viewProfile(ID)
+                }}
+                profile={friendProfile}
             />
         );
     });

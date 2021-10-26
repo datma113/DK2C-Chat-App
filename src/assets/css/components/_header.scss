@@ -32,12 +32,11 @@
 }
 .dropdown {
     position: relative;
-
-    right: 30px;
-    .dropdown-menu {
+    .dropdown-menu {    
+        left: -3rem;
         flex-direction: column;
         position: absolute;
+        cursor: pointer;
 
-        right: 0;
     }
 }

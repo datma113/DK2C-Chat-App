@@ -3,11 +3,13 @@ import {
     API_GET_FRIENDS_LIST,
     API_GET_FRIENDS_REQUEST,
     API_GET_INBOX_BY_FRIEND_ID,
+    API_GET_USER_PROFILE,
     API_INBOXS,
 } from "../constants/api";
 import {
     STORE_FRIENDS_LIST,
     STORE_FRIENDS_REQUEST,
+    STORE_FRIEND_PROFILE,
     STORE_GROUPS_LIST,
 } from "../constants/constants";
 import { storeCurrentIdOfInbox, storeCurrentInbox, storeCurrentRoomId } from "./actHome";
@@ -19,7 +21,7 @@ export const storeFriendsList = (friends) => {
     };
 };
 export const getFriendsListFromServer = () => {
-    return  (dispatch) => {
+    return (dispatch) => {
         return axios
             .get(API_GET_FRIENDS_LIST)
             .then((resp) => {
@@ -115,8 +117,28 @@ export const getInboxByFriendId = (friendId) => {
                     });
                 } else {
                     console.log(err);
-                    return Promise.reject()
+                    return Promise.reject();
                 }
             });
     };
+};
+
+const storeFriendProfile = (profile) => {
+    return {
+        type: STORE_FRIEND_PROFILE,
+        profile,
+    };
+};
+
+export const getUserProfile = (userId) => {
+    return (dispatch) =>
+        axios
+            .get(API_GET_USER_PROFILE + userId)
+            .then((resp) => {
+                dispatch(storeFriendProfile(resp.data));
+                return Promise.resolve();
+            })
+            .catch((err) => {
+                console.log(err);
+            });
 };

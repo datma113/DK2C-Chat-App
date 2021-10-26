@@ -14,6 +14,7 @@ const BoxChat = () => {
     const [isInitialize, setisInitialize] = useState(true);
     const [lenthOfTheFirstLoadingMessage, setlenthOfTheFirstLoadingMessage] = useState(0);
     
+    const currentInbox = useSelector(state => state.currentInbox)
     useEffect(() => {
         dispatch(getMessageInBoxChat(currentInboxId, 0));
         //when change other inbox, it will reset loading value to 0
@@ -48,9 +49,16 @@ const BoxChat = () => {
         setisInitialize(false);
     };
 
+    const stylesImageBackground = {
+        backgroundImage: `url(${currentInbox.imgUrl})`,
+        backgroundRepeat: `no-repeat`,
+        backgroundSize: `cover`,
+    }
+
     return (
         <div
-            className="single-chat-box-container pr-0 pb-5"
+            className="single-chat-box-container"
+           style={stylesImageBackground}
             onScroll={(e) => loadOlderMessageInBoxChat(e)}
             onMouseEnter={() => setFalseInitialWhenMouseEnter()}
         >

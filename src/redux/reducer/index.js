@@ -15,6 +15,7 @@ import isScrollBottom from './returnBoolean/isScrollBottom'
 import roomName from './returnObject/roomName'
 import membersInRoom from './returnArray/membersInRoom'
 import userInfo from './returnObject/userProfile'
+import friendProfile from './returnObject/friendProfile'
 const reducer = combineReducers({
      userLogin,
      userRegister,
@@ -31,7 +32,8 @@ const reducer = combineReducers({
      isScrollBottom,
      roomName,
      membersInRoom,
-     userInfo
+     userInfo,
+     friendProfile
 })
 
 export default reducer

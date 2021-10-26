@@ -11,6 +11,30 @@ html {
     overflow: hidden;
 }
 
+body {
+    background-image: linear-gradient(
+        to bottom,
+        #5d3b78,
+        #7d4383,
+        #9c4b8b,
+        #bc5490,
+        #da5e92,
+        #e46195,
+        #ee6597,
+        #f86899,
+        #f1649f,
+        #e961a5,
+        #e05fab,
+        #d65db1
+    );
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    z-index: -9;
+  
+}   
+
 a {
     text-decoration: none;
     font-weight: normal;

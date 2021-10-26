@@ -1,6 +1,15 @@
 import React from "react";
+import FriendProfile from "../../modal/FriendProfile";
 
-const Friend = ({ friend, functionWhenClick, gotoChat, clickToOption, isShowFriendsOption }) => {
+const Friend = ({
+    friend,
+    functionWhenClick,
+    gotoChat,
+    clickToOption,
+    isShowFriendsOption,
+    viewProfile,
+    profile
+}) => {
     return (
         <div className="friend row p-3 center" onClick={functionWhenClick}>
             <div className="col-3 center">
@@ -27,9 +36,7 @@ const Friend = ({ friend, functionWhenClick, gotoChat, clickToOption, isShowFrie
                     >
                         Nhắn tin
                     </div>
-                    <div className={`option-friend-inbox__options__element text-small`}>
-                        xem thông tin
-                    </div>
+                    <FriendProfile profile={profile} viewProfile={viewProfile} id={friend.friend.id} />
                 </div>
                 ...
             </div>

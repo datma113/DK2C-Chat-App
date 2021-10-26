@@ -59,7 +59,7 @@ const MessageChat = ({ boxChat }) => {
                 return <div key={index}> </div>;
         }
     });
-    return <div >{boxChatMap}</div>;
+    return <div className="mb-5">{boxChatMap}</div>;
 };
 
 export default MessageChat;

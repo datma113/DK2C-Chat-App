@@ -1,9 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import DateSelected from "../../components/DateSelected";
 
 const ProfileDetail = ({ user }) => {
-    const DOB_TIME = Object.entries(user).length ? new Date(user.dateOfBirth) : new Date()
-
+    const DOB_TIME = Object.entries(user).length ? new Date(user.dateOfBirth) : new Date();
 
     const USER_DOB = {
         year: DOB_TIME.getFullYear(),
@@ -25,6 +25,12 @@ const ProfileDetail = ({ user }) => {
                 </div>
 
                 <DateSelected userDOB={USER_DOB} />
+
+                <Link to="/changePassword">
+                    <div onClick={() => window.$("#openMyInfoModal").modal("hide")}>
+                        Đổi mật khẩu
+                    </div>
+                </Link>
             </div>
         </div>
     );

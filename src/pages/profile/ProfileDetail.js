@@ -27,8 +27,11 @@ const ProfileDetail = ({ user }) => {
                 <DateSelected userDOB={USER_DOB} />
 
                 <Link to="/changePassword">
-                    <div onClick={() => window.$("#openMyInfoModal").modal("hide")}>
-                        Đổi mật khẩu
+                    <div
+                        className="mt-3"
+                        onClick={() => window.$("#openMyInfoModal").modal("hide")}
+                    >
+                        <i className="fas fa-key text-primary"></i> &nbsp; Đổi mật khẩu
                     </div>
                 </Link>
             </div>

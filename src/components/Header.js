@@ -63,7 +63,12 @@ const Header = () => {
                             aria-expanded="false"
                             data-mdb-dropdown-animation="off"
                         >
-                            <img src={userInfo.imageUrl} className="header-img" alt="" loading="lazy" />
+                            <img
+                                src={userInfo.imageUrl}
+                                className="header-img"
+                                alt=""
+                                loading="lazy"
+                            />
                         </div>
                         <ul className="dropdown-menu ">
                             <li className="p-1">

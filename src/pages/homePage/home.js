@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Welcome from "../welcome/Welcome";
 import InboxList from "./InboxList";
@@ -9,13 +9,29 @@ import SendMessage from "./SendMessage";
 import HeaderOfInfoRoom from "../../components/HeaderOfInfoRoom";
 import InfoOfRoom from "../../components/InfoOfRoom";
 import OptionOfRoom from "./OptionOfRoom";
+import Loading from "../../components/Loading";
+
 const Home = () => {
     const authentication = useSelector((state) => state.authentication);
     const currentInboxId = useSelector((state) => state.currentInboxId);
     const currentRoomId = useSelector((state) => state.currentRoomId);
+    const [isLoading, setisLoading] = useState(true);
+    
+    const renderWelcome = () => {
+        setTimeout(() => {
+            setisLoading(false);
+        }, 1000);
+        return <Welcome />;
+    };
+
     return (
         <div>
-            {!authentication.isLoggin && <Welcome />}
+            {!authentication.isLoggin && (
+                <div>
+                    {renderWelcome()}
+                    {isLoading && <Loading />}
+                </div>
+            )}
 
             {authentication.isLoggin && (
                 <div className="home">
@@ -33,7 +49,7 @@ const Home = () => {
                                 <HeaderOfInfoRoom />
                                 <div className="info-room-right__scroll">
                                     <InfoOfRoom />
-                                    <OptionOfRoom roomId={currentRoomId}/>
+                                    <OptionOfRoom roomId={currentRoomId} />
                                 </div>
                             </div>
                         </>

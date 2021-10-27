@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assets/image/LOGO.png";
 import TextInput from "../../components/TextInput";
 import MyCustomButton from "../../components/MyCustomButton";
@@ -21,13 +21,19 @@ const Login = () => {
     const userLogin = useSelector((state) => state.userLogin);
     const message = useSelector((state) => state.message);
     const authentication = useSelector((state) => state.authentication);
+    const [isLoading, setisLoading] = useState(false);
 
     const loginHandle = () => {
+        setisLoading(true);
         dispatch(login(userLogin))
             .then(() => {
+                setisLoading(false);
+
                 history.push("/");
             })
             .catch((err) => {
+                setisLoading(false);
+
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
@@ -78,6 +84,10 @@ const Login = () => {
         });
     }, [dispatch]);
 
+    const isDisabled = () => {
+        return isLoading ? "disabled" : ""
+    }
+
     return (
         <div>
             {!authentication.isLoggin && (
@@ -91,22 +101,20 @@ const Login = () => {
                             label="đăng nhập"
                             typeButton="secondary"
                             login={loginHandle}
+                            disabled={isDisabled()}
                         />
                         <MyCustomButton
                             label="Quay lại"
                             typeButton="light"
                             iconClass="fas fa-long-arrow-alt-left"
                             isGoBackHistory={true}
+
                         />
                     </div>
                 </div>
             )}
 
-            {authentication.isLoggin && (
-                <div>
-                   {history.push("/")}
-                </div>
-            )}
+            {authentication.isLoggin && <div>{history.push("/")}</div>}
         </div>
     );
 };

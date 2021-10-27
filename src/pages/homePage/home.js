@@ -10,6 +10,7 @@ import HeaderOfInfoRoom from "../../components/HeaderOfInfoRoom";
 import InfoOfRoom from "../../components/InfoOfRoom";
 import OptionOfRoom from "./OptionOfRoom";
 import Loading from "../../components/Loading";
+import InboxSideBar from "./InboxSideBar";
 
 const Home = () => {
     const authentication = useSelector((state) => state.authentication);
@@ -35,8 +36,7 @@ const Home = () => {
 
             {authentication.isLoggin && (
                 <div className="home">
-                    {/* col-3 */}
-                    <InboxList />
+                   <InboxSideBar />
 
                     {currentInboxId ? (
                         <>

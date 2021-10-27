@@ -304,8 +304,9 @@ a {
   max-width: 38rem;
   overflow: scroll;
   overflow-x: hidden;
-  height: 90vh;
+  height: 80vh;
   background-color: white;
+  border-right: thin solid #dddddd;
 }
 .home__inbox-list__older-inboxs {
   color: #5D3B78;
@@ -806,6 +807,27 @@ a {
   padding: 2rem 4rem;
   border-radius: 5px;
   box-shadow: 0 0 30px #FBFBFB, 0 0 40px #262626, 0 0 20px #FFA900;
+}
+
+.header-inbox-container {
+  padding: 0.5rem 2rem;
+  background-color: white;
+  height: 10vh;
+  border-right: thin solid #dddddd;
+}
+.header-inbox-container__icon {
+  margin-left: 0.5rem;
+  padding: 0.5rem;
+  border: thin solid #dddddd;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 0 5px #a166d1;
+  transition: 0.2s;
+  color: #5D3B78;
+}
+.header-inbox-container__icon:hover {
+  color: #a166d1;
+  box-shadow: 0 0 5px #F5F3F6, 0 0 5px #a166d1;
 }
 
 /*variables*/

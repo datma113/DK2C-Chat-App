@@ -6,8 +6,9 @@
         max-width: 38rem;
         overflow: scroll;
         overflow-x: hidden;
-        height: 90vh;
+        height: 80vh;
         background-color: white;
+        border-right: thin solid #dddddd;
 
         &__older-inboxs {
             color: $mainPurpleColor;

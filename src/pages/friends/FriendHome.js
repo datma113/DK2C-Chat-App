@@ -17,17 +17,17 @@ import HeaderOfInfoRoom from "../../components/HeaderOfInfoRoom";
 import InfoOfRoom from "../../components/InfoOfRoom";
 import OptionOfRoom from "../homePage/OptionOfRoom";
 import { RESET_CURRENT_INBOX_ID, RESET_CURRENT_ROOM_ID } from "../../redux/constants/constants";
-import { useHistory } from "react-router";
+
 const FriendHome = () => {
     const dispatch = useDispatch();
     const friendsListFromStore = useSelector((state) => state.friendsList);
+    const friendsRequestFromStore = useSelector((state) => state.friendsRequest);
+
+    console.log(friendsRequestFromStore);
     const currentInboxId = useSelector((state) => state.currentInboxId);
     const currentRoomId = useSelector((state) => state.currentRoomId);
     const authentication = useSelector((state) => state.authentication);
-    const history = useHistory();
     let [index, setindex] = useState(-2);
-
-    let friendsList = [...friendsListFromStore];
 
     useEffect(() => {
         dispatch(getFriendsListFromServer());
@@ -51,7 +51,7 @@ const FriendHome = () => {
 
     return (
         <div>
-            {authentication.isLoggin ? (
+            {authentication.isLoggin && (
                 <div className="friendhome bg-light">
                     <div className="friendhome__friend-list">
                         <div>
@@ -63,7 +63,12 @@ const FriendHome = () => {
                                 </div>
 
                                 <div className="col-9 d-flex align-items-center">
-                                    <div className=" text-medium">Danh sách kết bạn</div>
+                                    <div className=" text-medium">
+                                        <b className="text-danger">
+                                            ({friendsRequestFromStore.length})
+                                        </b>
+                                        &nbsp; Danh sách kết bạn
+                                    </div>
                                 </div>
                             </div>
                             <div className="friend row p-3 " onClick={() => changeOptions(-2)}>
@@ -80,8 +85,8 @@ const FriendHome = () => {
                         </div>
 
                         <hr className="" />
-                        <h4>&nbsp;&nbsp;Bạn bè ({friendsList.length})</h4>
-                        <ListFriends friends={friendsList} />
+                        <h4>&nbsp;&nbsp;Bạn bè ({friendsListFromStore.length})</h4>
+                        <ListFriends friends={friendsListFromStore} />
                     </div>
                     {currentInboxId ? (
                         <>
@@ -100,12 +105,16 @@ const FriendHome = () => {
                         </>
                     ) : (
                         <div className="col-9">
-                            {index === -1 ? <FriendRequestAndSuggestions /> : <Groups />}
+                            {index === -1 ? (
+                                <FriendRequestAndSuggestions
+                                    friendsRequestFromStore={friendsRequestFromStore}
+                                />
+                            ) : (
+                                <Groups />
+                            )}
                         </div>
                     )}
                 </div>
-            ) : (
-                <div> {history.push("/not-found")} </div>
             )}
         </div>
     );

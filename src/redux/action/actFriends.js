@@ -12,6 +12,7 @@ import {
     STORE_FRIEND_PROFILE,
     STORE_GROUPS_LIST,
     UPDATE_FRIENDS_AFTER_DELETE,
+    UPDATE_FRIEND_AFTER_REQUEST,
 } from "../constants/constants";
 import { storeCurrentIdOfInbox, storeCurrentInbox, storeCurrentRoomId } from "./actHome";
 
@@ -68,7 +69,13 @@ export const acceptFriendRequest = (id) => {
     return (dispatch) => {
         return axios
             .put(API_GET_FRIENDS_REQUEST + id)
-            .then(() => {})
+            .then(() => {
+                
+                dispatch({
+                    type: UPDATE_FRIEND_AFTER_REQUEST,
+                    id,
+                });
+            })
             .catch(() => dispatch(storeGroupsChatList([])));
     };
 };
@@ -77,6 +84,11 @@ export const declineFriendRequest = (id) => {
         return axios
             .delete(API_GET_FRIENDS_REQUEST + id)
             .then((resp) => {
+               
+                dispatch({
+                    type: UPDATE_FRIEND_AFTER_REQUEST,
+                    id,
+                });
                 return resp;
             })
             .catch(() => dispatch(storeGroupsChatList([])));
@@ -145,15 +157,17 @@ export const getUserProfile = (userId) => {
 };
 
 export const deleteFriends = (friendId) => {
-    return dispatch => axios.delete(API_FRIENDS + friendId)
-    .then((resp) => {
-        dispatch({
-            type: UPDATE_FRIENDS_AFTER_DELETE,
-            friendId
-        })
-        return Promise.resolve()
-    })
-    .catch((err) => {
-        console.log(err);
-    })
-}
+    return (dispatch) =>
+        axios
+            .delete(API_FRIENDS + friendId)
+            .then((resp) => {
+                dispatch({
+                    type: UPDATE_FRIENDS_AFTER_DELETE,
+                    friendId,
+                });
+                return Promise.resolve();
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+};

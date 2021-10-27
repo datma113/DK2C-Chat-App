@@ -15,13 +15,13 @@ const Header = () => {
         dispatch(getUserInfoFromServer());
     }, [dispatch]);
 
-    console.log(userInfo);
     const history = useHistory();
     const logoutHandle = () => {
         dispatch(logout())
             .then(() => {
-                window.location.reload();
                 history.push("/");
+
+                window.location.reload();
             })
             .catch((err) => {
                 Swal.fire({

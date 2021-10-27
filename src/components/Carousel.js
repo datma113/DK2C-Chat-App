@@ -5,11 +5,7 @@ import img3 from "../assets/image/bg3.png";
 
 const Carousel = () => {
     return (
-        <div
-            id="carouselExampleCaptions"
-            className="carousel select-none slide col-12"
-            data-mdb-ride="carousel"
-        >
+        <div id="carouselExampleCaptions" className="carousel slide" data-mdb-ride="carousel">
             <div className="carousel-indicators">
                 <button
                     type="button"
@@ -35,21 +31,21 @@ const Carousel = () => {
                 ></button>
             </div>
             <div className="carousel-inner">
-                <div className="carousel-item active">
+                <div className="carousel-item active" data-mdb-interval="5000">
                     <img src={img1} className="d-block w-100" alt="..." />
                     <div className="carousel-caption d-none d-md-block text-dark mb-3">
                         <h5 className="text-secondary">Chat nhóm với đồng nghiệp</h5>
                         <p>Tiện dụng hơn trong làm việc nhóm </p>
                     </div>
                 </div>
-                <div className="carousel-item">
+                <div className="carousel-item" data-mdb-interval="5000">
                     <img src={img2} className="d-block w-100" alt="..." />
                     <div className="carousel-caption d-none d-md-block text-dark mb-3">
                         <h5 className="text-secondary">Giải quyết vấn đề hiệu quả</h5>
                         <p>Trao đổi thông tin mọi lúc</p>
                     </div>
                 </div>
-                <div className="carousel-item">
+                <div className="carousel-item" data-mdb-interval="5000">
                     <img src={img3} className="d-block w-100" alt="..." />
                     <div className="carousel-caption d-none d-md-block text-dark mb-3">
                         <h5 className="text-secondary">Trại nghiệm tốt</h5>

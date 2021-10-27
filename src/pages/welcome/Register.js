@@ -138,7 +138,7 @@ const Register = () => {
 
     return (
         <div>
-            {!authentication.user ? (
+            {!authentication.isLoggin ? (
                 <div className={`d-flex justify-content-center mt-5 ${ANIMATE_ZOOM_IN}`}>
                     <div className="col-lg-4 d-flex flex-column align-items-center justify-content-center welcome-container">
                         <img src={logo} alt="" className="welcome-container__logo " />

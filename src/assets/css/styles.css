@@ -13,7 +13,7 @@ html {
 
 body {
   background: #fbfbfb;
-  background: linear-gradient(180deg, #fbfbfb 0%, #f0e5f9 20%, rgba(239, 205, 240, 0.7458333675) 36%, rgba(240, 132, 179, 0.4377101182) 57%, rgba(218, 94, 146, 0.4321078773) 73%, rgba(156, 75, 139, 0.4573179614) 89%, rgba(93, 59, 120, 0.4068977933) 96%);
+  background: linear-gradient(0, #fbfbfb 0%, #f0e5f9 20%, rgba(239, 205, 240, 0.7458333675) 36%, rgba(240, 132, 179, 0.4377101182) 57%, rgba(218, 94, 146, 0.3508753843) 73%, rgba(156, 75, 139, 0.3480742639) 89%, rgba(93, 59, 120, 0.2892507345) 96%);
   background-repeat: no-repeat;
   background-size: cover;
   width: 100vw;
@@ -275,7 +275,7 @@ a {
 /*pages*/
 .welcome-container {
   border-radius: 1rem;
-  box-shadow: 0 0 30px #FBFBFB, 0 0 40px #262626, 0 0 20px #FFA900;
+  box-shadow: 2px -3px 10px #FBFBFB, 0 0 15px #262626, -2px 3px 20px #FBFBFB;
   padding: 3rem 0;
   background-color: white;
   margin-top: 5rem;

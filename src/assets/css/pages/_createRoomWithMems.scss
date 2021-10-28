@@ -20,6 +20,7 @@
                 border-radius: 3px;
                 box-shadow: 1px 1px 3px $mainDarkColor;
                 cursor: pointer;
+                transition: 0.3s;
 
                 &:hover {
                     box-shadow: 0 0 7px $mainDarkColor;
@@ -66,4 +67,8 @@
             }
         }
     }
+}
+
+.friends-added-active {
+    background-color: $mySideColor;
 }

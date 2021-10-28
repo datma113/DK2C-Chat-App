@@ -18,15 +18,19 @@ const CreateRoomWithMems = () => {
 
     const deleteFriendsFromListAdded = (friendId) => {
         const cloneFriendsAdded = [...friendsAdded];
-       
+
         const friendsId = cloneFriendsAdded.map((friend) => friend.id);
-        const posOfFriendDeleted = friendsId.indexOf(friendId);       
+        const posOfFriendDeleted = friendsId.indexOf(friendId);
         cloneFriendsAdded.splice(posOfFriendDeleted, 1);
-        
+
         setfriendsAdded(cloneFriendsAdded);
     };
 
     const friendsMap = friendsList.map((friend, index) => {
+        const friendsId = [...friendsAdded].map((friend) => friend.id);
+        
+        const isActive = friendsId.includes(friend.friend.id) ? true : false;
+
         return (
             <FriendsToCreateRoom
                 friend={friend.friend}
@@ -34,6 +38,7 @@ const CreateRoomWithMems = () => {
                 functionWhenClick={() => {
                     pushFriendsToListAdded(friend.friend);
                 }}
+                isActive={isActive}
             />
         );
     });

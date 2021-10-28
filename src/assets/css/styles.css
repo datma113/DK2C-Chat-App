@@ -893,6 +893,7 @@ a {
   border-radius: 3px;
   box-shadow: 1px 1px 3px #262626;
   cursor: pointer;
+  transition: 0.3s;
 }
 .create-room-mems__friends__left__element:hover {
   box-shadow: 0 0 7px #262626;
@@ -930,6 +931,10 @@ a {
 }
 .create-room-mems__friends-added__icon:hover {
   text-shadow: 0 0 3px red;
+}
+
+.friends-added-active {
+  background-color: #a8d5e3;
 }
 
 /*variables*/

@@ -7,8 +7,9 @@ import Friend from "./Friend";
 
 const ListFriends = () => {
     const friendsList = useSelector((state) => state.friendsList);
-    const [indexOfFriendsOption, setindexOfFriendsOption] = useState(-1);
     const friendProfile = useSelector((state) => state.friendProfile);
+
+    const [indexOfFriendsOption, setindexOfFriendsOption] = useState(-1);
 
     const dispatch = useDispatch();
 

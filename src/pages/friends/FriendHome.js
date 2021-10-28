@@ -37,10 +37,12 @@ const FriendHome = () => {
         dispatch({
             type: RESET_CURRENT_INBOX_ID,
         });
+        
         dispatch({
             type: RESET_CURRENT_ROOM_ID,
         });
     }, [dispatch]);
+
     const changeOptions = (option) => {
         setindex(option);
 

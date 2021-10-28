@@ -8,23 +8,25 @@ const BoxChat = () => {
     const dispatch = useDispatch();
     const boxChat = useSelector((state) => state.boxChat);
     const currentInboxId = useSelector((state) => state.currentInboxId);
-    const isScrollBottom = useSelector(state => state.isScrollBottom)
+    const isScrollBottom = useSelector((state) => state.isScrollBottom);
     const [loadingOlderMessage, setloadingOlderMessage] = useState(0);
     const [isInitialize, setisInitialize] = useState(true);
     const [lenthOfTheFirstLoadingMessage, setlenthOfTheFirstLoadingMessage] = useState(0);
-    
-    const currentInbox = useSelector(state => state.currentInbox)
+
+    const currentInbox = useSelector((state) => state.currentInbox);
     useEffect(() => {
-        dispatch(getMessageInBoxChat(currentInboxId, 0));
+        const boxChat = document.getElementById("chatBoxContainer")
+        dispatch(getMessageInBoxChat(currentInboxId, 0)).then(() => {
+            boxChat.scrollTop = boxChat.scrollHeight;
+        });
         //when change other inbox, it will reset loading value to 0
         setloadingOlderMessage(0);
         setisInitialize(true);
 
         dispatch({
             type: RESET_STATUS_OF_SCROLL_BOTTOM_IN_BOX_CHAT,
-            status: false
-        })
-
+            status: false,
+        });
     }, [dispatch, currentInboxId, isScrollBottom]);
 
     const loadOlderMessageInBoxChat = (e) => {
@@ -51,18 +53,17 @@ const BoxChat = () => {
     const stylesImageBackground = {
         backgroundImage: `url(${currentInbox.imgUrl})`,
         backgroundRepeat: `no-repeat`,
-        backgroundSize: `cover`
-    }
-
+        backgroundSize: `cover`,
+    };
     return (
         <div
             className="single-chat-box-container"
-           style={stylesImageBackground}
+            id="chatBoxContainer"
+            style={stylesImageBackground}
             onScroll={(e) => loadOlderMessageInBoxChat(e)}
             onMouseEnter={() => setFalseInitialWhenMouseEnter()}
         >
-            <MessageChat  boxChat={boxChat} />
-     
+            <MessageChat boxChat={boxChat} />
         </div>
     );
 };

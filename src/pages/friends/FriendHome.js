@@ -23,24 +23,23 @@ const FriendHome = () => {
     const friendsListFromStore = useSelector((state) => state.friendsList);
     const friendsRequestFromStore = useSelector((state) => state.friendsRequest);
 
-    console.log(friendsRequestFromStore);
     const currentInboxId = useSelector((state) => state.currentInboxId);
     const currentRoomId = useSelector((state) => state.currentRoomId);
     const authentication = useSelector((state) => state.authentication);
     let [index, setindex] = useState(-2);
 
     useEffect(() => {
-        dispatch(getFriendsListFromServer());
-        dispatch(getFriendsRequestFromServer());
-        dispatch(getGroupsChatList());
-
         dispatch({
             type: RESET_CURRENT_INBOX_ID,
         });
-        
+
         dispatch({
             type: RESET_CURRENT_ROOM_ID,
         });
+
+        dispatch(getFriendsListFromServer());
+        dispatch(getFriendsRequestFromServer());
+        dispatch(getGroupsChatList());
     }, [dispatch]);
 
     const changeOptions = (option) => {

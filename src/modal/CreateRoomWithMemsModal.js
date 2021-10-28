@@ -47,7 +47,7 @@ const CreateRoomWithMemsModal = () => {
                             </button>
                             <button
                                 type="button"
-                                className={`btn btn-danger btn-lg `}
+                                className={`btn btn-primary btn-lg `}
                                 data-mdb-dismiss="modal"
                             >
                                 xác nhận

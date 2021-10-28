@@ -872,7 +872,7 @@ a {
 
 .create-room-mems-modal {
   max-width: none;
-  width: 80rem;
+  width: 90rem;
   background-color: #FBFBFB;
 }
 
@@ -883,7 +883,11 @@ a {
   display: flex;
 }
 .create-room-mems__friends__left {
-  flex: 4;
+  flex: 7;
+  border-right: 3px solid #dddddd;
+  max-height: 25rem;
+  margin-right: 0.1rem;
+  overflow-y: scroll;
 }
 .create-room-mems__friends__left__element {
   border-radius: 3px;
@@ -894,7 +898,38 @@ a {
   box-shadow: 0 0 7px #262626;
 }
 .create-room-mems__friends__right {
+  flex: 3;
+  max-height: 25rem;
+  overflow-y: scroll;
+}
+.create-room-mems__friends-added {
+  margin: 0.5rem 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #e5efff;
+  border-radius: 5rem;
+  display: flex;
+}
+.create-room-mems__friends-added__img {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  background-color: white;
   flex: 1;
+  margin-right: 0.5rem;
+}
+.create-room-mems__friends-added__text {
+  display: flex;
+  align-items: center;
+  user-select: none;
+  flex: 4;
+}
+.create-room-mems__friends-added__icon {
+  flex: 1;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.create-room-mems__friends-added__icon:hover {
+  text-shadow: 0 0 3px red;
 }
 
 /*variables*/

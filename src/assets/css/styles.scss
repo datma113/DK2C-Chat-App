@@ -8,6 +8,8 @@
 @import './components/carousel';
 @import './components/reaction';
 
+/* responsive */
+@import './components/homeResponsive';
 
 /*pages*/
 @import './pages/welcome';
@@ -20,6 +22,10 @@
 @import './pages/userprofile.scss';
 @import './pages/changePass';
 @import './pages/_headerInbox';
+@import './pages/inboxSideBar';
+@import './pages/createRoomWithMems';
+
+
 
 /*variables*/
 

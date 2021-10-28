@@ -22,15 +22,25 @@ export const storeFriendsList = (friends) => {
         friends,
     };
 };
-export const getFriendsListFromServer = () => {
+export const getFriendsListFromServer = (query = "") => {
+    //const API = API_FRIENDS +  `?query=${query}`
+    const API = API_FRIENDS
+      
     return (dispatch) => {
         return axios
-            .get(API_FRIENDS)
+            .get(API)
             .then((resp) => {
                 dispatch(storeFriendsList(resp.data.content));
-                return Promise.resolve(resp.data.content);
+                return Promise.resolve(resp.data);
             })
-            .catch(() => dispatch(storeFriendsList([])));
+            .catch(err => {
+                const MESSAGE =
+                (err.response && err.response.data && err.response.data.message) ||
+                err.message ||
+                err.toString();
+                console.log(MESSAGE);
+                dispatch(storeFriendsList([]))
+            });
     };
 };
 export const storeFriendsRequest = (friendsRequest) => {

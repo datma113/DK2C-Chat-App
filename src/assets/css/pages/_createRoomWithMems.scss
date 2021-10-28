@@ -1,0 +1,31 @@
+.create-room-mems-modal {
+    max-width: none;
+    width: 80rem;
+    background-color: $mainLightColor;
+}
+
+.create-room-mems {
+    padding: 1rem 2rem;
+
+    &__friends {
+        display: flex;
+
+        &__left {
+            flex: 4;
+
+            &__element {
+                border-radius: 3px;
+                box-shadow: 1px 1px 3px $mainDarkColor;
+                cursor: pointer;
+
+                &:hover {
+                    box-shadow: 0 0 7px $mainDarkColor;
+                }
+            }
+        }
+
+        &__right {
+            flex: 1;
+        }
+    }
+}

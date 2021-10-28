@@ -1,12 +1,17 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import CreateRoomWithMems from "../pages/homePage/CreateRoomWithMems";
+import { getFriendsListFromServer } from "../redux/action/actFriends";
 
-const CreateRoomWithMems = () => {
+const CreateRoomWithMemsModal = () => {
+    const dispatch = useDispatch();
     return (
         <>
             <i
                 className="header-inbox-container__icon fas fa-users text-small"
                 data-mdb-toggle="modal"
                 data-mdb-target={`#createRoomWithMemsModal`}
+                onClick={() => dispatch(getFriendsListFromServer())}
             ></i>
 
             <div
@@ -16,7 +21,7 @@ const CreateRoomWithMems = () => {
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
             >
-                <div className="modal-dialog">
+                <div className="modal-dialog create-room-mems-modal">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="exampleModalLabel">
@@ -30,7 +35,7 @@ const CreateRoomWithMems = () => {
                             ></button>
                         </div>
                         <div className="modal-body text-center">
-                            <p> Bạn có muốn hủy kết bạn với người này không? </p>
+                            <CreateRoomWithMems />
                         </div>
                         <div className="modal-footer">
                             <button
@@ -55,4 +60,4 @@ const CreateRoomWithMems = () => {
     );
 };
 
-export default CreateRoomWithMems;
+export default CreateRoomWithMemsModal;

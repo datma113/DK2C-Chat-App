@@ -6,7 +6,7 @@ const API_SIGN_UP = API_AUTH + "signup/";
 const API_ROOM = API + "rooms/";
 const API_USER = API + "user/";
 const API_ME = API_USER + "me/";
-export const API_FRIENDS = API + "friends/"
+export const API_FRIENDS = API + "friends"
 export const API_INBOXS = API + "inboxs/";
 
 

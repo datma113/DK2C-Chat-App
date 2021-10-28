@@ -1,9 +1,20 @@
 @import "../variables/variables";
+
+html,
+body,
+.App {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
 * {
     margin: 0;
     padding: 0;
     font-size: 2rem;
     font-family: "Roboto", sans-serif;
+    box-sizing: border-box;
+
 }
 html {
     font-size: 62.5%;
@@ -23,11 +34,8 @@ body {
         rgba(156, 75, 139, 0.34807426388524154) 89%,
         rgba(93, 59, 120, 0.28925073447347693) 96%
     );
+    background-attachment: fixed;
     background-repeat: no-repeat;
-    background-size: cover;
-    width: 100vw;
-    height: 100vh;
-    z-index: -9;
 }
 
 a {
@@ -63,4 +71,11 @@ a {
     width: 4rem;
     height: 4rem;
     border-radius: 100%;
+    box-shadow: 0 0 5px $mainLightColor;
+}
+
+@media screen and(max-width: $lg) {
+    #carouselExampleCaptions {
+        height: 55vh;
+    }
 }

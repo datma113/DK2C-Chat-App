@@ -1,8 +1,17 @@
+html,
+body,
+.App {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 * {
   margin: 0;
   padding: 0;
   font-size: 2rem;
   font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
 }
 
 html {
@@ -14,11 +23,8 @@ html {
 body {
   background: #fbfbfb;
   background: linear-gradient(0, #fbfbfb 0%, #f0e5f9 20%, rgba(239, 205, 240, 0.7458333675) 36%, rgba(240, 132, 179, 0.4377101182) 57%, rgba(218, 94, 146, 0.3508753843) 73%, rgba(156, 75, 139, 0.3480742639) 89%, rgba(93, 59, 120, 0.2892507345) 96%);
+  background-attachment: fixed;
   background-repeat: no-repeat;
-  background-size: cover;
-  width: 100vw;
-  height: 100vh;
-  z-index: -9;
 }
 
 a {
@@ -54,8 +60,14 @@ a {
   width: 4rem;
   height: 4rem;
   border-radius: 100%;
+  box-shadow: 0 0 5px #FBFBFB;
 }
 
+@media screen and (max-width: 992px) {
+  #carouselExampleCaptions {
+    height: 55vh;
+  }
+}
 /*components*/
 .text-title {
   font-weight: bold;
@@ -132,21 +144,8 @@ a {
   user-select: none;
 }
 
-.bg {
-  background-color: #5D3B78;
-  color: #FBFBFB;
-  text-align: center;
-  z-index: 10;
-}
-
-.bg:hover .card__header {
-  background-color: #F5F3F6;
-  color: #262626;
-}
-
 .header:hover {
   background-color: #a166d1;
-  height: 100%;
   color: aliceblue;
 }
 
@@ -158,15 +157,15 @@ a {
 
 .header__active {
   color: aliceblue;
-  height: 100%;
   background-color: #a166d1;
   min-height: 40px;
 }
 
 .navbar {
-  padding: 0;
   height: 10vh;
   min-height: 70px;
+  background-color: #5D3B78;
+  min-width: 30rem;
 }
 
 .dropdown {
@@ -179,8 +178,21 @@ a {
   cursor: pointer;
 }
 
+.header-nav {
+  display: flex;
+}
+
 .header-left {
-  width: 90vw;
+  display: flex;
+  min-width: 20rem;
+  flex: 8;
+}
+.header-left__link {
+  width: 20rem;
+}
+
+.header-right {
+  flex: 1;
 }
 
 .completed-step {
@@ -272,13 +284,34 @@ a {
   margin-right: 1rem;
 }
 
+/* responsive */
+@media only screen and (min-width: 768px) {
+  .introducing-text {
+    width: 75%;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .introducing-text {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .introducing {
+    display: none;
+  }
+
+  .inbox-side-bar {
+    flex: 1;
+  }
+}
 /*pages*/
 .welcome-container {
   border-radius: 1rem;
   box-shadow: 2px -3px 10px #FBFBFB, 0 0 15px #262626, -2px 3px 20px #FBFBFB;
-  padding: 3rem 0;
+  padding: 3rem;
   background-color: white;
   margin-top: 5rem;
+  margin-bottom: 5rem;
 }
 .welcome-container__image {
   width: 30rem;
@@ -296,14 +329,16 @@ a {
   width: 25rem;
 }
 
+@media only screen and (max-width: 576px) {
+  .welcome-container__image {
+    width: 15rem;
+    height: 15rem;
+  }
+}
 .home {
   display: flex;
 }
 .home__inbox-list {
-  min-width: 38rem;
-  max-width: 38rem;
-  overflow: scroll;
-  overflow-x: hidden;
   height: 80vh;
   background-color: white;
   border-right: thin solid #dddddd;
@@ -403,7 +438,6 @@ a {
 .header-box-chat {
   display: flex;
   padding: 2rem 0;
-  height: 10rem;
   background-color: #FBFBFB;
 }
 .header-box-chat__img {
@@ -446,7 +480,7 @@ a {
   position: relative;
   overflow: scroll;
   overflow-x: hidden;
-  height: 90vh;
+  height: 80vh;
 }
 
 .single-chat-box {
@@ -536,14 +570,13 @@ a {
 }
 
 .send-message-container {
-  flex-shrink: 0;
   display: flex;
   border-top: thin solid #5D3B78;
   background-color: white;
+  min-height: 5rem;
 }
 .send-message-container__ta {
   flex-grow: 2;
-  height: 100%;
   resize: none;
   outline: none;
   border: none;
@@ -709,10 +742,10 @@ a {
 }
 
 .info-room-header {
-  height: 10rem;
   border: thin solid silver;
   font-weight: bold;
   background-color: white;
+  height: 10rem;
 }
 
 .info-room {
@@ -812,7 +845,8 @@ a {
 .header-inbox-container {
   padding: 0.5rem 2rem;
   background-color: white;
-  height: 10vh;
+  height: 5rem;
+  min-height: 5rem;
   border-right: thin solid #dddddd;
 }
 .header-inbox-container__icon {
@@ -828,6 +862,39 @@ a {
 .header-inbox-container__icon:hover {
   color: #a166d1;
   box-shadow: 0 0 5px #F5F3F6, 0 0 5px #a166d1;
+}
+
+.inbox-side-bar {
+  min-width: 40rem;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.create-room-mems-modal {
+  max-width: none;
+  width: 80rem;
+  background-color: #FBFBFB;
+}
+
+.create-room-mems {
+  padding: 1rem 2rem;
+}
+.create-room-mems__friends {
+  display: flex;
+}
+.create-room-mems__friends__left {
+  flex: 4;
+}
+.create-room-mems__friends__left__element {
+  border-radius: 3px;
+  box-shadow: 1px 1px 3px #262626;
+  cursor: pointer;
+}
+.create-room-mems__friends__left__element:hover {
+  box-shadow: 0 0 7px #262626;
+}
+.create-room-mems__friends__right {
+  flex: 1;
 }
 
 /*variables*/

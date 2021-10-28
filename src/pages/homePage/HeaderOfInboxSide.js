@@ -1,12 +1,12 @@
 import React from "react";
 import AddFriend from "../../modal/AddFriend";
-import CreateRoomWithMems from "../../modal/CreateRoomWithMems";
+import CreateRoomWithMemsModal from "../../modal/CreateRoomWithMemsModal";
 
 const HeaderOfInboxSide = () => {
     return (
         <div className="header-inbox-container center">
             <input type="text" className="form-control" placeholder="Tìm kiếm..." />
-            <CreateRoomWithMems />
+            <CreateRoomWithMemsModal />
             <AddFriend />
         </div>
     );

@@ -1,12 +1,10 @@
 .send-message-container {
-    flex-shrink: 0;
     display: flex;
     border-top: thin solid $mainPurpleColor;
     background-color: white;
-
+    min-height: 5rem;
     &__ta {
         flex-grow: 2;
-        height: 100%;
         resize: none;
         outline: none;
         border: none;

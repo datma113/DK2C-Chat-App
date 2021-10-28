@@ -1,10 +1,12 @@
 .welcome-container {
     border-radius: 1rem;
-    box-shadow: 2px -3px 10px $mainLightColor, 0 0 15px $mainDarkColor, -2px 3px 20px $mainLightColor;
+    box-shadow: 2px -3px 10px $mainLightColor, 0 0 15px $mainDarkColor,
+        -2px 3px 20px $mainLightColor;
 
-    padding: 3rem 0;
+    padding: 3rem;
     background-color: white;
     margin-top: 5rem;
+    margin-bottom: 5rem;
     &__image {
         width: 30rem;
         height: 30rem;
@@ -21,4 +23,13 @@
 
 .err-message {
     width: 25rem;
+}
+
+@media only screen and(max-width: 576px) {
+    .welcome-container {
+        &__image {
+            width: 15rem;
+            height: 15rem;
+        }
+    }
 }

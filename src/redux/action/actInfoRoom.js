@@ -92,13 +92,18 @@ export const createNewRoom = (room) => {
     };
 };
 
-export const deleteConvesation = (roomId) => {
+export const deleteConvesation = (inboxId) => {
     return (dispatch) => {
         return axios
-            .delete(API_INBOXS + roomId)
+            .delete(API_INBOXS + inboxId)
             .then(() => {
                 dispatch({
                     type: DELETE_CONVERSATION,
+                });
+
+                dispatch({
+                    type: OUT_ROOM,
+                    inboxId
                 });
             })
             .catch((err) => {

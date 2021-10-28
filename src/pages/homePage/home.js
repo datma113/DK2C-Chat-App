@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Welcome from "../welcome/Welcome";
-import InboxList from "./InboxList";
 import BoxChat from "./BoxChat";
 import HeaderOfBoxChat from "./HeaderOfBoxChat";
 import Introducing from "./Introducing";
@@ -18,6 +17,7 @@ const Home = () => {
     const currentRoomId = useSelector((state) => state.currentRoomId);
     const [isLoading, setisLoading] = useState(true);
     
+
     const renderWelcome = () => {
         setTimeout(() => {
             setisLoading(false);
@@ -36,7 +36,7 @@ const Home = () => {
 
             {authentication.isLoggin && (
                 <div className="home">
-                   <InboxSideBar />
+                 <InboxSideBar />
 
                     {currentInboxId ? (
                         <>

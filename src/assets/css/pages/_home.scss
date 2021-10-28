@@ -2,14 +2,10 @@
     display: flex;
 
     &__inbox-list {
-        min-width: 38rem;
-        max-width: 38rem;
-        overflow: scroll;
-        overflow-x: hidden;
         height: 80vh;
         background-color: white;
         border-right: thin solid #dddddd;
-
+        
         &__older-inboxs {
             color: $mainPurpleColor;
             font-weight: bold;
@@ -113,7 +109,6 @@
 .header-box-chat {
     display: flex;
     padding: 2rem 0;
-    height: 10rem;
     background-color: $mainLightColor;
     &__img {
         margin: 0 2rem;
@@ -158,7 +153,7 @@
     position: relative;
     overflow: scroll;
     overflow-x: hidden;
-    height: 90vh;
+    height: 80vh;
 }
 
 .single-chat-box {
@@ -266,3 +261,5 @@
         );
     }
 }
+
+

@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import addFriendImg from "../../assets/image/add-friends.png";
 import FriendRequest from "./FriendRequest";
 

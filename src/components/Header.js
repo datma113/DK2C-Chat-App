@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink, useHistory } from "react-router-dom";
+import {  NavLink, useHistory } from "react-router-dom";
 import logo from "../assets/image/LOGO.png";
 import Swal from "sweetalert2";
 
@@ -20,7 +20,6 @@ const Header = () => {
         dispatch(logout())
             .then(() => {
                 history.push("/");
-
                 window.location.reload();
             })
             .catch((err) => {
@@ -32,74 +31,65 @@ const Header = () => {
             });
     };
     return (
-        <>
-            <div className="navbar navbar-expand-lg bg ">
-                <div className="header-left align-items-center row">
-                    <NavLink
-                        className="nav-item col-2  p-2"
-                        activeClassName="nav-item col-2 p-2"
-                        to="/"
+        <div className="navbar  p-2">
+            <div className="header-left ">
+                <NavLink
+                    className="nav-item header-left__link center p-2"
+                    activeClassName="nav-item  p-2"
+                    to="/"
+                >
+                    <img src={logo} alt="" style={{ height: "50px", width: "50px" }} />
+                </NavLink>
+
+                <NavLink
+                    className="nav-item center header-left__link  header p-2"
+                    activeClassName="nav-item  header  header__active  p-2"
+                    to="/friends"
+                >
+                    <i className="fas fa-users"></i>{" "}
+                </NavLink>
+            </div>
+
+            <div className="header-right">
+                <div className="dropdown">
+                    <div
+                        type="button"
+                        id="dropdownExampleAnimation"
+                        data-mdb-toggle="dropdown"
+                        aria-expanded="false"
+                        data-mdb-dropdown-animation="off"
                     >
-                        {" "}
-                        <img src={logo} alt="" style={{ height: "50px", width: "50px" }} />
-                    </NavLink>
-
-                    <NavLink
-                        className="nav-item col-2  header p-2"
-                        activeClassName="nav-item col-2   header__active  p-2"
-                        to="/friends"
-                    >
-                        <i className="fas fa-users"></i>{" "}
-                    </NavLink>
-                </div>
-
-                <div className="header-right">
-                    <div className="dropdown">
-                        <div
-                            className=""
-                            type="button"
-                            id="dropdownExampleAnimation"
-                            data-mdb-toggle="dropdown"
-                            aria-expanded="false"
-                            data-mdb-dropdown-animation="off"
-                        >
-                            <img
-                                src={userInfo.imageUrl}
-                                className="header-img"
-                                alt=""
-                                loading="lazy"
-                            />
-                        </div>
-                        <ul className="dropdown-menu ">
-                            <li className="p-1">
-                                <p
-                                    className="dropdown-item text-small"
-                                    href="#"
-                                    data-mdb-toggle="modal"
-                                    data-mdb-target="#openMyInfoModal"
-                                >
-                                    Hồ sơ
-                                </p>
-                            </li>
-
-                            <li>
-                                <p className="dropdown-item text-small" href="#">
-                                    Cài đặt
-                                </p>
-                            </li>
-                            <li>
-                                <hr className="dropdown-divider" />
-                            </li>
-                            <li type="button" onClick={() => logoutHandle()}>
-                                <p className="dropdown-item text-danger text-small">
-                                    <i className="fas fa-sign-out-alt fa-1x"></i> Đăng xuất
-                                </p>
-                            </li>
-                        </ul>
+                        <img src={userInfo.imageUrl} className="header-img" alt="" loading="lazy" />
                     </div>
+                    <ul className="dropdown-menu ">
+                        <li className="p-1">
+                            <p
+                                className="dropdown-item text-small"
+                                href="#"
+                                data-mdb-toggle="modal"
+                                data-mdb-target="#openMyInfoModal"
+                            >
+                                Hồ sơ
+                            </p>
+                        </li>
+
+                        <li>
+                            <p className="dropdown-item text-small" href="#">
+                                Cài đặt
+                            </p>
+                        </li>
+                        <li>
+                            <hr className="dropdown-divider" />
+                        </li>
+                        <li type="button" onClick={() => logoutHandle()}>
+                            <p className="dropdown-item text-danger text-small">
+                                <i className="fas fa-sign-out-alt fa-1x"></i> Đăng xuất
+                            </p>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

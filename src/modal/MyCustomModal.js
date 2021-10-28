@@ -37,8 +37,8 @@ const MyCustomModal = ({ id, headerTitle, inner, functionWhenClick, isDisabledCo
                                 className={`btn btn-primary btn-lg ${
                                     isDisabledConfirmBtn ? "disabled" : ""
                                 }`}
-                                onClick={functionWhenClick}
                                 data-mdb-dismiss="modal"
+                                onClick={functionWhenClick}
                             >
                                 xác nhận
                             </button>

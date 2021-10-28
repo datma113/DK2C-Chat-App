@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import AlwaysScrollToBottom from "../../components/AlwaysScrollToBottom";
 import MessageChat from "../../components/MessageChat";
 import { getMessageInBoxChat } from "../../redux/action/actHome";
 import { RESET_STATUS_OF_SCROLL_BOTTOM_IN_BOX_CHAT } from "../../redux/constants/constants";
@@ -52,7 +51,7 @@ const BoxChat = () => {
     const stylesImageBackground = {
         backgroundImage: `url(${currentInbox.imgUrl})`,
         backgroundRepeat: `no-repeat`,
-        backgroundSize: `cover`,
+        backgroundSize: `cover`
     }
 
     return (
@@ -63,8 +62,7 @@ const BoxChat = () => {
             onMouseEnter={() => setFalseInitialWhenMouseEnter()}
         >
             <MessageChat  boxChat={boxChat} />
-            {isInitialize && <AlwaysScrollToBottom />}
-            {isScrollBottom && <AlwaysScrollToBottom />}
+     
         </div>
     );
 };

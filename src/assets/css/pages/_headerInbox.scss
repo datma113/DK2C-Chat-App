@@ -1,7 +1,8 @@
 .header-inbox-container {
     padding: 0.5rem 2rem;
     background-color: white;
-    height: 10vh;
+    height: 5rem;
+    min-height: 5rem;
     border-right: thin solid #dddddd;
 
     &__icon {

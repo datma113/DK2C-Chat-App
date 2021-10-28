@@ -8,7 +8,7 @@ import MyCustomModal from "./MyCustomModal";
 const OutRoom = ({roomId, inboxId}) => {
      const dispatch = useDispatch()
      const renderOutRoom = () => {
-          return <div> Bạn có muốn rời nhóm này khum?</div>;
+          return <div> Bạn có muốn rời nhóm này khum?????</div>;
       };
 
       const outRoomHandle = () => {
@@ -17,7 +17,7 @@ const OutRoom = ({roomId, inboxId}) => {
       return (
           <>
               <TagOfOptionRoom
-                  id="outRoom"
+                  id="outRoomModal"
                   colorIcon="text-danger"
                   classIcon="fas fa-user-slash"
                   text="Rời nhóm này"
@@ -25,7 +25,7 @@ const OutRoom = ({roomId, inboxId}) => {
               <MyCustomModal
                   inner={renderOutRoom()}
                   headerTitle="Rời khỏi nhóm"
-                  id="outRoom"
+                  id="outRoomModal"
                   functionWhenClick={() => outRoomHandle()}
               />
           </>

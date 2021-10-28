@@ -1,0 +1,21 @@
+@media only screen and(min-width: $md) {
+    .introducing-text {
+        width: 75%;
+    }
+}
+
+@media only screen and(min-width: $lg) {
+    .introducing-text {
+        width: 100%;
+    }
+}
+
+@media only screen and(max-width: $md) {
+    .introducing {
+        display: none;
+    }
+
+    .inbox-side-bar {
+        flex: 1;
+    }
+}

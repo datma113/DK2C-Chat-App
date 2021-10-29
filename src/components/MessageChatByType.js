@@ -3,6 +3,12 @@ import CurrentReactionExpressed from "./CurrentReactionExpressed";
 import DeleteMessage from "./DeleteMessage";
 import Reactions from "./Reactions";
 import VideoSended from "./VideoSended";
+import hahaIcon from "../assets/image/haha.png";
+import angryIcon from "../assets/image/angry.png";
+import sadIcon from "../assets/image/sad.png";
+import likeIcon from "../assets/image/like.png";
+import loveIcon from "../assets/image/love.png";
+import wowIcon from "../assets/image/wow.png";
 
 const MessageChatByType = ({
     message,
@@ -75,19 +81,19 @@ const MessageChatByType = ({
 
     const showTheFirstReactionsIfExists = () => {
         const REACTION = {
-            HAHA: "far fa-grin-squint text-warning",
-            SAD: "fas fa-sad-tear ",
-            ANGRY: "fas fa-angry text-warning",
-            LIKE: "fas fa-thumbs-up  text-primary",
-            LOVE: "fas fa-heart text-danger ",
-            WOW: "fas fa-surprise text-warning",
+            HAHA: hahaIcon,
+            SAD: sadIcon,
+            ANGRY: angryIcon,
+            LIKE: likeIcon,
+            LOVE: loveIcon,
+            WOW: wowIcon,
         };
-        let iconClassName = "fas fa-thumbs-up  text-primary";
+        let icon = likeIcon;
         const THE_FIRST_REACTION = 0;
         const MIN_OF_REACTIONS_LENGTH = 0;
         if (message.reactions.length > MIN_OF_REACTIONS_LENGTH)
-            iconClassName = REACTION[message.reactions[THE_FIRST_REACTION].type];
-        return iconClassName;
+            icon = REACTION[message.reactions[THE_FIRST_REACTION].type];
+        return icon;
     };
 
     const renderMessageContent = () => {
@@ -111,7 +117,11 @@ const MessageChatByType = ({
                     <div
                         className={`single-chat-box__message__reaction-container__reaction ${addSelfSideReaction()} center `}
                     >
-                        <i className={showTheFirstReactionsIfExists()}></i>
+                        <img
+                            className={`image-expression`}
+                            src={showTheFirstReactionsIfExists()}
+                            alt={`defaultIcon`}
+                        ></img>
                     </div>
                     <div
                         className={`
@@ -123,7 +133,7 @@ const MessageChatByType = ({
                     </div>
                 </div>
                 <DeleteMessage messageId={message.id} />
-        
+
                 <CurrentReactionExpressed reactions={message.reactions} />
                 <p className="single-chat-box__message__time-send-message text-small mt-2">
                     {showTimeSendMessage()}

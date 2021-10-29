@@ -126,7 +126,6 @@ export const storeUsers = (users) => {
 };
 
 export const getUsers = (query = "") => {
-    return (dispatch) =>
         axios
             .post(API_SEARCH_USERS_BY_PHONE + query)
             .then((resp) => {

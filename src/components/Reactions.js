@@ -1,14 +1,19 @@
 import React from "react";
 import socketModule from "../module/socketModule";
-
+import hahaIcon from "../assets/image/haha.png";
+import angryIcon from "../assets/image/angry.png";
+import sadIcon from "../assets/image/sad.png";
+import likeIcon from "../assets/image/like.png";
+import loveIcon from "../assets/image/love.png";
+import wowIcon from "../assets/image/wow.png";
 const Reactions = ({ messageId, myId, roomId }) => {
     const REACTIONS_TYPE = [
-        { type: "LIKE", className: "fas fa-thumbs-up  text-primary" },
-        { type: "LOVE", className: " fas fa-heart text-danger " },
-        { type: "HAHA", className: "fas fa-grin-squint-tears  text-light" },
-        { type: "WOW", className: "fas fa-surprise text-warning" },
-        { type: "SAD", className: "fas fa-sad-tear  text-light" },
-        { type: "ANGRY", className: "fas fa-angry text-warning" },
+        { type: "LIKE", icon: likeIcon },
+        { type: "LOVE", icon: loveIcon },
+        { type: "HAHA", icon: hahaIcon },
+        { type: "WOW", icon: wowIcon },
+        { type: "SAD", icon: sadIcon },
+        { type: "ANGRY", icon: angryIcon },
     ];
 
     const expressReaction = (e, type) => {
@@ -18,17 +23,19 @@ const Reactions = ({ messageId, myId, roomId }) => {
             type,
             userId: myId,
         };
-        socketModule.expressReaction(REACTION)
+        socketModule.expressReaction(REACTION);
     };
     const reactionsMap = REACTIONS_TYPE.map((reaction, index) => {
         return (
-            <i
+            <img
                 key={index}
-                className={`${reaction.className} single-reaction-container__icon`}
+                src={reaction.icon}
+                alt={reaction.type}
+                className={`single-reaction-container__icon image-expression`}
                 onClick={(e) => {
                     expressReaction(e, reaction.type);
                 }}
-            ></i>
+            ></img>
         );
     });
     return <div className="single-reaction-container">{reactionsMap}</div>;

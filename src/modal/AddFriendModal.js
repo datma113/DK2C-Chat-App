@@ -1,15 +1,13 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import AddFriend from "../components/AddFriend";
 import { getUsers } from "../redux/action/actHome";
 
 const AddfriendModal = () => {
-    const dispatch = useDispatch();
 
     const getUsersHandle = (query = "") => {
         const MINIMUM_OF_PHONE_NUMBER = 10
         if(query.length >= MINIMUM_OF_PHONE_NUMBER)
-            dispatch(getUsers(query));
+            getUsers(query);
     };
 
     return (

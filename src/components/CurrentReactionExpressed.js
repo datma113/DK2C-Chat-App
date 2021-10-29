@@ -1,14 +1,20 @@
 import React from "react";
+import hahaIcon from "../assets/image/haha.png";
+import angryIcon from "../assets/image/angry.png";
+import sadIcon from "../assets/image/sad.png";
+import likeIcon from "../assets/image/like.png";
+import loveIcon from "../assets/image/love.png";
+import wowIcon from "../assets/image/wow.png";
 
 const CurrentReactionExpressed = ({ reactions = [] }) => {
     const checkReactions = (type) => {
         const REACTION = {
-            HAHA: "far fa-grin-squint text-warning",
-            SAD: "fas fa-sad-tear ",
-            ANGRY: "fas fa-angry text-warning",
-            LIKE: "fas fa-thumbs-up  text-primary",
-            LOVE: "fas fa-heart text-danger ",
-            WOW: "fas fa-surprise text-warning",
+            HAHA: hahaIcon,
+            SAD: sadIcon,
+            ANGRY: angryIcon,
+            LIKE: likeIcon,
+            LOVE: loveIcon,
+            WOW: wowIcon,
         };
         return REACTION[type] || [];
     };
@@ -23,9 +29,12 @@ const CurrentReactionExpressed = ({ reactions = [] }) => {
 
     const reactionsMap = limitReactions(REACTIONS_UNIQUE).map((reaction, index) => {
         return (
-            <i key={index} className={checkReactions(reaction)}>
-                {" "}
-            </i>
+            <img
+                key={index}
+                src={checkReactions(reaction)}
+                alt={reaction.type}
+                className="image-expression"
+            />
         );
     });
     return <div className={`current-reactions-expressed ${isEmptyReaction()}`}>{reactionsMap}</div>;

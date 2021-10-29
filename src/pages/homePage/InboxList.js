@@ -30,8 +30,6 @@ const InboxList = () => {
     };
 
     const inboxsMap = inboxs.map((inbox, index) => {
-        console.log(inbox);
-
 
         const TYPE_ROOM_ONE = "ONE";
         const TYPE_ROOM_GROUP = "GROUP";

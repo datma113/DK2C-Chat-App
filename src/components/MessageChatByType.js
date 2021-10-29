@@ -1,5 +1,6 @@
 import React from "react";
 import CurrentReactionExpressed from "./CurrentReactionExpressed";
+import DeleteMessage from "./DeleteMessage";
 import Reactions from "./Reactions";
 import VideoSended from "./VideoSended";
 
@@ -121,6 +122,8 @@ const MessageChatByType = ({
                         <Reactions roomId={currentRoomId} messageId={message.id} myId={MY_ID} />
                     </div>
                 </div>
+                <DeleteMessage messageId={message.id} />
+        
                 <CurrentReactionExpressed reactions={message.reactions} />
                 <p className="single-chat-box__message__time-send-message text-small mt-2">
                     {showTimeSendMessage()}

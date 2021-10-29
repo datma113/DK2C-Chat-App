@@ -10,7 +10,7 @@ const Welcome = () => {
                 <img src={welcome} alt="" className="welcome-container__image" />
 
                 <div className="text-title ">Xin chào !!</div>
-                <p className="text-center">Chat app umbala của tui nè ghê chưa má?</p>
+                <p className="text-center">Chào mừng bạn đến với ứng dụng chat DKC</p>
                 <Link to="/login">
                     <div className="btn btn-secondary btn-welcome mb-4">Đăng nhập</div>
                 </Link>

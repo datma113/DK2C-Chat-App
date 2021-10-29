@@ -14,6 +14,7 @@ import {
     API_INBOXS,
     API_GET_MESSAGE_IN_CHAT_BOX,
     API_SEARCH_USERS_BY_PHONE,
+    API_MESSAGES,
 } from "../constants/api";
 
 export const storeInboxs = (inboxs) => {
@@ -136,3 +137,13 @@ export const getUsers = (query = "") => {
                 console.error(err.response.data.message);
             });
 };
+
+export const deleteMessage = (messageId) => {
+    return axios.delete(API_MESSAGES + messageId)
+    .then((resp) => {
+        console.log(resp.data);
+    })
+    .catch((err) => {
+        console.error(err.response.data.message);
+    })
+}

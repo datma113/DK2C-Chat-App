@@ -5,7 +5,7 @@
         height: 80vh;
         background-color: white;
         border-right: thin solid #dddddd;
-        
+
         &__older-inboxs {
             color: $mainPurpleColor;
             font-weight: bold;
@@ -161,6 +161,10 @@
     user-select: none;
     margin-top: 2rem;
 
+    &:hover &__message__delete {
+        display: flex;
+    }
+
     &--self {
         flex-direction: row-reverse;
         margin-left: 10rem;
@@ -190,6 +194,33 @@
         padding: 1.5rem 1rem;
         max-width: 45rem;
         position: relative;
+
+        &__delete {
+            position: absolute;
+
+            text-shadow: 0 0 5px white;
+            top: 20%;
+            left: -3rem;
+            display: none;
+            cursor: pointer;
+            font-size: 3rem;
+
+            &:hover &__options {
+                transform: scaleY(1);
+            }
+            &__options {
+                position: absolute;
+                background-color: white;
+                box-shadow: 0 0 10px #dddddd;
+                border-radius: 4px;
+                width: 10rem;
+                left: -10rem;
+                top: 2rem;
+                transform: scaleY(0);
+                transform-origin: 0 top 0;
+                transition: 0.3s;
+            }
+        }
 
         &:hover &__reaction-container__reaction {
             display: flex;
@@ -261,5 +292,3 @@
         );
     }
 }
-
-

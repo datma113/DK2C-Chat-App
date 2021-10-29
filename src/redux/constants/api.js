@@ -6,8 +6,10 @@ const API_SIGN_UP = API_AUTH + "signup/";
 const API_ROOM = API + "rooms/";
 const API_USER = API + "user/";
 const API_ME = API_USER + "me/";
+export const API_MESSAGES = API + 'messages/'
 export const API_FRIENDS = API + "friends"
 export const API_INBOXS = API + "inboxs/";
+
 
 
 export const API_SIGN_IN = API_AUTH + "signin";
@@ -34,7 +36,7 @@ export const API_GET_INBOX_BY_ID = API_INBOXS + "ofRoomId/";
 export const API_GET_INBOX_BY_FRIEND_ID = API_INBOXS + "with/";
 
 /**Chat */
-export const API_GET_MESSAGE_IN_CHAT_BOX = API + "messages/inbox/";
+export const API_GET_MESSAGE_IN_CHAT_BOX = API_MESSAGES + "inbox/";
 export const API_GET_FILE_URL_WHEN_SENDED = API + "file/";
 
 /**info room */

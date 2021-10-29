@@ -1,8 +1,13 @@
 html,
-body,
-.App {
+body {
   width: 100%;
   height: 100%;
+  overflow: hidden;
+}
+
+.App {
+  width: 100%;
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -17,7 +22,6 @@ body,
 html {
   font-size: 62.5%;
   line-height: 1;
-  overflow: hidden;
 }
 
 body {
@@ -500,6 +504,9 @@ a {
   user-select: none;
   margin-top: 2rem;
 }
+.single-chat-box:hover .single-chat-box__message__delete {
+  display: flex;
+}
 .single-chat-box--self {
   flex-direction: row-reverse;
   margin-left: 10rem;
@@ -525,6 +532,30 @@ a {
   padding: 1.5rem 1rem;
   max-width: 45rem;
   position: relative;
+}
+.single-chat-box__message__delete {
+  position: absolute;
+  text-shadow: 0 0 5px white;
+  top: 20%;
+  left: -3rem;
+  display: none;
+  cursor: pointer;
+  font-size: 3rem;
+}
+.single-chat-box__message__delete:hover .single-chat-box__message__delete__options {
+  transform: scaleY(1);
+}
+.single-chat-box__message__delete__options {
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 0 10px #dddddd;
+  border-radius: 4px;
+  width: 10rem;
+  left: -10rem;
+  top: 2rem;
+  transform: scaleY(0);
+  transform-origin: 0 top 0;
+  transition: 0.3s;
 }
 .single-chat-box__message:hover .single-chat-box__message__reaction-container__reaction {
   display: flex;

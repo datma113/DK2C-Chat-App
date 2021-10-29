@@ -15,7 +15,7 @@ const CreateRoomWithMemsModal = () => {
     };
 
     const isDisabledConfirmBtn = () => {
-        return !friendsAdded.length ? "disabled" : "";
+        return !friendsAdded.length || !roomName ? "disabled" : "";
     };
 
     const handleCreateRoom = () => {

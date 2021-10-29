@@ -1,6 +1,17 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import AddFriend from "../components/AddFriend";
+import { getUsers } from "../redux/action/actHome";
 
-const AddFriend = () => {
+const AddfriendModal = () => {
+    const dispatch = useDispatch();
+
+    const getUsersHandle = (query = "") => {
+        const MINIMUM_OF_PHONE_NUMBER = 10
+        if(query.length >= MINIMUM_OF_PHONE_NUMBER)
+            dispatch(getUsers(query));
+    };
+
     return (
         <>
             <i
@@ -16,7 +27,7 @@ const AddFriend = () => {
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
             >
-                <div className="modal-dialog">
+                <div className="modal-dialog add-friends-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="exampleModalLabel">
@@ -30,7 +41,11 @@ const AddFriend = () => {
                             ></button>
                         </div>
                         <div className="modal-body text-center">
-                            <p> Tìm kiếm gì đó đi ba </p>
+                            <AddFriend
+                                handleOnChange={(e) => {
+                                    getUsersHandle(e.target.value);
+                                }}
+                            />
                         </div>
                         <div className="modal-footer">
                             <button
@@ -42,7 +57,7 @@ const AddFriend = () => {
                             </button>
                             <button
                                 type="button"
-                                className={`btn btn-danger btn-lg `}
+                                className={`btn btn-success btn-lg `}
                                 data-mdb-dismiss="modal"
                             >
                                 xác nhận
@@ -55,4 +70,4 @@ const AddFriend = () => {
     );
 };
 
-export default AddFriend;
+export default AddfriendModal;

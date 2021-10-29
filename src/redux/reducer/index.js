@@ -17,6 +17,7 @@ import membersInRoom from "./returnArray/membersInRoom";
 import userInfo from "./returnObject/userProfile";
 import friendProfile from "./returnObject/friendProfile";
 import oldAndNewPassword from "./returnObject/oldAndNewPassword";
+import users from "./returnArray/users";
 const reducer = combineReducers({
     userLogin,
     userRegister,
@@ -36,6 +37,7 @@ const reducer = combineReducers({
     userInfo,
     friendProfile,
     oldAndNewPassword,
+    users,
 });
 
 export default reducer;

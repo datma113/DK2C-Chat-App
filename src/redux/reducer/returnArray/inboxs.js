@@ -16,6 +16,9 @@ const reducer = (state = initial, action) => {
 
     switch (type) {
         case STORE_INBOXS:
+            inboxs.forEach(inbox => {
+                if(!inbox.lastMessage) inbox.lastMessage = {}
+            })
             return inboxs;
         case STORE_OLDER_INBOXS:
             return [...state, ...olderInboxs];

@@ -17,6 +17,7 @@
             margin-right: 0.1rem;
             overflow-y: scroll;
             &__element {
+                user-select: none;
                 border-radius: 3px;
                 box-shadow: 1px 1px 3px $mainDarkColor;
                 cursor: pointer;

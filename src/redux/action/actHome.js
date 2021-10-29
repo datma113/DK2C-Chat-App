@@ -7,11 +7,13 @@ import {
     STORE_INBOXS,
     STORE_MESSAGE_IN_BOX_CHAT,
     STORE_OLDER_INBOXS,
+    STORE_USERS,
 } from "../constants/constants";
 import {
     API_GET_FILE_URL_WHEN_SENDED,
     API_INBOXS,
     API_GET_MESSAGE_IN_CHAT_BOX,
+    API_SEARCH_USERS_BY_PHONE,
 } from "../constants/api";
 
 export const storeInboxs = (inboxs) => {
@@ -113,4 +115,24 @@ export const getURLOfFileWhenSended = (files) => {
 
             return Promise.reject(MESSAGE);
         });
+};
+
+export const storeUsers = (users) => {
+    return {
+        type: STORE_USERS,
+        users,
+    };
+};
+
+export const getUsers = (query = "") => {
+    return (dispatch) =>
+        axios
+            .post(API_SEARCH_USERS_BY_PHONE + query)
+            .then((resp) => {
+                console.log(API_SEARCH_USERS_BY_PHONE + query);
+                console.log(resp.data);
+            })
+            .catch((err) => {
+                console.error(err.response.data.message);
+            });
 };

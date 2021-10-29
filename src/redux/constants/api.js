@@ -28,6 +28,7 @@ export const API_GET_USER_INFO = API_ME;
 export const API_CHANGE_USER_IMAGE = API_ME + "changeImage"
 export const API_CHANGE_PASSWORD = API_ME + "changePassword";
 export const API_GET_USER_PROFILE = API_USER + "viewProfile/";
+export const API_SEARCH_USERS_BY_PHONE = API_USER + "searchPhone?textToSearch=";
 /**inbox */
 export const API_GET_INBOX_BY_ID = API_INBOXS + "ofRoomId/";
 export const API_GET_INBOX_BY_FRIEND_ID = API_INBOXS + "with/";

@@ -3,14 +3,17 @@ import Carousel from "../../components/Carousel";
 
 const Introducing = () => {
     return (
-        <div className="introducing center flex-column"> 
-            <div className=" text-large text-center">
-                Chào mừng đến với <br/> <b className="text-large"> CDK Chat </b>{" "}
+        <div className="introducing h-100">
+            <div className="center text-large text-center mt-5">
+                Chào mừng đến với &nbsp; <span className="text-large font-weight-bold"> CDK Chat </span>{" "}
             </div>
-            <div className="text-medium text-center introducing-text">
-                Khám phá những tiện ích hỗ trợ làm việc và trò chuyện cùng người thân, bạn bè được
-                tối ưu hoá cho máy tính của bạn.
+            <div className="center">
+                <div className="center text-medium text-center introducing-text">
+                    Khám phá những tiện ích hỗ trợ làm việc và trò chuyện cùng người thân, bạn bè
+                    được tối ưu hoá cho máy tính của bạn.
+                </div>
             </div>
+
             <Carousel />
         </div>
     );

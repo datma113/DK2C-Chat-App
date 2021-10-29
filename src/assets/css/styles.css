@@ -63,11 +63,10 @@ a {
   box-shadow: 0 0 5px #FBFBFB;
 }
 
-@media screen and (max-width: 992px) {
-  #carouselExampleCaptions {
-    height: 55vh;
-  }
+.introducing-text {
+  margin: 0 2rem;
 }
+
 /*components*/
 .text-title {
   font-weight: bold;
@@ -285,14 +284,19 @@ a {
 }
 
 /* responsive */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 992px) {
   .introducing-text {
     width: 75%;
   }
 }
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 1200px) {
   .introducing-text {
-    width: 100%;
+    width: 50%;
+  }
+}
+@media screen and (max-width: 992px) {
+  #carouselExampleCaptions {
+    height: 55vh;
   }
 }
 @media only screen and (max-width: 768px) {
@@ -308,6 +312,10 @@ a {
     display: none;
   }
 }
+.carousel-inner-custom {
+  height: 100%;
+}
+
 /*pages*/
 .welcome-container {
   border-radius: 1rem;
@@ -894,6 +902,7 @@ a {
   overflow-y: scroll;
 }
 .create-room-mems__friends__left__element {
+  user-select: none;
   border-radius: 3px;
   box-shadow: 1px 1px 3px #262626;
   cursor: pointer;
@@ -939,6 +948,11 @@ a {
 
 .friends-added-active {
   background-color: #a8d5e3;
+}
+
+.add-friends-dialog {
+  max-width: none;
+  width: 80rem;
 }
 
 /*variables*/

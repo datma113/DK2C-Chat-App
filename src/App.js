@@ -8,11 +8,6 @@ import { useDispatch } from "react-redux";
 import { getTokenWhenRefreshPage } from "./redux/action/actLogin";
 import Loading from "./components/Loading";
 import ProfileModal from "./pages/profile/ProfileModal";
-import {
-    getFriendsListFromServer,
-    getFriendsRequestFromServer,
-    getGroupsChatList,
-} from "./redux/action/actFriends";
 
 function App() {
     const mapRoutes = routes.map((route, index) => {
@@ -24,17 +19,11 @@ function App() {
     const dispatch = useDispatch();
     const [isLoading, setisLoading] = useState(true);
     const userProfile = useSelector((state) => state.userInfo);
-   
+
     useEffect(() => {
-        dispatch(getTokenWhenRefreshPage())
-            .then(() => {
-                setisLoading(false);
-            })
-            .then(() => {
-                dispatch(getFriendsListFromServer());
-                dispatch(getFriendsRequestFromServer());
-                dispatch(getGroupsChatList());
-            });
+        dispatch(getTokenWhenRefreshPage()).then(() => {
+            setisLoading(false);
+        });
     }, [dispatch]);
 
     return (

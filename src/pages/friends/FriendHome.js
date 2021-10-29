@@ -17,18 +17,21 @@ import HeaderOfInfoRoom from "../../components/HeaderOfInfoRoom";
 import InfoOfRoom from "../../components/InfoOfRoom";
 import OptionOfRoom from "../homePage/OptionOfRoom";
 import { RESET_CURRENT_INBOX_ID, RESET_CURRENT_ROOM_ID } from "../../redux/constants/constants";
+import { useHistory } from "react-router";
 
 const FriendHome = () => {
     const dispatch = useDispatch();
     const friendsListFromStore = useSelector((state) => state.friendsList);
     const friendsRequestFromStore = useSelector((state) => state.friendsRequest);
-
     const currentInboxId = useSelector((state) => state.currentInboxId);
     const currentRoomId = useSelector((state) => state.currentRoomId);
     const authentication = useSelector((state) => state.authentication);
+
+    const history = useHistory()
     let [index, setindex] = useState(-2);
 
     useEffect(() => {
+      
         dispatch({
             type: RESET_CURRENT_INBOX_ID,
         });
@@ -40,7 +43,10 @@ const FriendHome = () => {
         dispatch(getFriendsListFromServer());
         dispatch(getFriendsRequestFromServer());
         dispatch(getGroupsChatList());
-    }, [dispatch]);
+
+        
+
+    }, [dispatch, authentication, history]);
 
     const changeOptions = (option) => {
         setindex(option);

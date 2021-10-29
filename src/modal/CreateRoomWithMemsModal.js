@@ -2,18 +2,42 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CreateRoomWithMems from "../pages/homePage/CreateRoomWithMems";
 import { getFriendsListFromServer } from "../redux/action/actFriends";
+import { createNewRoom } from "../redux/action/actInfoRoom";
 
 const CreateRoomWithMemsModal = () => {
     const dispatch = useDispatch();
     const friendsList = useSelector((state) => state.friendsList);
     const [friendsAdded, setfriendsAdded] = useState([]);
-
+    const [roomName, setroomName] = useState("");
+    const authentication = useSelector((state) => state.authentication);
     const getFriendsAdded = (friendsAdded) => {
         setfriendsAdded(friendsAdded);
     };
 
     const isDisabledConfirmBtn = () => {
         return !friendsAdded.length ? "disabled" : "";
+    };
+
+    const handleCreateRoom = () => {
+        const MY_ID = authentication.user.id;
+        const ROOM_TYPE_GROUP = "GROUP";
+
+        const members = friendsAdded.map((friend) => {
+            return {
+                userId: friend.id,
+                addByUserId: MY_ID,
+            };
+        });
+
+        const room = {
+            name: roomName,
+            createByUserId: MY_ID,
+            members,
+            type: ROOM_TYPE_GROUP,
+            imageUrl: "./image/LOGO.png",
+        };
+
+        dispatch(createNewRoom(room));
     };
 
     return (
@@ -46,6 +70,15 @@ const CreateRoomWithMemsModal = () => {
                             ></button>
                         </div>
                         <div className="modal-body text-center">
+                            <div className="center pb-3" style={{ margin: `0 2rem` }}>
+                                <input
+                                    type="text"
+                                    className="form-control text-medium text-center w-75"
+                                    placeholder="Nhập tên nhóm"
+                                    onChange={(e) => setroomName(e.target.value)}
+                                />
+                            </div>
+                            <hr className="mt-5" />
                             <CreateRoomWithMems
                                 friends={friendsList}
                                 getFriendsAdded={getFriendsAdded}
@@ -63,6 +96,7 @@ const CreateRoomWithMemsModal = () => {
                                 type="button"
                                 className={`btn btn-primary btn-lg ${isDisabledConfirmBtn()}`}
                                 data-mdb-dismiss="modal"
+                                onClick={() => handleCreateRoom()}
                             >
                                 xác nhận
                             </button>

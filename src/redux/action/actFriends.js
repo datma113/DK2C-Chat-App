@@ -23,14 +23,12 @@ export const storeFriendsList = (friends) => {
     };
 };
 export const getFriendsListFromServer = (query = "") => {
-    //const API = API_FRIENDS +  `?query=${query}`
-    const API = API_FRIENDS
-      
+    const API = API_FRIENDS +  `?query=${query}`
     return (dispatch) => {
         return axios
             .get(API)
             .then((resp) => {
-                dispatch(storeFriendsList(resp.data.content));
+                dispatch(storeFriendsList(resp.data.content ?? resp.data));
                 return Promise.resolve(resp.data);
             })
             .catch(err => {
@@ -38,7 +36,7 @@ export const getFriendsListFromServer = (query = "") => {
                 (err.response && err.response.data && err.response.data.message) ||
                 err.message ||
                 err.toString();
-                console.log(MESSAGE);
+                console.error(MESSAGE);
                 dispatch(storeFriendsList([]))
             });
     };
@@ -85,6 +83,8 @@ export const acceptFriendRequest = (id) => {
                     type: UPDATE_FRIEND_AFTER_REQUEST,
                     id,
                 });
+
+                return Promise.resolve();
             })
             .catch(() => dispatch(storeGroupsChatList([])));
     };
@@ -99,7 +99,7 @@ export const declineFriendRequest = (id) => {
                     type: UPDATE_FRIEND_AFTER_REQUEST,
                     id,
                 });
-                return resp;
+                return Promise.resolve();
             })
             .catch(() => dispatch(storeGroupsChatList([])));
     };

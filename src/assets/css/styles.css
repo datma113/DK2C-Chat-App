@@ -33,7 +33,7 @@ a {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
 }
 
 /* Track */
@@ -44,7 +44,7 @@ a {
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #5D3B78;
-  border-radius: 10px;
+  border-radius: 6px;
 }
 
 /* Handle on hover */
@@ -303,6 +303,10 @@ a {
   .inbox-side-bar {
     flex: 1;
   }
+
+  .info-room-right {
+    display: none;
+  }
 }
 /*pages*/
 .welcome-container {
@@ -431,7 +435,7 @@ a {
   height: 90vh;
   display: flex;
   flex-direction: column;
-  width: 72.5rem;
+  flex: 8;
   border-right: thin solid #dddddd;
 }
 

@@ -1,10 +1,21 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CreateRoomWithMems from "../pages/homePage/CreateRoomWithMems";
 import { getFriendsListFromServer } from "../redux/action/actFriends";
 
 const CreateRoomWithMemsModal = () => {
     const dispatch = useDispatch();
+    const friendsList = useSelector((state) => state.friendsList);
+    const [friendsAdded, setfriendsAdded] = useState([]);
+
+    const getFriendsAdded = (friendsAdded) => {
+        setfriendsAdded(friendsAdded);
+    };
+
+    const isDisabledConfirmBtn = () => {
+        return !friendsAdded.length ? "disabled" : "";
+    };
+
     return (
         <>
             <i
@@ -35,7 +46,10 @@ const CreateRoomWithMemsModal = () => {
                             ></button>
                         </div>
                         <div className="modal-body text-center">
-                            <CreateRoomWithMems />
+                            <CreateRoomWithMems
+                                friends={friendsList}
+                                getFriendsAdded={getFriendsAdded}
+                            />
                         </div>
                         <div className="modal-footer">
                             <button
@@ -47,7 +61,7 @@ const CreateRoomWithMemsModal = () => {
                             </button>
                             <button
                                 type="button"
-                                className={`btn btn-primary btn-lg `}
+                                className={`btn btn-primary btn-lg ${isDisabledConfirmBtn()}`}
                                 data-mdb-dismiss="modal"
                             >
                                 xác nhận

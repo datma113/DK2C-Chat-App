@@ -44,7 +44,7 @@ a {
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 6px;
 }
 
 /* Track */
@@ -55,7 +55,7 @@ a {
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: $mainPurpleColor;
-    border-radius: 10px;
+    border-radius: 6px;
 }
 
 /* Handle on hover */

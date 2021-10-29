@@ -25,7 +25,7 @@ const FriendRequestAndSuggestions = ({ friendsRequestFromStore }) => {
                     <h4>&nbsp;Lời mời kết bạn ({friendsRequestFromStore.length})</h4>
                 </div>
                 <div>
-                    <FriendRequest />
+                    <FriendRequest friendsRequestFromStore={friendsRequestFromStore}/>
                 </div>
             </div>
         </div>

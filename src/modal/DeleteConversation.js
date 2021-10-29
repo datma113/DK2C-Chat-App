@@ -34,6 +34,7 @@ const DeleteConversation = () => {
                 headerTitle="Xóa cuộc hội thoại"
                 id="deleteConversation"
                 functionWhenClick={() => deleteConversationHandle()}
+                color="danger"
             />
         </>
     );

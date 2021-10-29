@@ -16,7 +16,6 @@ const Home = () => {
     const currentInboxId = useSelector((state) => state.currentInboxId);
     const currentRoomId = useSelector((state) => state.currentRoomId);
     const [isLoading, setisLoading] = useState(true);
-    
 
     const renderWelcome = () => {
         setTimeout(() => {
@@ -24,6 +23,9 @@ const Home = () => {
         }, 1000);
         return <Welcome />;
     };
+
+    
+
 
     return (
         <div>
@@ -36,7 +38,7 @@ const Home = () => {
 
             {authentication.isLoggin && (
                 <div className="home">
-                 <InboxSideBar />
+                    { <InboxSideBar />}
 
                     {currentInboxId ? (
                         <>

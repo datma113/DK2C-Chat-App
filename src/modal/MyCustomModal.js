@@ -1,6 +1,6 @@
 import React from "react";
 
-const MyCustomModal = ({ id, headerTitle, inner, functionWhenClick, isDisabledConfirmBtn }) => {
+const MyCustomModal = ({ id, headerTitle, inner, functionWhenClick, isDisabledConfirmBtn, color }) => {
     return (
         <>
             <div
@@ -34,7 +34,7 @@ const MyCustomModal = ({ id, headerTitle, inner, functionWhenClick, isDisabledCo
                             </button>
                             <button
                                 type="button"
-                                className={`btn btn-primary btn-lg ${
+                                className={`btn btn-${color || "primary"} btn-lg ${
                                     isDisabledConfirmBtn ? "disabled" : ""
                                 }`}
                                 data-mdb-dismiss="modal"

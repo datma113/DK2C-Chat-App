@@ -1,35 +1,29 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import { acceptFriendRequest, declineFriendRequest } from "../../redux/action/actFriends";
-const FriendRequest = () => {
+const FriendRequest = ({ friendsRequestFromStore }) => {
     const dispatch = useDispatch();
-    const friendsRequestFromStore = useSelector((state) => state.friendsRequest);
 
-    const [friendsRequest, setfriendsRequest] = useState(friendsRequestFromStore);
     const acceptFriendRequestOnClick = (friendRequest, index) => {
-        dispatch(acceptFriendRequest(friendRequest.id));
-        let temp = [...friendsRequest];
-        temp.splice(index, 1);
-        setfriendsRequest(temp);
-        Swal.fire(
-            "Kết bạn thành công!",
-            `Bạn và ${friendRequest.displayName} đã trở thành bạn bè`,
-            "success"
-        );
+        dispatch(acceptFriendRequest(friendRequest.id)).then(() => {
+            Swal.fire(
+                "Kết bạn thành công!",
+                `Bạn và ${friendRequest.displayName} đã trở thành bạn bè`,
+                "success"
+            );
+        });
     };
     const declineFriendRequestOnClick = (friendRequest, index) => {
-        dispatch(declineFriendRequest(friendRequest.id));
-        let temp = [...friendsRequest];
-        temp.splice(index, 1);
-        setfriendsRequest(temp);
-        Swal.fire(
-            "Đã từ chối lời mời kết bạn!",
-            `Bạn đã từ chối lời mời kết bạn của ${friendRequest.displayName}`,
-            "error"
-        );
+        dispatch(declineFriendRequest(friendRequest.id)).then(() => {
+            Swal.fire(
+                "Đã từ chối lời mời kết bạn!",
+                `Bạn đã từ chối lời mời kết bạn của ${friendRequest.displayName}`,
+                "error"
+            );
+        });
     };
-    const friendRequestArrMap = friendsRequest.map((friendRequest, index) => {
+    const friendRequestArrMap = friendsRequestFromStore.map((friendRequest, index) => {
         return (
             <div key={index}>
                 {" "}

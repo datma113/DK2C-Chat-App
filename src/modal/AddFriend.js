@@ -30,7 +30,7 @@ const AddFriend = () => {
                             ></button>
                         </div>
                         <div className="modal-body text-center">
-                            <p> Bạn có muốn hủy kết bạn với người này không? </p>
+                            <p> Tìm kiếm gì đó đi ba </p>
                         </div>
                         <div className="modal-footer">
                             <button

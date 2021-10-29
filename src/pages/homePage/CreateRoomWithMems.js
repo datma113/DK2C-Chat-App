@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 import FriendsToCreateRoom from "../../components/FriendsToCreateRoom";
 import { getFriendsListFromServer } from "../../redux/action/actFriends";
 
-const CreateRoomWithMems = () => {
-    const friendsList = useSelector((state) => state.friendsList);
-    const [friendsAdded, setfriendsAdded] = useState([]);
+const CreateRoomWithMems = ({ friends, getFriendsAdded }) => {
     const dispatch = useDispatch();
+
+    const [friendsAdded, setfriendsAdded] = useState([]);
 
     const pushFriendsToListAdded = (friend) => {
         let cloneFriendsAdded = [...friendsAdded];
@@ -26,9 +25,9 @@ const CreateRoomWithMems = () => {
         setfriendsAdded(cloneFriendsAdded);
     };
 
-    const friendsMap = friendsList.map((friend, index) => {
+    const friendsMap = friends.map((friend, index) => {
         const friendsId = [...friendsAdded].map((friend) => friend.id);
-        
+
         const isActive = friendsId.includes(friend.friend.id) ? true : false;
 
         return (
@@ -42,6 +41,10 @@ const CreateRoomWithMems = () => {
             />
         );
     });
+
+    useEffect(() => {
+        getFriendsAdded(friendsAdded);
+    }, [getFriendsAdded, friendsAdded]);
 
     const friendsAddedMap = friendsAdded.map((friend, index) => {
         return (

@@ -22,7 +22,7 @@ const MessageChatByType = ({
     const SENDER_ID = message.sender.id;
     const MY_ID = authentication.user.id;
     const IS_SELF_SIDE = SENDER_ID === MY_ID ? true : false;
-
+    
     const isSelfSideClass = () => {
         return IS_SELF_SIDE ? "single-chat-box--self" : "single-chat-box--other";
     };

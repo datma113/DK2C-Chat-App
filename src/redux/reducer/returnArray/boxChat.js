@@ -1,4 +1,5 @@
 import {
+    DELETE_AN_MESSAGE,
     DELETE_CONVERSATION,
     INITIALIZE_MESSAGE_IN_BOX_CHAT,
     STORE_MESSAGE_IN_BOX_CHAT,
@@ -39,6 +40,16 @@ const reducer = (state = initial, action) => {
                 }
             });
             return messageWithRealTimeReaction;
+
+        case DELETE_AN_MESSAGE:
+            let newMessagesAfterDeleteAnMessge = [...state];
+            let mapMessagesId = newMessagesAfterDeleteAnMessge.map((message) => message.id);
+            const indexOfMessageDeleted = mapMessagesId.indexOf(message.id);
+
+            newMessagesAfterDeleteAnMessge[indexOfMessageDeleted].content = message.content;
+
+            return newMessagesAfterDeleteAnMessge;
+
         case DELETE_CONVERSATION:
             return [];
         default:

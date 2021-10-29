@@ -7,20 +7,20 @@ const DeleteMessage = ({ messageId }) => {
      }
     return (
         <>
-            <div className="single-chat-box__message__delete">
+            <div className="single-chat-box__message__delete text-dark">
                 ...
                 <div
                     className="single-chat-box__message__delete__options"
                     type="button"
                     data-mdb-toggle="modal"
-                    data-mdb-target={`#deleteMessageModal`}
+                    data-mdb-target={`#deleteMessageModal${messageId}`}
                 >
                     <div className="text-small text-danger center">gỡ tin nhắn</div>
                 </div>
             </div>
             <div
                 className="modal fade"
-                id={`deleteMessageModal`}
+                id={`deleteMessageModal${messageId}`}
                 tabIndex="-1"
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"

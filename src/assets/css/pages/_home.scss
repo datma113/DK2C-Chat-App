@@ -197,8 +197,8 @@
 
         &__delete {
             position: absolute;
-
-            text-shadow: 0 0 5px white;
+            text-shadow: 0 0 1px white, 1px 1px 1px white, -1px -1px 1px white, 1px -1px 1px white,
+                -1px 1px 1px white;
             top: 20%;
             left: -3rem;
             display: none;

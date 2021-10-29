@@ -2,6 +2,7 @@ import axios from "axios";
 import SockJS from "sockjs-client";
 import Stomp from "stompjs";
 import {
+    DELETE_AN_MESSAGE,
     UPDATE_LAST_MESSAGE_IN_INBOX,
     UPDATE_MESSAGE_REALTIME,
     UPDATE_REACTION_REALTIME,
@@ -72,6 +73,17 @@ const socketModule = (function () {
                     messageWithRealTimeReactionSocket: data,
                 });
             });
+
+            stompClient.subscribe("/users/queue/messages/delete", function (resp) {
+                const data = JSON.parse(resp.body);
+           
+                dispatch({
+                    type: DELETE_AN_MESSAGE,
+                    message: data
+                })
+               
+            });
+
         };
 
         stompClient.connect(user, onConnected);

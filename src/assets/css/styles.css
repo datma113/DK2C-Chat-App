@@ -322,6 +322,10 @@ a {
   height: 100%;
 }
 
+.hide-an-element {
+  display: none !important;
+}
+
 /*pages*/
 .welcome-container {
   border-radius: 1rem;

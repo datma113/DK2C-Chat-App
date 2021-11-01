@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Welcome from "../welcome/Welcome";
 import BoxChat from "./BoxChat";
@@ -16,6 +16,25 @@ const Home = () => {
     const currentInboxId = useSelector((state) => state.currentInboxId);
     const currentRoomId = useSelector((state) => state.currentRoomId);
     const [isLoading, setisLoading] = useState(true);
+    const [classShowBoxchat, setclassShowBoxchat] = useState("");
+    const [classShowInboxs, setclassShowInboxs] = useState("");
+
+    const showOrHideBoxchatWhenResponsive = useCallback(() => {
+        const MEDIUM_SIZE = 768;
+        const CURRENT_WIDTH_SIZE = window.innerWidth;
+
+        if (CURRENT_WIDTH_SIZE <= MEDIUM_SIZE && !currentInboxId) {
+            setclassShowBoxchat("hide-an-element");
+        } else setclassShowBoxchat("");
+    }, [currentInboxId]);
+
+    const showOrHideInboxs = useCallback(() => {
+        const MEDIUM_SIZE = 768;
+        const CURRENT_WIDTH_SIZE = window.innerWidth;
+        if (CURRENT_WIDTH_SIZE <= MEDIUM_SIZE && currentInboxId) {
+            setclassShowInboxs("hide-an-element");
+        } else setclassShowInboxs("");
+    }, [currentInboxId]);
 
     const renderWelcome = () => {
         setTimeout(() => {
@@ -24,8 +43,15 @@ const Home = () => {
         return <Welcome />;
     };
 
-    
+    window.onresize = () => {
+        showOrHideBoxchatWhenResponsive();
+        showOrHideInboxs();
+    };
 
+    useEffect(() => {
+        showOrHideBoxchatWhenResponsive();
+        showOrHideInboxs();
+    }, [showOrHideInboxs, showOrHideBoxchatWhenResponsive]);
 
     return (
         <div>
@@ -37,12 +63,12 @@ const Home = () => {
             )}
 
             {authentication.isLoggin && (
-                <div className="home">
-                    { <InboxSideBar />}
+                <div className={`home`}>
+                    <InboxSideBar responsiveClass={classShowInboxs} />
 
                     {currentInboxId ? (
                         <>
-                            <div className="box-chat-container">
+                            <div className={`box-chat-container ${classShowBoxchat}`}>
                                 <HeaderOfBoxChat />
                                 <BoxChat />
                                 <SendMessage roomId={currentRoomId} />

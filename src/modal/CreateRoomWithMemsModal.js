@@ -43,7 +43,7 @@ const CreateRoomWithMemsModal = () => {
     return (
         <>
             <i
-                className="header-inbox-container__icon fas fa-users text-small"
+                className="header-inbox-container__icon fas fa-users text-small "
                 data-mdb-toggle="modal"
                 data-mdb-target={`#createRoomWithMemsModal`}
                 onClick={() => dispatch(getFriendsListFromServer())}

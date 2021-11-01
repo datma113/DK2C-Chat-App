@@ -118,7 +118,7 @@ export const getURLOfFileWhenSended = (files) => {
         });
 };
 
-export const storeUsers = (users) => {
+const storeUsers = (users) => {
     return {
         type: STORE_USERS,
         users,
@@ -126,14 +126,14 @@ export const storeUsers = (users) => {
 };
 
 export const getUsers = (query = "") => {
+    return dispatch =>
         axios
             .post(API_SEARCH_USERS_BY_PHONE + query)
             .then((resp) => {
-                console.log(API_SEARCH_USERS_BY_PHONE + query);
-                console.log(resp.data);
+                dispatch(storeUsers(resp.data))
             })
             .catch((err) => {
-                console.error(err.response.data.message);
+                console.error(err);
             });
 };
 
@@ -143,6 +143,7 @@ export const deleteMessage = (messageId) => {
         console.log(resp.data);
     })
     .catch((err) => {
-        console.error(err.response.data.message);
+        console.error(err);
     })
 }
+

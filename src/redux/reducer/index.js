@@ -17,7 +17,8 @@ import membersInRoom from "./returnArray/membersInRoom";
 import userInfo from "./returnObject/userProfile";
 import friendProfile from "./returnObject/friendProfile";
 import oldAndNewPassword from "./returnObject/oldAndNewPassword";
-import users from "./returnArray/users";
+import usersSearched from "./returnObject/usersSearched";
+import showOrHideBoxChat from "./returnString/showOrHideBoxChat";
 const reducer = combineReducers({
     userLogin,
     userRegister,
@@ -37,7 +38,8 @@ const reducer = combineReducers({
     userInfo,
     friendProfile,
     oldAndNewPassword,
-    users,
+    usersSearched,
+    showOrHideBoxChat,
 });
 
 export default reducer;

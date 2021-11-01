@@ -1,6 +1,5 @@
 const API = process.env.REACT_APP_BASE_URL;
 
-/**authentication */
 const API_AUTH = API + "auth/";
 const API_SIGN_UP = API_AUTH + "signup/";
 const API_ROOM = API + "rooms/";
@@ -9,22 +8,19 @@ const API_ME = API_USER + "me/";
 export const API_MESSAGES = API + 'messages/'
 export const API_FRIENDS = API + "friends"
 export const API_INBOXS = API + "inboxs/";
+export const API_FRIENDS_REQUEST = API + "friend-request/";
 
-
-
+/**authentication */
 export const API_SIGN_IN = API_AUTH + "signin";
 export const API_SIGN_OUT = API_AUTH + "signout";
 export const API_GET_USER_WHEN_EXISTS_REFRESH_TOKEN = API + "user/me";
-
 export const API_GET_REFRESH_TOKEN = API_AUTH + "refreshtoken";
 /**Register */
+
 export const API_SIGN_UP_IMFORMATION = API_SIGN_UP + "save_information";
 export const API_SIGN_UP_CHECK_MAIL = API_SIGN_UP + "send_verification_code";
 export const API_SIGN_UP_VERIFY = API_SIGN_UP + "verify";
-/**Friend  */
 
-
-export const API_GET_FRIENDS_REQUEST = API + "friend-request/";
 /**Profile */
 export const API_GET_USER_INFO = API_ME;
 export const API_CHANGE_USER_IMAGE = API_ME + "changeImage"

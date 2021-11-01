@@ -22,7 +22,7 @@ const MessageChatByType = ({
     const SENDER_ID = message.sender.id;
     const MY_ID = authentication.user.id;
     const IS_SELF_SIDE = SENDER_ID === MY_ID ? true : false;
-    
+
     const isSelfSideClass = () => {
         return IS_SELF_SIDE ? "single-chat-box--self" : "single-chat-box--other";
     };
@@ -68,10 +68,10 @@ const MessageChatByType = ({
         const THE_LAST_INDEX_MESSAGE = originalBoxChat.length - 1;
         const THE_FIRST_INDEX_MESSAGE = 0;
         const THE_NEXT_MESSAGE = originalBoxChat[index + 1];
-        const TYPE_OF_MESSAGE = "SYSTEM";
+        const MESSAGE_SYSTEM = "SYSTEM";
 
         if (index === THE_LAST_INDEX_MESSAGE) return TIME_SHOWED;
-        else if (index > THE_FIRST_INDEX_MESSAGE && THE_NEXT_MESSAGE.type !== TYPE_OF_MESSAGE) {
+        else if (index > THE_FIRST_INDEX_MESSAGE && THE_NEXT_MESSAGE.type !== MESSAGE_SYSTEM) {
             const NEXT_SENDER_ID = THE_NEXT_MESSAGE.sender.id;
             const CURRENT_SENDER_ID = message.sender.id;
             return CURRENT_SENDER_ID !== NEXT_SENDER_ID ? TIME_SHOWED : "";

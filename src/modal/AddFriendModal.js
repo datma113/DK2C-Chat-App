@@ -1,21 +1,40 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import AddFriend from "../components/AddFriend";
+import { addFriend, getFriendsListFromServer } from "../redux/action/actFriends";
 import { getUsers } from "../redux/action/actHome";
+import { CLEAR_USERS_SEARCHED } from "../redux/constants/constants";
 
 const AddfriendModal = () => {
+    const dispatch = useDispatch();
+    const usersSearched = useSelector((state) => state.usersSearched);
+    const friendsList = useSelector((state) => state.friendsList);
 
     const getUsersHandle = (query = "") => {
-        const MINIMUM_OF_PHONE_NUMBER = 10
-        if(query.length >= MINIMUM_OF_PHONE_NUMBER)
-            getUsers(query);
+        const VALID_PHONE_NUMBER = [10, 11, 12];
+        const LENGTH_QUERY = query.length;
+        if (VALID_PHONE_NUMBER.includes(LENGTH_QUERY)) dispatch(getUsers(query));
+    };
+
+    const addFriendHandle = (userId) => {
+        addFriend(userId);
+    };
+
+    const initialDataWhenOpenModal = () => {
+        dispatch({
+            type: CLEAR_USERS_SEARCHED,
+        });
+        dispatch(getFriendsListFromServer());
     };
 
     return (
         <>
             <i
-                className="header-inbox-container__icon fas fa-user-plus  text-small"
+                className="header-inbox-container__icon fas fa-user-plus  text-small text-success"
                 data-mdb-toggle="modal"
                 data-mdb-target={`#addfriendModal`}
+                onClick={() => initialDataWhenOpenModal()}
             ></i>
 
             <div
@@ -40,6 +59,11 @@ const AddfriendModal = () => {
                         </div>
                         <div className="modal-body text-center">
                             <AddFriend
+                                users={usersSearched}
+                                friends={friendsList}
+                                functionWhenClick={() => {
+                                    addFriendHandle(usersSearched.id);
+                                }}
                                 handleOnChange={(e) => {
                                     getUsersHandle(e.target.value);
                                 }}
@@ -51,14 +75,7 @@ const AddfriendModal = () => {
                                 className="btn btn-light btn-lg"
                                 data-mdb-dismiss="modal"
                             >
-                                Hủy
-                            </button>
-                            <button
-                                type="button"
-                                className={`btn btn-success btn-lg `}
-                                data-mdb-dismiss="modal"
-                            >
-                                xác nhận
+                                Trở lại
                             </button>
                         </div>
                     </div>

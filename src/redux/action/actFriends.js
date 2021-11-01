@@ -1,7 +1,7 @@
 import axios from "axios";
 import {
     API_FRIENDS,
-    API_GET_FRIENDS_REQUEST,
+    API_FRIENDS_REQUEST,
     API_GET_INBOX_BY_FRIEND_ID,
     API_GET_USER_PROFILE,
     API_INBOXS,
@@ -23,7 +23,7 @@ export const storeFriendsList = (friends) => {
     };
 };
 export const getFriendsListFromServer = (query = "") => {
-    const API = API_FRIENDS +  `?query=${query}`
+    const API = API_FRIENDS + `?query=${query}`;
     return (dispatch) => {
         return axios
             .get(API)
@@ -31,13 +31,13 @@ export const getFriendsListFromServer = (query = "") => {
                 dispatch(storeFriendsList(resp.data.content ?? resp.data));
                 return Promise.resolve(resp.data);
             })
-            .catch(err => {
+            .catch((err) => {
                 const MESSAGE =
-                (err.response && err.response.data && err.response.data.message) ||
-                err.message ||
-                err.toString();
+                    (err.response && err.response.data && err.response.data.message) ||
+                    err.message ||
+                    err.toString();
                 console.error(MESSAGE);
-                dispatch(storeFriendsList([]))
+                dispatch(storeFriendsList([]));
             });
     };
 };
@@ -50,7 +50,7 @@ export const storeFriendsRequest = (friendsRequest) => {
 export const getFriendsRequestFromServer = () => {
     return (dispatch) => {
         return axios
-            .get(API_GET_FRIENDS_REQUEST)
+            .get(API_FRIENDS_REQUEST)
             .then((resp) => {
                 dispatch(storeFriendsRequest(resp.data.content));
             })
@@ -76,9 +76,8 @@ export const getGroupsChatList = () => {
 export const acceptFriendRequest = (id) => {
     return (dispatch) => {
         return axios
-            .put(API_GET_FRIENDS_REQUEST + id)
+            .put(API_FRIENDS_REQUEST + id)
             .then(() => {
-                
                 dispatch({
                     type: UPDATE_FRIEND_AFTER_REQUEST,
                     id,
@@ -92,9 +91,8 @@ export const acceptFriendRequest = (id) => {
 export const declineFriendRequest = (id) => {
     return (dispatch) => {
         return axios
-            .delete(API_GET_FRIENDS_REQUEST + id)
+            .delete(API_FRIENDS_REQUEST + id)
             .then((resp) => {
-               
                 dispatch({
                     type: UPDATE_FRIEND_AFTER_REQUEST,
                     id,
@@ -180,4 +178,19 @@ export const deleteFriends = (friendId) => {
             .catch((err) => {
                 console.log(err);
             });
+};
+
+export const addFriend = (userId) => {
+    return axios
+        .post(API_FRIENDS_REQUEST + userId)
+        .then((resp) => {
+            console.log(resp.data);
+        })
+        .catch((err) => {
+            const MESSAGE =
+                (err.response && err.response.data && err.response.data.message) ||
+                err.message ||
+                err.toString();
+            console.error(MESSAGE);
+        });
 };

@@ -1,4 +1,18 @@
 .add-friends-dialog {
      max-width: none;
-     width: 80rem;
+     width: 40%;
+}
+
+.user-searched {
+     box-shadow: 0 0 10px $mySideColor;
+     border-radius: 5px;
+     width: 60%;
+     padding: 2rem 1rem;
+
+}
+.user-searched-img {
+     width: 10rem;
+     height: 10rem;
+     border-radius: 100%;
+     box-shadow: 0 0 5px $mainLightColor;
 }

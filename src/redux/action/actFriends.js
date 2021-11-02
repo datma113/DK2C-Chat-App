@@ -167,7 +167,7 @@ export const getUserProfile = (userId) => {
 export const deleteFriends = (friendId) => {
     return (dispatch) =>
         axios
-            .delete(API_FRIENDS + friendId)
+            .delete(API_FRIENDS + "/" + friendId)
             .then((resp) => {
                 dispatch({
                     type: UPDATE_FRIENDS_AFTER_DELETE,

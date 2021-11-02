@@ -25,6 +25,7 @@ const AddfriendModal = () => {
         dispatch({
             type: CLEAR_USERS_SEARCHED,
         });
+        
         dispatch(getFriendsListFromServer());
     };
 

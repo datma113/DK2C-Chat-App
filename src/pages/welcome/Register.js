@@ -118,7 +118,7 @@ const Register = () => {
                     title: "Congratulation!",
                     html: `<div class="text-normal text-center text-danger"> Đăng ký thành công! </div>`,
                 });
-                history.push("/welcome");
+                history.push("/");
             })
             .catch((err) => {
                 Swal.fire({

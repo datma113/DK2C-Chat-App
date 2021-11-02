@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {  NavLink, useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import logo from "../assets/image/LOGO.png";
 import Swal from "sweetalert2";
+import defaultAvatar from "../assets/image/LOGO.png";
 
 import { logout } from "../redux/action/actLogin";
 import { useSelector } from "react-redux";
@@ -59,7 +60,12 @@ const Header = () => {
                         aria-expanded="false"
                         data-mdb-dropdown-animation="off"
                     >
-                        <img src={userInfo.imageUrl} className="header-img" alt="" loading="lazy" />
+                        <img
+                            src={userInfo.imageUrl ?? defaultAvatar}
+                            className="header-img"
+                            alt=""
+                            loading="lazy"
+                        />
                     </div>
                     <ul className="dropdown-menu ">
                         <li className="p-1">

@@ -1,21 +1,23 @@
 import React from "react";
 import { deleteMessage } from "../redux/action/actHome";
 
-const DeleteMessage = ({ messageId }) => {
-     const deleteMessageHandle = () => {
-          deleteMessage(messageId);
-     }
+const DeleteMessage = ({ messageId, addSelfOptionsMessage, addSelfElementInOptions }) => {
+    const deleteMessageHandle = () => {
+        deleteMessage(messageId);
+    };
+
+ 
     return (
         <>
-            <div className="single-chat-box__message__delete text-dark">
+            <div className={`single-chat-box__message__delete ${addSelfOptionsMessage} text-dark`}>
                 ...
                 <div
-                    className="single-chat-box__message__delete__options"
-                    type="button"
+                    className={`single-chat-box__message__delete__options ${addSelfElementInOptions}
+                    type="button`}
                     data-mdb-toggle="modal"
                     data-mdb-target={`#deleteMessageModal${messageId}`}
                 >
-                    <div className="text-small text-danger center">gỡ tin nhắn</div>
+                    <div className="text-small text-danger center ">gỡ tin nhắn</div>
                 </div>
             </div>
             <div

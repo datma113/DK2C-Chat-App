@@ -31,6 +31,16 @@ const MessageChatByType = ({
         return IS_SELF_SIDE ? "single-chat-box__message--self" : "";
     };
 
+    const addSelfOptionsMessage = () =>
+        IS_SELF_SIDE
+            ? "single-chat-box__message__delete--self"
+            : "single-chat-box__message__delete--other";
+
+
+    const addSelfElementInOptions = () =>  IS_SELF_SIDE
+    ? "single-chat-box__message__delete__options--self"
+    : "single-chat-box__message__delete__options--other";
+
     const addSelfSideReaction = () => {
         const REACTION_CLASS = "single-chat-box__message__reaction-container__reaction";
         return IS_SELF_SIDE ? REACTION_CLASS + "--self" : REACTION_CLASS + "--other";
@@ -132,7 +142,10 @@ const MessageChatByType = ({
                         <Reactions roomId={currentRoomId} messageId={message.id} myId={MY_ID} />
                     </div>
                 </div>
-                <DeleteMessage messageId={message.id} />
+                <DeleteMessage messageId={message.id} 
+                addSelfOptionsMessage={addSelfOptionsMessage()}
+                addSelfElementInOptions={addSelfElementInOptions()}
+                />
 
                 <CurrentReactionExpressed reactions={message.reactions} />
                 <p className="single-chat-box__message__time-send-message text-small mt-2">

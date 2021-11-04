@@ -542,11 +542,17 @@ a {
 .single-chat-box__message__delete {
   position: absolute;
   text-shadow: 0 0 1px white, 1px 1px 1px white, -1px -1px 1px white, 1px -1px 1px white, -1px 1px 1px white;
-  top: 20%;
-  left: -3rem;
   display: none;
   cursor: pointer;
   font-size: 3rem;
+}
+.single-chat-box__message__delete--self {
+  top: 20%;
+  left: -3rem;
+}
+.single-chat-box__message__delete--other {
+  top: 20%;
+  right: -3rem;
 }
 .single-chat-box__message__delete:hover .single-chat-box__message__delete__options {
   transform: scaleY(1);
@@ -557,11 +563,17 @@ a {
   box-shadow: 0 0 10px #dddddd;
   border-radius: 4px;
   width: 10rem;
-  left: -10rem;
   top: 2rem;
   transform: scaleY(0);
   transform-origin: 0 top 0;
   transition: 0.3s;
+  left: -10rem;
+}
+.single-chat-box__message__delete__options--self {
+  right: -2rem;
+}
+.single-chat-box__message__delete__options--other {
+  left: 2.5rem;
 }
 .single-chat-box__message:hover .single-chat-box__message__reaction-container__reaction {
   display: flex;

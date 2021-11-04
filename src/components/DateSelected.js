@@ -5,7 +5,6 @@ const DateSelected = ({ userDOB }) => {
     const [month, setmonth] = useState(userDOB.month)
     const [year, setyear] = useState(userDOB.year)
 
-
     const isLeap = (year) => new Date(year, 1, 29).getDate() === 29;
 
     const monthRender = Array(12)

@@ -199,12 +199,20 @@
             position: absolute;
             text-shadow: 0 0 1px white, 1px 1px 1px white, -1px -1px 1px white, 1px -1px 1px white,
                 -1px 1px 1px white;
-            top: 20%;
-            left: -3rem;
+
             display: none;
             cursor: pointer;
             font-size: 3rem;
 
+            &--self {
+                top: 20%;
+                left: -3rem;
+            }
+
+            &--other {
+                top: 20%;
+                right: -3rem;
+            }
             &:hover &__options {
                 transform: scaleY(1);
             }
@@ -214,11 +222,19 @@
                 box-shadow: 0 0 10px #dddddd;
                 border-radius: 4px;
                 width: 10rem;
-                left: -10rem;
                 top: 2rem;
                 transform: scaleY(0);
                 transform-origin: 0 top 0;
                 transition: 0.3s;
+                left: -10rem;
+
+                &--self {
+                    right: -2rem;
+                }
+
+                &--other {
+                    left: 2.5rem;
+                }
             }
         }
 

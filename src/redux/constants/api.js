@@ -41,3 +41,4 @@ export const API_EDIT_ROOM_NAME = API_ROOM + "rename/";
 export const API_GET_MEMBERS_IN_ROOM = API_ROOM + "members/";
 export const API_ADD_NEW_MEMBERS = API_ROOM + "members/";
 export const API_OUT_ROOM = API_ROOM + "leave/";
+export const API_CHANGE_IMAGE_GROUP = API_ROOM + 'changeImage/'

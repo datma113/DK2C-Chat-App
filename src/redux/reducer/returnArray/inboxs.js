@@ -5,20 +5,31 @@ import {
     STORE_OLDER_INBOXS,
     UPDATE_LAST_MESSAGE_IN_INBOX,
     UPDATE_NEW_ROOM_REALTIME,
+    UPDATE_ROOM_IMAGE_OF_INBOXS,
     UPDATE_ROOM_NAME,
 } from "../../constants/constants";
 
 const initial = [];
 
 const reducer = (state = initial, action) => {
-    let { type, inbox, inboxs, lastMessage, inboxId, olderInboxs, newRoomName, roomId, newRoom } =
-        action;
+    let {
+        type,
+        inbox,
+        inboxs,
+        lastMessage,
+        inboxId,
+        olderInboxs,
+        newRoomName,
+        roomId,
+        newRoom,
+        imgUrl,
+    } = action;
 
     switch (type) {
         case STORE_INBOXS:
-            inboxs.forEach(inbox => {
-                if(!inbox.lastMessage) inbox.lastMessage = {}
-            })
+            inboxs.forEach((inbox) => {
+                if (!inbox.lastMessage) inbox.lastMessage = {};
+            });
             return inboxs;
         case STORE_OLDER_INBOXS:
             return [...state, ...olderInboxs];
@@ -70,8 +81,15 @@ const reducer = (state = initial, action) => {
 
         case OUT_ROOM:
             let newStateWhenOutRoom = [...state];
-             newStateWhenOutRoom = newStateWhenOutRoom.filter((inbox) => inbox.id !== inboxId);
+            newStateWhenOutRoom = newStateWhenOutRoom.filter((inbox) => inbox.id !== inboxId);
             return newStateWhenOutRoom;
+
+        case UPDATE_ROOM_IMAGE_OF_INBOXS:
+            let newInboxsAfterUpdateImage = [...state];
+            const newInboxsIdMap = newInboxsAfterUpdateImage.map((inbox) => inbox.id);
+            const indexOfInboxChanged = newInboxsIdMap.indexOf(inboxId);
+            newInboxsAfterUpdateImage[indexOfInboxChanged].room.imageUrl = imgUrl;
+            return newInboxsAfterUpdateImage;
         default:
             break;
     }

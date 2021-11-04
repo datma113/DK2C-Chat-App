@@ -67,6 +67,7 @@ const Inbox = ({
         newMessage.resetNewMessageRealTime();
 
         let currentInbox = {
+            id: inboxId,
             senderId,
             imgUrl,
             displayName,

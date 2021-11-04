@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import TextInput from "../components/TextInput";
-import { editRoomName, storeRoomName } from "../redux/action/actInfoRoom";
+import { changeImageGroup, editRoomName, storeRoomName } from "../redux/action/actInfoRoom";
 import { CLEAR_ROOM_NAME } from "../redux/constants/constants";
 
 const EditRoomName = ({ currentInbox }) => {
@@ -14,10 +14,37 @@ const EditRoomName = ({ currentInbox }) => {
         return roomName.name ? "" : "disabled";
     };
 
+    const changeImageHandle = (e, roomId) => {
+        const IMAGE = e.target.files[0];
+        
+        const formData = new FormData();
+        formData.append("files", IMAGE);
+
+        const inboxDto = {
+            roomId,
+            inboxId: currentInbox.id
+        }
+
+        dispatch(changeImageGroup(inboxDto, formData));
+      
+    };
     const renderEditRoomName = () => {
         return (
             <div className="edit-room-name center flex-column">
-                <img className="edit-room-name__img" src={currentInbox.imgUrl} alt="" />
+                <label htmlFor={`changeImageGroup${currentInbox.id}`}>
+                    <img className="edit-room-name__img" src={currentInbox.imgUrl} alt="" />
+
+                    <input
+                        className="d-none"
+                        type="file"
+                        id={`changeImageGroup${currentInbox.id}`}
+                        accept="image/gif,image/jpeg,image/jpg,image/png"
+                        data-original-title="upload photos"
+                        onChange={(e) => {
+                            changeImageHandle(e, currentRoomId);
+                        }}
+                    />
+                </label>
                 <p className="text-center text-medium mb-5 mt-3">
                     Bạn chắc chắn có muốn đổi tên nhóm? khi xác nhận, tên nhóm mới sẽ hiển thị với
                     tất cả thành viên.

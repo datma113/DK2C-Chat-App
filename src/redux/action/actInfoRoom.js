@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
     API_ADD_NEW_MEMBERS,
+    API_CHANGE_IMAGE_GROUP,
     API_CREATE_NEW_ROOM,
     API_EDIT_ROOM_NAME,
     API_GET_MEMBERS_IN_ROOM,
@@ -16,6 +17,8 @@ import {
     DELETE_CONVERSATION,
     OUT_ROOM,
     RESET_CURRENT_INBOX_ID,
+    UPDATE_ROOM_IMAGE_OF_HEADER_CHAT,
+    UPDATE_ROOM_IMAGE_OF_INBOXS,
 } from "../constants/constants";
 export const storeRoomName = (key, value) => {
     //key and value was created to save a dynamic object
@@ -103,7 +106,7 @@ export const deleteConvesation = (inboxId) => {
 
                 dispatch({
                     type: OUT_ROOM,
-                    inboxId
+                    inboxId,
                 });
             })
             .catch((err) => {
@@ -127,6 +130,34 @@ export const outRoom = (roomId, inboxId) => {
                 });
             })
             .catch((err) => {
-                console.log(err);
+                console.error(err);
             });
+};
+
+export const changeImageGroup = (inboxDto, file) => {
+    const CONFIG_HEADER_MULTIPART_FORM_DATA = {
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+    };
+    return dispatch => axios
+        .post(API_CHANGE_IMAGE_GROUP + inboxDto.roomId, file, CONFIG_HEADER_MULTIPART_FORM_DATA)
+        .then((resp) => {
+            const imgUrl = resp.data[0]
+            dispatch({
+                type: UPDATE_ROOM_IMAGE_OF_HEADER_CHAT,
+                imgUrl
+            })
+
+            dispatch({
+                type: UPDATE_ROOM_IMAGE_OF_INBOXS,
+                imgUrl,
+                inboxId: inboxDto.inboxId
+
+            })
+
+        })
+        .catch((err) => {
+            console.error(err);
+        });
 };

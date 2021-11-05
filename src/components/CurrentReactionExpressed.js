@@ -5,8 +5,9 @@ import sadIcon from "../assets/image/sad.png";
 import likeIcon from "../assets/image/like.png";
 import loveIcon from "../assets/image/love.png";
 import wowIcon from "../assets/image/wow.png";
+import { getMembersExpressReactions } from "../redux/action/actHome";
 
-const CurrentReactionExpressed = ({ reactions = [] }) => {
+const CurrentReactionExpressed = ({ reactions = [], messageId }) => {
     const checkReactions = (type) => {
         const REACTION = {
             HAHA: hahaIcon,
@@ -37,7 +38,56 @@ const CurrentReactionExpressed = ({ reactions = [] }) => {
             />
         );
     });
-    return <div className={`current-reactions-expressed ${isEmptyReaction()}`}>{reactionsMap}</div>;
+
+    const openModalMembersExpressReactions = () => {   
+        getMembersExpressReactions(messageId);
+    };
+
+    return (
+        <>
+            <div
+                className={`current-reactions-expressed ${isEmptyReaction()}`}
+                data-mdb-toggle="modal"
+                data-mdb-target={`#memberExpressReactionsModal`}
+                onClick={() => openModalMembersExpressReactions()}
+            >
+                {reactionsMap}
+            </div>
+            <div
+                className="modal fade"
+                id={`memberExpressReactionsModal`}
+                tabIndex="1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+            >
+                <div className="modal-dialog add-friends-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">
+                                Thành viên bày tỏ cảm xúc
+                            </h5>
+                            <button
+                                type="button"
+                                className="btn-close"
+                                data-mdb-dismiss="modal"
+                                aria-label="Close"
+                            ></button>
+                        </div>
+                        <div className="modal-body text-center"></div>
+                        <div className="modal-footer">
+                            <button
+                                type="button"
+                                className="btn btn-light btn-lg"
+                                data-mdb-dismiss="modal"
+                            >
+                                Trở lại
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
 };
 
 export default CurrentReactionExpressed;

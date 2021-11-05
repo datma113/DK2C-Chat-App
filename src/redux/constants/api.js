@@ -33,6 +33,8 @@ export const API_GET_INBOX_BY_FRIEND_ID = API_INBOXS + "with/";
 
 /**Chat */
 export const API_GET_MESSAGE_IN_CHAT_BOX = API_MESSAGES + "inbox/";
+export const API_MEMBERS_EXPRESS_REATIONS = API_MESSAGES + "react/";
+
 export const API_GET_FILE_URL_WHEN_SENDED = API + "file/";
 
 /**info room */

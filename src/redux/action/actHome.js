@@ -5,6 +5,7 @@ import {
     STORE_CURRENT_INBOX_ID,
     STORE_CURRENT_ROOM_ID,
     STORE_INBOXS,
+    STORE_MEMBERS_EXPRESS_REACTIONS,
     STORE_MESSAGE_IN_BOX_CHAT,
     STORE_OLDER_INBOXS,
     STORE_USERS,
@@ -15,6 +16,7 @@ import {
     API_GET_MESSAGE_IN_CHAT_BOX,
     API_SEARCH_USERS_BY_PHONE,
     API_MESSAGES,
+    API_MEMBERS_EXPRESS_REATIONS,
 } from "../constants/api";
 
 export const storeInboxs = (inboxs) => {
@@ -126,11 +128,11 @@ const storeUsers = (users) => {
 };
 
 export const getUsers = (query = "") => {
-    return dispatch =>
+    return (dispatch) =>
         axios
             .post(API_SEARCH_USERS_BY_PHONE + query)
             .then((resp) => {
-                dispatch(storeUsers(resp.data))
+                dispatch(storeUsers(resp.data));
             })
             .catch((err) => {
                 console.error(err);
@@ -138,12 +140,32 @@ export const getUsers = (query = "") => {
 };
 
 export const deleteMessage = (messageId) => {
-    return axios.delete(API_MESSAGES + messageId)
-    .then((resp) => {
-        console.log(resp.data);
-    })
-    .catch((err) => {
-        console.error(err);
-    })
-}
+    return axios
+        .delete(API_MESSAGES + messageId)
+        .then((resp) => {
+            console.log(resp.data);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+};
 
+const storeMembersExpressReactions = (mems) => {
+    return {
+        type: STORE_MEMBERS_EXPRESS_REACTIONS,
+        members: mems,
+    };
+};
+
+export const getMembersExpressReactions = (messageId) => {
+    console.log(API_MEMBERS_EXPRESS_REATIONS + messageId);
+    return (dispatch) =>
+        axios
+            .get(API_MEMBERS_EXPRESS_REATIONS + messageId)
+            .then((resp) => {
+                console.log(resp);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+};

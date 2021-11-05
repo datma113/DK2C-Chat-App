@@ -22,7 +22,8 @@ const MessageChatByType = ({
     const SENDER_ID = message.sender.id;
     const MY_ID = authentication.user.id;
     const IS_SELF_SIDE = SENDER_ID === MY_ID ? true : false;
-
+  
+    
     const isSelfSideClass = () => {
         return IS_SELF_SIDE ? "single-chat-box--self" : "single-chat-box--other";
     };
@@ -36,10 +37,10 @@ const MessageChatByType = ({
             ? "single-chat-box__message__delete--self"
             : "single-chat-box__message__delete--other";
 
-
-    const addSelfElementInOptions = () =>  IS_SELF_SIDE
-    ? "single-chat-box__message__delete__options--self"
-    : "single-chat-box__message__delete__options--other";
+    const addSelfElementInOptions = () =>
+        IS_SELF_SIDE
+            ? "single-chat-box__message__delete__options--self"
+            : "single-chat-box__message__delete__options--other";
 
     const addSelfSideReaction = () => {
         const REACTION_CLASS = "single-chat-box__message__reaction-container__reaction";
@@ -142,12 +143,13 @@ const MessageChatByType = ({
                         <Reactions roomId={currentRoomId} messageId={message.id} myId={MY_ID} />
                     </div>
                 </div>
-                <DeleteMessage messageId={message.id} 
-                addSelfOptionsMessage={addSelfOptionsMessage()}
-                addSelfElementInOptions={addSelfElementInOptions()}
+                <DeleteMessage
+                    messageId={message.id}
+                    addSelfOptionsMessage={addSelfOptionsMessage()}
+                    addSelfElementInOptions={addSelfElementInOptions()}
                 />
 
-                <CurrentReactionExpressed reactions={message.reactions} />
+                <CurrentReactionExpressed messageId={message.id} reactions={message.reactions} />
                 <p className="single-chat-box__message__time-send-message text-small mt-2">
                     {showTimeSendMessage()}
                 </p>

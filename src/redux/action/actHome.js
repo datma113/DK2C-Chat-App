@@ -150,12 +150,12 @@ export const deleteMessage = (messageId) => {
         });
 };
 
-const storeMembersExpressReactions = (mems) => {
-    return {
-        type: STORE_MEMBERS_EXPRESS_REACTIONS,
-        members: mems,
-    };
-};
+// const storeMembersExpressReactions = (mems) => {
+//     return {
+//         type: STORE_MEMBERS_EXPRESS_REACTIONS,
+//         members: mems,
+//     };
+// };
 
 export const getMembersExpressReactions = (messageId) => {
     console.log(API_MEMBERS_EXPRESS_REATIONS + messageId);

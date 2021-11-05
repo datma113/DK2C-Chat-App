@@ -1,7 +1,11 @@
-import { STORE_USER_INFO, UPDATE_USER_INFO_IMAGE } from "../../constants/constants";
+import {
+    STORE_USER_INFO,
+    UPDATE_USER_INFO_IMAGE,
+    UPDATE_USER_INFO_DISPLAY_NAME,
+} from "../../constants/constants";
 const initial = {};
 const reducer = (state = initial, action) => {
-    let { type, user_info, newImageUrl } = action;
+    let { type, user_info, newImageUrl, displayName } = action;
 
     switch (type) {
         case STORE_USER_INFO:
@@ -10,6 +14,11 @@ const reducer = (state = initial, action) => {
             return {
                 ...state,
                 imageUrl: newImageUrl,
+            };
+        case UPDATE_USER_INFO_DISPLAY_NAME:
+            return {
+                ...state,
+                displayName,
             };
         default:
             break;

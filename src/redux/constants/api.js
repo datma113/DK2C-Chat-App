@@ -22,7 +22,7 @@ export const API_SIGN_UP_CHECK_MAIL = API_SIGN_UP + "send_verification_code";
 export const API_SIGN_UP_VERIFY = API_SIGN_UP + "verify";
 
 /**Profile */
-export const API_GET_USER_INFO = API_ME;
+export const API_USER_INFO = API_ME;
 export const API_CHANGE_USER_IMAGE = API_ME + "changeImage"
 export const API_CHANGE_PASSWORD = API_ME + "changePassword";
 export const API_GET_USER_PROFILE = API_USER + "viewProfile/";

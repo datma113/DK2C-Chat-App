@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_CHANGE_PASSWORD, API_CHANGE_USER_IMAGE, API_GET_USER_INFO } from "../constants/api";
+import { API_CHANGE_PASSWORD, API_CHANGE_USER_IMAGE, API_USER_INFO } from "../constants/api";
 import { STORE_OLD_AND_NEW_PASSWORD, STORE_USER_INFO, UPDATE_USER_INFO_IMAGE } from "../constants/constants";
 export const storeUserInfo = (user_info) => {
     return {
@@ -10,7 +10,7 @@ export const storeUserInfo = (user_info) => {
 export const getUserInfoFromServer = () => {
     return async (dispatch) => {
         const user_info = await axios
-            .get(API_GET_USER_INFO)
+            .get(API_USER_INFO)
             .then((resp) => {
                 return resp.data;
             })
@@ -67,3 +67,18 @@ export const changeUserImage = (image) => {
                 console.log(err);
             });
 };
+
+export const updateUserInfo = (userInfo) => {
+    return axios.put(API_USER_INFO, userInfo)
+    .then((resp => {
+        return Promise.resolve(resp.data)
+    }))
+    .catch(err => {
+        const MESSAGE =
+        (err.response && err.response.data && err.response.data.message) ||
+        err.message ||
+        err.toString();
+        console.error(MESSAGE);
+        return Promise.reject();
+    })
+}

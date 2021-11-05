@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
-const UserNameInput = ({user, id}) => {
-
+const UserNameInput = ({ user, id, functionWhenClick }) => {
+    const [name, setName] = useState("");
     return (
         <div className="container row">
             <div className="profile__detail col-12 ">
@@ -12,8 +12,14 @@ const UserNameInput = ({user, id}) => {
                         type="text"
                         id={id}
                         placeholder={user.displayName}
+                        onChange={(e) => setName(e.target.value)}
                     />
-                    <button className="btn btn-danger col-4">Lưu</button>
+                    <button
+                        className="btn btn-danger col-4"
+                        onClick={() => functionWhenClick(name)}
+                    >
+                        Lưu
+                    </button>
                 </div>
             </div>
         </div>

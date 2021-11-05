@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { changeUserImage } from "../../redux/action/actProfile";
+import { changeUserImage, updateUserInfo } from "../../redux/action/actProfile";
+import { UPDATE_USER_INFO_DISPLAY_NAME } from "../../redux/constants/constants";
 
 import ProfileDetail from "./ProfileDetail";
 import UserNameInput from "./UserNameInput";
@@ -10,6 +11,8 @@ const ProfileModal = ({ userProfile }) => {
     const [isShowInputField, setisShowInputField] = useState(false);
     const dispatch = useDispatch();
     const DISPLAY_NAME_INPUT_ID = "displayNameInputId";
+    let dayUpdate, monthUpdate, yearUpdate;
+    let genderUpdate;
 
     const onNameChange = (e) => {
         setisShowInputField(!isShowInputField);
@@ -27,8 +30,48 @@ const ProfileModal = ({ userProfile }) => {
         const formData = new FormData();
 
         formData.append("files", IMAGES[0]);
-        
+
         dispatch(changeUserImage(formData));
+    };
+
+    const setDOB = (day = 0, month = 0, year = 0) => {
+        dayUpdate = day;
+        monthUpdate = month;
+        yearUpdate = year;
+    };
+
+    const setGender = (gender) => {
+        genderUpdate = gender;
+    };
+
+    const updateProfileHandle = () => {
+        const CHECK_VALID_DOB = dayUpdate ? true : false;
+        const user = {
+            displayName: userProfile.displayName,
+            dateOfBirth: CHECK_VALID_DOB
+                ? `${yearUpdate}-${monthUpdate}-${dayUpdate}`
+                : userProfile.dateOfBirth,
+            gender: genderUpdate ?? userProfile.gender,
+        };
+
+        updateUserInfo(user);
+    };
+
+    const updateNameProfile = (displayName) => {
+        if (displayName) {
+            const user = {
+                displayName,
+                dateOfBirth: userProfile.dateOfBirth,
+                gender: userProfile.gender,
+            };
+            updateUserInfo(user)
+            .then((data) => {
+                dispatch({
+                    type: UPDATE_USER_INFO_DISPLAY_NAME,
+                    displayName: data.displayName
+                })
+            })
+        }
     };
 
     return (
@@ -80,7 +123,11 @@ const ProfileModal = ({ userProfile }) => {
                                     />
                                 </label>
                                 {isShowInputField ? (
-                                    <UserNameInput user={userProfile} id={DISPLAY_NAME_INPUT_ID} />
+                                    <UserNameInput
+                                        user={userProfile}
+                                        id={DISPLAY_NAME_INPUT_ID}
+                                        functionWhenClick={updateNameProfile}
+                                    />
                                 ) : (
                                     <UserNameLabel
                                         user={userProfile}
@@ -89,12 +136,16 @@ const ProfileModal = ({ userProfile }) => {
                                 )}
                             </div>
 
-                            <ProfileDetail user={userProfile} />
+                            <ProfileDetail
+                                user={userProfile}
+                                setDOB={setDOB}
+                                setGender={setGender}
+                            />
                         </div>
                         <div className="modal-footer">
                             <button
                                 type="button"
-                                className="btn btn-danger btn-lg"
+                                className="btn btn-light btn-lg"
                                 data-mdb-dismiss="modal"
                             >
                                 {" "}
@@ -104,6 +155,9 @@ const ProfileModal = ({ userProfile }) => {
                                 type="button"
                                 className="btn btn-primary btn-lg"
                                 data-mdb-dismiss="modal"
+                                onClick={() => {
+                                    updateProfileHandle();
+                                }}
                             >
                                 xác nhận
                             </button>

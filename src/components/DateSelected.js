@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const DateSelected = ({ userDOB }) => {
-    const [day, setday] = useState(userDOB.day)
-    const [month, setmonth] = useState(userDOB.month)
-    const [year, setyear] = useState(userDOB.year)
+const DateSelected = ({ userDOB, setDOB }) => {
+    const [day, setday] = useState(userDOB.day);
+    const [month, setmonth] = useState(userDOB.month);
+    const [year, setyear] = useState(userDOB.year);
+
+    useEffect(() => {
+        setday(userDOB.day);
+        setmonth(userDOB.month);
+        setyear(userDOB.year);
+    }, [userDOB]);
 
     const isLeap = (year) => new Date(year, 1, 29).getDate() === 29;
 
@@ -48,7 +54,10 @@ const DateSelected = ({ userDOB }) => {
                 </label>
                 <select
                     className="form-control text-center text-small custom-select-tag"
-                    onChange={(e) => {setday(e.target.value)}}
+                    onChange={(e) => {
+                        setday(e.target.value);
+                        setDOB(e.target.value, month, year);
+                    }}
                     id="day"
                     value={day}
                 >
@@ -61,7 +70,10 @@ const DateSelected = ({ userDOB }) => {
                 </label>
                 <select
                     className="form-control text-center text-small custom-select-tag"
-                    onChange={(e) => {setmonth(e.target.value)}}
+                    onChange={(e) => {
+                        setmonth(e.target.value);
+                        setDOB(day, e.target.value, year);
+                    }}
                     id="month"
                     value={month}
                 >
@@ -74,7 +86,10 @@ const DateSelected = ({ userDOB }) => {
                 </label>
                 <select
                     className="form-control text-center text-small custom-select-tag"
-                    onChange={(e) => {setyear(e.target.value)}}
+                    onChange={(e) => {
+                        setyear(e.target.value);
+                        setDOB(day, month, e.target.value);
+                    }}
                     id="year"
                     value={year}
                 >

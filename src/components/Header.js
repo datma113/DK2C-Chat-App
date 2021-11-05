@@ -68,7 +68,7 @@ const Header = () => {
                         />
                     </div>
                     <ul className="dropdown-menu ">
-                        <li className="p-1">
+                        <li className="p-1" >
                             <p
                                 className="dropdown-item text-small"
                                 href="#"

@@ -55,7 +55,7 @@ const CurrentReactionExpressed = ({ reactions = [], messageId }) => {
             </div>
             <div
                 className="modal fade"
-                id={`memberExpressReactionsModal`}
+                id={`memberExpressReactionsModal${messageId}`}
                 tabIndex="1"
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"

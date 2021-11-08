@@ -4,7 +4,7 @@ import InboxList from "./InboxList";
 
 const InboxSideBar = ({responsiveClass}) => {
     return (
-        <div className={`inbox-side-bar ${responsiveClass}`}>
+        <div className={`inbox-side-bar ${responsiveClass} bg-light`}>
             <HeaderOfInboxSide />
             <InboxList />
         </div>

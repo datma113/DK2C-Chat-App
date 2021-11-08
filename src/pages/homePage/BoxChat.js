@@ -53,7 +53,7 @@ const BoxChat = () => {
     const stylesImageBackground = {
         backgroundImage: `url(${currentInbox.imgUrl})`,
         backgroundRepeat: `no-repeat`,
-        backgroundSize: `cover`,
+        backgroundSize: 'cover'
     };
     return (
         <div

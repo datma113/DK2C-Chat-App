@@ -6,8 +6,12 @@ import likeIcon from "../assets/image/like.png";
 import loveIcon from "../assets/image/love.png";
 import wowIcon from "../assets/image/wow.png";
 import { getMembersExpressReactions } from "../redux/action/actHome";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const CurrentReactionExpressed = ({ reactions = [], messageId }) => {
+    const dispatch = useDispatch();
+    const memsExpressReactions = useSelector((state) => state.memsExpressReactions);
     const checkReactions = (type) => {
         const REACTION = {
             HAHA: hahaIcon,
@@ -39,16 +43,30 @@ const CurrentReactionExpressed = ({ reactions = [], messageId }) => {
         );
     });
 
-    const openModalMembersExpressReactions = () => {   
-        getMembersExpressReactions(messageId);
+    const openModalMembersExpressReactions = () => {
+        dispatch(getMembersExpressReactions(messageId));
     };
+
+    const renderBodyOfMemsReactionModal = memsExpressReactions.map((mem, index) => {
+        return (
+            <div className={`row pb-4`} key={index}>
+                <div className="col-2">
+                    <img className=" header-img" src={mem.reactByUser.imageUrl} alt="" />
+                </div>
+                <div className="col-7 d-flex"> {mem.reactByUser.displayName}</div>
+                <div className="col-2">
+                    <img className=" header-img" src={checkReactions(mem.type)} alt="" />
+                </div>
+            </div>
+        );
+    });
 
     return (
         <>
             <div
                 className={`current-reactions-expressed ${isEmptyReaction()}`}
                 data-mdb-toggle="modal"
-                data-mdb-target={`#memberExpressReactionsModal`}
+                data-mdb-target={`#memberExpressReactionsModal${messageId}`}
                 onClick={() => openModalMembersExpressReactions()}
             >
                 {reactionsMap}
@@ -73,7 +91,9 @@ const CurrentReactionExpressed = ({ reactions = [], messageId }) => {
                                 aria-label="Close"
                             ></button>
                         </div>
-                        <div className="modal-body text-center"></div>
+                        <div className="modal-body text-center mems-express-reaction-modal">
+                            {renderBodyOfMemsReactionModal}
+                        </div>
                         <div className="modal-footer">
                             <button
                                 type="button"

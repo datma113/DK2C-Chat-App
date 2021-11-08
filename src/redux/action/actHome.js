@@ -5,6 +5,7 @@ import {
     STORE_CURRENT_INBOX_ID,
     STORE_CURRENT_ROOM_ID,
     STORE_INBOXS,
+    STORE_MEMBERS_EXPRESS_REACTIONS,
     STORE_MESSAGE_IN_BOX_CHAT,
     STORE_OLDER_INBOXS,
     STORE_USERS,
@@ -149,22 +150,21 @@ export const deleteMessage = (messageId) => {
         });
 };
 
-// const storeMembersExpressReactions = (mems) => {
-//     return {
-//         type: STORE_MEMBERS_EXPRESS_REACTIONS,
-//         members: mems,
-//     };
-// };
+const storeMembersExpressReactions = (mems) => {
+    return {
+        type: STORE_MEMBERS_EXPRESS_REACTIONS,
+        members: mems,
+    };
+};
 
 export const getMembersExpressReactions = (messageId) => {
-    console.log(API_MEMBERS_EXPRESS_REATIONS + messageId);
-    return (dispatch) =>
-        axios
-            .get(API_MEMBERS_EXPRESS_REATIONS + messageId)
-            .then((resp) => {
-                console.log(resp);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
+
+    return dispatch => axios
+        .get(API_MEMBERS_EXPRESS_REATIONS + messageId)
+        .then((resp) => {
+            dispatch(storeMembersExpressReactions(resp.data))
+        })
+        .catch((err) => {
+            console.error(err);
+        });
 };

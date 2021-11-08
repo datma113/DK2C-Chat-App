@@ -19,6 +19,7 @@ import friendProfile from "./returnObject/friendProfile";
 import oldAndNewPassword from "./returnObject/oldAndNewPassword";
 import usersSearched from "./returnObject/usersSearched";
 import showOrHideBoxChat from "./returnString/showOrHideBoxChat";
+import memsExpressReactions from './returnArray/memsExpressReactions'
 const reducer = combineReducers({
     userLogin,
     userRegister,
@@ -40,6 +41,7 @@ const reducer = combineReducers({
     oldAndNewPassword,
     usersSearched,
     showOrHideBoxChat,
+    memsExpressReactions
 });
 
 export default reducer;

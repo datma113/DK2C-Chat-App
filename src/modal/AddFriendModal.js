@@ -10,12 +10,17 @@ const AddfriendModal = () => {
     const dispatch = useDispatch();
     const usersSearched = useSelector((state) => state.usersSearched);
     const friendsList = useSelector((state) => state.friendsList);
+    const authentication = useSelector(state => state.authentication)
 
     const getUsersHandle = (query = "") => {
         const VALID_PHONE_NUMBER = [10, 11, 12];
         const LENGTH_QUERY = query.length;
         if (VALID_PHONE_NUMBER.includes(LENGTH_QUERY)) dispatch(getUsers(query));
     };
+
+    const isMyself = () => {
+        return authentication.user.id === usersSearched.id
+    }
 
     const addFriendHandle = (userId) => {
         addFriend(userId);
@@ -59,6 +64,7 @@ const AddfriendModal = () => {
                             ></button>
                         </div>
                         <div className="modal-body text-center">
+                        
                             <AddFriend
                                 users={usersSearched}
                                 friends={friendsList}
@@ -68,6 +74,7 @@ const AddfriendModal = () => {
                                 handleOnChange={(e) => {
                                     getUsersHandle(e.target.value);
                                 }}
+                                isMyself={isMyself()}
                             />
                         </div>
                         <div className="modal-footer">

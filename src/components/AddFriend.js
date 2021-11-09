@@ -1,8 +1,8 @@
 import React from "react";
 
-const AddFriend = ({ users, friends, handleOnChange, functionWhenClick }) => {
-    const isEmptyUser = () => {
-        return Object.keys(users).length === 0;
+const AddFriend = ({ users, friends, handleOnChange, functionWhenClick, isMyself }) => {
+    const notEmptyUser = () => {
+        return Object.keys(users).length !== 0 && !isMyself;
     };
 
     const wasFriends = () => {
@@ -12,7 +12,6 @@ const AddFriend = ({ users, friends, handleOnChange, functionWhenClick }) => {
         if (friendsIdMap.includes(USER_ID)) return true;
         return false;
     };
-    wasFriends();
 
     return (
         <div>
@@ -24,7 +23,7 @@ const AddFriend = ({ users, friends, handleOnChange, functionWhenClick }) => {
                     onChange={handleOnChange}
                 />
                 <hr />
-                {!isEmptyUser() ? (
+                {notEmptyUser() ? (
                     <div className="user-searched">
                         <img src={users.imageUrl} alt="" className="user-searched-img" />
                         <p>{users.displayName}</p>

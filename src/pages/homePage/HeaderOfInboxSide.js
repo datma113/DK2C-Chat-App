@@ -1,11 +1,23 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import AddFriendModal from "../../modal/AddFriendModal";
 import CreateRoomWithMemsModal from "../../modal/CreateRoomWithMemsModal";
+import { searcbInboxs } from "../../redux/action/actHome";
 
 const HeaderOfInboxSide = () => {
+    const dispatch = useDispatch();
+    const searchInboxsHandle = (text) => {
+        dispatch(searcbInboxs(text));
+    };
+
     return (
         <div className="header-inbox-container center">
-            <input type="text" className="form-control" placeholder="Tìm kiếm..." />
+            <input
+                type="text"
+                className="form-control"
+                placeholder="Tìm kiếm..."
+                onChange={(e) => searchInboxsHandle(e.target.value)}
+            />
             <CreateRoomWithMemsModal />
             <AddFriendModal />
         </div>

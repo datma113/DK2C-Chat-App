@@ -33,7 +33,7 @@ const storeOlderInboxs = (olderInboxs) => {
     };
 };
 
-export const getOlderInboxsFromServer = (page) => {
+export const getOlderInboxsFromServer = (page = 0) => {
     return (dispatch) => {
         return axios
             .get(API_INBOXS + "?page=" + page)
@@ -42,6 +42,18 @@ export const getOlderInboxsFromServer = (page) => {
             })
             .catch(() => dispatch(storeInboxs([])));
     };
+};
+
+export const searcbInboxs = (query) => {
+    return (dispatch) =>
+        axios
+            .get(API_INBOXS + "?query=" + query)
+            .then((resp) => {
+                dispatch(storeInboxs(resp.data.content));
+            })
+            .catch((err) => {
+                console.error(err);
+            });
 };
 
 export const getInboxsFromServer = () => {
@@ -158,13 +170,13 @@ const storeMembersExpressReactions = (mems) => {
 };
 
 export const getMembersExpressReactions = (messageId) => {
-
-    return dispatch => axios
-        .get(API_MEMBERS_EXPRESS_REATIONS + messageId)
-        .then((resp) => {
-            dispatch(storeMembersExpressReactions(resp.data))
-        })
-        .catch((err) => {
-            console.error(err);
-        });
+    return (dispatch) =>
+        axios
+            .get(API_MEMBERS_EXPRESS_REATIONS + messageId)
+            .then((resp) => {
+                dispatch(storeMembersExpressReactions(resp.data));
+            })
+            .catch((err) => {
+                console.error(err);
+            });
 };

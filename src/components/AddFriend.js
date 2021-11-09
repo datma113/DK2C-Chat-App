@@ -1,16 +1,39 @@
 import React from "react";
 
-const AddFriend = ({ users, friends, handleOnChange, functionWhenClick, isMyself }) => {
+const AddFriend = ({ users, handleOnChange, functionWhenClick, isMyself }) => {
     const notEmptyUser = () => {
         return Object.keys(users).length !== 0 && !isMyself;
     };
 
-    const wasFriends = () => {
-        const USER_ID = users.id;
-        const friendsIdMap = friends.map((friend) => friend.friend.id);
+    const renderButtonAddFriend = (user) => {
+        const WAS_FRIEND = "FRIEND";
+        const SENDED = "SENT";
 
-        if (friendsIdMap.includes(USER_ID)) return true;
-        return false;
+        switch (user.friendStatus) {
+            case WAS_FRIEND:
+                return (
+                    <button type="button" className="btn btn-primary w-75 text-small disabled">
+                        đã kết bạn
+                    </button>
+                );
+
+            case SENDED:
+                return (
+                    <button type="button" className="btn btn-danger w-75 text-small disabled">
+                        đã gữi lời mời
+                    </button>
+                );
+            default:
+                return (
+                    <button
+                        type="button"
+                        className="btn btn-primary w-75 text-small"
+                        onClick={functionWhenClick}
+                    >
+                        Kết bạn
+                    </button>
+                );
+        }
     };
 
     return (
@@ -27,22 +50,7 @@ const AddFriend = ({ users, friends, handleOnChange, functionWhenClick, isMyself
                     <div className="user-searched">
                         <img src={users.imageUrl} alt="" className="user-searched-img" />
                         <p>{users.displayName}</p>
-                        {!wasFriends() ? (
-                            <button
-                                type="button"
-                                className="btn btn-primary w-75 text-small"
-                                onClick={functionWhenClick}
-                            >
-                                Kết bạn
-                            </button>
-                        ) : (
-                            <button
-                                type="button"
-                                className="btn btn-primary w-75 text-small disabled"
-                            >
-                                đã kết bạn
-                            </button>
-                        )}
+                        {renderButtonAddFriend(users)}
                     </div>
                 ) : (
                     <p className="text-danger">Vui lòng nhập chính xác nhập Số Điện Thoại!</p>

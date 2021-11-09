@@ -9,7 +9,6 @@ import { CLEAR_USERS_SEARCHED } from "../redux/constants/constants";
 const AddfriendModal = () => {
     const dispatch = useDispatch();
     const usersSearched = useSelector((state) => state.usersSearched);
-    const friendsList = useSelector((state) => state.friendsList);
     const authentication = useSelector(state => state.authentication)
 
     const getUsersHandle = (query = "") => {
@@ -67,7 +66,7 @@ const AddfriendModal = () => {
                         
                             <AddFriend
                                 users={usersSearched}
-                                friends={friendsList}
+                               
                                 functionWhenClick={() => {
                                     addFriendHandle(usersSearched.id);
                                 }}

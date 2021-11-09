@@ -390,6 +390,17 @@ a {
   transition: 0.2s;
   cursor: pointer;
 }
+.inbox__img-container {
+  position: relative;
+}
+.inbox__img-container__group-icon {
+  position: absolute;
+  top: 70%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  color: yellow;
+  text-shadow: 0 0 5px black;
+}
 .inbox:hover {
   background-color: #a166d1;
   color: white;

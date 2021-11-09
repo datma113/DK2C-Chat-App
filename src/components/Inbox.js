@@ -19,16 +19,15 @@ const Inbox = ({
     senderName,
     newMessageOfInbox,
     typeOfRoom,
-    senderId
+    senderId,
 }) => {
-    
     const dispatch = useDispatch();
     const limitStringToShow = (string) => {
         if (string) {
             const MAX_OF_LENGTH = 20;
             return string.length >= MAX_OF_LENGTH ? string.slice(0, 17) + "..." : string;
         }
-        return ""
+        return "";
     };
 
     const displayLastMessageTime = (time) => {
@@ -93,12 +92,21 @@ const Inbox = ({
             : "";
     };
 
+    const isGroup = (type) => {
+        return type === 'GROUP' ? "" : "d-none"
+    };
+
     return (
         <div className={`inbox row p-3 ${checkActiveOfInbox()} `} onClick={() => gotoChatInbox()}>
-            <div className="col-3 center">
+            <div className="col-3 center inbox__img-container">
                 <div className="inbox__img">
                     <img src={imgUrl} alt="" />
                 </div>
+                <i
+                    className={`fas fa-users inbox__img-container__group-icon ${isGroup(
+                        typeOfRoom
+                    )}`}
+                ></i>
             </div>
 
             <div className="col-7">

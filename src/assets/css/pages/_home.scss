@@ -23,6 +23,21 @@
     background-color: $mainLightColor;
     transition: 0.2s;
     cursor: pointer;
+    
+    &__img-container {
+        position: relative;
+        &__group-icon {
+            position: absolute;
+            top: 70%;
+            left: 70%;
+            transform: translate(-50%, -50%);
+            color: yellow;
+            text-shadow: 0 0 5px black;
+        }
+    }
+
+   
+
     &:hover {
         background-color: $hoverPurpleColor;
         color: white;

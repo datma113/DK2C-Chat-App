@@ -529,6 +529,7 @@ a {
   display: flex;
   user-select: none;
   margin-top: 2rem;
+  position: relative;
 }
 .single-chat-box:hover .single-chat-box__message__delete {
   display: flex;
@@ -545,6 +546,16 @@ a {
   height: 50px;
   border-radius: 50%;
   overflow: hidden;
+}
+.single-chat-box__img__key--self {
+  color: yellow;
+  position: absolute;
+  right: 4rem;
+}
+.single-chat-box__img__key--other {
+  color: yellow;
+  position: absolute;
+  left: 3.5rem;
 }
 .single-chat-box__img img {
   width: 100%;
@@ -867,10 +878,25 @@ a {
   background-color: #a166d1;
 }
 
+.member-in-room {
+  position: relative;
+  user-select: none;
+}
 .member-in-room__img {
   width: 50px;
   height: 50px;
   border-radius: 100%;
+}
+.member-in-room__key {
+  position: absolute;
+  right: 2rem;
+  bottom: 0;
+  text-shadow: 0 0 5px black;
+  color: yellow;
+}
+.member-in-room__btn {
+  width: 100%;
+  font-size: 1.1rem;
 }
 
 .system-message {

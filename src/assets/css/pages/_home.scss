@@ -175,6 +175,8 @@
     display: flex;
     user-select: none;
     margin-top: 2rem;
+    position: relative;
+
 
     &:hover &__message__delete {
         display: flex;
@@ -194,6 +196,17 @@
         height: 50px;
         border-radius: 50%;
         overflow: hidden;
+        &__key--self {
+            color: yellow;
+            position: absolute;
+        
+            right: 4rem;
+        }
+        &__key--other {
+            color: yellow;
+            position: absolute;
+            left: 3.5rem;
+        }
 
         img {
             width: 100%;

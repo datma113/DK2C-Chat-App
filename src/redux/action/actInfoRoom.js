@@ -20,7 +20,15 @@ import {
     RESET_CURRENT_INBOX_ID,
     UPDATE_ROOM_IMAGE_OF_HEADER_CHAT,
     UPDATE_ROOM_IMAGE_OF_INBOXS,
+    UPDATE_MEMBER_AUTHORITY,
 } from "../constants/constants";
+
+const createAction = (type, data = {}) => {
+    return {
+        type,
+        data,
+    };
+};
 export const storeRoomName = (key, value) => {
     //key and value was created to save a dynamic object
     return {
@@ -167,7 +175,7 @@ export const setMemberBecomeAdmin = (roomId, memberId) => {
         axios
             .post(API_SET_MEMBER_BECOME_ADMIN + `/${roomId}/${memberId}`)
             .then((resp) => {
-                console.log(resp.data);
+                dispatch(createAction(UPDATE_MEMBER_AUTHORITY, { memberId: memberId }));
             })
             .catch((err) => {
                 console.error(err);

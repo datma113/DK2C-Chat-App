@@ -4,12 +4,11 @@ import TagOfOptionRoom from "../components/TagOfOptionRoom";
 import { getMembersInRoom, setMemberBecomeAdmin } from "../redux/action/actInfoRoom";
 import MyCustomModal from "./MyCustomModal";
 
-const SetAdmin = ({ roomId, membersInRoom, currentInbox, authentication }) => {
+const SetAdmin = ({ roomId, membersInRoom, authentication }) => {
     const dispatch = useDispatch();
-    const [memberId, setmemberId] = useState("");
 
     const membersInRoomMap = membersInRoom.map((member, index) => {
-        if (authentication.user.id === member.user.id) return <> </>;
+        if (authentication.user.id === member.user.id) return <div key={index}> </div>;
         return (
             <div className="row m-2 mt-4" key={index}>
                 <div className="col-1">
@@ -26,7 +25,13 @@ const SetAdmin = ({ roomId, membersInRoom, currentInbox, authentication }) => {
                     {member.isAdmin ? (
                         <div className="btn btn-outline-danger"> hủy quyền </div>
                     ) : (
-                        <div className="btn btn-secondary"> cấp quyền </div>
+                        <div
+                            className="btn btn-secondary"
+                            onClick={() => dispatch(setMemberBecomeAdmin(roomId, member.user.id))}
+                        >
+                            {" "}
+                            cấp quyền{" "}
+                        </div>
                     )}
                 </div>
             </div>
@@ -50,7 +55,7 @@ const SetAdmin = ({ roomId, membersInRoom, currentInbox, authentication }) => {
                 inner={renderSetAdmin()}
                 headerTitle="Thiết lập thành quản trị viên"
                 id="setAdminModal"
-                //   functionWhenClick={() => dispatch(setMemberBecomeAdmin(roomId, memberId))}
+                //   functionWhenClick={() => )}
             />
         </>
     );

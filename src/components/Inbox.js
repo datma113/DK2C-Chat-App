@@ -1,85 +1,123 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import ReadBy from "./ReadBy";
-import { GET_CURRENT_NUMBER_ID_BOX_CHAT, STORE_CURRENT_INBOX } from "../redux/constants/constants";
+import { RESET_NEW_MESSAGE } from "../redux/constants/constants";
+import {
+    storeCurrentIdOfInbox,
+    storeCurrentInbox,
+    storeCurrentRoomId,
+} from "../redux/action/actHome";
+import newMessageSingleton from "../module/newMessageSingleton";
 
 const Inbox = ({
-    boxChatId,
+    inboxId,
     imgUrl,
     displayName,
     lastMessage,
+    isActive,
+    roomId,
     senderName,
-    type,
-    lastMessageTime,
-    lastMessageReadBy,
+    newMessageOfInbox,
+    typeOfRoom,
+    senderId,
+    inbox
 }) => {
     const dispatch = useDispatch();
-    const customStringToShow = (name) => {
-        const MAX_OF_LENGTH = 20;
-        return name.length >= MAX_OF_LENGTH ? name.slice(0, 17) + "..." : name;
-    };
-
-    const displaySenderName = (senderName) => {
-        const TYPE_OF_GROUP = "GROUP";
-        return type === TYPE_OF_GROUP ? senderName + ": " : "";
-    };
-
-    const displayLastMessageTime = (time) => {
-        let convertTime = new Date(time);
-        let currentTime = new Date().getTime() - convertTime;
-        let realTime = new Date(currentTime);
-
-        const HOUR = realTime.getHours();
-        const MINUTES = realTime.getMinutes();
-
-        const A_DAY = 24;
-        const MIN_OF_HOUR = 1;
-        const MIN_OF_MINUTE = 1;
-
-        if (HOUR >= A_DAY) return Math.floor(HOUR / 24) + "ngày";
-
-        //a few hours
-        if (HOUR < A_DAY && HOUR >= MIN_OF_HOUR) return HOUR + " giờ";
-
-        //a few minutes
-        if (HOUR < MIN_OF_HOUR) return MINUTES + "phút";
-
-        //a few seconds
-        if (HOUR < MIN_OF_HOUR && MINUTES < MIN_OF_MINUTE) return "vài giây";
-
+    const limitStringToShow = (string) => {
+        if (string) {
+            const MAX_OF_LENGTH = 20;
+            return string.length >= MAX_OF_LENGTH ? string.slice(0, 17) + "..." : string;
+        }
         return "";
     };
 
+    const displayLastMessageTime = (time) => {
+        const LAST_MESSAGE_TIME = new Date(time);
+        const CURRENT_TIME = new Date();
+        const DISPLAY_TIME = new Date(Math.abs(CURRENT_TIME - LAST_MESSAGE_TIME));
+
+        const THE_FIRST_DAY = 1;
+
+        const MILISECONDS = DISPLAY_TIME.getTime();
+        const SECONDS = Math.floor(MILISECONDS / 1000);
+        const MINUTE = Math.floor(SECONDS / 60);
+        const HOURS = Math.floor(MINUTE / 60);
+
+        const LAST_MESSAGE_TIME_OF_USER = {
+            year: DISPLAY_TIME.getFullYear(),
+            month: DISPLAY_TIME.getMonth(),
+            date: DISPLAY_TIME.getDate() - THE_FIRST_DAY,
+            hour: HOURS,
+            minute: MINUTE,
+        };
+
+        if (LAST_MESSAGE_TIME_OF_USER.month) return LAST_MESSAGE_TIME_OF_USER.month + " tháng";
+        if (LAST_MESSAGE_TIME_OF_USER.date) return LAST_MESSAGE_TIME_OF_USER.date + " ngày";
+        if (LAST_MESSAGE_TIME_OF_USER.hour) return LAST_MESSAGE_TIME_OF_USER.hour + " giờ";
+        if (LAST_MESSAGE_TIME_OF_USER.minute) return LAST_MESSAGE_TIME_OF_USER.minute + " phút";
+        return "vài giây";
+    };
+
     const gotoChatInbox = () => {
-        dispatch({
-            type: GET_CURRENT_NUMBER_ID_BOX_CHAT,
-            id: boxChatId,
-        });
+        dispatch(storeCurrentIdOfInbox(inboxId));
+        dispatch(storeCurrentRoomId(roomId));
 
+        //reset number of new Message when click into inbox
+        let newMessage = newMessageSingleton.getInsance();
+        newMessage.resetNewMessageRealTime();
         let currentInbox = {
+            id: inboxId,
+            senderId,
             imgUrl,
-            displayName
-        }
+            displayName,
+            type: typeOfRoom,
+            inbox
+        };
+        dispatch(storeCurrentInbox(currentInbox));
 
         dispatch({
-            type: STORE_CURRENT_INBOX,
-            currentInbox
+            type: RESET_NEW_MESSAGE,
+            inboxId,
         });
+
+        document.title = "DKC App";
+    };
+
+    const checkActiveOfInbox = () => {
+        return isActive ? "inbox--active" : "";
+    };
+
+    const isExistNewMessage = () => {
+        return newMessageOfInbox.countNewMessage > 0 && !newMessageOfInbox.isMyself
+            ? "inbox__new-message"
+            : "";
+    };
+
+    const isGroup = (type) => {
+        return type === 'GROUP' ? "" : "d-none"
     };
 
     return (
-        <div className="inbox row p-3" onClick={() => gotoChatInbox()}>
-            <div className="col-3 center">
+        <div className={`inbox row p-3 ${checkActiveOfInbox()} `} onClick={() => gotoChatInbox()}>
+            <div className="col-3 center inbox__img-container">
                 <div className="inbox__img">
                     <img src={imgUrl} alt="" />
                 </div>
+                <i
+                    className={`fas fa-users inbox__img-container__group-icon ${isGroup(
+                        typeOfRoom
+                    )}`}
+                ></i>
             </div>
 
-            <div className=" col-7 ">
+            <div className="col-7">
                 <div className="d-flex flex-column">
-                    <div className=" text-medium">{customStringToShow(displayName)}</div>
-                    <div className="text-small" style={{ opacity: `0.6` }}>
-                        {displaySenderName(senderName) + customStringToShow(lastMessage)}
+                    <div className=" text-medium">{limitStringToShow(displayName)}</div>
+                    <div
+                        className={`text-small ${isExistNewMessage()} `}
+                        style={{ opacity: `0.6` }}
+                    >
+                        {limitStringToShow(senderName + (lastMessage?.content ?? ""))}
                     </div>
                 </div>
             </div>
@@ -87,9 +125,9 @@ const Inbox = ({
             <div className=" col-2 p-0 m-0">
                 <div className="d-flex flex-column ">
                     <div className="text-small mt-2 d-flex justify-content-end">
-                        {displayLastMessageTime(lastMessageTime)}
+                        {displayLastMessageTime(lastMessage?.createAt ?? "")}
                     </div>
-                    <ReadBy lastMessageReadBy={lastMessageReadBy} />
+                    <ReadBy lastMessageReadBy={lastMessage?.readbyes ?? []} />
                     <div
                         className="text-small d-flex justify-content-end d-none"
                         style={{ opacity: `0.6` }}

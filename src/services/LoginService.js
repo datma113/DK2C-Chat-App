@@ -1,5 +1,7 @@
 import axios from "axios";
-import { API_SIGN_IN } from "../redux/constants/api";
+import { API_SIGN_IN, API_SIGN_OUT } from "../redux/constants/api";
+// import cookieClient from 'react-cookie'
+
 function LoginService() {}
 
 LoginService.prototype = {
@@ -14,6 +16,9 @@ LoginService.prototype = {
             }
             return resp;
         });
+    },
+    logout() {
+        return axios.post(API_SIGN_OUT, {}, { withCredentials: true });
     },
 };
 

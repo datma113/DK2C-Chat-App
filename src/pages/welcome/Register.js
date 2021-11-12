@@ -23,6 +23,7 @@ import Swal from "sweetalert2";
 const Register = () => {
     const dispatch = useDispatch();
     const userRegister = useSelector((state) => state.userRegister);
+    const authentication = useSelector((state) => state.authentication);
     const [registerStep, setregisterStep] = useState(0);
     const [isLoading, setisLoading] = useState(false);
     const history = useHistory();
@@ -117,7 +118,7 @@ const Register = () => {
                     title: "Congratulation!",
                     html: `<div class="text-normal text-center text-danger"> Đăng ký thành công! </div>`,
                 });
-                history.push("/welcome");
+                history.push("/");
             })
             .catch((err) => {
                 Swal.fire({
@@ -136,37 +137,43 @@ const Register = () => {
     }, [registerStep, dispatch]);
 
     return (
-        <div className={`d-flex justify-content-center mt-5 ${ANIMATE_ZOOM_IN}`}>
-            <div className="col-lg-4 d-flex flex-column align-items-center justify-content-center welcome-container">
-                <img src={logo} alt="" className="welcome-container__logo " />
-                <p className="text-title mt-3">Đăng ký</p>
-                <CompetedStep numberStep={3} currentStep={registerStep} />
+        <div>
+            {!authentication.isLoggin ? (
+                <div className={`d-flex justify-content-center mt-5 ${ANIMATE_ZOOM_IN}`}>
+                    <div className="col-lg-4 d-flex flex-column align-items-center justify-content-center welcome-container">
+                        <img src={logo} alt="" className="welcome-container__logo " />
+                        <p className="text-title mt-3">Đăng ký</p>
+                        <CompetedStep numberStep={3} currentStep={registerStep} />
 
-                {/* authentication step 1 */}
-                {registerStep === 0 && (
-                    <UserInfoRegister
-                        registerFields={REGISTER_FIELDS}
-                        userRegister={userRegister}
-                        isEntitledGotoNextStep={isEntitledGotoNextStep_step1}
-                    />
-                )}
+                        {/* authentication step 1 */}
+                        {registerStep === 0 && (
+                            <UserInfoRegister
+                                registerFields={REGISTER_FIELDS}
+                                userRegister={userRegister}
+                                isEntitledGotoNextStep={isEntitledGotoNextStep_step1}
+                            />
+                        )}
 
-                {registerStep === 1 && (
-                    <VerifyEmail
-                        gotoPreviousStepOfRegister={gotoPreviousStepOfRegister}
-                        gotoNextStepOfRegister={gotoNextStepOfRegister}
-                        isEntitledGotoNextStep={isEntitledGotoNextStep_step2}
-                    />
-                )}
-                {registerStep === 2 && (
-                    <OTPCode
-                        gotoPreviousStepOfRegister={gotoPreviousStepOfRegister}
-                        isEntitledGotoNextStep={isEntitledGotoNextStep_step3}
-                        resendOTP={isEntitledGotoNextStep_step2}
-                    />
-                )}
-                {isLoading && <Loading />}
-            </div>
+                        {registerStep === 1 && (
+                            <VerifyEmail
+                                gotoPreviousStepOfRegister={gotoPreviousStepOfRegister}
+                                gotoNextStepOfRegister={gotoNextStepOfRegister}
+                                isEntitledGotoNextStep={isEntitledGotoNextStep_step2}
+                            />
+                        )}
+                        {registerStep === 2 && (
+                            <OTPCode
+                                gotoPreviousStepOfRegister={gotoPreviousStepOfRegister}
+                                isEntitledGotoNextStep={isEntitledGotoNextStep_step3}
+                                resendOTP={isEntitledGotoNextStep_step2}
+                            />
+                        )}
+                        {isLoading && <Loading />}
+                    </div>
+                </div>
+            ) : (
+                <div> {history.push("/not-found")} </div>
+            )}
         </div>
     );
 };

@@ -1,32 +1,46 @@
-@import '../variables/variables';
-.bg {
-    background-color: $mainPurpleColor;
-    color: $mainLightColor;
-    text-align: center;
-}
-.bg:hover .card__header {
-    background-color: $blockHoverColor;
-    color: $mainDarkColor;
-}
+@import "../variables/variables";
+
 .header:hover {
-    background-color: $hoverPurpleColor; 
-    height: 100%;
-    
+    background-color: $hoverPurpleColor;
     color: aliceblue;
 }
 .header {
     color: aliceblue;
     border-radius: 100px;
+    min-height: 40px;
 }
 .header__active {
     color: aliceblue;
-    height: 100%;
-    // width: 100%;
     background-color: $hoverPurpleColor;
-    
-    // border-radius: 100px;
-
+    min-height: 40px;
+}
+.navbar {
+    height: 10vh;
+    min-height: 70px;
+    background-color: $mainPurpleColor;
+    min-width: 30rem;
+}
+.dropdown {
+    position: relative;
+    .dropdown-menu {
+        left: -3rem;
+        flex-direction: column;
+        position: absolute;
+        cursor: pointer;
+    }
+}
+.header-nav {
+    display: flex;
 }
 
-
- 
+.header-left {
+    display: flex;
+    min-width: 20rem;
+    flex: 8;
+    &__link {
+        width: 20rem;
+    }
+}
+.header-right {
+    flex: 1;
+}

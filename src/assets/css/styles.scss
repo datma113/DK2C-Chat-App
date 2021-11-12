@@ -4,13 +4,30 @@
 @import './components/general';
 @import './components/header';
 @import './components/completedStep';
-@import './components//input';
+@import './components/input';
+@import './components/carousel';
+@import './components/reaction';
 
+/* responsive */
+@import './components/homeResponsive';
 
 /*pages*/
 @import './pages/welcome';
 @import './pages/home';
+@import './pages/sendMessage';
+@import './pages/friend';
+@import './pages/infoOfRoom';
+@import './pages/membersInRoom';
+@import './pages/systemMessage.scss';
+@import './pages/userprofile.scss';
+@import './pages/changePass';
+@import './pages/_headerInbox';
+@import './pages/inboxSideBar';
+@import './pages/createRoomWithMems';
+@import './pages/addFriends';
+
+
+
 /*variables*/
 
 @import './variables/variables';
-

@@ -1,48 +1,102 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import logo from '../assets/image/LOGO.png'
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { NavLink, useHistory } from "react-router-dom";
+import logo from "../assets/image/LOGO.png";
+import Swal from "sweetalert2";
+import defaultAvatar from "../assets/image/LOGO.png";
 
+import { logout } from "../redux/action/actLogin";
+import { useSelector } from "react-redux";
+import { getUserInfoFromServer } from "../redux/action/actProfile";
 const Header = () => {
+    const dispatch = useDispatch();
+    const userInfo = useSelector((state) => state.userInfo);
+
+    useEffect(() => {
+        dispatch(getUserInfoFromServer());
+    }, [dispatch]);
+
+    const history = useHistory();
+    const logoutHandle = () => {
+        dispatch(logout())
+            .then(() => {
+                history.push("/");
+                window.location.reload();
+            })
+            .catch((err) => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    html: `<div className="text-normal text-center text-danger"> ${err} </div>`,
+                });
+            });
+    };
     return (
-        <>
-            <nav className="navbar navbar-expand-lg row bg  align-items-center">
-                <div className="container-fluid">
-                    <button
-                        className="navbar-toggler"
+        <div className="navbar  p-2">
+            <div className="header-left ">
+                <NavLink
+                    className="nav-item header-left__link center p-2"
+                    activeClassName="nav-item  p-2"
+                    to="/"
+                >
+                    <img src={logo} alt="" style={{ height: "50px", width: "50px" }} />
+                </NavLink>
+
+                <NavLink
+                    className="nav-item center header-left__link  header p-2"
+                    activeClassName="nav-item  header  header__active  p-2"
+                    to="/friends"
+                >
+                    <i className="fas fa-users"></i>{" "}
+                </NavLink>
+            </div>
+
+            <div className="header-right">
+                <div className="dropdown">
+                    <div
                         type="button"
-                        data-mdb-toggle="collapse"
-                        data-mdb-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent"
+                        id="dropdownExampleAnimation"
+                        data-mdb-toggle="dropdown"
                         aria-expanded="false"
-                        aria-label="Toggle navigation"
+                        data-mdb-dropdown-animation="off"
                     >
-                        <i className="fas fa-list-ul header"></i>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <div className="navbar-nav w-100 align-items-center row">
-                            <NavLink className="nav-item col-lg-1 col-sm-2  p-2" activeClassName="nav-item col-lg-1 col-sm-2  col-1 p-2" to="/" > <img src={logo} alt="" style={{ height: "50px", width: "50px" }} /></NavLink>
-                            <NavLink className="nav-item col-lg-1 col-sm-2 header p-2" activeClassName="nav-item col-lg-1 col-sm-2  header__active col-1 p-2" to="/message" > <i className=" fas fa-comments"></i> </NavLink>
-                            <NavLink className="nav-item col-lg-1 col-sm-2 header p-2" activeClassName="nav-item col-lg-1 col-sm-2  header__active col-1 p-2" to="/welcome"><i className="fas fa-users"></i> </NavLink>
-                            <NavLink className="nav-item col-lg-1 col-sm-2 header p-2" activeClassName="nav-item col-lg-1 col-sm-2  header__active col-1 p-2" to="/login"> <i className="fas fa-file"></i> </NavLink>
-                            <NavLink className="nav-item col-lg-1 col-sm-2 header p-2" activeClassName="nav-item col-lg-1 col-sm-2  header__active col-1 p-2" to="/register"> <i className="fas fa-folder"></i> </NavLink>
-                            <div className="col-5 p-2">  </div>
-                            <div className="col-lg-2 col-md-4 row">
-                                <NavLink className="header col-lg-3 col-sm-2" type="button" to="/"> <i className="fas fa-list-ul"></i> </NavLink>
-                                <NavLink className="header col-lg-3  col-sm-2" type="button" to="/"> <i className="fas fa-list-ul"></i> </NavLink>
-                                <NavLink className="header col-lg-3 col-sm-2" type="button" to="/"> <i className="fas fa-sign-in-alt"></i></NavLink>
-                            </div>
-
-
-
-                        </div>
-
+                        <img
+                            src={userInfo.imageUrl ?? defaultAvatar}
+                            className="header-img"
+                            alt=""
+                            loading="lazy"
+                        />
                     </div>
+                    <ul className="dropdown-menu ">
+                        <li className="p-1" >
+                            <p
+                                className="dropdown-item text-small"
+                                href="#"
+                                data-mdb-toggle="modal"
+                                data-mdb-target="#openMyInfoModal"
+                            >
+                                Hồ sơ
+                            </p>
+                        </li>
 
-
+                        <li>
+                            <p className="dropdown-item text-small" href="#">
+                                Cài đặt
+                            </p>
+                        </li>
+                        <li>
+                            <hr className="dropdown-divider" />
+                        </li>
+                        <li type="button" onClick={() => logoutHandle()}>
+                            <p className="dropdown-item text-danger text-small">
+                                <i className="fas fa-sign-out-alt fa-1x"></i> Đăng xuất
+                            </p>
+                        </li>
+                    </ul>
                 </div>
-            </nav>
-        </>
-    )
-}
+            </div>
+        </div>
+    );
+};
 
-export default Header
+export default Header;

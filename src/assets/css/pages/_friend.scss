@@ -1,0 +1,153 @@
+.friendhome {
+    display: flex;
+
+    &__friend-list {
+        min-width: 38rem;
+        max-width: 38rem;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        height: 90vh;
+
+        &__older-friends {
+            color: $mainPurpleColor;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            user-select: none;
+            &:hover {
+                color: $hoverPurpleColor;
+            }
+        }
+    }
+
+    &__friendRequest-list {
+        // min-width: 38rem;
+        // max-width: 38rem;
+        overflow: scroll;
+        overflow-x: hidden;
+        height: 85vh;
+
+        &__older-friends {
+            color: $mainPurpleColor;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            user-select: none;
+            &:hover {
+                // color: $hoverPurpleColor;
+            }
+        }
+    }
+}
+.btnFriendAccept {
+    background-color: $mainPurpleColor;
+    &:hover {
+        background-color: $hoverPurpleColor;
+        // color: white;
+    }
+}
+
+.friend {
+    // background-color: $mainLightColor;
+    transition: 0.2s;
+    cursor: pointer;
+    &:hover {
+        background-color: $hoverPurpleColor;
+        color: white;
+    }
+    &__display {
+        &:hover {
+            // color: $hoverPurpleColor;
+            color: white;
+        }
+    }
+    &__img {
+        border-radius: 100%;
+        overflow: hidden;
+        width: 60px;
+        height: 60px;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    &__imgGroup {
+        border-radius: 100%;
+        overflow: hidden;
+        width: 60px;
+        height: 60px;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.headerFriend {
+    background-color: $mainLightColor;
+    transition: 0.2s;
+    cursor: pointer;
+    &:hover {
+        background-color: $hoverPurpleColor;
+        color: white;
+    }
+
+    &__img {
+        border-radius: 100%;
+        overflow: hidden;
+        width: 60px;
+        height: 60px;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.friend--active {
+    background-color: $hoverPurpleColor;
+    color: white;
+}
+
+.groupImg {
+    border-radius: 50%;
+    width: 100px;
+}
+
+.option-friend-inbox {
+    user-select: none;
+    position: relative;
+    color: black;
+
+    &__options {
+        position: absolute;
+        background-color: white;
+        box-shadow: 0 0 10px #dddddd;
+        border-radius: 4px;
+        display: none;
+        transition: 0.2s;
+        left: -13rem;
+        top: 0;
+        padding: 1rem;
+
+        &--show {
+            display: block;
+        }
+
+        &__element {
+            padding: 0.25rem 1rem;
+            border-radius: 4px;
+            transition: 0.2s;
+
+            &:hover {
+                background-color: $hoverPurpleColor;
+                box-shadow: 0 0 10px #dddddd;
+            }
+        }
+    }
+
+    
+}

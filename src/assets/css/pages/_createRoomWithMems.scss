@@ -1,0 +1,75 @@
+.create-room-mems-modal {
+    max-width: none;
+    width: 90rem;
+    background-color: $mainLightColor;
+}
+
+.create-room-mems {
+    padding: 1rem 2rem;
+
+    &__friends {
+        display: flex;
+
+        &__left {
+            flex: 7;
+            border-right: 3px solid #dddddd;
+            max-height: 25rem;
+            margin-right: 0.1rem;
+            overflow-y: scroll;
+            &__element {
+                user-select: none;
+                border-radius: 3px;
+                box-shadow: 1px 1px 3px $mainDarkColor;
+                cursor: pointer;
+                transition: 0.3s;
+
+                &:hover {
+                    box-shadow: 0 0 7px $mainDarkColor;
+                }
+            }
+        }
+
+        &__right {
+            flex: 3;
+            max-height: 25rem;
+            overflow-y: scroll;
+        }
+    }
+
+    &__friends-added {
+        margin: 0.5rem 1rem;
+        padding: 0.5rem 1rem;
+        background-color: #e5efff;
+        border-radius: 5rem;
+        display: flex;
+
+        &__img {
+            width: 30px;
+            height: 30px;
+            border-radius: 100%;
+            background-color: white;
+            flex: 1;
+            margin-right: 0.5rem;
+        }
+
+        &__text {
+            display: flex;
+            align-items: center;
+            user-select: none;
+            flex: 4;
+        }
+
+        &__icon {
+            flex: 1;
+            cursor: pointer;
+            transition: 0.2s;
+            &:hover {
+                text-shadow: 0 0 3px red;
+            }
+        }
+    }
+}
+
+.friends-added-active {
+    background-color: $mySideColor;
+}

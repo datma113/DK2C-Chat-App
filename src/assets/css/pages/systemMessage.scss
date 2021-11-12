@@ -1,0 +1,10 @@
+.system-message {
+    margin: 0.25rem 0;
+    &__content {
+        background-color: $focusLightPinkColor;
+        color: $mainLightColor;
+        max-width: 30rem;
+        border-radius: 100px;
+        padding: 0.25rem 2rem;
+    }
+}

@@ -5,7 +5,7 @@ const Loading = () => {
         <div className="loading">
              <div className="loading__overlay"></div>
             <div
-                className="spinner-border text-dark loading__spinner"
+                className="spinner-border text-light loading__spinner"
                 style={{ width: `8rem`, height: `8rem` }}
             ></div>
         </div>

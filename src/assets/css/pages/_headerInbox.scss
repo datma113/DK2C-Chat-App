@@ -1,0 +1,22 @@
+.header-inbox-container {
+    padding: 0.5rem 2rem;
+    background-color: white;
+    height: 5rem;
+    min-height: 5rem;
+    border-right: thin solid #dddddd;
+
+    &__icon {
+        margin-left: 0.5rem;
+        padding: 0.5rem;
+        border: thin solid #dddddd;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0 0 5px $hoverPurpleColor;
+        transition: 0.2s;
+        color: $mainPurpleColor;
+        &:hover {
+            color: $hoverPurpleColor;
+            box-shadow: 0 0 5px $blockHoverColor, 0 0 5px $hoverPurpleColor;
+        }
+    }
+}

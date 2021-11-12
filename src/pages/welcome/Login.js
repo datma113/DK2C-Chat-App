@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assets/image/LOGO.png";
 import TextInput from "../../components/TextInput";
 import MyCustomButton from "../../components/MyCustomButton";
@@ -21,10 +21,30 @@ const Login = () => {
     const userLogin = useSelector((state) => state.userLogin);
     const message = useSelector((state) => state.message);
     const authentication = useSelector((state) => state.authentication);
+    const [isLoading, setisLoading] = useState(false);
+
+    const loginHandle = () => {
+        setisLoading(true);
+        dispatch(login(userLogin))
+            .then(() => {
+                setisLoading(false);
+
+                history.push("/");
+            })
+            .catch((err) => {
+                setisLoading(false);
+
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    html: `<div class="text-normal text-center text-danger"> ${err} </div>`,
+                });
+            });
+    };
 
     const LOGIN_FIELDS = [
         {
-            label: "Số điện thoại",
+            label: "Tài khoản",
             type: "text",
             regexPattern: /[\D]/g,
             keyStoreToReducer: "username",
@@ -34,6 +54,7 @@ const Login = () => {
             type: "password",
             regexPattern: /[\w]/g,
             keyStoreToReducer: "password",
+            eventWhenEnter: loginHandle,
         },
     ];
 
@@ -47,27 +68,10 @@ const Login = () => {
                 regexPattern={field.regexPattern}
                 functionToDispatch={storePhoneAndPasswordWhenLogin}
                 keyStoreToReducer={field.keyStoreToReducer}
+                eventWhenEnter={field.eventWhenEnter}
             />
         );
     });
-
-    const loginHandle = () => {
-        dispatch(login(userLogin))
-            .then(() => {
-                history.push("/");
-            })
-            .catch((err) => {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    html: `<div class="text-normal text-center text-danger"> ${err} </div>`,
-                });
-            });
-    };
-
-    const gobackHome = () => {
-        history.push("/");
-    };
 
     useEffect(() => {
         dispatch(getTokenWhenRefreshPage());
@@ -80,10 +84,14 @@ const Login = () => {
         });
     }, [dispatch]);
 
+    const isDisabled = () => {
+        return isLoading ? "disabled" : ""
+    }
+
     return (
         <div>
             {!authentication.isLoggin && (
-                <div className={`d-flex justify-content-center mt-5 ${ANIMATE_ZOOM_IN}`}>
+                <div className={`d-flex justify-content-center mt-5 ${ANIMATE_ZOOM_IN} `}>
                     <div className="col-lg-4 d-flex flex-column align-items-center justify-content-center welcome-container">
                         <img src={logo} alt="" className="welcome-container__logo " />
                         <p className="text-title mt-3">Đăng nhập để tiếp tục !</p>
@@ -93,25 +101,20 @@ const Login = () => {
                             label="đăng nhập"
                             typeButton="secondary"
                             login={loginHandle}
+                            disabled={isDisabled()}
                         />
                         <MyCustomButton
                             label="Quay lại"
                             typeButton="light"
                             iconClass="fas fa-long-arrow-alt-left"
                             isGoBackHistory={true}
+
                         />
                     </div>
                 </div>
             )}
 
-            {authentication.isLoggin && (
-                <div>
-                    <div>bạn đã login rồi. Quay lại trang chủ</div>
-                    <div className="btn btn-danger btn-welcome" onClick={gobackHome}>
-                        Quay về trang chủ
-                    </div>
-                </div>
-            )}
+            {authentication.isLoggin && <div>{history.push("/")}</div>}
         </div>
     );
 };

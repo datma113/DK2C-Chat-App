@@ -1,14 +1,45 @@
+@import "../variables/variables";
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.App {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
 * {
     margin: 0;
     padding: 0;
     font-size: 2rem;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
+    box-sizing: border-box;
 }
 html {
     font-size: 62.5%;
     line-height: 1;
-    max-height: 100vh;
-    overflow: hidden;
+}
+
+body {
+    // background: rgb(251, 251, 251);
+    // background: linear-gradient(
+    //     0,
+    //     rgba(251, 251, 251, 1) 0%,
+    //     rgba(240, 229, 249, 1) 20%,
+    //     rgba(239, 205, 240, 0.7458333675266982) 36%,
+    //     rgba(240, 132, 179, 0.43771011822697825) 57%,
+    //     rgba(218, 94, 146, 0.3508753843334209) 73%,
+    //     rgba(156, 75, 139, 0.34807426388524154) 89%,
+    //     rgba(93, 59, 120, 0.28925073447347693) 96%
+    // );
+    background-image: url("../image/devianart/enchanted_by_craftea_deqadnz-fullview.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(7px);
 }
 
 a {
@@ -16,3 +47,44 @@ a {
     font-weight: normal;
 }
 
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: white;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: $mainPurpleColor;
+    border-radius: 6px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: $hoverPurpleColor;
+}
+
+.modal-dialog {
+    margin-top: 10rem;
+}
+
+.header-img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 100%;
+    box-shadow: 0 0 5px $mainDarkColor, 0 3px $mainLightColor;
+}
+
+.introducing-text {
+    margin: 0 2rem;
+}
+
+.image-expression {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 100%;
+    margin: 0.2rem;
+}

@@ -1,0 +1,41 @@
+.profile {
+  &__img {
+    border-radius: 100%;
+    overflow: hidden;
+    width: 60px;
+    height: 60px;
+    background-color: aqua;
+
+    img {
+      width: 100%;
+      height: 100%;
+      margin-bottom: 100 px;
+      padding: 100 px;
+    }
+  }
+
+  &__detail {
+    input {
+      margin-bottom: 10px;
+      
+      width: 100%;
+      padding: 0.5rem 2rem;
+
+    }
+  }
+
+}
+.custom-select-tag {
+  cursor: pointer;
+  max-height: 20rem;
+  z-index: -2;
+  
+  &__container-option {
+    height: 20rem;
+  }
+}
+
+.test{
+  overflow: hidden;
+  z-index: 99;
+}

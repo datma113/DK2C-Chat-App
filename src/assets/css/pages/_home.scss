@@ -1,11 +1,21 @@
 .home {
     display: flex;
-    flex-direction: row;
-
+    height: 90vh;
     &__inbox-list {
-        overflow: scroll;
-        height: 99vh;
-        width: 38rem;
+        height: 80vh;
+        background-color: white;
+        border-right: thin solid #dddddd;
+
+        &__older-inboxs {
+            color: $mainPurpleColor;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            user-select: none;
+            &:hover {
+                color: $hoverPurpleColor;
+            }
+        }
     }
 }
 
@@ -13,6 +23,20 @@
     background-color: $mainLightColor;
     transition: 0.2s;
     cursor: pointer;
+    
+    &__img-container {
+        position: relative;
+        &__group-icon {
+            position: absolute;
+            top: 70%;
+            left: 70%;
+            transform: translate(-50%, -50%);
+            color: yellow;
+            text-shadow: 0 0 5px black;
+        }
+    }
+
+   
 
     &:hover {
         background-color: $hoverPurpleColor;
@@ -30,6 +54,17 @@
             height: 100%;
         }
     }
+
+    &__new-message {
+        font-weight: bold;
+        color: black;
+        opacity: 1 !important;
+    }
+}
+
+.inbox--active {
+    background-color: $hoverPurpleColor;
+    color: white;
 }
 
 .read-by {
@@ -78,65 +113,43 @@
     }
 }
 
-.single-chat-box {
+.box-chat-container {
+    height: 90vh;
     display: flex;
-
-    &--other {
-        flex-direction: row-reverse;
-    }
-
-    &__img {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        border: thin solid gray;
-    }
-
-    &__message {
-        background-image: linear-gradient(
-            to right top,
-            #fbfbfb,
-            #fafafa,
-            #f8f8f9,
-            #f7f7f8,
-            #f6f5f7,
-            #f2ebf6,
-            #f1e1f3,
-            #f1d6ee,
-            #f4bee1,
-            #f9a5cd,
-            #fe8bb2,
-            #ff6f91
-        );
-        border: thin solid $mainPurpleColor;
-        border-radius: 10px;
-        padding: 1.5rem 1rem;
-    }
+    flex-direction: column;
+    flex: 8;
+    border-right: thin solid #dddddd;
 }
 
 .header-box-chat {
+    display: flex;
+    padding: 2rem 0;
     background-color: $mainLightColor;
-    padding: 2rem 1.5rem;
-
-    &__img {     
-        padding: 0;
+    &__img {
+        margin: 0 2rem;
         box-shadow: 0 0 1px $mainPurpleColor;
         overflow: hidden;
         border-radius: 100%;
+        width: 60px;
         height: 60px;
-        width: 60px;    
-
         img {
             width: 100%;
             height: 100%;
         }
     }
 
+    &__title {
+        flex-grow: 6;
+        max-width: 50rem;
+        word-wrap: break-word;
+    }
+
     &__icon {
+        flex-grow: 1;
         display: flex;
         align-items: center;
         justify-content: flex-end;
-
+        margin-right: 1rem;
         i {
             padding: 1rem 1.5rem;
             margin: 0 0.25rem;
@@ -148,5 +161,167 @@
                 background-color: rgba($color: $hoverPurpleColor, $alpha: 0.7);
             }
         }
+    }
+}
+
+.single-chat-box-container {
+    position: relative;
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 80vh;
+}
+
+.single-chat-box {
+    display: flex;
+    user-select: none;
+    margin-top: 2rem;
+    position: relative;
+
+
+    &:hover &__message__delete {
+        display: flex;
+    }
+
+    &--self {
+        flex-direction: row-reverse;
+        margin-left: 10rem;
+    }
+
+    &--other {
+        margin-right: 10rem;
+    }
+
+    &__img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;    
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__message {
+        word-wrap: break-word;
+        background-color: $mySideColor;
+        border: thin solid $mainPurpleColor;
+        border-radius: 10px;
+        padding: 1.5rem 1rem;
+        max-width: 45rem;
+        position: relative;
+
+        &__delete {
+            position: absolute;
+            text-shadow: 0 0 1px white, 1px 1px 1px white, -1px -1px 1px white, 1px -1px 1px white,
+                -1px 1px 1px white;
+
+            display: none;
+            cursor: pointer;
+            font-size: 3rem;
+
+            &--self {
+                top: 20%;
+                left: -3rem;
+            }
+
+            &--other {
+                top: 20%;
+                right: -3rem;
+            }
+            &:hover &__options {
+                transform: scaleY(1);
+            }
+            &__options {
+                position: absolute;
+                background-color: white;
+                box-shadow: 0 0 10px #dddddd;
+                border-radius: 4px;
+                width: 10rem;
+                top: 2rem;
+                transform: scaleY(0);
+                transform-origin: 0 top 0;
+                transition: 0.3s;
+                left: -10rem;
+
+                &--self {
+                    right: -2rem;
+                }
+
+                &--other {
+                    left: 2.5rem;
+                }
+            }
+        }
+
+        &:hover &__reaction-container__reaction {
+            display: flex;
+        }
+
+        &__time-send-message {
+            color: gray;
+        }
+
+        &__reaction-container {
+            transition: 0.2s;
+            &__reaction {
+                width: 30px;
+                height: 30px;
+                border: thin solid $mainDarkColor;
+                background-color: $mainLightColor;
+                overflow: hidden;
+                border-radius: 100%;
+                cursor: pointer;
+                position: absolute;
+                transition: 0.2s;
+                bottom: -2rem;
+                display: none;
+
+                &:hover {
+                    background-color: $focusLightPinkColor;
+                }
+                &--self {
+                    left: 0;
+                }
+                &--other {
+                    right: 0;
+                }
+            }
+
+            &__reaction-list {
+                position: absolute;
+                bottom: 0;
+                border-radius: 10rem;
+                background-color: $mainLightColor;
+                box-shadow: 0 0 30px #dddddd;
+                transition: 0.2s;
+                display: none;
+                cursor: pointer;
+                z-index: 9;
+                &--self {
+                    left: -12rem;
+                }
+                &--other {
+                    right: -12rem;
+                }
+            }
+
+            &:hover &__reaction-list {
+                display: flex;
+            }
+        }
+    }
+
+    &__message--self {
+        background-image: linear-gradient(
+            to right top,
+            #fbfbfb,
+            #fafafa,
+            #f8f8f9,
+            #f7f7f8,
+            #f6f5f7,
+            #f2ebf6
+        );
     }
 }

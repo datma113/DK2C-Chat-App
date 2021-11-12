@@ -11,6 +11,7 @@ const TextInput = ({
     functionToDispatch,
     keyStoreToReducer,
     initialValue,
+    eventWhenEnter,
 }) => {
     const dispatch = useDispatch();
     const [messageOfRegex, setmessageOfRegex] = useState("");
@@ -28,6 +29,15 @@ const TextInput = ({
         if (functionToDispatch) dispatch(functionToDispatch(keyStoreToReducer, valueOfInput));
     };
 
+    const triggerEventWhenHaveEnterKey = (e) => {
+        const ENTER_KEY = "Enter";
+        const KEY = e.key;
+
+        if (KEY === ENTER_KEY && eventWhenEnter) {
+            eventWhenEnter();
+        }
+    };
+
     return (
         <div className="input-container mb-5">
             <input
@@ -35,8 +45,12 @@ const TextInput = ({
                 className="w-100 input-container__input text-center"
                 placeholder=" "
                 id={id}
+                spellCheck={false}
                 defaultValue={initialValue}
                 autoComplete="off"
+                onKeyDown={(e) => {
+                    triggerEventWhenHaveEnterKey(e);
+                }}
                 onChange={(e) => {
                     dispatchUserInput(e.target.value);
                 }}
@@ -60,12 +74,11 @@ const TextInput = ({
 export default TextInput;
 
 TextInput.propTypes = {
-    id: PropTypes.number,
     label: PropTypes.string,
     type: PropTypes.string,
     checkRegex: PropTypes.func,
     regexPattern: PropTypes.any,
     functionToDispatch: PropTypes.func,
     keyStoreToReducer: PropTypes.string,
-    initialValue: PropTypes.string
+    initialValue: PropTypes.string,
 };

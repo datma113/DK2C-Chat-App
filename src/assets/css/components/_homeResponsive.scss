@@ -1,0 +1,43 @@
+@media only screen and(min-width: $md) {
+}
+
+@media only screen and(min-width: $lg) {
+    .introducing-text {
+        width: 75%;
+    }
+}
+
+@media only screen and(min-width: $xl) {
+    .introducing-text {
+        width: 50%;
+    }
+}
+
+@media screen and(max-width: $lg) {
+    #carouselExampleCaptions {
+        height: 55vh;
+    }
+   
+}
+
+@media only screen and(max-width: $md) {
+    .introducing {
+        display: none;
+    }
+
+    .inbox-side-bar {
+        flex: 1;
+    }
+
+    .info-room-right {
+        display: none;
+    }
+}
+
+.carousel-inner-custom {
+    height: 100%;
+}
+
+.hide-an-element {
+    display: none !important;
+}

@@ -5,9 +5,10 @@ const API_SIGN_UP = API_AUTH + "signup/";
 const API_ROOM = API + "rooms/";
 const API_USER = API + "user/";
 const API_ME = API_USER + "me/";
+
 export const API_MESSAGES = API + 'messages/'
 export const API_FRIENDS = API + "friends"
-export const API_INBOXS = API + "inboxs/";
+export const API_INBOXS = API + "inboxs";
 export const API_FRIENDS_REQUEST = API + "friend-request/";
 
 /**authentication */
@@ -28,8 +29,8 @@ export const API_CHANGE_PASSWORD = API_ME + "changePassword";
 export const API_GET_USER_PROFILE = API_USER + "viewProfile/";
 export const API_SEARCH_USERS_BY_PHONE = API_USER + "searchPhone?textToSearch=";
 /**inbox */
-export const API_GET_INBOX_BY_ID = API_INBOXS + "ofRoomId/";
-export const API_GET_INBOX_BY_FRIEND_ID = API_INBOXS + "with/";
+export const API_GET_INBOX_BY_ID = API_INBOXS + "/ofRoomId/";
+export const API_GET_INBOX_BY_FRIEND_ID = API_INBOXS + "/with/";
 
 /**Chat */
 export const API_GET_MESSAGE_IN_CHAT_BOX = API_MESSAGES + "inbox/";
@@ -44,3 +45,4 @@ export const API_GET_MEMBERS_IN_ROOM = API_ROOM + "members/";
 export const API_ADD_NEW_MEMBERS = API_ROOM + "members/";
 export const API_OUT_ROOM = API_ROOM + "leave/";
 export const API_CHANGE_IMAGE_GROUP = API_ROOM + 'changeImage/'
+export const API_SET_MEMBER_BECOME_ADMIN = API_ROOM + 'admin'

@@ -23,9 +23,9 @@ const CreateRoom = () => {
                 },
             ],
             type: ROOM_TYPE_GROUP,
-            imageUrl: "./image/LOGO.png"
+            imageUrl: "./image/LOGO.png",
+            
         };
-
         dispatch(createNewRoom(room));
     };
 

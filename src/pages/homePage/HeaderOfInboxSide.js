@@ -2,12 +2,12 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import AddFriendModal from "../../modal/AddFriendModal";
 import CreateRoomWithMemsModal from "../../modal/CreateRoomWithMemsModal";
-import { searcbInboxs } from "../../redux/action/actHome";
+import { searchInboxs } from "../../redux/action/actHome";
 
 const HeaderOfInboxSide = () => {
     const dispatch = useDispatch();
     const searchInboxsHandle = (text) => {
-        dispatch(searcbInboxs(text));
+        dispatch(searchInboxs(text));
     };
 
     return (

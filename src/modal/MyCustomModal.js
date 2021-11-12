@@ -1,6 +1,6 @@
 import React from "react";
 
-const MyCustomModal = ({ id, headerTitle, inner, functionWhenClick, isDisabledConfirmBtn, color }) => {
+const MyCustomModal = ({ id, headerTitle, inner, functionWhenClick, isDisabledConfirmBtn, color, dialogClass }) => {
     return (
         <>
             <div
@@ -10,7 +10,7 @@ const MyCustomModal = ({ id, headerTitle, inner, functionWhenClick, isDisabledCo
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
             >
-                <div className="modal-dialog">
+                <div className={`modal-dialog ${dialogClass}`}>
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="exampleModalLabel">

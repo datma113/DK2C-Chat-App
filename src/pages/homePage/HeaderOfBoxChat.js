@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 const HeaderOfBoxChat = () => {
     const currentInbox = useSelector((state) => state.currentInbox);
-    const limidDisplayName = (string) => {
+    const limitDisplayName = (string) => {
         if (string) {
             return string.length > 20 ? string.slice(0, 25) + "..." : string;
         }
@@ -16,7 +16,7 @@ const HeaderOfBoxChat = () => {
                     <img src={currentInbox.imgUrl} alt="" />
                 </div>
                 <div className="header-box-chat__title font-weight-bold">
-                    {limidDisplayName(currentInbox.displayName)}
+                    {limitDisplayName(currentInbox.displayName)}
                 </div>
                 <div className=" header-box-chat__icon">
                     <i className="fas fa-search"></i>

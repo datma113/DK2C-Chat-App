@@ -64,7 +64,7 @@ a {
   width: 4rem;
   height: 4rem;
   border-radius: 100%;
-  box-shadow: 0 0 5px #FBFBFB;
+  box-shadow: 0 0 5px #262626, 0 3px #FBFBFB;
 }
 
 .introducing-text {
@@ -547,16 +547,6 @@ a {
   border-radius: 50%;
   overflow: hidden;
 }
-.single-chat-box__img__key--self {
-  color: yellow;
-  position: absolute;
-  right: 4rem;
-}
-.single-chat-box__img__key--other {
-  color: yellow;
-  position: absolute;
-  left: 3.5rem;
-}
 .single-chat-box__img img {
   width: 100%;
   height: 100%;
@@ -892,11 +882,15 @@ a {
   right: 2rem;
   bottom: 0;
   text-shadow: 0 0 5px black;
-  color: yellow;
 }
 .member-in-room__btn {
   width: 100%;
   font-size: 1.1rem;
+}
+
+.member-in-room-author {
+  width: 60rem;
+  max-width: none;
 }
 
 .system-message {

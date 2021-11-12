@@ -1,7 +1,7 @@
 @import "../variables/variables";
 
 html,
-body{
+body {
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -18,7 +18,6 @@ body{
     font-size: 2rem;
     font-family: "Roboto", sans-serif;
     box-sizing: border-box;
-
 }
 html {
     font-size: 62.5%;
@@ -76,10 +75,8 @@ a {
     width: 4rem;
     height: 4rem;
     border-radius: 100%;
-    box-shadow: 0 0 5px $mainLightColor;
+    box-shadow: 0 0 5px $mainDarkColor, 0 3px $mainLightColor;
 }
-
-
 
 .introducing-text {
     margin: 0 2rem;

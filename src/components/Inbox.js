@@ -20,6 +20,7 @@ const Inbox = ({
     newMessageOfInbox,
     typeOfRoom,
     senderId,
+    inbox
 }) => {
     const dispatch = useDispatch();
     const limitStringToShow = (string) => {
@@ -64,13 +65,13 @@ const Inbox = ({
         //reset number of new Message when click into inbox
         let newMessage = newMessageSingleton.getInsance();
         newMessage.resetNewMessageRealTime();
-
         let currentInbox = {
             id: inboxId,
             senderId,
             imgUrl,
             displayName,
             type: typeOfRoom,
+            inbox
         };
         dispatch(storeCurrentInbox(currentInbox));
 

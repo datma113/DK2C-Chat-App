@@ -9,16 +9,23 @@ import AddNewMembers from "../../modal/AddNewMembers";
 import { getFriendsListFromServer } from "../../redux/action/actFriends";
 import CreateRoom from "../../modal/CreateRoom";
 import OutRoom from "../../modal/OutRoom";
+import SetAdmin from "../../modal/SetAdmin";
 
 const OptionOfRoom = ({ roomId }) => {
     const currentInbox = useSelector((state) => state.currentInbox);
     const friendsList = useSelector((state) => state.friendsList);
-    const currentInboxId = useSelector(state => state.currentInboxId)
+    const currentInboxId = useSelector((state) => state.currentInboxId);
+    const membersInRoom = useSelector((state) => state.membersInRoom);
+    const authentication = useSelector((state) => state.authentication);
     const dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(getFriendsListFromServer());
     }, [dispatch, roomId]);
+
+    const isShowSetAdminTag = () => {
+        const MY_ID = authentication.user.id;
+        return MY_ID === currentInbox.inbox.room.createByUserId ? true : false;
+    };
 
     const TYPE_ROOM_ONE = "ONE";
     const TYPE_ROOM_GROUP = "GROUP";
@@ -26,13 +33,24 @@ const OptionOfRoom = ({ roomId }) => {
         <>
             {currentInbox.type === TYPE_ROOM_GROUP && (
                 <div>
-                    <MembersInRoom roomId={roomId} />
+                    <MembersInRoom
+                        roomId={roomId}
+                        membersInRoom={membersInRoom}
+                        currentInbox={currentInbox}
+                        authentication={authentication}
+                    />
                     <AddNewMembers friendsList={friendsList} />
-                    <ViewPersonalPage />
-                    <BlockUser />
-                    <ReportUser />
+                    {isShowSetAdminTag() && (
+                        <SetAdmin
+                            membersInRoom={membersInRoom}
+                            roomId={roomId}
+                            currentInbox={currentInbox}
+                            authentication={authentication}
+                        />
+                    )}
+
                     <DeleteConversation />
-                    <OutRoom  inboxId={currentInboxId} roomId={roomId}/>
+                    <OutRoom inboxId={currentInboxId} roomId={roomId} />
                 </div>
             )}
 
@@ -40,6 +58,9 @@ const OptionOfRoom = ({ roomId }) => {
                 <div>
                     <CreateRoom />
                     <DeleteConversation />
+                    <ViewPersonalPage />
+                    <BlockUser />
+                    <ReportUser />
                 </div>
             )}
         </>

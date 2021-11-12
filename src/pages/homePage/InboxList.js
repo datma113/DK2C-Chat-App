@@ -30,7 +30,6 @@ const InboxList = () => {
     };
 
     const inboxsMap = inboxs.map((inbox, index) => {
-
         const TYPE_ROOM_ONE = "ONE";
         const TYPE_ROOM_GROUP = "GROUP";
         const IS_ACTIVE = currentInboxId === inbox.id;
@@ -80,6 +79,7 @@ const InboxList = () => {
                 newMessageOfInbox={newMessageOfInbox}
                 typeOfRoom={inbox.room.type}
                 senderId={senderId}
+                inbox={inbox}
             />
         );
     });

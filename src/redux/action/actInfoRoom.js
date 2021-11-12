@@ -7,6 +7,7 @@ import {
     API_GET_MEMBERS_IN_ROOM,
     API_INBOXS,
     API_OUT_ROOM,
+    API_SET_MEMBER_BECOME_ADMIN,
 } from "../constants/api";
 import {
     STORE_MEMBERS_IN_ROOM,
@@ -140,24 +141,35 @@ export const changeImageGroup = (inboxDto, file) => {
             "Content-Type": "multipart/form-data",
         },
     };
-    return dispatch => axios
-        .post(API_CHANGE_IMAGE_GROUP + inboxDto.roomId, file, CONFIG_HEADER_MULTIPART_FORM_DATA)
-        .then((resp) => {
-            const imgUrl = resp.data[0]
-            dispatch({
-                type: UPDATE_ROOM_IMAGE_OF_HEADER_CHAT,
-                imgUrl
+    return (dispatch) =>
+        axios
+            .post(API_CHANGE_IMAGE_GROUP + inboxDto.roomId, file, CONFIG_HEADER_MULTIPART_FORM_DATA)
+            .then((resp) => {
+                const imgUrl = resp.data[0];
+                dispatch({
+                    type: UPDATE_ROOM_IMAGE_OF_HEADER_CHAT,
+                    imgUrl,
+                });
+
+                dispatch({
+                    type: UPDATE_ROOM_IMAGE_OF_INBOXS,
+                    imgUrl,
+                    inboxId: inboxDto.inboxId,
+                });
             })
+            .catch((err) => {
+                console.error(err);
+            });
+};
 
-            dispatch({
-                type: UPDATE_ROOM_IMAGE_OF_INBOXS,
-                imgUrl,
-                inboxId: inboxDto.inboxId
-
+export const setMemberBecomeAdmin = (roomId, memberId) => {
+    return (dispatch) =>
+        axios
+            .post(API_SET_MEMBER_BECOME_ADMIN + `/${roomId}/${memberId}`)
+            .then((resp) => {
+                console.log(resp.data);
             })
-
-        })
-        .catch((err) => {
-            console.error(err);
-        });
+            .catch((err) => {
+                console.error(err);
+            });
 };

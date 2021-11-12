@@ -12,11 +12,15 @@
           right: 2rem;
           bottom: 0;
           text-shadow: 0 0 5px black;
-          color: yellow;
      }
 
      &__btn {
           width: 100%;
           font-size: 1.1rem;
      }
+}
+
+.member-in-room-author {
+     width: 60rem;
+     max-width: none;
 }

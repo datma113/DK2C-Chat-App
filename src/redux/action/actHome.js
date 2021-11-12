@@ -44,15 +44,17 @@ export const getOlderInboxsFromServer = (page = 0) => {
     };
 };
 
-export const searcbInboxs = (query) => {
+export const searchInboxs = (query) => {
+    const IS_QUERY_EMPTY = query ? false : true;
+    const API_INBOXS_QUERY = IS_QUERY_EMPTY ? API_INBOXS : API_INBOXS + "?query=" + query;
     return (dispatch) =>
         axios
-            .get(API_INBOXS + "?query=" + query)
+            .get(API_INBOXS_QUERY)
             .then((resp) => {
                 dispatch(storeInboxs(resp.data.content));
             })
             .catch((err) => {
-                console.error(err);
+                dispatch(storeInboxs([]));
             });
 };
 

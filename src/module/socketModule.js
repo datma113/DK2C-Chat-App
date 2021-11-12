@@ -8,8 +8,9 @@ import {
     UPDATE_REACTION_REALTIME,
 } from "../redux/constants/constants";
 import { API_GET_INBOX_BY_ID } from "../redux/constants/api";
-
 import newMessageSingleton from "./newMessageSingleton";
+import soundEff from "../assets/image/mixkit-coin-win-notification-1992.wav";
+
 const socketModule = (function () {
     let stompClient = null;
     let newMessage = newMessageSingleton.getInsance();
@@ -24,10 +25,9 @@ const socketModule = (function () {
         return message.getNewMessageRealTime();
     };
 
-    
-
     function connect(user, dispatch) {
         const WEB_SOCKET_URL = process.env.REACT_APP_WEB_SOCKET;
+        const MY_ID = user.userId;
         let socket = new SockJS(WEB_SOCKET_URL);
         stompClient = Stomp.over(socket);
 
@@ -51,12 +51,15 @@ const socketModule = (function () {
                 });
 
                 if (data.type !== TYPE_MESSAGE_SYSTEM) {
-                    const MY_ID = user.userId;
                     const SENDER_ID = data.sender.id;
 
                     let notify = getNotifyNewMessage(newMessage);
 
                     if (!isSelfSide(MY_ID, SENDER_ID)) {
+                        const audio = new Audio(soundEff);
+                        audio.volume = 0.2;
+                        audio.play();
+
                         document.title = `(${notify}) DKC APP`;
                     } else {
                         newMessage.resetNewMessageRealTime();
@@ -76,14 +79,12 @@ const socketModule = (function () {
 
             stompClient.subscribe("/users/queue/messages/delete", function (resp) {
                 const data = JSON.parse(resp.body);
-           
+
                 dispatch({
                     type: DELETE_AN_MESSAGE,
-                    message: data
-                })
-               
+                    message: data,
+                });
             });
-
         };
 
         stompClient.connect(user, onConnected);

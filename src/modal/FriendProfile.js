@@ -1,6 +1,7 @@
 import React from "react";
 
 const FriendProfile = ({ viewProfile, id, profile, onMouseLeave }) => {
+    
     return (
         <>
             <div
@@ -25,7 +26,7 @@ const FriendProfile = ({ viewProfile, id, profile, onMouseLeave }) => {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="exampleModalLabel">
-                                "header"
+                               Trang cá nhân
                             </h5>
                             <button
                                 type="button"

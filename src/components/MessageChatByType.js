@@ -19,10 +19,10 @@ const MessageChatByType = ({
     videoSended = null,
     imageSended = null,
 }) => {
+  
     const SENDER_ID = message.sender.id;
     const MY_ID = authentication.user.id;
     const IS_SELF_SIDE = SENDER_ID === MY_ID ? true : false;
-    
     const isSelfSideClass = () => {
         return IS_SELF_SIDE ? "single-chat-box--self" : "single-chat-box--other";
     };
@@ -45,6 +45,9 @@ const MessageChatByType = ({
         const REACTION_CLASS = "single-chat-box__message__reaction-container__reaction";
         return IS_SELF_SIDE ? REACTION_CLASS + "--self" : REACTION_CLASS + "--other";
     };
+
+  
+
     const addSelfSideReactionList = () => {
         const REACTION_CLASS = "single-chat-box__message__reaction-container__reaction-list";
         return IS_SELF_SIDE ? REACTION_CLASS + "--self" : REACTION_CLASS + "--other";
@@ -114,13 +117,15 @@ const MessageChatByType = ({
 
     return (
         <div key={index} className={`single-chat-box ${isSelfSideClass()}`} id={message.id}>
-            <div className="single-chat-box__img m-3">
+            <div className={`single-chat-box__img m-3`}>
                 <img
                     src={message.sender.imageUrl}
                     alt=""
                     className={hideImageWhenDupplicateSender(SENDER_ID)}
                 />
+             
             </div>
+
             <div className={`single-chat-box__message ${addSelfBackgroundClassForMessage()} mt-3`}>
                 {renderMessageContent()}
                 <div className={`single-chat-box__message__reaction-container `}>

@@ -16,7 +16,23 @@ const MembersInRoom = ({ roomId, membersInRoom, currentInbox, authentication }) 
                         đã là bạn
                     </button>
                 );
-
+            case "SENT":
+                return (
+                    <div className="d-flex flex-column w-100">
+                        <button
+                            type="button"
+                            className="member-in-room__btn btn  btn-warning disabled"
+                        >
+                            đã gữi
+                        </button>
+                        <button
+                            type="button"
+                            className="member-in-room__btn btn  btn-outline-danger mt-2"
+                        >
+                            hủy
+                        </button>
+                    </div>
+                );
             default:
                 return (
                     <button

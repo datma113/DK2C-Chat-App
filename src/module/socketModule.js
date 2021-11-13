@@ -4,6 +4,7 @@ import Stomp from "stompjs";
 import {
     createAction,
     DELETE_AN_MESSAGE,
+    UPDATE_BUTTON_WHEN_SENT_REQUEST,
     UPDATE_FRIENDS_REQUEST_AFTER_SENT_REQUEST,
     UPDATE_LAST_MESSAGE_IN_INBOX,
     UPDATE_MESSAGE_REALTIME,
@@ -92,8 +93,8 @@ const socketModule = (function () {
             stompClient.subscribe("/users/queue/friendRequest/received", function (resp) {
                 const data = JSON.parse(resp.body);
                 dispatch(createAction(UPDATE_USERS_AFTER_SENT_REQUEST, data));
-                dispatch(createAction(UPDATE_FRIENDS_REQUEST_AFTER_SENT_REQUEST, data))
-
+                dispatch(createAction(UPDATE_FRIENDS_REQUEST_AFTER_SENT_REQUEST, data));
+                dispatch(createAction(UPDATE_BUTTON_WHEN_SENT_REQUEST, data));
             });
 
             stompClient.subscribe("/users/queue/friendRequest/accept", function (resp) {

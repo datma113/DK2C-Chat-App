@@ -15,10 +15,8 @@ const BoxChat = () => {
 
     const currentInbox = useSelector((state) => state.currentInbox);
     useEffect(() => {
-        const boxChat = document.getElementById("chatBoxContainer")
-        dispatch(getMessageInBoxChat(currentInboxId, 0)).then(() => {
-            boxChat.scrollTop = boxChat.scrollHeight;
-        });
+        const boxchatElement = document.getElementById("chatBoxContainer");
+        dispatch(getMessageInBoxChat(currentInboxId, 0));
         //when change other inbox, it will reset loading value to 0
         setloadingOlderMessage(0);
         setisInitialize(true);
@@ -27,6 +25,7 @@ const BoxChat = () => {
             type: RESET_STATUS_OF_SCROLL_BOTTOM_IN_BOX_CHAT,
             status: false,
         });
+        boxchatElement.scrollTop = boxchatElement.scrollHeight;
     }, [dispatch, currentInboxId, isScrollBottom]);
 
     const loadOlderMessageInBoxChat = (e) => {
@@ -53,7 +52,7 @@ const BoxChat = () => {
     const stylesImageBackground = {
         backgroundImage: `url(${currentInbox.imgUrl})`,
         backgroundRepeat: `no-repeat`,
-        backgroundSize: 'cover'
+        backgroundSize: "cover",
     };
     return (
         <div

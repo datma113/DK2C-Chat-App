@@ -2,10 +2,13 @@ import axios from "axios";
 import SockJS from "sockjs-client";
 import Stomp from "stompjs";
 import {
+    createAction,
     DELETE_AN_MESSAGE,
+    UPDATE_FRIENDS_REQUEST_AFTER_SENT_REQUEST,
     UPDATE_LAST_MESSAGE_IN_INBOX,
     UPDATE_MESSAGE_REALTIME,
     UPDATE_REACTION_REALTIME,
+    UPDATE_USERS_AFTER_SENT_REQUEST,
 } from "../redux/constants/constants";
 import { API_GET_INBOX_BY_ID } from "../redux/constants/api";
 import newMessageSingleton from "./newMessageSingleton";
@@ -84,6 +87,31 @@ const socketModule = (function () {
                     type: DELETE_AN_MESSAGE,
                     message: data,
                 });
+            });
+
+            stompClient.subscribe("/users/queue/friendRequest/received", function (resp) {
+                const data = JSON.parse(resp.body);
+                dispatch(createAction(UPDATE_USERS_AFTER_SENT_REQUEST, data));
+                dispatch(createAction(UPDATE_FRIENDS_REQUEST_AFTER_SENT_REQUEST, data))
+
+            });
+
+            stompClient.subscribe("/users/queue/friendRequest/accept", function (resp) {
+                const data = JSON.parse(resp.body);
+
+                console.log(data);
+            });
+
+            stompClient.subscribe("/users/queue/friendRequest/recall", function (resp) {
+                const data = JSON.parse(resp.body);
+
+                console.log(data);
+            });
+
+            stompClient.subscribe("/users/queue/friendRequest/delete", function (resp) {
+                const data = JSON.parse(resp.body);
+
+                console.log(data);
             });
         };
 

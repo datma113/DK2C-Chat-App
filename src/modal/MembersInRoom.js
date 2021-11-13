@@ -3,10 +3,10 @@ import TagOfOptionRoom from "../components/TagOfOptionRoom";
 import MyCustomModal from "./MyCustomModal";
 import { getMembersInRoom } from "../redux/action/actInfoRoom";
 import { useDispatch } from "react-redux";
+import { addFriend } from "../redux/action/actFriends";
 
 const MembersInRoom = ({ roomId, membersInRoom, currentInbox, authentication }) => {
     const dispatch = useDispatch();
-
     const renderAddFriendButton = (member) => {
         if (authentication.user.id === member.user.id) return "";
         switch (member.user.friendStatus) {
@@ -19,7 +19,13 @@ const MembersInRoom = ({ roomId, membersInRoom, currentInbox, authentication }) 
 
             default:
                 return (
-                    <button type="button" className=" member-in-room__btn btn btn-secondary">
+                    <button
+                        type="button"
+                        className=" member-in-room__btn btn btn-secondary"
+                        onClick={() => {
+                            addFriend(member.user.id);
+                        }}
+                    >
                         kết bạn
                     </button>
                 );

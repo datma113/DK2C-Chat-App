@@ -184,7 +184,6 @@ export const addFriend = (userId) => {
     return axios
         .post(API_FRIENDS_REQUEST + userId)
         .then((resp) => {
-            console.log(resp.data);
         })
         .catch((err) => {
             const MESSAGE =

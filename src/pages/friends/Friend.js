@@ -54,7 +54,7 @@ const Friend = ({
                         onMouseLeave={mouseLeave}
                     />
                 </div>
-                
+                ...
             </div>
         </div>
     );

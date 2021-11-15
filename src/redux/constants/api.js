@@ -2,13 +2,13 @@ const API = process.env.REACT_APP_BASE_URL;
 
 const API_AUTH = API + "auth/";
 const API_SIGN_UP = API_AUTH + "signup/";
-const API_ROOM = API + "rooms/";
 const API_USER = API + "user/";
 const API_ME = API_USER + "me/";
 
 export const API_MESSAGES = API + 'messages/'
 export const API_FRIENDS = API + "friends"
 export const API_INBOXS = API + "inboxs";
+export const API_ROOM = API + "rooms/";
 export const API_FRIENDS_REQUEST = API + "friend-request/";
 
 /**authentication */

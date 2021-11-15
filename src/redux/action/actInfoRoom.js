@@ -7,6 +7,7 @@ import {
     API_GET_MEMBERS_IN_ROOM,
     API_INBOXS,
     API_OUT_ROOM,
+    API_ROOM,
     API_SET_MEMBER_BECOME_ADMIN,
 } from "../constants/api";
 import {
@@ -21,6 +22,7 @@ import {
     UPDATE_ROOM_IMAGE_OF_HEADER_CHAT,
     UPDATE_ROOM_IMAGE_OF_INBOXS,
     UPDATE_MEMBER_AUTHORITY,
+    UPDATE_MEMBERS_WHEN_DELETE_MEM,
 } from "../constants/constants";
 
 const createAction = (type, data = {}) => {
@@ -179,5 +181,19 @@ export const setMemberBecomeAdmin = (roomId, memberId) => {
             })
             .catch((err) => {
                 console.error(err);
+            });
+};
+
+export const deleteMember = (roomId, memberId) => {
+    return (dispatch) =>
+        axios
+            .delete(API_ROOM + `${roomId}/${memberId}`)
+            .then((resp) => {
+                dispatch(createAction(UPDATE_MEMBERS_WHEN_DELETE_MEM, resp.data));
+                return Promise.resolve();
+            })
+            .catch((err) => {
+                console.error(err);
+                return Promise.reject();
             });
 };

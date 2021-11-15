@@ -60,6 +60,11 @@ a {
   margin-top: 10rem;
 }
 
+.members-in-room-dialog {
+  max-width: none;
+  width: 70rem;
+}
+
 .header-img {
   padding: 0 !important;
   width: 4rem;

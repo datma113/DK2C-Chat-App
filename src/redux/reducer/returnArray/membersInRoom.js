@@ -1,6 +1,7 @@
 import {
     STORE_MEMBERS_IN_ROOM,
     UPDATE_BUTTON_WHEN_SENT_REQUEST,
+    UPDATE_MEMBERS_WHEN_DELETE_MEM,
     UPDATE_MEMBER_AUTHORITY,
 } from "../../constants/constants";
 
@@ -11,6 +12,7 @@ const reducer = (state = initial, action) => {
     switch (type) {
         case STORE_MEMBERS_IN_ROOM:
             return members;
+
         case UPDATE_MEMBER_AUTHORITY:
             let newStateAfterUpdateMemAuthor = [...state];
 
@@ -18,7 +20,9 @@ const reducer = (state = initial, action) => {
                 if (mem.user.id === data.memberId)
                     newStateAfterUpdateMemAuthor[index].isAdmin = true;
             });
+
             return newStateAfterUpdateMemAuthor;
+
         case UPDATE_BUTTON_WHEN_SENT_REQUEST:
             const newStateAfterReceivedRequest = [...state];
             newStateAfterReceivedRequest.forEach((mem, index) => {
@@ -26,6 +30,8 @@ const reducer = (state = initial, action) => {
             });
             return newStateAfterReceivedRequest;
 
+        case UPDATE_MEMBERS_WHEN_DELETE_MEM:
+            return data;
         default:
             break;
     }

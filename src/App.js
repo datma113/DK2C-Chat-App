@@ -33,6 +33,7 @@ function App() {
             {isLoading && <Loading />}
 
             <div className="App">
+                
                 {authentication.isLoggin && <Header />}
                 <ProfileModal userProfile={userProfile} />
                 <Switch>{mapRoutes}</Switch>

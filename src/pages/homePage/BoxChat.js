@@ -3,28 +3,33 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MessageChat from "../../components/MessageChat";
 import { getMessageInBoxChat } from "../../redux/action/actHome";
-import { RESET_STATUS_OF_SCROLL_BOTTOM_IN_BOX_CHAT } from "../../redux/constants/constants";
+import { SCROLL_BOTTOM_WHEN_SEND_MESSAGE } from "../../redux/constants/constants";
 const BoxChat = () => {
     const dispatch = useDispatch();
     const boxChat = useSelector((state) => state.boxChat);
     const currentInboxId = useSelector((state) => state.currentInboxId);
     const isScrollBottom = useSelector((state) => state.isScrollBottom);
+    const currentInbox = useSelector((state) => state.currentInbox);
+
     const [loadingOlderMessage, setloadingOlderMessage] = useState(0);
     const [isInitialize, setisInitialize] = useState(true);
     const [lenthOfTheFirstLoadingMessage, setlenthOfTheFirstLoadingMessage] = useState(0);
 
-    const currentInbox = useSelector((state) => state.currentInbox);
     useEffect(() => {
         const boxchatElement = document.getElementById("chatBoxContainer");
-        dispatch(getMessageInBoxChat(currentInboxId, 0));
+
+        dispatch(getMessageInBoxChat(currentInboxId, 0)).then(() => {
+            boxchatElement.scrollTop = boxchatElement.scrollHeight;
+        });
         //when change other inbox, it will reset loading value to 0
         setloadingOlderMessage(0);
         setisInitialize(true);
 
         dispatch({
-            type: RESET_STATUS_OF_SCROLL_BOTTOM_IN_BOX_CHAT,
+            type: SCROLL_BOTTOM_WHEN_SEND_MESSAGE,
             status: false,
         });
+
         boxchatElement.scrollTop = boxchatElement.scrollHeight;
     }, [dispatch, currentInboxId, isScrollBottom]);
 

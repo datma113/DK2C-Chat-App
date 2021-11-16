@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import TagOfOptionRoom from "../components/TagOfOptionRoom";
 import { getMembersInRoom, setMemberBecomeAdmin } from "../redux/action/actInfoRoom";

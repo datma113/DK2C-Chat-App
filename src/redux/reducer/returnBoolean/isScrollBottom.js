@@ -7,13 +7,13 @@ const initial = false;
 
 const reducer = (state = initial, action) => {
     let { type, status } = action;
-
-    if (type === SCROLL_BOTTOM_WHEN_SEND_MESSAGE) {
-        return status;
+    switch (type) {
+        case SCROLL_BOTTOM_WHEN_SEND_MESSAGE:
+            return status;
+       
+        default:
+            return state;
     }
-    
-    if (type === RESET_STATUS_OF_SCROLL_BOTTOM_IN_BOX_CHAT) return status;
-    return state;
 };
 
 export default reducer;

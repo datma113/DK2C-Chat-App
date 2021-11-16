@@ -18,8 +18,11 @@ const MessageChatByType = ({
     currentRoomId,
     videoSended = null,
     imageSended = null,
+   
 }) => {
-  
+    
+    
+
     const SENDER_ID = message.sender.id;
     const MY_ID = authentication.user.id;
     const IS_SELF_SIDE = SENDER_ID === MY_ID ? true : false;

@@ -109,7 +109,7 @@ export const createNewRoom = (room) => {
 export const deleteConvesation = (inboxId) => {
     return (dispatch) => {
         return axios
-            .delete(API_INBOXS + inboxId)
+            .delete(API_INBOXS + "/" + inboxId)
             .then(() => {
                 dispatch({
                     type: DELETE_CONVERSATION,

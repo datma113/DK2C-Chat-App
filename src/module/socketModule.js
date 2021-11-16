@@ -4,8 +4,11 @@ import Stomp from "stompjs";
 import {
     createAction,
     DELETE_AN_MESSAGE,
+    RESET_STATUS_OF_SCROLL_BOTTOM_IN_BOX_CHAT,
+    SCROLL_BOTTOM_WHEN_SEND_MESSAGE,
     UPDATE_BUTTON_WHEN_SENT_REQUEST,
     UPDATE_FRIENDS_REQUEST_AFTER_SENT_REQUEST,
+    UPDATE_FRIEND_AFTER_REQUEST,
     UPDATE_LAST_MESSAGE_IN_INBOX,
     UPDATE_MESSAGE_REALTIME,
     UPDATE_REACTION_REALTIME,
@@ -44,6 +47,11 @@ const socketModule = (function () {
                 dispatch({
                     type: UPDATE_MESSAGE_REALTIME,
                     realTimeMessage: MESSAGE,
+                });
+
+                dispatch({
+                    type: SCROLL_BOTTOM_WHEN_SEND_MESSAGE,
+                    status: true,
                 });
 
                 axios.get(API_GET_INBOX_BY_ID + data.roomId).then((resp) => {
@@ -105,13 +113,12 @@ const socketModule = (function () {
 
             stompClient.subscribe("/users/queue/friendRequest/recall", function (resp) {
                 const data = JSON.parse(resp.body);
-
-                console.log(data);
+                dispatch(createAction(UPDATE_USERS_AFTER_SENT_REQUEST, data));
+                createAction(UPDATE_FRIEND_AFTER_REQUEST, { id: data.to.id });
             });
 
             stompClient.subscribe("/users/queue/friendRequest/delete", function (resp) {
                 const data = JSON.parse(resp.body);
-
                 console.log(data);
             });
         };

@@ -1,13 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import socketModule from "../../module/socketModule";
 import SendImage from "./SendImage";
 import Picker from "emoji-picker-react";
 import shotcutEmojiMap from "../../module/emoji";
 import { allEmojiShotcut } from "../../module/emoji";
+import { useSelector } from "react-redux";
+import { getURLOfFileWhenSended } from "../../redux/action/actHome";
+import { useDispatch } from "react-redux";
+import { CLEAR_IMAGES_SENDING, createAction } from "../../redux/constants/constants";
 
 const SendMessage = ({ roomId }) => {
+    const imagesSending = useSelector((state) => state.imagesSending);
     const [messageToSend, setmessageToSend] = useState("");
     const [isShowEmojiExpress, setisShowEmojiExpress] = useState(false);
+    const ref = useRef(null);
+    const dispatch = useDispatch();
+
+    const imagesSendingMap = imagesSending.map((img, index) => {
+        return (
+            <div className="row" key={index}>
+                <img src={URL.createObjectURL(img)} className="header-img" alt="" />
+            </div>
+        );
+    });
 
     const onEmojiClick = (event, emojiObject) => {
         setmessageToSend(messageToSend + " " + emojiObject.emoji);
@@ -16,23 +31,37 @@ const SendMessage = ({ roomId }) => {
         if (messageToSend.length) {
             socketModule.sendMessageToOneFriend(roomId, messageToSend, "TEXT");
             setmessageToSend("");
-
         }
     };
+   
+    useEffect(() => {
+        ref.current.focus();    
+    }, [imagesSending])
 
     const handleEnterTextarea = (e) => {
         if (e.key === "Enter") {
+            if (imagesSending.length) {
+                const formData = new FormData();
+
+                imagesSending.forEach((file) => {
+                    formData.append("files", file);
+                });
+
+                getURLOfFileWhenSended(formData).then((urls) => {
+                    socketModule.sendFiles(roomId, urls, "MEDIA");
+                    dispatch(createAction(CLEAR_IMAGES_SENDING));
+                });
+            }
+
             if (!e.target.value) e.preventDefault();
-            else {
+
+            if (e.target.value) {
                 e.preventDefault();
                 socketModule.sendMessageToOneFriend(roomId, messageToSend, "TEXT");
                 setmessageToSend("");
                 setisShowEmojiExpress(false);
-               
-            
             }
         }
-
         if (e.key === "Escape") {
             setisShowEmojiExpress(false);
         }
@@ -50,6 +79,7 @@ const SendMessage = ({ roomId }) => {
         <div className="d-flex flex-column bg-light">
             <div className="send-message-container">
                 <textarea
+                    ref={ref}
                     className="send-message-container__ta"
                     autoFocus={true}
                     value={messageToSend}
@@ -80,9 +110,7 @@ const SendMessage = ({ roomId }) => {
                     ></i>
                 </div>
             </div>
-            <div className="imgs-sending">
-                image sending
-            </div>
+            <div className="imgs-sending">{imagesSendingMap}</div>
         </div>
     );
 };

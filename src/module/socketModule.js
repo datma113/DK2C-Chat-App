@@ -4,7 +4,6 @@ import Stomp from "stompjs";
 import {
     createAction,
     DELETE_AN_MESSAGE,
-    RESET_STATUS_OF_SCROLL_BOTTOM_IN_BOX_CHAT,
     SCROLL_BOTTOM_WHEN_SEND_MESSAGE,
     UPDATE_BUTTON_WHEN_SENT_REQUEST,
     UPDATE_FRIENDS_REQUEST_AFTER_SENT_REQUEST,
@@ -41,12 +40,13 @@ const socketModule = (function () {
         const onConnected = () => {
             stompClient.subscribe("/users/queue/messages", function (resp) {
                 const data = JSON.parse(resp.body);
-                const MESSAGE = [{ ...data, reactions: [] }];
+                const message = [{ ...data, reactions: [] }];
                 const TYPE_MESSAGE_SYSTEM = "SYSTEM";
+
 
                 dispatch({
                     type: UPDATE_MESSAGE_REALTIME,
-                    realTimeMessage: MESSAGE,
+                    realTimeMessage: message,
                 });
 
                 dispatch({
@@ -114,7 +114,10 @@ const socketModule = (function () {
             stompClient.subscribe("/users/queue/friendRequest/recall", function (resp) {
                 const data = JSON.parse(resp.body);
                 dispatch(createAction(UPDATE_USERS_AFTER_SENT_REQUEST, data));
-                createAction(UPDATE_FRIEND_AFTER_REQUEST, { id: data.to.id });
+                dispatch({
+                    type: UPDATE_FRIEND_AFTER_REQUEST,
+                    id: data.to.id,
+                });
             });
 
             stompClient.subscribe("/users/queue/friendRequest/delete", function (resp) {
@@ -131,12 +134,22 @@ const socketModule = (function () {
     }
 
     function sendMessageToOneFriend(roomId, content, type) {
-        const FRIEND = {
+        const friend = {
             content,
             roomId,
             type,
         };
-        stompClient.send("/app/chat", {}, JSON.stringify(FRIEND));
+        stompClient.send("/app/chat", {}, JSON.stringify(friend));
+    }
+
+    function sendFiles(roomId, media, type) {
+        const files = {
+            roomId,
+            media,
+            type,
+          
+        };
+        stompClient.send("/app/chat", {}, JSON.stringify(files));
     }
 
     function expressReaction(reaction) {
@@ -155,6 +168,9 @@ const socketModule = (function () {
         },
         expressReaction: function (reaction) {
             expressReaction(reaction);
+        },
+        sendFiles: function (roomId, media, type) {
+            sendFiles(roomId, media, type);
         },
     };
 })();

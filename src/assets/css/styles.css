@@ -70,7 +70,7 @@ a {
   width: 4rem;
   height: 4rem;
   border-radius: 100%;
-  box-shadow: 0 0 5px #262626, 0 3px #FBFBFB;
+  box-shadow: 0 0 5px #262626;
 }
 
 .introducing-text {
@@ -301,6 +301,11 @@ a {
 .mems-express-reaction-modal {
   height: 20rem;
   overflow-y: scroll;
+}
+
+.media__img {
+  border-radius: 7.5px;
+  box-shadow: 0 0 3px #262626;
 }
 
 /* responsive */

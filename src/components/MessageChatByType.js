@@ -2,27 +2,15 @@ import React from "react";
 import CurrentReactionExpressed from "./CurrentReactionExpressed";
 import DeleteMessage from "./DeleteMessage";
 import Reactions from "./Reactions";
-import VideoSended from "./VideoSended";
 import hahaIcon from "../assets/image/haha.png";
 import angryIcon from "../assets/image/angry.png";
 import sadIcon from "../assets/image/sad.png";
 import likeIcon from "../assets/image/like.png";
 import loveIcon from "../assets/image/love.png";
 import wowIcon from "../assets/image/wow.png";
+import AllMedia from "./AllMedia";
 
-const MessageChatByType = ({
-    message,
-    index,
-    originalBoxChat,
-    authentication,
-    currentRoomId,
-    videoSended = null,
-    imageSended = null,
-   
-}) => {
-    
-    
-
+const MessageChatByType = ({ message, index, originalBoxChat, authentication, currentRoomId }) => {
     const SENDER_ID = message.sender.id;
     const MY_ID = authentication.user.id;
     const IS_SELF_SIDE = SENDER_ID === MY_ID ? true : false;
@@ -48,8 +36,6 @@ const MessageChatByType = ({
         const REACTION_CLASS = "single-chat-box__message__reaction-container__reaction";
         return IS_SELF_SIDE ? REACTION_CLASS + "--self" : REACTION_CLASS + "--other";
     };
-
-  
 
     const addSelfSideReactionList = () => {
         const REACTION_CLASS = "single-chat-box__message__reaction-container__reaction-list";
@@ -113,8 +99,10 @@ const MessageChatByType = ({
     };
 
     const renderMessageContent = () => {
-        if (videoSended) return <VideoSended src={videoSended} />;
-        if (imageSended) return <img src={imageSended} className="w-100" alt="" />;
+        if (message.type === "MEDIA") {
+            return <AllMedia messageMedia={message.media}/>;
+        }
+
         return <p>{message.content}</p>;
     };
 
@@ -126,7 +114,6 @@ const MessageChatByType = ({
                     alt=""
                     className={hideImageWhenDupplicateSender(SENDER_ID)}
                 />
-             
             </div>
 
             <div className={`single-chat-box__message ${addSelfBackgroundClassForMessage()} mt-3`}>

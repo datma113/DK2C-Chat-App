@@ -60,15 +60,16 @@ const BoxChat = () => {
         backgroundSize: "cover",
     };
     return (
-        <div
-            className="single-chat-box-container"
-            id="chatBoxContainer"
-            style={stylesImageBackground}
-            onScroll={(e) => loadOlderMessageInBoxChat(e)}
-            onMouseEnter={() => setFalseInitialWhenMouseEnter()}
-        >
-            <MessageChat boxChat={boxChat} />
-        </div>
+            <div
+                className="single-chat-box-container"
+                id="chatBoxContainer"
+                style={stylesImageBackground}
+                onScroll={(e) => loadOlderMessageInBoxChat(e)}
+                onMouseEnter={() => setFalseInitialWhenMouseEnter()}
+            >
+                <MessageChat boxChat={boxChat} />
+            </div>
+       
     );
 };
 

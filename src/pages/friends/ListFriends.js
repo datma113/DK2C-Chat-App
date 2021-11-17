@@ -6,12 +6,13 @@ import { RESET_CURRENT_INBOX_ID, RESET_CURRENT_ROOM_ID } from "../../redux/const
 import Friend from "./Friend";
 
 const ListFriends = () => {
+    const dispatch = useDispatch();
+
     const friendsList = useSelector((state) => state.friendsList);
     const friendProfile = useSelector((state) => state.friendProfile);
 
     const [indexOfFriendsOption, setindexOfFriendsOption] = useState(-1);
 
-    const dispatch = useDispatch();
 
     const gotoChatboxByFriendId = (friendId) => {
         dispatch(getInboxByFriendId(friendId));

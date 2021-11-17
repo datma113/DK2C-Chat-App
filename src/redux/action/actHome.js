@@ -65,7 +65,10 @@ export const getInboxsFromServer = () => {
             .then((resp) => {
                 dispatch(storeInboxs(resp.data.content));
             })
-            .catch(() => dispatch(storeInboxs([])));
+            .catch((err) => {
+                console.error(err);
+                dispatch(storeInboxs([]));
+            });
     };
 };
 
@@ -119,6 +122,7 @@ export const getURLOfFileWhenSended = (files) => {
             "Content-Type": "multipart/form-data",
         },
     };
+
     return axios
         .post(API_GET_FILE_URL_WHEN_SENDED, files, CONFIG_HEADER_MULTIPART_FORM_DATA)
         .then((resp) => {

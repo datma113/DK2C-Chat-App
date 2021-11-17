@@ -1,22 +1,13 @@
 import React from "react";
-//import socketModule from "../../module/socketModule";
-import { getURLOfFileWhenSended } from "../../redux/action/actHome";
+import { useDispatch } from "react-redux";
+import { createAction, STORE_IMAGES_SENDING } from "../../redux/constants/constants";
 
-const SendImage = ({roomId}) => {
+const SendImage = () => {
+    const dispatch = useDispatch()
     const handleSendImageEvent = (e) => {
-        const IMAGES = e.target.files;
-        const formData = new FormData();
+        const images = e.target.files;
 
-        IMAGES.forEach((file) => {
-            formData.append("files", file);
-        });
-
-        getURLOfFileWhenSended(formData).then((fileUrls) => {
-            // const TYPE_OF_MESSAGE = 'FILE'
-            // const REGEX_TYPE_IMAGE = /\.(gif|jpe?g|jpg|tiff?|png|webp|bmp)$/
-            
-            //socketModule.sendMessageToOneFriend(roomId, fileUrls, )
-        });
+        dispatch(createAction(STORE_IMAGES_SENDING, images))
     };
 
     return (

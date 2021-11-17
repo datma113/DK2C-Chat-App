@@ -11,7 +11,6 @@ const InboxList = () => {
     const currentInboxId = useSelector((state) => state.currentInboxId);
     const [loadingOlderInboxs, setloadingOlderInboxs] = useState(1);
     const authentication = useSelector((state) => state.authentication);
-    
     const loadingOlderFriendsInboxs = () => {
         setloadingOlderInboxs((n) => n + 1);
         dispatch(getOlderInboxsFromServer(loadingOlderInboxs));

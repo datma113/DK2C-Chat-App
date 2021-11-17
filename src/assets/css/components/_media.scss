@@ -3,6 +3,11 @@
      &__img {
           border-radius: 7.5px;
           box-shadow: 0 0 3px $mainDarkColor;
+          transition: 0.1s;
+          &:hover {
+          box-shadow: 0 0 10px black;
+
+          }
      }
 
 }

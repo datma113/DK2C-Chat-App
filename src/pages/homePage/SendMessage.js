@@ -43,6 +43,8 @@ const SendMessage = ({ roomId }) => {
 
     const isVideo = (type) => type.includes(typeOfMedia.video);
 
+    const isWordFile = (name) => name.includes(typeOfMedia.word[0] || typeOfMedia.word[1]);
+
     const renderVideo = (url) => {
         return (
             <>
@@ -65,19 +67,25 @@ const SendMessage = ({ roomId }) => {
         );
     };
 
+    const filterMediaToRender = (media, status) => {
+        switch (status) {
+            case IMAGE_FILE:
+                return mediaModule.renderImage(media);
+            case VIDEO_FILE:
+                return renderVideo(media);
+            case WORD_FILE:
+                return mediaModule.renderWordFile();
+            default:
+                return "";
+        }
+    };
+
     const renderMedia = (media, index) => {
         let renderContent;
+
         return (fileStatus) => {
-            switch (fileStatus) {
-                case IMAGE_FILE:
-                    renderContent = mediaModule.renderImage(media);
-                    break;
-                case VIDEO_FILE:
-                    renderContent = renderVideo(media);
-                    break;
-                default:
-                    break;
-            }
+            renderContent = filterMediaToRender(media, fileStatus);
+
             return (
                 <div className="imgs-sending__imgs col-2" key={index}>
                     {renderContent}
@@ -101,6 +109,8 @@ const SendMessage = ({ roomId }) => {
         if (isImage(img.type)) return renderMediaBy(IMAGE_FILE);
 
         if (isVideo(img.type)) return renderMediaBy(VIDEO_FILE);
+
+        if (isWordFile(img.name)) return renderMediaBy(WORD_FILE);
 
         return "";
     });

@@ -1,8 +1,7 @@
 import ModalImage from "react-modal-image";
-
+import wordIcon from '../assets/image/wordIcon.svg'
 const mediaModule = (function () {
     const renderImage = (url) => {
-       console.log(url);
         return (
 
             <ModalImage
@@ -15,16 +14,16 @@ const mediaModule = (function () {
         );
     };
 
-    const renderFile = (url) => {
-       
+    const renderWordFile = () => {
+          return <img alt="" className="imgs-sending__imgs__media" src={wordIcon} />  
     };
 
     return {
         renderImage: function (url) {
             return renderImage(url);
         },
-        renderFile: function (url) {
-            return renderFile(url);
+        renderWordFile: function () {
+            return renderWordFile();
         },
     };
 })();

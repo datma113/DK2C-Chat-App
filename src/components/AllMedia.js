@@ -32,6 +32,9 @@ const AllMedia = ({ messageMedia = [] }) => {
                             src={media.url}
                             onClick={() => setisOpen(true)}
                             style={{ cursor: `pointer` }}
+                            autoPlay
+                            loop
+                            muted
                         ></video>
                         <ModalVideo
                             channel="custom"

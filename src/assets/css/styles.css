@@ -710,7 +710,7 @@ a {
   position: relative;
   margin-top: 1rem;
 }
-.imgs-sending__imgs__img {
+.imgs-sending__imgs__media {
   margin: 0.75rem 0;
   border-radius: 7.5px;
   box-shadow: 4px 4px 4px #262626;
@@ -719,7 +719,7 @@ a {
   cursor: pointer;
   transition: 0.1s;
 }
-.imgs-sending__imgs__img:hover {
+.imgs-sending__imgs__media:hover {
   box-shadow: 4px 4px 4px #262626, -2px -2px 3px #262626;
 }
 .imgs-sending__imgs__remove {

@@ -12,35 +12,97 @@ import {
     createAction,
     REMOVE_AN_IMAGES_SENDING_BY_INDEX,
 } from "../../redux/constants/constants";
-import ModalImage from "react-modal-image";
+import mediaModule from "../../module/mediaModule";
+import ModalVideo from "react-modal-video";
+import "react-modal-video/scss/modal-video.scss";
 
 const SendMessage = ({ roomId }) => {
-    const imagesSending = useSelector((state) => state.imagesSending);
+    const allMediaSending = useSelector((state) => state.allMediaSending);
     const [messageToSend, setmessageToSend] = useState("");
     const [isShowEmojiExpress, setisShowEmojiExpress] = useState(false);
     const ref = useRef(null);
     const dispatch = useDispatch();
+    const [isOpen, setisOpen] = useState(false);
+    const typeOfMedia = {
+        video: "video",
+        image: "image",
+        word: ["doc", "docx"],
+        pdf: ".pdf",
+        rar: ".rar",
+        exe: ".exe",
+    };
 
-    const imagesSendingMap = imagesSending.map((img, index) => {
+    const IMAGE_FILE = 1;
+    const VIDEO_FILE = 2;
+    const WORD_FILE = 3;
+    const PDF_FILE = 4;
+    const RAR_FILE = 5;
+    const EXE_FILE = 6;
+
+    const isImage = (type) => type.includes(typeOfMedia.image);
+
+    const isVideo = (type) => type.includes(typeOfMedia.video);
+
+    const renderVideo = (url) => {
         return (
-            <div className="imgs-sending__imgs col-2" key={index}>
-                <ModalImage
-                    className="imgs-sending__imgs__img"
-                    small={URL.createObjectURL(img)}
-                    large={URL.createObjectURL(img)}
-                    showRotate={true}
-                    alt=""
+            <>
+                <ModalVideo
+                    channel="custom"
+                    url={url}
+                    isOpen={isOpen}
+                    onClose={() => setisOpen(false)}
+                    allowFullScreen
                 />
-                <div
-                    className="imgs-sending__imgs__remove center"
-                    onClick={() => {
-                        dispatch(createAction(REMOVE_AN_IMAGES_SENDING_BY_INDEX, index));
-                    }}
-                >
-                    x
-                </div>
-            </div>
+                <video
+                    src={url}
+                    className="imgs-sending__imgs__media"
+                    autoPlay
+                    muted
+                    loop
+                    onClick={() => setisOpen(true)}
+                ></video>
+            </>
         );
+    };
+
+    const renderMedia = (media, index) => {
+        let renderContent;
+        return (fileStatus) => {
+            switch (fileStatus) {
+                case IMAGE_FILE:
+                    renderContent = mediaModule.renderImage(media);
+                    break;
+                case VIDEO_FILE:
+                    renderContent = renderVideo(media);
+                    break;
+                default:
+                    break;
+            }
+            return (
+                <div className="imgs-sending__imgs col-2" key={index}>
+                    {renderContent}
+                    <div
+                        className="imgs-sending__imgs__remove center"
+                        onClick={() => {
+                            dispatch(createAction(REMOVE_AN_IMAGES_SENDING_BY_INDEX, index));
+                        }}
+                    >
+                        x
+                    </div>
+                </div>
+            );
+        };
+    };
+
+    const allMediaSendingMap = allMediaSending.map((img, index) => {
+        const url = URL.createObjectURL(img);
+
+        const renderMediaBy = renderMedia(url, index);
+        if (isImage(img.type)) return renderMediaBy(IMAGE_FILE);
+
+        if (isVideo(img.type)) return renderMediaBy(VIDEO_FILE);
+
+        return "";
     });
 
     const onEmojiClick = (event, emojiObject) => {
@@ -55,14 +117,14 @@ const SendMessage = ({ roomId }) => {
 
     useEffect(() => {
         ref.current.focus();
-    }, [imagesSending]);
+    }, [allMediaSending]);
 
     const handleEnterTextarea = (e) => {
         if (e.key === "Enter") {
-            if (imagesSending.length) {
+            if (allMediaSending.length) {
                 const formData = new FormData();
 
-                imagesSending.forEach((file) => {
+                allMediaSending.forEach((file) => {
                     formData.append("files", file);
                 });
 
@@ -129,7 +191,9 @@ const SendMessage = ({ roomId }) => {
                     ></i>
                 </div>
             </div>
-            {imagesSending.length > 0 && <div className="imgs-sending row">{imagesSendingMap}</div>}
+            {allMediaSending.length > 0 && (
+                <div className="imgs-sending row">{allMediaSendingMap}</div>
+            )}
         </div>
     );
 };

@@ -29,6 +29,7 @@ const SendMessage = ({ roomId }) => {
         word: ["doc", "docx"],
         pdf: ".pdf",
         rar: ".rar",
+        txt: ".txt",
         exe: ".exe",
     };
 
@@ -45,7 +46,9 @@ const SendMessage = ({ roomId }) => {
 
     const isWordFile = (name) => name.includes(typeOfMedia.word[0] || typeOfMedia.word[1]);
 
-    const isPDFFile = name => name.includes(typeOfMedia.pdf)
+    const isPDFFile = (name) => name.includes(typeOfMedia.pdf);
+
+    const isExeFile = (name) => name.includes(typeOfMedia.exe)
 
     const renderVideo = (url) => {
         return (
@@ -79,6 +82,8 @@ const SendMessage = ({ roomId }) => {
                 return mediaModule.renderWordFile();
             case PDF_FILE:
                 return mediaModule.renderPDFFile();
+            case EXE_FILE:
+                return mediaModule.renderExeFile();
             default:
                 return "";
         }
@@ -106,17 +111,21 @@ const SendMessage = ({ roomId }) => {
         };
     };
 
-    const allMediaSendingMap = allMediaSending.map((img, index) => {
-        const url = URL.createObjectURL(img);
-
+    const allMediaSendingMap = allMediaSending.map((media, index) => {
+        const url = URL.createObjectURL(media);
+        console.log(media.name);
         const renderMediaBy = renderMedia(url, index);
-        if (isImage(img.type)) return renderMediaBy(IMAGE_FILE);
+        if (isImage(media.type)) return renderMediaBy(IMAGE_FILE);
 
-        if (isVideo(img.type)) return renderMediaBy(VIDEO_FILE);
+        if (isVideo(media.type)) return renderMediaBy(VIDEO_FILE);
 
-        if (isWordFile(img.name)) return renderMediaBy(WORD_FILE);
+        if (isWordFile(media.name)) return renderMediaBy(WORD_FILE);
 
-        if(isPDFFile(img.name)) return renderMediaBy(PDF_FILE);
+        if (isPDFFile(media.name)) return renderMediaBy(PDF_FILE);
+
+        if (isExeFile(media.name)) return renderMediaBy(EXE_FILE);
+
+        
 
         return "";
     });

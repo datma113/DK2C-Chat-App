@@ -45,6 +45,8 @@ const SendMessage = ({ roomId }) => {
 
     const isWordFile = (name) => name.includes(typeOfMedia.word[0] || typeOfMedia.word[1]);
 
+    const isPDFFile = name => name.includes(typeOfMedia.pdf)
+
     const renderVideo = (url) => {
         return (
             <>
@@ -75,6 +77,8 @@ const SendMessage = ({ roomId }) => {
                 return renderVideo(media);
             case WORD_FILE:
                 return mediaModule.renderWordFile();
+            case PDF_FILE:
+                return mediaModule.renderPDFFile();
             default:
                 return "";
         }
@@ -111,6 +115,8 @@ const SendMessage = ({ roomId }) => {
         if (isVideo(img.type)) return renderMediaBy(VIDEO_FILE);
 
         if (isWordFile(img.name)) return renderMediaBy(WORD_FILE);
+
+        if(isPDFFile(img.name)) return renderMediaBy(PDF_FILE);
 
         return "";
     });

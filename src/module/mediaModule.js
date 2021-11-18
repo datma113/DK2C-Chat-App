@@ -3,6 +3,7 @@ import wordIcon from "../assets/image/wordIcon.svg";
 import pdfIcon from "../assets/image/pdfIcon.png";
 import exeIcon from "../assets/image/exeIcon.jfif";
 import rarIcon from "../assets/image/rarIcon.png";
+import txtIcon from "../assets/image/txtIcon.png";
 
 const mediaModule = (function () {
     const renderImage = (url) => {
@@ -23,6 +24,7 @@ const mediaModule = (function () {
     const renderPDFFile = () => <img alt="" className="imgs-sending__imgs__media" src={pdfIcon} />;
     const renderExeFile = () => <img alt="" className="imgs-sending__imgs__media" src={exeIcon} />;
     const renderRarFile = () => <img alt="" className="imgs-sending__imgs__media" src={rarIcon} />;
+    const renderTxtFile = () => <img alt="" className="imgs-sending__imgs__media" src={txtIcon} />;
 
     return {
         renderImage: function (url) {
@@ -39,6 +41,9 @@ const mediaModule = (function () {
         },
         renderRarFile: function () {
             return renderRarFile();
+        },
+        renderTxtFile: function () {
+            return renderTxtFile();
         },
     };
 })();

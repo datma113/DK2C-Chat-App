@@ -18,7 +18,7 @@ const SendImage = () => {
                 type="file"
                 id="sendingFile"
                 name="image"
-                accept="image/gif,image/jpeg,image/jpg,image/png"
+                accept="*"
                 multiple
                 data-original-title="upload photos"
                 onChange={(e) => handleSendImageEvent(e)}

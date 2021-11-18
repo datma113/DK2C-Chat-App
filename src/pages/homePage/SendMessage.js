@@ -39,6 +39,7 @@ const SendMessage = ({ roomId }) => {
     const PDF_FILE = 4;
     const RAR_FILE = 5;
     const EXE_FILE = 6;
+    const TXT_FILE = 7;
 
     const isImage = (type) => type.includes(typeOfMedia.image);
 
@@ -51,6 +52,8 @@ const SendMessage = ({ roomId }) => {
     const isExeFile = (name) => name.includes(typeOfMedia.exe);
 
     const isRarFile = (name) => name.includes(typeOfMedia.rar);
+
+    const isTxtFile = (name) => name.includes(typeOfMedia.txt);
 
     const renderVideo = (url) => {
         return (
@@ -88,6 +91,8 @@ const SendMessage = ({ roomId }) => {
                 return mediaModule.renderRarFile();
             case EXE_FILE:
                 return mediaModule.renderExeFile();
+            case TXT_FILE:
+                return mediaModule.renderTxtFile();
             default:
                 return "";
         }
@@ -118,7 +123,7 @@ const SendMessage = ({ roomId }) => {
     const allMediaSendingMap = allMediaSending.map((media, index) => {
         const url = URL.createObjectURL(media);
         const renderMediaBy = renderMedia(url, index);
-        
+
         if (isImage(media.type)) return renderMediaBy(IMAGE_FILE);
 
         if (isVideo(media.type)) return renderMediaBy(VIDEO_FILE);
@@ -126,11 +131,12 @@ const SendMessage = ({ roomId }) => {
         if (isWordFile(media.name)) return renderMediaBy(WORD_FILE);
 
         if (isPDFFile(media.name)) return renderMediaBy(PDF_FILE);
-        
+
         if (isRarFile(media.name)) return renderMediaBy(RAR_FILE);
 
         if (isExeFile(media.name)) return renderMediaBy(EXE_FILE);
 
+        if (isTxtFile(media.name)) return renderMediaBy(TXT_FILE);
 
         return "";
     });

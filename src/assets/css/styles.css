@@ -309,7 +309,7 @@ a {
   transition: 0.1s;
 }
 .media__img:hover {
-  box-shadow: 0 0 10px black;
+  box-shadow: 0 0 1x black;
 }
 
 /* responsive */
@@ -696,6 +696,51 @@ a {
   position: absolute;
   bottom: 6rem;
   right: 0;
+}
+
+.imgs-sending {
+  display: flex;
+  width: 75%;
+  max-height: 20rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border-top: thin solid #262626;
+}
+.imgs-sending__imgs {
+  position: relative;
+  margin-top: 1rem;
+}
+.imgs-sending__imgs__img {
+  margin: 0.75rem 0;
+  border-radius: 7.5px;
+  box-shadow: 4px 4px 4px #262626;
+  width: 8rem;
+  height: 8rem;
+  cursor: pointer;
+  transition: 0.1s;
+}
+.imgs-sending__imgs__img:hover {
+  box-shadow: 4px 4px 4px #262626, -2px -2px 3px #262626;
+}
+.imgs-sending__imgs__remove {
+  position: absolute;
+  user-select: none;
+  border-radius: 100%;
+  height: 2rem;
+  width: 2rem;
+  background-color: white;
+  box-shadow: 0 0 3px #262626;
+  font-size: 1.5rem;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  transform: scale(1);
+  transition: 0.2s;
+}
+.imgs-sending__imgs__remove:hover {
+  background-color: #F93154;
+  color: #FBFBFB;
+  transform: scale(1.4);
 }
 
 .friendhome {

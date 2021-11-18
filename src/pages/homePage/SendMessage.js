@@ -7,7 +7,12 @@ import { allEmojiShotcut } from "../../module/emoji";
 import { useSelector } from "react-redux";
 import { getURLOfFileWhenSended } from "../../redux/action/actHome";
 import { useDispatch } from "react-redux";
-import { CLEAR_IMAGES_SENDING, createAction } from "../../redux/constants/constants";
+import {
+    CLEAR_IMAGES_SENDING,
+    createAction,
+    REMOVE_AN_IMAGES_SENDING_BY_INDEX,
+} from "../../redux/constants/constants";
+import ModalImage from "react-modal-image";
 
 const SendMessage = ({ roomId }) => {
     const imagesSending = useSelector((state) => state.imagesSending);
@@ -18,8 +23,22 @@ const SendMessage = ({ roomId }) => {
 
     const imagesSendingMap = imagesSending.map((img, index) => {
         return (
-            <div className="row" key={index}>
-                <img src={URL.createObjectURL(img)} className="header-img" alt="" />
+            <div className="imgs-sending__imgs col-2" key={index}>
+                <ModalImage
+                    className="imgs-sending__imgs__img"
+                    small={URL.createObjectURL(img)}
+                    large={URL.createObjectURL(img)}
+                    showRotate={true}
+                    alt=""
+                />
+                <div
+                    className="imgs-sending__imgs__remove center"
+                    onClick={() => {
+                        dispatch(createAction(REMOVE_AN_IMAGES_SENDING_BY_INDEX, index));
+                    }}
+                >
+                    x
+                </div>
             </div>
         );
     });
@@ -33,10 +52,10 @@ const SendMessage = ({ roomId }) => {
             setmessageToSend("");
         }
     };
-   
+
     useEffect(() => {
-        ref.current.focus();    
-    }, [imagesSending])
+        ref.current.focus();
+    }, [imagesSending]);
 
     const handleEnterTextarea = (e) => {
         if (e.key === "Enter") {
@@ -110,7 +129,7 @@ const SendMessage = ({ roomId }) => {
                     ></i>
                 </div>
             </div>
-            <div className="imgs-sending">{imagesSendingMap}</div>
+            {imagesSending.length > 0 && <div className="imgs-sending row">{imagesSendingMap}</div>}
         </div>
     );
 };

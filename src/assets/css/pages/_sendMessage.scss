@@ -31,3 +31,52 @@
         }
     }
 }
+
+.imgs-sending {
+    display: flex;
+    width: 75%;
+    max-height: 20rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border-top: thin solid $mainDarkColor;
+
+    &__imgs {
+        position: relative;
+        margin-top: 1rem;
+
+        &__img {
+            margin: 0.75rem 0;
+            border-radius: 7.5px;
+            box-shadow: 4px 4px 4px $mainDarkColor;
+            width: 8rem;
+            height: 8rem;
+            cursor: pointer;
+            transition: 0.1s;
+            &:hover {
+                box-shadow: 4px 4px 4px $mainDarkColor, -2px -2px 3px $mainDarkColor;
+            }
+        }
+
+        &__remove {
+            position: absolute;
+            user-select: none;
+            border-radius: 100%;
+            height: 2rem;
+            width: 2rem;
+            background-color: white;
+            box-shadow: 0 0 3px $mainDarkColor;
+            font-size: 1.5rem;
+            top: 0;
+            right: 0;
+            cursor: pointer;
+            transform: scale(1);
+            transition: 0.2s;
+
+            &:hover {
+                background-color: $failedColor;
+                color: $mainLightColor;
+                transform: scale(1.4);
+            }
+        }
+    }
+}

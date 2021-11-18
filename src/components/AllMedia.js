@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ModalImage from "react-modal-image";
 import ModalVideo from "react-modal-video";
 import "react-modal-video/scss/modal-video.scss";
@@ -6,7 +6,23 @@ import "react-modal-video/scss/modal-video.scss";
 const AllMedia = ({ messageMedia = [] }) => {
     const lengthOfMedia = messageMedia.length;
     const divisibleBy = (dividend) => (divisor) => dividend % divisor === 0 ? true : false;
-    const [isOpen, setisOpen] = useState(false);
+    const [openVideo, setopenVideo] = useState([]);
+
+    useEffect(() => {
+        setopenVideo(new Array(messageMedia.length).fill(false));
+    }, [messageMedia]);
+
+    const openVideoHandle = (index) => {
+        let openVideoClone = [...openVideo];
+        openVideoClone[index] = true;
+        setopenVideo(openVideoClone);
+    };
+
+    const closeVideoHandle = (index) => {
+        let openVideoClone = [...openVideo];
+        openVideoClone[index] = false;
+        setopenVideo(openVideoClone);
+    };
 
     const renderDenpendOnCol = (col, media, index) => {
         const MEDIA_TYPE_VIDEO = "VIDEO";
@@ -29,8 +45,11 @@ const AllMedia = ({ messageMedia = [] }) => {
                 return (
                     <div className={`col-${col} mt-2`} key={index}>
                         <video
+                            className="media__img w-100"
                             src={media.url}
-                            onClick={() => setisOpen(true)}
+                            onClick={() => {
+                                openVideoHandle(index);
+                            }}
                             style={{ cursor: `pointer` }}
                             autoPlay
                             loop
@@ -38,8 +57,8 @@ const AllMedia = ({ messageMedia = [] }) => {
                         ></video>
                         <ModalVideo
                             channel="custom"
-                            isOpen={isOpen}
-                            onClose={() => setisOpen(false)}
+                            isOpen={openVideo[index]}
+                            onClose={() => closeVideoHandle(index)}
                             url={media.url}
                             allowFullScreen
                         />

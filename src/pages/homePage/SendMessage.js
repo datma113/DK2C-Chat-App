@@ -42,17 +42,11 @@ const SendMessage = ({ roomId }) => {
     const TXT_FILE = 7;
 
     const isImage = (type) => type.includes(typeOfMedia.image);
-
     const isVideo = (type) => type.includes(typeOfMedia.video);
-
     const isWordFile = (name) => name.includes(typeOfMedia.word[0] || typeOfMedia.word[1]);
-
     const isPDFFile = (name) => name.includes(typeOfMedia.pdf);
-
     const isExeFile = (name) => name.includes(typeOfMedia.exe);
-
     const isRarFile = (name) => name.includes(typeOfMedia.rar);
-
     const isTxtFile = (name) => name.includes(typeOfMedia.txt);
 
     const renderVideo = (url) => {

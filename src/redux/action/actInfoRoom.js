@@ -155,7 +155,8 @@ export const changeImageGroup = (inboxDto, file) => {
         axios
             .post(API_CHANGE_IMAGE_GROUP + inboxDto.roomId, file, CONFIG_HEADER_MULTIPART_FORM_DATA)
             .then((resp) => {
-                const imgUrl = resp.data[0];
+                const imgUrl = resp.data.url;
+               
                 dispatch({
                     type: UPDATE_ROOM_IMAGE_OF_HEADER_CHAT,
                     imgUrl,

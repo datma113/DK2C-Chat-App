@@ -33,7 +33,7 @@ const AllMedia = ({ messageMedia = [] }) => {
                 return (
                     <div className={`col-${col} mt-2`} key={index}>
                         <ModalImage
-                            className="media__img w-100"
+                            className="media__img w-100 h-100"
                             small={media.url}
                             large={media.url}
                             showRotate={true}

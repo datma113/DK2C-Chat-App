@@ -312,6 +312,31 @@ a {
   box-shadow: 0 0 1x black;
 }
 
+.media-message {
+  padding: 1rem 0;
+  border-bottom: thin solid #dddddd;
+}
+.media-message__img {
+  padding: 1rem;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 7.5px;
+  box-shadow: 2px 3px 5px #262626;
+}
+.media-message__file-name {
+  word-wrap: break-word;
+  color: red;
+}
+.media-message__download {
+  cursor: pointer;
+  text-shadow: 1px 2px 2px #FBFBFB;
+  transform: scale(1);
+  transition: 0.1s;
+}
+.media-message__download:hover {
+  transform: scale(1.4);
+}
+
 /* responsive */
 @media only screen and (min-width: 992px) {
   .introducing-text {

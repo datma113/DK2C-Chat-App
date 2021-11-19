@@ -4,6 +4,7 @@ import pdfIcon from "../assets/image/pdfIcon.png";
 import exeIcon from "../assets/image/exeIcon.jfif";
 import rarIcon from "../assets/image/rarIcon.png";
 import txtIcon from "../assets/image/txtIcon.png";
+import fileIcon from "../assets/image/fileIcon.jpg";
 
 const mediaModule = (function () {
     const renderImage = (url) => {
@@ -25,7 +26,9 @@ const mediaModule = (function () {
     const renderExeFile = () => <img alt="" className="imgs-sending__imgs__media" src={exeIcon} />;
     const renderRarFile = () => <img alt="" className="imgs-sending__imgs__media" src={rarIcon} />;
     const renderTxtFile = () => <img alt="" className="imgs-sending__imgs__media" src={txtIcon} />;
-
+    const renderUndefinedFile = () => (
+        <img alt="" className="imgs-sending__imgs__media" src={fileIcon} />
+    );
     return {
         renderImage: function (url) {
             return renderImage(url);
@@ -44,6 +47,9 @@ const mediaModule = (function () {
         },
         renderTxtFile: function () {
             return renderTxtFile();
+        },
+        renderUndefinedFile: function () {
+            return renderUndefinedFile();
         },
     };
 })();

@@ -88,7 +88,7 @@ const SendMessage = ({ roomId }) => {
             case TXT_FILE:
                 return mediaModule.renderTxtFile();
             default:
-                return "";
+                return mediaModule.renderUndefinedFile();
         }
     };
 
@@ -132,7 +132,7 @@ const SendMessage = ({ roomId }) => {
 
         if (isTxtFile(media.name)) return renderMediaBy(TXT_FILE);
 
-        return "";
+        return renderMediaBy();
     });
 
     const onEmojiClick = (event, emojiObject) => {

@@ -2,6 +2,13 @@ import React, { useEffect, useState } from "react";
 import ModalImage from "react-modal-image";
 import ModalVideo from "react-modal-video";
 import "react-modal-video/scss/modal-video.scss";
+import FileMessage from "./FileMessage";
+import wordIcon from "../assets/image/wordIcon.svg";
+import pdfIcon from "../assets/image/pdfIcon.png";
+import exeIcon from "../assets/image/exeIcon.jfif";
+import rarIcon from "../assets/image/rarIcon.png";
+import txtIcon from "../assets/image/txtIcon.png";
+import fileIcon from "../assets/image/fileIcon.jpg";
 
 const AllMedia = ({ messageMedia = [] }) => {
     const lengthOfMedia = messageMedia.length;
@@ -22,6 +29,30 @@ const AllMedia = ({ messageMedia = [] }) => {
         let openVideoClone = [...openVideo];
         openVideoClone[index] = false;
         setopenVideo(openVideoClone);
+    };
+
+    const typeOfMedia = {
+        word: ["doc", "docx"],
+        pdf: ".pdf",
+        rar: ".rar",
+        txt: ".txt",
+        exe: ".exe",
+    };
+
+    const isWordFile = (name) => name.includes(typeOfMedia.word[0] || typeOfMedia.word[1]);
+    const isPDFFile = (name) => name.includes(typeOfMedia.pdf);
+    const isExeFile = (name) => name.includes(typeOfMedia.exe);
+    const isRarFile = (name) => name.includes(typeOfMedia.rar);
+    const isTxtFile = (name) => name.includes(typeOfMedia.txt);
+
+    const renderMediaMessage = (fileName, urlFile, index) => {
+        return (iconUrl) => {
+            return (
+                <div key={index} style={{ width: `45rem` }}>
+                    <FileMessage iconUrl={iconUrl} fileName={fileName} urlFile={urlFile} />
+                </div>
+            );
+        };
     };
 
     const renderDenpendOnCol = (col, media, index) => {
@@ -65,7 +96,24 @@ const AllMedia = ({ messageMedia = [] }) => {
                     </div>
                 );
             default:
-                return <p key={index}> file </p>;
+                const nameFile = media.name;
+                const { url } = media;
+                const iconClasses = {
+                    word: wordIcon,
+                    pdf: pdfIcon,
+                    txt: txtIcon,
+                    file: fileIcon,
+                    rar: rarIcon,
+                    exe: exeIcon,
+                };
+                const renderMediaMessageWith = renderMediaMessage(nameFile, url, index);
+
+                if (isWordFile(nameFile)) return renderMediaMessageWith(iconClasses.word);
+                if (isPDFFile(nameFile)) return renderMediaMessageWith(iconClasses.pdf);
+                if (isRarFile(nameFile)) return renderMediaMessageWith(iconClasses.rar);
+                if (isExeFile(nameFile)) return renderMediaMessageWith(iconClasses.exe);
+                if (isTxtFile(nameFile)) return renderMediaMessageWith(iconClasses.txt);
+                return renderMediaMessageWith(iconClasses.file);
         }
     };
 

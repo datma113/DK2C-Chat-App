@@ -1,6 +1,6 @@
 import React from "react";
 import DeleteFriend from "../../modal/DeleteFriend";
-import FriendProfile from "../../modal/FriendProfile";
+import ViewFriendProfile from "../../modal/ViewFriendProfile";
 
 const Friend = ({
     friend,
@@ -41,8 +41,8 @@ const Friend = ({
                     >
                         Nhắn tin
                     </div>
-                    <FriendProfile
-                        profile={profile}
+                    <ViewFriendProfile
+                        friendProfile={profile}
                         onMouseLeave={mouseLeave}
                         viewProfile={viewProfile}
                         id={FRIEND_ID}

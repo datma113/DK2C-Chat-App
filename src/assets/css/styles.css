@@ -612,8 +612,7 @@ a {
   left: -3rem;
 }
 .single-chat-box__message__delete--other {
-  top: 20%;
-  right: -3rem;
+  display: none !important;
 }
 .single-chat-box__message__delete:hover .single-chat-box__message__delete__options {
   transform: scaleY(1);
@@ -1142,6 +1141,29 @@ a {
   height: 10rem;
   border-radius: 100%;
   box-shadow: 0 0 5px #FBFBFB;
+}
+
+.friend-profile {
+  display: flex;
+  flex-direction: column;
+}
+.friend-profile__header-img {
+  position: relative;
+  margin-bottom: 2rem;
+}
+.friend-profile__header-img__big-img {
+  width: 100%;
+  height: 15rem;
+}
+.friend-profile__header-img__small-img {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 100%;
+  position: absolute;
+  box-shadow: 0 0 5px black;
+  left: 50%;
+  bottom: -4rem;
+  transform: translate(-50%, 0);
 }
 
 /*variables*/

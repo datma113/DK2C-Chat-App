@@ -68,6 +68,7 @@ const ListFriends = () => {
                     handleClickToOption(e, ID, index);
                 }}
                 isShowFriendsOption={isShowfriendsOption(index)}
+               
                 viewProfile={(e) => {
                     viewProfile(e, ID);
                 }}

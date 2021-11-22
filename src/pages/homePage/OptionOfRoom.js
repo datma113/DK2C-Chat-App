@@ -18,6 +18,7 @@ const OptionOfRoom = ({ roomId }) => {
     const membersInRoom = useSelector((state) => state.membersInRoom);
     const authentication = useSelector((state) => state.authentication);
     const currentRoomId = useSelector((state) => state.currentRoomId);
+    const friendProfile = useSelector(state => state.friendProfile)
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getFriendsListFromServer());
@@ -63,7 +64,10 @@ const OptionOfRoom = ({ roomId }) => {
             {currentInbox.type === TYPE_ROOM_ONE && (
                 <div>
                     <CreateRoom />
-                    <ViewPersonalPage />
+                            
+                    <ViewPersonalPage currentInbox={currentInbox}
+                    friendProfile={friendProfile}
+                    />
                     <DeleteConversation currentInboxId={currentInboxId} />
                     <BlockUser currentInbox={currentInbox} />
                     <ReportUser />

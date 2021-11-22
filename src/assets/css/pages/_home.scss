@@ -227,8 +227,7 @@
             }
 
             &--other {
-                top: 20%;
-                right: -3rem;
+                display: none !important;
             }
             &:hover &__options {
                 transform: scaleY(1);

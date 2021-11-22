@@ -1,7 +1,7 @@
 import React from "react";
+import FriendProfile from "../components/FriendProfile";
 
-const FriendProfile = ({ viewProfile, id, profile, onMouseLeave }) => {
-    
+const ViewFriendProfile = ({ viewProfile, id, friendProfile, onMouseLeave }) => {
     return (
         <>
             <div
@@ -36,7 +36,7 @@ const FriendProfile = ({ viewProfile, id, profile, onMouseLeave }) => {
                             ></button>
                         </div>
                         <div className="modal-body">
-                            <p> {profile?.user?.displayName ?? ""} </p>
+                            <FriendProfile  friendProfile={friendProfile}  />
                         </div>
                         <div className="modal-footer">
                             <button
@@ -61,4 +61,4 @@ const FriendProfile = ({ viewProfile, id, profile, onMouseLeave }) => {
     );
 };
 
-export default FriendProfile;
+export default ViewFriendProfile;

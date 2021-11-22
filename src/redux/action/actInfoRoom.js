@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
     API_ADD_NEW_MEMBERS,
+    API_BLOCK,
     API_CHANGE_IMAGE_GROUP,
     API_CREATE_NEW_ROOM,
     API_EDIT_ROOM_NAME,
@@ -198,3 +199,20 @@ export const deleteMember = (roomId, memberId) => {
                 return Promise.reject();
             });
 };
+
+
+export const blockUser = (userId) => {
+    return axios.post(API_BLOCK + `/${userId}`)
+    .then((resp) => {
+        return Promise.resolve();
+    })
+    .catch(err => {
+        const MESSAGE =
+        (err.response && err.response.data && err.response.data.message) ||
+        err.message ||
+        err.toString();
+
+        console.error(`err: `,MESSAGE);
+        return Promise.reject();
+    })
+}

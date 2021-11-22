@@ -17,6 +17,7 @@ const OptionOfRoom = ({ roomId }) => {
     const currentInboxId = useSelector((state) => state.currentInboxId);
     const membersInRoom = useSelector((state) => state.membersInRoom);
     const authentication = useSelector((state) => state.authentication);
+    const currentRoomId = useSelector((state) => state.currentRoomId);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getFriendsListFromServer());
@@ -39,7 +40,12 @@ const OptionOfRoom = ({ roomId }) => {
                         currentInbox={currentInbox}
                         authentication={authentication}
                     />
-                    <AddNewMembers friendsList={friendsList} />
+                    <AddNewMembers
+                        friendsList={friendsList}
+                        membersInRoom={membersInRoom}
+                        authentication={authentication}
+                        currentRoomId={currentRoomId}
+                    />
                     {isShowSetAdminTag() && (
                         <SetAdmin
                             membersInRoom={membersInRoom}
@@ -49,7 +55,7 @@ const OptionOfRoom = ({ roomId }) => {
                         />
                     )}
 
-                    <DeleteConversation />
+                    <DeleteConversation currentInboxId={currentInboxId} />
                     <OutRoom inboxId={currentInboxId} roomId={roomId} />
                 </div>
             )}
@@ -57,9 +63,9 @@ const OptionOfRoom = ({ roomId }) => {
             {currentInbox.type === TYPE_ROOM_ONE && (
                 <div>
                     <CreateRoom />
-                    <DeleteConversation />
                     <ViewPersonalPage />
-                    <BlockUser />
+                    <DeleteConversation currentInboxId={currentInboxId} />
+                    <BlockUser currentInbox={currentInbox} />
                     <ReportUser />
                 </div>
             )}

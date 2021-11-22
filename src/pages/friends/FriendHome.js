@@ -25,6 +25,7 @@ const FriendHome = () => {
     const currentInboxId = useSelector((state) => state.currentInboxId);
     const currentRoomId = useSelector((state) => state.currentRoomId);
     const authentication = useSelector((state) => state.authentication);
+    const currentInbox = useSelector((state) => state.currentInbox);
 
     let [index, setindex] = useState(-2);
 
@@ -40,7 +41,7 @@ const FriendHome = () => {
         dispatch(getFriendsListFromServer());
         dispatch(getFriendsRequestFromServer());
         dispatch(getGroupsChatList());
-    }, [dispatch]);
+    }, [dispatch, authentication]);
 
     const changeOptions = (option) => {
         setindex(option);
@@ -93,13 +94,16 @@ const FriendHome = () => {
                         <>
                             <div className="box-chat-container">
                                 <HeaderOfBoxChat />
-                                <BoxChat />
+                                <BoxChat
+                                    currentInboxId={currentInboxId}
+                                    authentication={authentication}
+                                />
                                 <SendMessage roomId={currentRoomId} />
                             </div>
                             <div className="info-room-right">
                                 <HeaderOfInfoRoom />
                                 <div className="info-room-right__scroll">
-                                    <InfoOfRoom />
+                                    <InfoOfRoom currentInbox={currentInbox} />
                                     <OptionOfRoom roomId={currentRoomId} />
                                 </div>
                             </div>

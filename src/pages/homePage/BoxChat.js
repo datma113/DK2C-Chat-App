@@ -4,10 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import MessageChat from "../../components/MessageChat";
 import { getMessageInBoxChat } from "../../redux/action/actHome";
 import { SCROLL_BOTTOM_WHEN_SEND_MESSAGE } from "../../redux/constants/constants";
-const BoxChat = () => {
+const BoxChat = ({ currentInboxId, authentication }) => {
     const dispatch = useDispatch();
     const boxChat = useSelector((state) => state.boxChat);
-    const currentInboxId = useSelector((state) => state.currentInboxId);
     const isScrollBottom = useSelector((state) => state.isScrollBottom);
     const currentInbox = useSelector((state) => state.currentInbox);
 
@@ -60,16 +59,19 @@ const BoxChat = () => {
         backgroundSize: "cover",
     };
     return (
-            <div
-                className="single-chat-box-container"
-                id="chatBoxContainer"
-                style={stylesImageBackground}
-                onScroll={(e) => loadOlderMessageInBoxChat(e)}
-                onMouseEnter={() => setFalseInitialWhenMouseEnter()}
-            >
-                <MessageChat boxChat={boxChat} />
-            </div>
-       
+        <div
+            className="single-chat-box-container"
+            id="chatBoxContainer"
+            style={stylesImageBackground}
+            onScroll={(e) => loadOlderMessageInBoxChat(e)}
+            onMouseEnter={() => setFalseInitialWhenMouseEnter()}
+        >
+            <MessageChat
+                boxChat={boxChat}
+                authentication={authentication}
+                currentRoomId={currentInboxId}
+            />
+        </div>
     );
 };
 

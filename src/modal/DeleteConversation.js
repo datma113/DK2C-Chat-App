@@ -1,13 +1,11 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 import TagOfOptionRoom from "../components/TagOfOptionRoom";
 import { deleteConvesation } from "../redux/action/actInfoRoom";
 import MyCustomModal from "./MyCustomModal";
 
-const DeleteConversation = () => {
-    const currentInboxId = useSelector(state => state.currentInboxId)
-    const dispatch = useDispatch()
+const DeleteConversation = ({ currentInboxId }) => {
+    const dispatch = useDispatch();
     const renderDeleteConversation = () => {
         return (
             <div className="center flex-column text-danger p-5">
@@ -18,8 +16,8 @@ const DeleteConversation = () => {
     };
 
     const deleteConversationHandle = () => {
-        dispatch(deleteConvesation(currentInboxId))
-    }
+        dispatch(deleteConvesation(currentInboxId));
+    };
 
     return (
         <>

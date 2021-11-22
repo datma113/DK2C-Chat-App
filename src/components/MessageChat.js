@@ -1,11 +1,8 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import MessageChatByType from "./MessageChatByType";
 import SystemMessageInChat from "./SystemMessageInChat";
 
-const MessageChat = ({ boxChat }) => {
-    const authentication = useSelector((state) => state.authentication);
-    const currentRoomId = useSelector((state) => state.currentRoomId);
+const MessageChat = ({ boxChat, currentRoomId, authentication }) => {
     const TYPE_SYSTEM = "SYSTEM";
    
     const boxChatMap = boxChat.map((message, index, originalBoxChat) => {

@@ -1,9 +1,7 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import EditRoomName from "../modal/EditRoomName";
 
-const InfoOfRoom = () => {
-    const currentInbox = useSelector((state) => state.currentInbox);
+const InfoOfRoom = ({ currentInbox = {} }) => {
     const limidDisplayName = (string) => {
         if (string) return string.length > 15 ? string.slice(0, 15) + "..." : string;
         return "";

@@ -22,6 +22,7 @@ const Inbox = ({
     senderId,
     inbox
 }) => {
+    
     const dispatch = useDispatch();
     const limitStringToShow = (string) => {
         if (string) {

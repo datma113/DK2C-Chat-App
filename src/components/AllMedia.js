@@ -17,6 +17,7 @@ const AllMedia = ({ messageMedia = [] }) => {
 
     useEffect(() => {
         setopenVideo(new Array(messageMedia.length).fill(false));
+        
     }, [messageMedia]);
 
     const openVideoHandle = (index) => {

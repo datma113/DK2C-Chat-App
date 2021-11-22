@@ -91,7 +91,13 @@ export const getMessageInBoxChat = (inboxId, page = 0) => {
                     });
                 else dispatch(storeMessageInBoxChat(resp.data.content));
             })
-            .catch(() => dispatch(storeMessageInBoxChat([])));
+            .catch(() => {  
+                dispatch({
+                    type: INITIALIZE_MESSAGE_IN_BOX_CHAT,
+                    message: [],
+                });
+            
+            });
     };
 };
 

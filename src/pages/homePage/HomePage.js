@@ -15,6 +15,7 @@ const Home = () => {
     const authentication = useSelector((state) => state.authentication);
     const currentInboxId = useSelector((state) => state.currentInboxId);
     const currentRoomId = useSelector((state) => state.currentRoomId);
+    const currentInbox = useSelector((state) => state.currentInbox);
     const [isLoading, setisLoading] = useState(true);
     const [classShowBoxchat, setclassShowBoxchat] = useState("");
     const [classShowInboxs, setclassShowInboxs] = useState("");
@@ -64,19 +65,26 @@ const Home = () => {
 
             {authentication.isLoggin && (
                 <div className={`home`}>
-                    <InboxSideBar responsiveClass={classShowInboxs} />
+                    <InboxSideBar
+                        responsiveClass={classShowInboxs}
+                        currentInboxId={currentInboxId}
+                        authentication={authentication}
+                    />
 
                     {currentInboxId ? (
                         <>
                             <div className={`box-chat-container ${classShowBoxchat}`}>
                                 <HeaderOfBoxChat />
-                                <BoxChat />
+                                <BoxChat
+                                    currentInboxId={currentInboxId}
+                                    authentication={authentication}
+                                />
                                 <SendMessage roomId={currentRoomId} />
                             </div>
                             <div className="info-room-right">
                                 <HeaderOfInfoRoom />
                                 <div className="info-room-right__scroll">
-                                    <InfoOfRoom />
+                                    <InfoOfRoom currentInbox={currentInbox} />
                                     <OptionOfRoom roomId={currentRoomId} />
                                 </div>
                             </div>

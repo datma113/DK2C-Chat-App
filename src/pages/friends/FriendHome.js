@@ -97,6 +97,7 @@ const FriendHome = () => {
                                 <BoxChat
                                     currentInboxId={currentInboxId}
                                     authentication={authentication}
+                                    currentRoomId={currentRoomId}
                                 />
                                 <SendMessage roomId={currentRoomId} />
                             </div>

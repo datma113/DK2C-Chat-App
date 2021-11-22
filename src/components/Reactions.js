@@ -17,6 +17,7 @@ const Reactions = ({ messageId, myId, roomId }) => {
     ];
 
     const expressReaction = (e, type) => {
+        console.log(roomId);
         const REACTION = {
             roomId,
             messageId,

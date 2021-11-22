@@ -89,7 +89,7 @@ const InboxList = ({ authentication, currentInboxId }) => {
                 className="home__inbox-list__older-inboxs center mb-5"
                 onClick={() => loadingOlderFriendsInboxs()}
             >
-                <p> xem thêm</p>
+                {inboxs.length > 15 && <p> xem thêm</p>}
             </div>
         </div>
     );

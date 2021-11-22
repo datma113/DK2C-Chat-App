@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import MessageChat from "../../components/MessageChat";
 import { getMessageInBoxChat } from "../../redux/action/actHome";
 import { SCROLL_BOTTOM_WHEN_SEND_MESSAGE } from "../../redux/constants/constants";
-const BoxChat = ({ currentInboxId, authentication }) => {
+const BoxChat = ({ currentRoomId, currentInboxId, authentication }) => {
     const dispatch = useDispatch();
     const boxChat = useSelector((state) => state.boxChat);
     const isScrollBottom = useSelector((state) => state.isScrollBottom);
@@ -69,7 +69,7 @@ const BoxChat = ({ currentInboxId, authentication }) => {
             <MessageChat
                 boxChat={boxChat}
                 authentication={authentication}
-                currentRoomId={currentInboxId}
+                currentRoomId={currentRoomId}
             />
         </div>
     );

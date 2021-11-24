@@ -117,20 +117,17 @@ const SendMessage = ({ roomId }) => {
     const allMediaSendingMap = allMediaSending.map((media, index) => {
         const url = URL.createObjectURL(media);
         const renderMediaBy = renderMedia(url, index);
+        const mediaType = media.type;
+        const mediaName = media.name;
 
-        if (isImage(media.type)) return renderMediaBy(IMAGE_FILE);
+        if (isImage(mediaType)) return renderMediaBy(IMAGE_FILE);
+        if (isVideo(mediaType)) return renderMediaBy(VIDEO_FILE);
 
-        if (isVideo(media.type)) return renderMediaBy(VIDEO_FILE);
-
-        if (isWordFile(media.name)) return renderMediaBy(WORD_FILE);
-
-        if (isPDFFile(media.name)) return renderMediaBy(PDF_FILE);
-
-        if (isRarFile(media.name)) return renderMediaBy(RAR_FILE);
-
-        if (isExeFile(media.name)) return renderMediaBy(EXE_FILE);
-
-        if (isTxtFile(media.name)) return renderMediaBy(TXT_FILE);
+        if (isWordFile(mediaName)) return renderMediaBy(WORD_FILE);
+        if (isPDFFile(mediaName)) return renderMediaBy(PDF_FILE);
+        if (isRarFile(mediaName)) return renderMediaBy(RAR_FILE);
+        if (isExeFile(mediaName)) return renderMediaBy(EXE_FILE);
+        if (isTxtFile(mediaName)) return renderMediaBy(TXT_FILE);
 
         return renderMediaBy();
     });
@@ -138,30 +135,40 @@ const SendMessage = ({ roomId }) => {
     const onEmojiClick = (event, emojiObject) => {
         setmessageToSend(messageToSend + " " + emojiObject.emoji);
     };
+
+    useEffect(() => {
+        ref.current.focus();
+    }, [allMediaSending]);
+
+    const sendingImagesWithSocket = (files) => {
+        dispatch(createAction(CLEAR_IMAGES_SENDING));
+
+        const formData = new FormData();
+
+        files.forEach((file) => {
+            formData.append("files", file);
+        });
+
+        getURLOfFileWhenSended(formData).then((urls) => {
+            socketModule.sendFiles(roomId, urls, "MEDIA");
+        });
+    };
+
     const sendMessageToFriend = () => {
+        if (allMediaSending.length) {
+            sendingImagesWithSocket(allMediaSending);
+        }
+
         if (messageToSend.length) {
             socketModule.sendMessageToOneFriend(roomId, messageToSend, "TEXT");
             setmessageToSend("");
         }
     };
 
-    useEffect(() => {
-        ref.current.focus();
-    }, [allMediaSending]);
-
     const handleEnterTextarea = (e) => {
         if (e.key === "Enter") {
             if (allMediaSending.length) {
-                const formData = new FormData();
-
-                allMediaSending.forEach((file) => {
-                    formData.append("files", file);
-                });
-
-                getURLOfFileWhenSended(formData).then((urls) => {
-                    socketModule.sendFiles(roomId, urls, "MEDIA");
-                    dispatch(createAction(CLEAR_IMAGES_SENDING));
-                });
+                sendingImagesWithSocket(allMediaSending);
             }
 
             if (!e.target.value) e.preventDefault();

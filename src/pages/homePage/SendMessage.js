@@ -41,6 +41,7 @@ const SendMessage = ({ roomId }) => {
     const EXE_FILE = 6;
     const TXT_FILE = 7;
 
+
     const isImage = (type) => type.includes(typeOfMedia.image);
     const isVideo = (type) => type.includes(typeOfMedia.video);
     const isWordFile = (name) => name.includes(typeOfMedia.word[0] || typeOfMedia.word[1]);
@@ -114,21 +115,34 @@ const SendMessage = ({ roomId }) => {
         };
     };
 
+   
+    
+    const pairProcesscor = [
+        [({ type }) => isImage(type), IMAGE_FILE],
+        [({ type }) => isVideo(type), VIDEO_FILE],
+        [({ name }) => isPDFFile(name), PDF_FILE],
+        [({ name }) => isRarFile(name), RAR_FILE],
+        [({ name }) => isExeFile(name), EXE_FILE],
+        [({ name }) => isTxtFile(name), TXT_FILE],
+        [({ name }) => isWordFile(name), WORD_FILE],
+    ];
+
+
     const allMediaSendingMap = allMediaSending.map((media, index) => {
         const url = URL.createObjectURL(media);
         const renderMediaBy = renderMedia(url, index);
-        const mediaType = media.type;
-        const mediaName = media.name;
+        
+        const mediaType = {
+            type: media.type,
+            name: media.name,
+        };
 
-        if (isImage(mediaType)) return renderMediaBy(IMAGE_FILE);
-        if (isVideo(mediaType)) return renderMediaBy(VIDEO_FILE);
-
-        if (isWordFile(mediaName)) return renderMediaBy(WORD_FILE);
-        if (isPDFFile(mediaName)) return renderMediaBy(PDF_FILE);
-        if (isRarFile(mediaName)) return renderMediaBy(RAR_FILE);
-        if (isExeFile(mediaName)) return renderMediaBy(EXE_FILE);
-        if (isTxtFile(mediaName)) return renderMediaBy(TXT_FILE);
-
+        for (const [callbackFn, file] of pairProcesscor) {
+            if (callbackFn(mediaType)) {
+                return renderMediaBy(file);
+            }
+        }
+        
         return renderMediaBy();
     });
 

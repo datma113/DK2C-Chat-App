@@ -24,6 +24,7 @@ import {
     UPDATE_ROOM_IMAGE_OF_INBOXS,
     UPDATE_MEMBER_AUTHORITY,
     UPDATE_MEMBERS_WHEN_DELETE_MEM,
+    UPDATE_MEMBER_AFTER_RECALL_ROLE,
 } from "../constants/constants";
 
 const createAction = (type, data = {}) => {
@@ -157,7 +158,7 @@ export const changeImageGroup = (inboxDto, file) => {
             .post(API_CHANGE_IMAGE_GROUP + inboxDto.roomId, file, CONFIG_HEADER_MULTIPART_FORM_DATA)
             .then((resp) => {
                 const imgUrl = resp.data.url;
-               
+
                 dispatch({
                     type: UPDATE_ROOM_IMAGE_OF_HEADER_CHAT,
                     imgUrl,
@@ -186,6 +187,18 @@ export const setMemberBecomeAdmin = (roomId, memberId) => {
             });
 };
 
+export const recallMemberAdminRole = (roomId, memberId) => {
+    return (dispatch) =>
+        axios
+            .delete(API_SET_MEMBER_BECOME_ADMIN + `/${roomId}/${memberId}`)
+            .then((resp) => {
+                dispatch(createAction(UPDATE_MEMBER_AFTER_RECALL_ROLE, { memberId: memberId }));
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+};
+
 export const deleteMember = (roomId, memberId) => {
     return (dispatch) =>
         axios
@@ -200,19 +213,19 @@ export const deleteMember = (roomId, memberId) => {
             });
 };
 
-
 export const blockUser = (userId) => {
-    return axios.post(API_BLOCK + `/${userId}`)
-    .then((resp) => {
-        return Promise.resolve();
-    })
-    .catch(err => {
-        const MESSAGE =
-        (err.response && err.response.data && err.response.data.message) ||
-        err.message ||
-        err.toString();
+    return axios
+        .post(API_BLOCK + `/${userId}`)
+        .then((resp) => {
+            return Promise.resolve();
+        })
+        .catch((err) => {
+            const MESSAGE =
+                (err.response && err.response.data && err.response.data.message) ||
+                err.message ||
+                err.toString();
 
-        console.error(`err: `,MESSAGE);
-        return Promise.reject();
-    })
-}
+            console.error(`err: `, MESSAGE);
+            return Promise.reject();
+        });
+};

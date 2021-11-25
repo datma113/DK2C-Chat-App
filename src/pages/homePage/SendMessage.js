@@ -118,13 +118,13 @@ const SendMessage = ({ roomId }) => {
    
     
     const pairProcesscor = [
-        [({ type }) => isImage(type), IMAGE_FILE],
-        [({ type }) => isVideo(type), VIDEO_FILE],
-        [({ name }) => isPDFFile(name), PDF_FILE],
-        [({ name }) => isRarFile(name), RAR_FILE],
-        [({ name }) => isExeFile(name), EXE_FILE],
-        [({ name }) => isTxtFile(name), TXT_FILE],
-        [({ name }) => isWordFile(name), WORD_FILE],
+        [({ type } = {}) => isImage(type), IMAGE_FILE],
+        [({ type } = {}) => isVideo(type), VIDEO_FILE],
+        [({ name } = {}) => isPDFFile(name), PDF_FILE],
+        [({ name } = {}) => isRarFile(name), RAR_FILE],
+        [({ name } = {}) => isExeFile(name), EXE_FILE],
+        [({ name } = {}) => isTxtFile(name), TXT_FILE],
+        [({ name } = {}) => isWordFile(name), WORD_FILE],
     ];
 
 
@@ -137,8 +137,8 @@ const SendMessage = ({ roomId }) => {
             name: media.name,
         };
 
-        for (const [callbackFn, file] of pairProcesscor) {
-            if (callbackFn(mediaType)) {
+        for (const [filterMediaType, file] of pairProcesscor) {
+            if (filterMediaType(mediaType)) {
                 return renderMediaBy(file);
             }
         }

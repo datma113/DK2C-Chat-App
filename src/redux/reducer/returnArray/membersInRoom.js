@@ -3,6 +3,7 @@ import {
     UPDATE_BUTTON_WHEN_SENT_REQUEST,
     UPDATE_MEMBERS_WHEN_DELETE_MEM,
     UPDATE_MEMBER_AUTHORITY,
+    UPDATE_MEMBER_AFTER_RECALL_ROLE,
 } from "../../constants/constants";
 
 const initial = [];
@@ -22,7 +23,14 @@ const reducer = (state = initial, action) => {
             });
 
             return newStateAfterUpdateMemAuthor;
+        case UPDATE_MEMBER_AFTER_RECALL_ROLE:
+            let newStateAfterRecallRole = [...state];
 
+            newStateAfterRecallRole.forEach((mem, index) => {
+                if (mem.user.id === data.memberId) newStateAfterRecallRole[index].isAdmin = false;
+            });
+
+            return newStateAfterRecallRole;
         case UPDATE_BUTTON_WHEN_SENT_REQUEST:
             const newStateAfterReceivedRequest = [...state];
             newStateAfterReceivedRequest.forEach((mem, index) => {

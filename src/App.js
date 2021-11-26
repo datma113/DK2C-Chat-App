@@ -9,7 +9,6 @@ import { getTokenWhenRefreshPage } from "./redux/action/actLogin";
 import Loading from "./components/Loading";
 import ProfileModal from "./pages/profile/ProfileModal";
 
-
 function App() {
     const mapRoutes = routes.map((route, index) => {
         return (

@@ -99,7 +99,7 @@ const MessageChatByType = ({ message, index, originalBoxChat, authentication, cu
     };
 
     const renderMessageContent = () => {
-        if (message.type === "MEDIA") {
+        if (message.type === "MEDIA" && message.media.length > 0) {
             return <AllMedia messageMedia={message.media} />;
         }
 

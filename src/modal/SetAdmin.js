@@ -100,7 +100,6 @@ const SetAdmin = ({ roomId, membersInRoom, authentication }) => {
                 inner={renderSetAdmin()}
                 headerTitle="Thiết lập thành quản trị viên"
                 id="setAdminModal"
-                //   functionWhenClick={() => )}
             />
         </>
     );

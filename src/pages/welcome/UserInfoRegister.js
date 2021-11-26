@@ -5,8 +5,14 @@ import MyCustomButton from "../../components/MyCustomButton";
 import TextInput from "../../components/TextInput";
 import regexInputModule from "../../module/regexInputModule";
 import { storeUserInfoWhenRegister } from "../../redux/action/actRegister";
-const UserInfoRegister = ({ registerFields, userRegister, isEntitledGotoNextStep }) => {
+const UserInfoRegister = ({ registerFields = [], userRegister = {}, isEntitledGotoNextStep }) => {
     const message = useSelector((state) => state.message);
+ 
+    const isEnableNextBtn = () => {
+        if (userRegister.displayName && userRegister.password && userRegister.phoneNumber) return "";
+        return "disabled";
+    };
+
     const registerMap = registerFields.map((field, index) => {
         let checkRegex = function () {};
         let initialValue = null;
@@ -47,7 +53,7 @@ const UserInfoRegister = ({ registerFields, userRegister, isEntitledGotoNextStep
             <ErrorHandle message={message.message} />
             <MyCustomButton
                 label="Tiếp tục"
-                typeButton="secondary"
+                typeButton={`secondary ${isEnableNextBtn()}`}
                 isEntitledGotoNextStep={isEntitledGotoNextStep}
             />
             <MyCustomButton

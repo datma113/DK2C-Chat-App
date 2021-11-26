@@ -80,11 +80,6 @@ const Header = () => {
                         </li>
 
                         <li>
-                            <p className="dropdown-item text-small" href="#">
-                                Cài đặt
-                            </p>
-                        </li>
-                        <li>
                             <hr className="dropdown-divider" />
                         </li>
                         <li type="button" onClick={() => logoutHandle()}>

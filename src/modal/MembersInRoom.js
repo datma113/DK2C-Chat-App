@@ -4,6 +4,7 @@ import MyCustomModal from "./MyCustomModal";
 import { deleteMember, getMembersInRoom } from "../redux/action/actInfoRoom";
 import { useDispatch } from "react-redux";
 import { addFriend } from "../redux/action/actFriends";
+import Swal from "sweetalert2";
 
 const MembersInRoom = ({ roomId, membersInRoom, currentInbox, authentication }) => {
     const dispatch = useDispatch();
@@ -68,73 +69,30 @@ const MembersInRoom = ({ roomId, membersInRoom, currentInbox, authentication }) 
         if (IS_ADMIN) return "";
 
         return (
-            <>
-                <button
-                    type="button"
-                    className="btn btn-danger"
-                    data-mdb-toggle="modal"
-                    data-mdb-target={`#deleteMember${member.user.id}`}
-                >
-                    xóa thành viên
-                </button>
-
-                <div
-                    className="modal fade bg-dark"
-                    id={`deleteMember${member.user.id}`}
-                    tabIndex="1"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true"
-                >
-                    <div className="modal-dialog" style={{ marginTop: `25rem` }}>
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">
-                                    Xóa thành viên
-                                </h5>
-                                <button
-                                    type="button"
-                                    className="btn-close"
-                                    onClick={() =>
-                                        window.$(`#deleteMember${member.user.id}`).modal("hide")
-                                    }
-                                    aria-label="Close"
-                                ></button>
-                            </div>
-                            <div className="modal-body text-center">
-                                Bạn có muốn xóa:{" "}
-                                <p className="text-danger">{member.user.displayName}</p> ra khỏi
-                                nhóm không?
-                            </div>
-                            <div className="modal-footer">
-                                <button
-                                    type="button"
-                                    className="btn btn-outline-secondary"
-                                    onClick={() =>
-                                        window.$(`#deleteMember${member.user.id}`).modal("hide")
-                                    }
-                                >
-                                    hủy
-                                </button>
-                                <button
-                                    type="button"
-                                    className="btn btn-primary"
-                                    onClick={() => {
-                                        deleteMemberHandle(member.user.id);
-                                    }}
-                                >
-                                    xác nhận
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </>
+            <button
+                type="button"
+                className="btn btn-danger"
+                onClick={() => {
+                    Swal.fire({
+                        title: "Xóa thành viên",
+                        text: ` Bạn có muốn xóa ${member.user.displayName} ra khỏi nhóm?`,
+                        icon: "error",
+                        showCancelButton: true,
+                        confirmButtonColor: "#F93154",
+                        cancelButtonColor: "#262626",
+                        cancelButtonText: "trở lại",
+                        confirmButtonText: "Xác nhận",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            dispatch(deleteMember(roomId, MEMBER_ID));
+                        }
+                    });
+                }}
+            >
+                {" "}
+                xóa thành viên
+            </button>
         );
-    };
-
-    const deleteMemberHandle = (memberId) => {
-        dispatch(deleteMember(roomId, memberId))
-        window.$(`#deleteMember${memberId}`).modal("hide");
     };
 
     const membersInRoomMap = membersInRoom.map((member, index) => {

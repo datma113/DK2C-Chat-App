@@ -23,12 +23,8 @@ const VerifyEmail = ({ gotoPreviousStepOfRegister, isEntitledGotoNextStep }) => 
             <TextInput
                 label="Email của bạn"
                 id={0}
-                type="text"
-                regexPattern={
-                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                }
+                type="email"
                 keyStoreToReducer="email"
-                checkRegex={regexInputModule.checkRegexOfUserEmail}
                 functionToDispatch={storeUserInfoWhenRegister}
                 initialValue={userRegister.email}
             />

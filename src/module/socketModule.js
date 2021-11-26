@@ -105,7 +105,12 @@ const socketModule = (function () {
                 dispatch(createAction(UPDATE_BUTTON_WHEN_SENT_REQUEST, data));
             });
 
-         
+            stompClient.subscribe("/users/queue/friendRequest/accept", function (resp) {
+                const data = JSON.parse(resp.body);
+
+                console.log(data);
+            });
+
             stompClient.subscribe("/users/queue/friendRequest/recall", function (resp) {
                 const data = JSON.parse(resp.body);
                 dispatch(createAction(UPDATE_USERS_AFTER_SENT_REQUEST, data));
@@ -114,7 +119,11 @@ const socketModule = (function () {
                     id: data.to.id,
                 });
             });
-             
+
+            stompClient.subscribe("/users/queue/friendRequest/delete", function (resp) {
+                const data = JSON.parse(resp.body);
+                console.log(data);
+            });
         };
 
         stompClient.connect(user, onConnected);

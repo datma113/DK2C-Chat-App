@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
     API_ADD_NEW_MEMBERS,
+    API_ALL_MEDIA,
     API_BLOCK,
     API_CHANGE_IMAGE_GROUP,
     API_CREATE_NEW_ROOM,
@@ -228,4 +229,15 @@ export const blockUser = (userId) => {
             console.error(`err: `, MESSAGE);
             return Promise.reject();
         });
+};
+
+export const getAllMediaByType = (roomId, type, page = 0) => {
+    const api = `${API_ALL_MEDIA}/${roomId}?type=${type}&size=5&page=${page}`;
+    return axios
+        .get(api)
+        .then((resp) => {
+            console.log(resp.data.content);
+            return Promise.resolve(resp.data.content.media || []);
+        })
+        .catch((err) => Promise.resolve());
 };

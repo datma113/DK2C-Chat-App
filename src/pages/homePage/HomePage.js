@@ -10,6 +10,7 @@ import InfoOfRoom from "../../components/InfoOfRoom";
 import OptionOfRoom from "./OptionOfRoom";
 import Loading from "../../components/Loading";
 import InboxSideBar from "./InboxSideBar";
+import MediaStore from "../../components/MediaStore";
 
 const Home = () => {
     const authentication = useSelector((state) => state.authentication);
@@ -87,6 +88,7 @@ const Home = () => {
                                 <div className="info-room-right__scroll">
                                     <InfoOfRoom currentInbox={currentInbox} />
                                     <OptionOfRoom roomId={currentRoomId} />
+                                    <MediaStore  roomId={currentRoomId}/>
                                 </div>
                             </div>
                         </>

@@ -63,8 +63,7 @@ const OptionOfRoom = ({ roomId }) => {
 
             {currentInbox.type === TYPE_ROOM_ONE && (
                 <div>
-                    <CreateRoom />
-                            
+                    <CreateRoom />               
                     <ViewPersonalPage currentInbox={currentInbox}
                     friendProfile={friendProfile}
                     />

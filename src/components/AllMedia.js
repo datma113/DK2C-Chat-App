@@ -17,7 +17,6 @@ const AllMedia = ({ messageMedia = [] }) => {
 
     useEffect(() => {
         setopenVideo(new Array(messageMedia.length).fill(false));
-        
     }, [messageMedia]);
 
     const openVideoHandle = (index) => {
@@ -46,6 +45,14 @@ const AllMedia = ({ messageMedia = [] }) => {
     const isRarFile = (name) => name.includes(typeOfMedia.rar);
     const isTxtFile = (name) => name.includes(typeOfMedia.txt);
 
+    const pairProcessor = [
+        [(name) => isWordFile(name), wordIcon],
+        [(name) => isPDFFile(name), pdfIcon],
+        [(name) => isExeFile(name), exeIcon],
+        [(name) => isRarFile(name), rarIcon],
+        [(name) => isTxtFile(name), txtIcon],
+    ];
+
     const renderMediaMessage = (fileName, urlFile, index) => {
         return (iconUrl) => {
             return (
@@ -59,6 +66,7 @@ const AllMedia = ({ messageMedia = [] }) => {
     const renderDenpendOnCol = (col, media, index) => {
         const MEDIA_TYPE_VIDEO = "VIDEO";
         const MEDIA_TYPE_IMAGE = "IMAGE";
+        const { url } = media;
 
         switch (media.type) {
             case MEDIA_TYPE_IMAGE:
@@ -66,8 +74,8 @@ const AllMedia = ({ messageMedia = [] }) => {
                     <div className={`col-${col} mt-2`} key={index}>
                         <ModalImage
                             className="media__img w-100 h-100"
-                            small={media.url}
-                            large={media.url}
+                            small={url}
+                            large={url}
                             showRotate={true}
                             alt=""
                         />
@@ -78,7 +86,7 @@ const AllMedia = ({ messageMedia = [] }) => {
                     <div className={`col-${col} mt-2`} key={index}>
                         <video
                             className="media__img w-100"
-                            src={media.url}
+                            src={url}
                             onClick={() => {
                                 openVideoHandle(index);
                             }}
@@ -91,30 +99,22 @@ const AllMedia = ({ messageMedia = [] }) => {
                             channel="custom"
                             isOpen={openVideo[index]}
                             onClose={() => closeVideoHandle(index)}
-                            url={media.url}
+                            url={url}
                             allowFullScreen
                         />
                     </div>
                 );
             default:
                 const nameFile = media.name;
-                const { url } = media;
-                const iconClasses = {
-                    word: wordIcon,
-                    pdf: pdfIcon,
-                    txt: txtIcon,
-                    file: fileIcon,
-                    rar: rarIcon,
-                    exe: exeIcon,
-                };
+               
                 const renderMediaMessageWith = renderMediaMessage(nameFile, url, index);
 
-                if (isWordFile(nameFile)) return renderMediaMessageWith(iconClasses.word);
-                if (isPDFFile(nameFile)) return renderMediaMessageWith(iconClasses.pdf);
-                if (isRarFile(nameFile)) return renderMediaMessageWith(iconClasses.rar);
-                if (isExeFile(nameFile)) return renderMediaMessageWith(iconClasses.exe);
-                if (isTxtFile(nameFile)) return renderMediaMessageWith(iconClasses.txt);
-                return renderMediaMessageWith(iconClasses.file);
+                for (const [checkTypeOfMedia, type] of pairProcessor) {
+                    if (checkTypeOfMedia(nameFile)) return renderMediaMessageWith(type);
+                }
+
+                //base case
+                return renderMediaMessageWith(fileIcon);
         }
     };
 

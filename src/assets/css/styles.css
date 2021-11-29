@@ -337,6 +337,17 @@ a {
   transform: scale(1.4);
 }
 
+.media-store {
+  margin-top: 1rem;
+  margin-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.media-store__title {
+  color: #FFA900;
+  user-select: none;
+}
+
 /* responsive */
 @media only screen and (min-width: 992px) {
   .introducing-text {

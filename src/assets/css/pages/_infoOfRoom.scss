@@ -1,6 +1,7 @@
 .info-room-right {
     flex-grow: 1;
     background-color: $mainLightColor;
+    max-width: 35rem;
     &__scroll {
         height: calc(90vh - 10rem);
         overflow-y: scroll;

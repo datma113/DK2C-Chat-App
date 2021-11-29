@@ -27,7 +27,6 @@
     }
 
     &__download {
-        
         cursor: pointer;
         text-shadow: 1px 2px 2px $mainLightColor;
         transform: scale(1);
@@ -38,7 +37,6 @@
     }
 }
 
-
 .media-store {
     margin-top: 1rem;
     margin-left: 1.5rem;
@@ -48,5 +46,33 @@
     &__title {
         color: $warningColor;
         user-select: none;
+    }
+
+    &__image {
+        margin-top: 1.5rem;
+        height: 10rem;
+
+        &__modal-image {
+            height: 10rem;
+            width: 100%;
+            box-shadow: 0 0 3px $mainDarkColor;
+            border-radius: 7.5px;
+            transition: 0.1s;
+            &:hover {
+                box-shadow: 0 0 10px $mainPurpleColor;
+            }
+        }
+    }
+
+    &__more {
+        cursor: pointer;
+        user-select: none;
+        transform: scale(1);
+        transition: 0.2s;
+        &:hover {
+            color: $mainPurpleColor;
+        transform: scale(1.25);
+
+        }
     }
 }

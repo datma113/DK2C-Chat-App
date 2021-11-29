@@ -232,12 +232,17 @@ export const blockUser = (userId) => {
 };
 
 export const getAllMediaByType = (roomId, type, page = 0) => {
-    const api = `${API_ALL_MEDIA}/${roomId}?type=${type}&size=5&page=${page}`;
+    const api = `${API_ALL_MEDIA}/${roomId}?type=${type}&size=9&page=${page}`;
     return axios
         .get(api)
         .then((resp) => {
-            console.log(resp.data.content);
-            return Promise.resolve(resp.data.content.media || []);
+            const originalData = resp.data.content;
+            const finalMedia = [];
+
+            originalData.forEach((media) => {
+                finalMedia.push(media.media[0]);
+            });
+            return Promise.resolve(finalMedia || []);
         })
         .catch((err) => Promise.resolve());
 };

@@ -8,7 +8,7 @@ import {
     STORE_LINKS,
     STORE_VIDEO,
 } from "../redux/constants/constants";
-
+import ModalImage from "react-modal-image";
 const MediaStore = ({ roomId }) => {
     const dispatch = useDispatch();
     const allMediaInStore = useSelector((state) => state.allMediaInStore);
@@ -37,14 +37,26 @@ const MediaStore = ({ roomId }) => {
     }, [roomId, dispatch]);
 
     const imagesMap = allMediaInStore.images.map((image, index) => {
-        console.log(image);
-        return <img key={index} src="" alt="" />;
+        const {url} = image
+        return (
+            <div className="col-4 media-store__image" key={index}>
+                 <ModalImage
+                            className="media-store__image__modal-image"
+                            small={url}
+                            large={url}
+                            showRotate={true}
+                            alt=""
+                />
+            </div>
+        );
     });
 
     return (
         <div className="media-store">
             <p className="media-store__title">Tất cả ảnh</p>
-            <div className="row"> {imagesMap} </div>
+            <div className="row"> {imagesMap} 
+                <p className="text-center media-store__more">xem thêm</p>
+            </div>
         </div>
     );
 };

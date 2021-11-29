@@ -347,6 +347,30 @@ a {
   color: #FFA900;
   user-select: none;
 }
+.media-store__image {
+  margin-top: 1.5rem;
+  height: 10rem;
+}
+.media-store__image__modal-image {
+  height: 10rem;
+  width: 100%;
+  box-shadow: 0 0 3px #262626;
+  border-radius: 7.5px;
+  transition: 0.1s;
+}
+.media-store__image__modal-image:hover {
+  box-shadow: 0 0 10px #5D3B78;
+}
+.media-store__more {
+  cursor: pointer;
+  user-select: none;
+  transform: scale(1);
+  transition: 0.2s;
+}
+.media-store__more:hover {
+  color: #5D3B78;
+  transform: scale(1.25);
+}
 
 /* responsive */
 @media only screen and (min-width: 992px) {
@@ -911,6 +935,7 @@ a {
 .info-room-right {
   flex-grow: 1;
   background-color: #FBFBFB;
+  max-width: 35rem;
 }
 .info-room-right__scroll {
   height: calc(90vh - 10rem);

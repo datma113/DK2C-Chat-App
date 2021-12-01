@@ -9,6 +9,7 @@ import {
     API_GET_MEMBERS_IN_ROOM,
     API_INBOXS,
     API_OUT_ROOM,
+    API_REPORT_USER,
     API_ROOM,
     API_SET_MEMBER_BECOME_ADMIN,
 } from "../constants/api";
@@ -243,7 +244,7 @@ export const unblockUser = (userId) => {
         axios.delete(API_BLOCK + `/${userId}`).then((resp) => {
             dispatch({
                 type: UPDATE_CURRENT_INBOX_WHEN_BLOCK,
-            })
+            });
         });
 };
 
@@ -260,4 +261,11 @@ export const getAllMediaByType = (roomId, type, page = 0) => {
             return Promise.resolve(finalMedia || []);
         })
         .catch((err) => Promise.resolve());
+};
+
+export const reportUser = (user) => {
+    return axios
+        .post(API_REPORT_USER, user)
+        .then((resp) => Promise.resolve(resp.data))
+        .catch((err) => Promise.reject());
 };

@@ -75,7 +75,7 @@ const OptionOfRoom = ({ roomId }) => {
                     ) : (
                         <BlockUser currentInbox={currentInbox} />
                     )}
-                    <ReportUser />
+                    <ReportUser  currentInbox={currentInbox}/>
                 </div>
             )}
         </>

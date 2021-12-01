@@ -10,11 +10,13 @@ import fileIcon from "../assets/image/fileIcon.jpg";
 const FilesStore = ({ roomId, files = [], loadMediaByType }) => {
     const TYPE_MEDIA_FILE = "FILE";
     const INITIAL_PAGE = 0;
-
     const [pageOfFiles, setpageOfFiles] = useState(INITIAL_PAGE);
+   
+
     useEffect(() => {
         loadMediaByType(TYPE_MEDIA_FILE, STORE_FILES);
         setpageOfFiles(INITIAL_PAGE);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [roomId]);
 
     const typeOfMedia = {

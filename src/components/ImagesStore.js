@@ -11,6 +11,7 @@ const ImagesStore = ({ roomId, images = [], loadMediaByType }) => {
     useEffect(() => {
         loadMediaByType(TYPE_MEDIA_IMAGE, STORE_IMAGES);
         setpageOfImages(INITIAL_PAGE);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [roomId]);
 
     const imagesMap = images.map((image, index) => {
@@ -37,7 +38,6 @@ const ImagesStore = ({ roomId, images = [], loadMediaByType }) => {
         <div className="media-store">
             <p className="media-store__title">Tất cả ảnh</p>
             <div className="row">
-               
                 {imagesMap}
                 {images.length > 5 && (
                     <p className="text-center media-store__more" onClick={() => loadMoreImages()}>

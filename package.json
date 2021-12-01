@@ -10,6 +10,7 @@
     "axios": "^0.21.1",
     "emoji-picker-react": "^3.4.8",
     "env-cmd": "^10.1.0",
+    "eslint-plugin-react-hooks": "^4.2.1-beta-a65ceef37-20211130",
     "firebase": "^9.5.0",
     "node-sass": "^6.0.1",
     "react": "^17.0.2",

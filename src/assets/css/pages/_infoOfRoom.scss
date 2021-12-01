@@ -22,6 +22,10 @@
     background-color: white;
     flex-direction: column;
 
+    &__name {
+        width: 100%;
+        word-wrap: break-word;
+    }
     &__img {
         height: 6rem;
         width: 6rem;

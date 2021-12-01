@@ -114,6 +114,7 @@ const gotoChatInfriendList = (inbox, dispatch) => {
         imgUrl: sender.imageUrl,
         displayName: sender.displayName,
         type: inbox.room.type,
+        inbox
     };
     dispatch(storeCurrentInbox(currentInbox));
 };

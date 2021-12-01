@@ -57,11 +57,11 @@ const VideosStore = ({ roomId, videos = [], loadMediaByType }) => {
             <p className="media-store__title">Tất cả Video</p>
             <div className="row">
                 {videosMap}
-                {
+                {videos.length > 5 && (
                     <p className="text-center media-store__more" onClick={() => loadMoreVideos()}>
                         xem thêm
                     </p>
-                }
+                )}
             </div>
         </div>
     );

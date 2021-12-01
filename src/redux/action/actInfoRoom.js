@@ -26,6 +26,7 @@ import {
     UPDATE_MEMBER_AUTHORITY,
     UPDATE_MEMBERS_WHEN_DELETE_MEM,
     UPDATE_MEMBER_AFTER_RECALL_ROLE,
+    UPDATE_CURRENT_INBOX_WHEN_BLOCK,
 } from "../constants/constants";
 
 const createAction = (type, data = {}) => {
@@ -215,19 +216,34 @@ export const deleteMember = (roomId, memberId) => {
 };
 
 export const blockUser = (userId) => {
-    return axios
-        .post(API_BLOCK + `/${userId}`)
-        .then((resp) => {
-            return Promise.resolve();
-        })
-        .catch((err) => {
-            const MESSAGE =
-                (err.response && err.response.data && err.response.data.message) ||
-                err.message ||
-                err.toString();
+    return (dispatch) =>
+        axios
+            .post(API_BLOCK + `/${userId}`)
+            .then((resp) => {
+                const status = resp.data.blockUser.meBLock;
+                dispatch({
+                    type: UPDATE_CURRENT_INBOX_WHEN_BLOCK,
+                    status,
+                });
+                return Promise.resolve();
+            })
+            .catch((err) => {
+                const MESSAGE =
+                    (err.response && err.response.data && err.response.data.message) ||
+                    err.message ||
+                    err.toString();
 
-            console.error(`err: `, MESSAGE);
-            return Promise.reject();
+                console.error(`err: `, MESSAGE);
+                return Promise.reject();
+            });
+};
+
+export const unblockUser = (userId) => {
+    return (dispatch) =>
+        axios.delete(API_BLOCK + `/${userId}`).then((resp) => {
+            dispatch({
+                type: UPDATE_CURRENT_INBOX_WHEN_BLOCK,
+            })
         });
 };
 

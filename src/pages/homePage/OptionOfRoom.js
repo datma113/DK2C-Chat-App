@@ -10,6 +10,7 @@ import { getFriendsListFromServer } from "../../redux/action/actFriends";
 import CreateRoom from "../../modal/CreateRoom";
 import OutRoom from "../../modal/OutRoom";
 import SetAdmin from "../../modal/SetAdmin";
+import UnblockUser from "../../components/UnblockUser";
 
 const OptionOfRoom = ({ roomId }) => {
     const currentInbox = useSelector((state) => state.currentInbox);
@@ -18,8 +19,11 @@ const OptionOfRoom = ({ roomId }) => {
     const membersInRoom = useSelector((state) => state.membersInRoom);
     const authentication = useSelector((state) => state.authentication);
     const currentRoomId = useSelector((state) => state.currentRoomId);
-    const friendProfile = useSelector(state => state.friendProfile)
+    const friendProfile = useSelector((state) => state.friendProfile);
     const dispatch = useDispatch();
+
+    const isBlockStatus = currentInbox.inbox?.room.to?.meBLock;
+
     useEffect(() => {
         dispatch(getFriendsListFromServer());
     }, [dispatch, roomId]);
@@ -63,12 +67,14 @@ const OptionOfRoom = ({ roomId }) => {
 
             {currentInbox.type === TYPE_ROOM_ONE && (
                 <div>
-                    <CreateRoom />               
-                    <ViewPersonalPage currentInbox={currentInbox}
-                    friendProfile={friendProfile}
-                    />
+                    <CreateRoom />
+                    <ViewPersonalPage currentInbox={currentInbox} friendProfile={friendProfile} />
                     <DeleteConversation currentInboxId={currentInboxId} />
-                    <BlockUser currentInbox={currentInbox} />
+                    {isBlockStatus ? (
+                        <UnblockUser currentInbox={currentInbox} />
+                    ) : (
+                        <BlockUser currentInbox={currentInbox} />
+                    )}
                     <ReportUser />
                 </div>
             )}

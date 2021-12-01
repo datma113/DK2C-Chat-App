@@ -88,7 +88,7 @@ const Home = () => {
                                 <div className="info-room-right__scroll">
                                     <InfoOfRoom currentInbox={currentInbox} />
                                     <OptionOfRoom roomId={currentRoomId} />
-                                    <MediaStore  roomId={currentRoomId}/>
+                                    <MediaStore roomId={currentRoomId} />
                                 </div>
                             </div>
                         </>

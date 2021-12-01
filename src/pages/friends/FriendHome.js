@@ -17,6 +17,7 @@ import HeaderOfInfoRoom from "../../components/HeaderOfInfoRoom";
 import InfoOfRoom from "../../components/InfoOfRoom";
 import OptionOfRoom from "../homePage/OptionOfRoom";
 import { RESET_CURRENT_INBOX_ID, RESET_CURRENT_ROOM_ID } from "../../redux/constants/constants";
+import MediaStore from "../../components/MediaStore";
 
 const FriendHome = () => {
     const dispatch = useDispatch();
@@ -106,6 +107,7 @@ const FriendHome = () => {
                                 <div className="info-room-right__scroll">
                                     <InfoOfRoom currentInbox={currentInbox} />
                                     <OptionOfRoom roomId={currentRoomId} />
+                                    <MediaStore  roomId={currentRoomId}/>
                                 </div>
                             </div>
                         </>

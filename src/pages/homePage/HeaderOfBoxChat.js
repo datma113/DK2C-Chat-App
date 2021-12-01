@@ -19,8 +19,7 @@ const HeaderOfBoxChat = () => {
                     {limitDisplayName(currentInbox.displayName)}
                 </div>
                 <div className=" header-box-chat__icon">
-                    <i className="fas fa-search"></i>
-                    <i className="fas fa-toggle-off"></i>
+                 
                 </div>
             </div>
         </div>

@@ -956,6 +956,10 @@ a {
   background-color: white;
   flex-direction: column;
 }
+.info-room__name {
+  width: 100%;
+  word-wrap: break-word;
+}
 .info-room__img {
   height: 6rem;
   width: 6rem;
@@ -1023,6 +1027,7 @@ a {
   max-width: 30rem;
   border-radius: 100px;
   padding: 0.25rem 2rem;
+  word-wrap: break-word;
 }
 
 .profile__img {

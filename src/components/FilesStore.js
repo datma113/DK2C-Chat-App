@@ -68,12 +68,14 @@ const FilesStore = ({ roomId, files = [], loadMediaByType }) => {
     };
 
     return (
-        <div>
+        <div className="media-store">
             <p className="media-store__title">Tất cả File</p>
             {filesMap}
-            <p className="text-center media-store__more" onClick={() => loadMoreFiles()}>
-                xem thêm
-            </p>
+            {files.length > 5 && (
+                <p className="text-center media-store__more" onClick={() => loadMoreFiles()}>
+                    xem thêm
+                </p>
+            )}
         </div>
     );
 };

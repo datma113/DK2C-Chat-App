@@ -97,7 +97,6 @@ const MessageChatByType = ({ message, index, originalBoxChat, authentication, cu
             icon = REACTION[message.reactions[THE_FIRST_REACTION].type];
         return icon;
     };
-
     const renderMessageContent = () => {
         if (message.type === "MEDIA" && message.media.length > 0) {
             return <AllMedia messageMedia={message.media} />;

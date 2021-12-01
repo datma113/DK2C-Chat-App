@@ -238,7 +238,6 @@ export const getAllMediaByType = (roomId, type, page = 0) => {
         .then((resp) => {
             const originalData = resp.data.content;
             const finalMedia = [];
-
             originalData.forEach((media) => {
                 finalMedia.push(media.media[0]);
             });

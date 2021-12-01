@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import ErrorHandle from "../../components/ErrorHandle";
 import MyCustomButton from "../../components/MyCustomButton";
 import TextInput from "../../components/TextInput";
-import regexInputModule from "../../module/regexInputModule";
 import { storeUserInfoWhenRegister } from "../../redux/action/actRegister";
 import { CLEAR_MESSAGE_FROM_SERVER } from "../../redux/constants/constants";
 

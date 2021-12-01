@@ -37,11 +37,13 @@ const ImagesStore = ({ roomId, images = [], loadMediaByType }) => {
         <div className="media-store">
             <p className="media-store__title">Tất cả ảnh</p>
             <div className="row">
-                {" "}
+               
                 {imagesMap}
-                <p className="text-center media-store__more" onClick={() => loadMoreImages()}>
-                    xem thêm
-                </p>
+                {images.length > 5 && (
+                    <p className="text-center media-store__more" onClick={() => loadMoreImages()}>
+                        xem thêm
+                    </p>
+                )}
             </div>
         </div>
     );

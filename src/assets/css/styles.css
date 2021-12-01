@@ -354,6 +354,7 @@ a {
 .media-store__image__modal-image {
   height: 10rem;
   width: 100%;
+  cursor: pointer;
   box-shadow: 0 0 3px #262626;
   border-radius: 7.5px;
   transition: 0.1s;

@@ -5,6 +5,7 @@ import { getAllMediaByType } from "../redux/action/actInfoRoom";
 import { createAction } from "../redux/constants/constants";
 
 import ImagesStore from "./ImagesStore";
+import VideosStore from "./VideosStore";
 const MediaStore = ({ roomId }) => {
     const dispatch = useDispatch();
     const allMediaInStore = useSelector((state) => state.allMediaInStore);
@@ -24,13 +25,16 @@ const MediaStore = ({ roomId }) => {
             <ImagesStore
                 roomId={roomId}
                 images={allMediaInStore.images}
-                dispatch={dispatch}
+                loadMediaByType={loadMediaByType}
+            />
+            <VideosStore
+                roomId={roomId}
+                videos={allMediaInStore.videos}
                 loadMediaByType={loadMediaByType}
             />
             <FilesStore
                 roomId={roomId}
                 files={allMediaInStore.files}
-                dispatch={dispatch}
                 loadMediaByType={loadMediaByType}
             />
         </div>

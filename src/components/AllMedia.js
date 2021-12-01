@@ -85,7 +85,7 @@ const AllMedia = ({ messageMedia = [] }) => {
                 return (
                     <div className={`col-${col} mt-2`} key={index}>
                         <video
-                            className="media__img w-100"
+                            className="media__img"
                             src={url}
                             onClick={() => {
                                 openVideoHandle(index);

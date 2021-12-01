@@ -7,6 +7,7 @@ const ImagesStore = ({ roomId, images = [], loadMediaByType }) => {
     const INITIAL_PAGE = 0;
 
     const [pageOfImages, setpageOfImages] = useState(INITIAL_PAGE);
+
     useEffect(() => {
         loadMediaByType(TYPE_MEDIA_IMAGE, STORE_IMAGES);
         setpageOfImages(INITIAL_PAGE);

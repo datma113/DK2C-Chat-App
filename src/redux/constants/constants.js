@@ -66,6 +66,7 @@ export const STORE_IMAGES = 'STORE_IMAGES'
 export const STORE_LINKS = 'STORE_LINKS'
 
 export const LOAD_MORE_IMAGES = 'LOAD_MORE_IMAGES'
+export const LOAD_MORE_FILES = 'LOAD_MORE_FILES'
 
 /**socket */
 export const UPDATE_MESSAGE_REALTIME = "UPDATE_MESSAGE_REALTIME";

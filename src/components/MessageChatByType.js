@@ -62,7 +62,7 @@ const MessageChatByType = ({ message, index, originalBoxChat, authentication, cu
     const showTimeSendMessage = () => {
         const TIME_CREATED = new Date(message.createAt);
         const TIME_SHOWED = `${TIME_CREATED.getHours()}:${
-            TIME_CREATED.getMinutes() < 9
+            TIME_CREATED.getMinutes() < 10
                 ? `0${TIME_CREATED.getMinutes()}`
                 : TIME_CREATED.getMinutes()
         }`;

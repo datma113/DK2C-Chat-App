@@ -232,7 +232,7 @@ export const blockUser = (userId) => {
 };
 
 export const getAllMediaByType = (roomId, type, page = 0) => {
-    const api = `${API_ALL_MEDIA}/${roomId}?type=${type}&size=9&page=${page}`;
+    const api = `${API_ALL_MEDIA}/${roomId}?type=${type}&size=6&page=${page}`;
     return axios
         .get(api)
         .then((resp) => {

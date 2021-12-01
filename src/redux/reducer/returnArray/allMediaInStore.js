@@ -1,4 +1,4 @@
-import { STORE_FILES, STORE_IMAGES, STORE_LINKS, STORE_VIDEO } from "../../constants/constants";
+import { LOAD_MORE_IMAGES, STORE_FILES, STORE_IMAGES, STORE_LINKS, STORE_VIDEO } from "../../constants/constants";
 const initial = {
     video: [],
     images: [],
@@ -14,6 +14,9 @@ const reducer = (state = initial, action) => {
             return { ...state, video: data };
         case STORE_IMAGES:
             return { ...state, images: data };
+        case LOAD_MORE_IMAGES:
+            const newImages = [...state.images, ...data]
+            return {...state, images: newImages}            
         case STORE_FILES:
             return { ...state, files: data };
         case STORE_LINKS:

@@ -42,6 +42,12 @@ const Register = () => {
             regexPattern: /[\w]/g,
             keyStoreToReducer: "password",
         },
+        {
+            label: "Xác nhận mật khẩu",
+            type: "password",
+            keyStoreToReducer: "confirmPassword",
+
+        },
     ];
 
     const gotoNextStepOfRegister = () => {
@@ -140,7 +146,7 @@ const Register = () => {
         <div>
             {!authentication.isLoggin ? (
                 <div className={`d-flex justify-content-center mt-5 ${ANIMATE_ZOOM_IN}`}>
-                    <div className="col-lg-4 d-flex flex-column align-items-center justify-content-center welcome-container">
+                    <div className="col-lg-4 d-flex flex-column align-items-center welcome-container">
                         <img src={logo} alt="" className="welcome-container__logo " />
                         <p className="text-title mt-3">Đăng ký</p>
                         <CompetedStep numberStep={3} currentStep={registerStep} />

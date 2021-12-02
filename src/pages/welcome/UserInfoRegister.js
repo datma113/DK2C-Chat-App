@@ -7,9 +7,15 @@ import regexInputModule from "../../module/regexInputModule";
 import { storeUserInfoWhenRegister } from "../../redux/action/actRegister";
 const UserInfoRegister = ({ registerFields = [], userRegister = {}, isEntitledGotoNextStep }) => {
     const message = useSelector((state) => state.message);
- 
+
     const isEnableNextBtn = () => {
-        if (userRegister.displayName && userRegister.password && userRegister.phoneNumber) return "";
+        if (
+            userRegister.displayName &&
+            userRegister.password &&
+            userRegister.phoneNumber &&
+            userRegister["confirmPassword"] === userRegister.password
+        )
+            return "";
         return "disabled";
     };
 
@@ -29,6 +35,10 @@ const UserInfoRegister = ({ registerFields = [], userRegister = {}, isEntitledGo
             case 2:
                 checkRegex = regexInputModule.checkRegexOfUserPassword;
                 initialValue = userRegister.password;
+                break;
+            case 3:
+                checkRegex = regexInputModule.checkRegexOfUserPassword;
+                initialValue = "";
                 break;
             default:
                 break;

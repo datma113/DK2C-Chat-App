@@ -418,6 +418,8 @@ a {
   background-color: #FBFBFB;
   margin-top: 5rem;
   margin-bottom: 5rem;
+  height: 60rem;
+  overflow: scroll;
 }
 .welcome-container__image {
   width: 30rem;

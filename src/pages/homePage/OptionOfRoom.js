@@ -67,7 +67,7 @@ const OptionOfRoom = ({ roomId }) => {
 
             {currentInbox.type === TYPE_ROOM_ONE && (
                 <div>
-                    <CreateRoom />
+                    <CreateRoom currentInbox={currentInbox}/>
                     <ViewPersonalPage currentInbox={currentInbox} friendProfile={friendProfile} />
                     <DeleteConversation currentInboxId={currentInboxId} />
                     {isBlockStatus ? (

@@ -19,9 +19,10 @@ import friendProfile from "./returnObject/friendProfile";
 import oldAndNewPassword from "./returnObject/oldAndNewPassword";
 import usersSearched from "./returnObject/usersSearched";
 import showOrHideBoxChat from "./returnString/showOrHideBoxChat";
-import memsExpressReactions from './returnArray/memsExpressReactions'
-import allMediaSending from './returnArray/allMediaSending'
-import allMediaInStore from './returnArray/allMediaInStore'
+import memsExpressReactions from "./returnArray/memsExpressReactions";
+import allMediaSending from "./returnArray/allMediaSending";
+import allMediaInStore from "./returnArray/allMediaInStore";
+import friendToCreateRoom from "./returnObject/friendToCreateRoom";
 const reducer = combineReducers({
     userLogin,
     userRegister,
@@ -45,7 +46,8 @@ const reducer = combineReducers({
     showOrHideBoxChat,
     memsExpressReactions,
     allMediaSending,
-    allMediaInStore
+    allMediaInStore,
+    friendToCreateRoom,
 });
 
 export default reducer;

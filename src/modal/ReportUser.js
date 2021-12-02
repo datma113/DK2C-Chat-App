@@ -6,15 +6,14 @@ import MyCustomModal from "./MyCustomModal";
 
 const ReportUser = ({ currentInbox = {} }) => {
     const [reportContent, setreportContent] = useState("");
-    console.log(reportContent);
     const renderReportUserComp = () => {
         return (
             <div className="center flex-column text-warning p-5">
                 <i className="fas fa-exclamation-circle fa-4x "></i>
                 <p>Hãy báo cáo cho chúng tôi có gì không ổn:</p>
-                <div class="form-group w-100">
+                <div className="form-group w-100">
                     <textarea
-                        class="form-control text-small w-100"
+                        className="form-control text-small w-100"
                         rows="10"
                         spellCheck={false}
                         onChange={(e) => setreportContent(e.target.value)}
@@ -38,7 +37,7 @@ const ReportUser = ({ currentInbox = {} }) => {
             Swal.fire({
                 icon: "success",
                 title: "Thông báo",
-                html: `<div class="text-normal text-center text-success"> Cám ơn bạn đã báo cáo cho chúng tôi! <br>
+                html: `<div className="text-normal text-center text-success"> Cám ơn bạn đã báo cáo cho chúng tôi! <br>
                  chúng tôi sẽ xem xét báo cáo của bạn!</div>`,
             });
         });

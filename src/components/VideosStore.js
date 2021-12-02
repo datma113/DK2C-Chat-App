@@ -6,7 +6,6 @@ const VideosStore = ({ roomId, videos = [], loadMediaByType }) => {
     const INITIAL_PAGE = 0;
     const [pageOfVideos, setpageOfVideos] = useState(INITIAL_PAGE);
     const [openVideo, setopenVideo] = useState([]);
-    console.log(1);
     useEffect(() => {
         loadMediaByType(TYPE_MEDIA_VIDEO, STORE_VIDEO);
 

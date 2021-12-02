@@ -16,7 +16,7 @@ const TextInput = ({
     const dispatch = useDispatch();
     const [messageOfRegex, setmessageOfRegex] = useState("");
 
-    const isShowMessageOfRegex = (message) => {
+    const isShowMessageOfRegex = (message = "") => {
         return message.length === 0 ? "d-none" : "";
     };
 

@@ -104,6 +104,7 @@ export const createNewRoom = (room) => {
             .post(API_CREATE_NEW_ROOM, room)
             .then((resp) => {
                 dispatch(updateNewRoomRealtime(resp.data));
+                return Promise.resolve()
             })
             .catch((err) => {
                 console.log(err);

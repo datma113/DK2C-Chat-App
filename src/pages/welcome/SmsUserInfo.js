@@ -1,22 +1,27 @@
 import React from "react";
+import Swal from "sweetalert2";
 import TextInput from "../../components/TextInput";
 import regexInputModule from "../../module/regexInputModule";
-import { storeUserInfoWhenRegister } from "../../redux/action/actRegister";
+import {
+    registerUserAccountInitialStep,
+    storeUserInfoWhenRegister,
+} from "../../redux/action/actRegister";
 import { CLEAR_USER_INFO_WHEN_DONE_REGISTER } from "../../redux/constants/constants";
+import ErrorHandle from "../../components/ErrorHandle";
 
-const SmsUserInfo = ({ userRegister = {}, setregisterStep, history, dispatch }) => {
+const SmsUserInfo = ({ userRegister = {}, setregisterStep, history, dispatch, message }) => {
     const isEnableNextBtn = () => {
         if (
             userRegister.displayName &&
             userRegister.password &&
-            userRegister.email &&
+            userRegister.phoneNumber &&
             userRegister["confirmPassword"] === userRegister.password
         )
             return "";
         return "disabled";
     };
     return (
-        <div className="center flex-column">
+        <div className="d-flex flex-column">
             <TextInput
                 key={1}
                 id="displayName"
@@ -29,13 +34,14 @@ const SmsUserInfo = ({ userRegister = {}, setregisterStep, history, dispatch }) 
             />
             <TextInput
                 key={2}
-                id="email"
-                label="Email"
+                id="phoneNumber"
+                label="số điến thoại"
                 type="text"
                 functionToDispatch={storeUserInfoWhenRegister}
-                keyStoreToReducer={"email"}
-                initialValue={userRegister.email}
-                checkRegex={regexInputModule.checkRegexOfUserEmail}
+                keyStoreToReducer={"phoneNumber"}
+                initialValue={userRegister.phoneNumber}
+                regexPattern={/[\D]/g}
+                checkRegex={regexInputModule.checkRegexOfUserPhone}
             />
             <TextInput
                 key={3}
@@ -50,18 +56,29 @@ const SmsUserInfo = ({ userRegister = {}, setregisterStep, history, dispatch }) 
             <TextInput
                 key={4}
                 id="confirmPassword"
-                label="Xác nhận Mật khẩu"
+                label="Xác nhận mật khẩu"
                 type="password"
                 functionToDispatch={storeUserInfoWhenRegister}
                 keyStoreToReducer={"confirmPassword"}
-                initialValue=""
+                initialValue={userRegister.confirmPassword}
                 checkRegex={regexInputModule.checkRegexOfUserPassword}
             />
+            <ErrorHandle message={message.message} />
             <button
                 type="button"
                 className={`btn btn-welcome btn-secondary ${isEnableNextBtn()}`}
                 onClick={() => {
-                    setregisterStep(1);
+                    dispatch(registerUserAccountInitialStep(userRegister))
+                        .then((resp) => {
+                            setregisterStep(1);
+                        })
+                        .catch((err) => {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Oops...",
+                                html: `<div class="text-normal text-center text-danger"> ${err} </div>`,
+                            });
+                        });
                 }}
             >
                 tiếp tục

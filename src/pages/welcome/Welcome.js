@@ -4,19 +4,30 @@ import { Link, useHistory } from "react-router-dom";
 import { ANIMATE_ZOOM_IN } from "../../animate";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { useDispatch } from "react-redux";
+import { CLEAR_MESSAGE_FROM_SERVER, CLEAR_USER_INFO_WHEN_DONE_REGISTER } from "../../redux/constants/constants";
 
 const Welcome = () => {
     const history = useHistory();
+    const dispatch = useDispatch();
     const MySwal = withReactContent(Swal);
 
     const renderRegisterModal = () => {
         return (
             <div className="center flex-column mt-5">
-                <button type="button" className="btn btn-outline-warning btn-welcome"
-                 onClick={() => {
-                    history.push("/register-sms")
-                    MySwal.close()
-                }}
+                <button
+                    type="button"
+                    className="btn btn-outline-warning btn-welcome"
+                    onClick={() => {
+                        dispatch({
+                            type: CLEAR_USER_INFO_WHEN_DONE_REGISTER,
+                        });
+                        dispatch({
+                            type: CLEAR_MESSAGE_FROM_SERVER,
+                        });
+                        history.push("/register-sms");
+                        MySwal.close();
+                    }}
                 >
                     Số điện thoại
                 </button>
@@ -24,8 +35,14 @@ const Welcome = () => {
                     type="button"
                     className="btn btn-outline-primary btn-welcome mt-3"
                     onClick={() => {
-                        history.push("/register-email")
-                        MySwal.close()
+                        dispatch({
+                            type: CLEAR_USER_INFO_WHEN_DONE_REGISTER,
+                        });
+                        dispatch({
+                            type: CLEAR_MESSAGE_FROM_SERVER,
+                        });
+                        history.push("/register-email");
+                        MySwal.close();
                     }}
                 >
                     Email
@@ -35,7 +52,6 @@ const Welcome = () => {
     };
 
     const showRegisterModal = () => {
-
         MySwal.fire({
             title: "<strong>Đăng ký bằng: </strong>",
             html: renderRegisterModal(),
@@ -48,7 +64,6 @@ const Welcome = () => {
 
     return (
         <div className={`center ${ANIMATE_ZOOM_IN} `}>
-            <div id="recaptcha-container"></div>
             <div className="col-xl-4 col-lg-5 col-sm-6 center flex-column welcome-container">
                 <img src={welcome} alt="" className="welcome-container__image" />
 

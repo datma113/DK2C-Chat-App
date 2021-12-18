@@ -10,7 +10,7 @@ const MyCustomButton = ({
     gotoPreviousStepOfRegister,
     login,
     getOtp,
-    disabled
+    disabled,
 }) => {
     const history = useHistory();
 
@@ -45,6 +45,7 @@ const MyCustomButton = ({
                 changeStepWhenTriggered();
                 triggeredLogin();
                 triggeredGetOtp();
+                
             }}
         >
             <i className={`${iconClass} btn-welcome__icon`}></i>

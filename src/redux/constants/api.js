@@ -19,9 +19,12 @@ export const API_GET_USER_WHEN_EXISTS_REFRESH_TOKEN = API + "user/me";
 export const API_GET_REFRESH_TOKEN = API_AUTH + "refreshtoken";
 /**Register */
 
-export const API_SIGN_UP_IMFORMATION = API_SIGN_UP + "save_information";
-export const API_SIGN_UP_CHECK_MAIL = API_SIGN_UP + "send_verification_code";
-export const API_SIGN_UP_VERIFY = API_SIGN_UP + "verify";
+export const API_SIGN_UP_IMFORMATION = API_SIGN_UP + "valid";
+export const API_SIGN_IN_WITH_PHONE = API_AUTH + "signup/phone";
+
+export const API_SIGN_UP_CHECK_MAIL = API_SIGN_UP + "email";
+export const API_SIGN_UP_VERIFY = API_SIGN_UP + "email/verify";
+export const API_SIGN_UP_RESEND = API_SIGN_UP + "email/reSendVerificationCode";
 
 /**Profile */
 export const API_USER_INFO = API_ME;

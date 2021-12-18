@@ -4,7 +4,6 @@ import {
     SET_MESSAGE_FROM_SERVER,
     CLEAR_MESSAGE_FROM_SERVER,
     STORE_USER_INFO_WHEN_REGISTER,
-
 } from "../constants/constants";
 import RegisterService from "../../services/RegisterService";
 
@@ -59,11 +58,11 @@ export const registerUserAccountInitialStepRedo = (user) => {
 export const registerUserAccountVerifyEmailStep = (user) => {
     return (dispatch) => {
         return RegisterService.registerUserAccountVerifyEmailStep(user)
-            .then(() => {
+            .then(resp => {
                 dispatch({
                     type: CLEAR_MESSAGE_FROM_SERVER,
                 });
-                return Promise.resolve();
+                return Promise.resolve(resp.data);
             })
             .catch((err) => {
                 const MESSAGE =
@@ -103,10 +102,57 @@ export const registerUserAccountVerifyOtpStep = (user) => {
     };
 };
 
+export const resendOTPMail = (user) => {
+    return (dispatch) => {
+        return RegisterService.resendOTPEmail(user)
+            .then(() => {
+                return Promise.resolve();
+            })
+            .catch((err) => {
+                const MESSAGE =
+                    (err.response && err.response.data && err.response.data.message) ||
+                    err.message ||
+                    err.toString();
+
+                dispatch({
+                    type: SET_MESSAGE_FROM_SERVER,
+                    message: MESSAGE,
+                });
+
+                return Promise.reject(MESSAGE);
+            });
+    };
+};
+
+export const verifyWithPhone = (user) => {
+    return (dispatch) => {
+        return RegisterService.verifyWithPhone(user)
+            .then(() => {
+                dispatch({
+                    type: CLEAR_MESSAGE_FROM_SERVER,
+                });
+                return Promise.resolve();
+            })
+            .catch((err) => {
+                const MESSAGE =
+                    (err.response && err.response.data && err.response.data.message) ||
+                    err.message ||
+                    err.toString();
+
+                dispatch({
+                    type: SET_MESSAGE_FROM_SERVER,
+                    message: MESSAGE,
+                });
+
+                return Promise.reject(MESSAGE);
+            });
+    };
+};
+
 export const storeUserInfoWhenDoneARegisterStep = (user) => {
     return {
         type: STORE_USER_INFO_WHEN_DONE_A_REGISTER_STEP,
-        user
+        user,
     };
 };
 
@@ -116,13 +162,11 @@ export const clearUserInfoWhenDoneRegister = () => {
     };
 };
 
-
 export const storeUserInfoWhenRegister = (key, value) => {
     //key and value was created to save a dynamic object
     return {
         type: STORE_USER_INFO_WHEN_REGISTER,
         key,
-        value
+        value,
     };
 };
-

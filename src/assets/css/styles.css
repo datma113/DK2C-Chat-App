@@ -420,6 +420,7 @@ a {
   margin-bottom: 5rem;
   height: 60rem;
   overflow: scroll;
+  overflow-x: hidden;
 }
 .welcome-container__image {
   width: 30rem;

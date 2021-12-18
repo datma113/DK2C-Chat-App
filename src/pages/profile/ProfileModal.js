@@ -41,7 +41,7 @@ const ProfileModal = ({ userProfile }) => {
     };
 
     const setGender = (gender) => {
-        genderUpdate = gender;
+        // genderUpdate = gender;
     };
 
     const updateProfileHandle = () => {
@@ -59,18 +59,17 @@ const ProfileModal = ({ userProfile }) => {
 
     const updateNameProfile = (displayName) => {
         if (displayName) {
+            
             const user = {
-                displayName,
-                dateOfBirth: userProfile.dateOfBirth,
-                gender: userProfile.gender,
+                displayName: displayName,
+                gender: genderUpdate ?? userProfile.gender
             };
-            updateUserInfo(user)
-            .then((data) => {
+            updateUserInfo(user).then((data) => {
                 dispatch({
                     type: UPDATE_USER_INFO_DISPLAY_NAME,
-                    displayName: data.displayName
+                    displayName: data.displayName,
                 })
-            })
+            });
         }
     };
 
@@ -131,7 +130,9 @@ const ProfileModal = ({ userProfile }) => {
                                 ) : (
                                     <UserNameLabel
                                         user={userProfile}
-                                        onNameChange={(e) => onNameChange(e)}
+                                        onNameChange={(e) => {
+                                            onNameChange(e)
+                                        }}
                                     />
                                 )}
                             </div>

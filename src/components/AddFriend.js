@@ -1,14 +1,20 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { declineFriendRequest } from "../redux/action/actFriends";
 
 const AddFriend = ({ users, handleOnChange, functionWhenClick, isMyself }) => {
+    const dispatch = useDispatch()
     const notEmptyUser = () => {
         return Object.keys(users).length !== 0 && !isMyself;
     };
 
+    const recallFriendRequestHandle = (user) => {
+        dispatch(declineFriendRequest(user.id))
+    }
+
     const renderButtonAddFriend = (user) => {
         const WAS_FRIEND = "FRIEND";
         const SENDED = "SENT";
-
         switch (user.friendStatus) {
             case WAS_FRIEND:
                 return (
@@ -19,9 +25,18 @@ const AddFriend = ({ users, handleOnChange, functionWhenClick, isMyself }) => {
 
             case SENDED:
                 return (
-                    <button type="button" className="btn btn-danger w-75 text-small disabled">
-                        đã gữi lời mời
-                    </button>
+                    <div className="d-flex center flex-column">
+                        <button type="button" className="btn btn-primary w-75 text-small disabled">
+                            đã gữi lời mời
+                        </button>
+                        <button
+                            type="button"
+                            className="btn btn-outline-danger w-75 text-small mt-2"
+                            onClick={() => recallFriendRequestHandle(users)}
+                        >
+                            hủy lời mời
+                        </button>
+                    </div>
                 );
             default:
                 return (

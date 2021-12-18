@@ -10,6 +10,7 @@ const CreateRoomWithMemsModal = () => {
     const [friendsAdded, setfriendsAdded] = useState([]);
     const [roomName, setroomName] = useState("");
     const authentication = useSelector((state) => state.authentication);
+
     const getFriendsAdded = (friendsAdded) => {
         setfriendsAdded(friendsAdded);
     };
@@ -18,7 +19,9 @@ const CreateRoomWithMemsModal = () => {
         return !friendsAdded.length || !roomName ? "disabled" : "";
     };
 
-    const handleCreateRoom = () => {
+    const handleCreateRoom = (name) => {
+        setroomName("");
+
         const MY_ID = authentication.user.id;
         const ROOM_TYPE_GROUP = "GROUP";
 
@@ -30,7 +33,7 @@ const CreateRoomWithMemsModal = () => {
         });
 
         const room = {
-            name: roomName,
+            name,
             createByUserId: MY_ID,
             members,
             type: ROOM_TYPE_GROUP,
@@ -46,7 +49,10 @@ const CreateRoomWithMemsModal = () => {
                 className="header-inbox-container__icon fas fa-users text-small "
                 data-mdb-toggle="modal"
                 data-mdb-target={`#createRoomWithMemsModal`}
-                onClick={() => dispatch(getFriendsListFromServer())}
+                onClick={() => {
+                    setfriendsAdded([]);
+                    dispatch(getFriendsListFromServer());
+                }}
             ></i>
 
             <div
@@ -76,6 +82,7 @@ const CreateRoomWithMemsModal = () => {
                                     className="form-control text-medium text-center w-75"
                                     placeholder="Nhập tên nhóm"
                                     onChange={(e) => setroomName(e.target.value)}
+                                    value={roomName}
                                 />
                             </div>
                             <hr className="mt-5" />
@@ -96,7 +103,7 @@ const CreateRoomWithMemsModal = () => {
                                 type="button"
                                 className={`btn btn-primary btn-lg ${isDisabledConfirmBtn()}`}
                                 data-mdb-dismiss="modal"
-                                onClick={() => handleCreateRoom()}
+                                onClick={() => handleCreateRoom(roomName)}
                             >
                                 xác nhận
                             </button>

@@ -65,7 +65,10 @@ export const getInboxsFromServer = () => {
             .then((resp) => {
                 dispatch(storeInboxs(resp.data.content));
             })
-            .catch(() => dispatch(storeInboxs([])));
+            .catch((err) => {
+                console.error(err);
+                dispatch(storeInboxs([]));
+            });
     };
 };
 
@@ -88,7 +91,13 @@ export const getMessageInBoxChat = (inboxId, page = 0) => {
                     });
                 else dispatch(storeMessageInBoxChat(resp.data.content));
             })
-            .catch(() => dispatch(storeMessageInBoxChat([])));
+            .catch(() => {  
+                dispatch({
+                    type: INITIALIZE_MESSAGE_IN_BOX_CHAT,
+                    message: [],
+                });
+            
+            });
     };
 };
 
@@ -119,6 +128,7 @@ export const getURLOfFileWhenSended = (files) => {
             "Content-Type": "multipart/form-data",
         },
     };
+
     return axios
         .post(API_GET_FILE_URL_WHEN_SENDED, files, CONFIG_HEADER_MULTIPART_FORM_DATA)
         .then((resp) => {

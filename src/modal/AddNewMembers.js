@@ -1,14 +1,10 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import TagOfOptionRoom from "../components/TagOfOptionRoom";
 import MyCustomModal from "./MyCustomModal";
 import Friend from "../pages/friends/Friend";
 import { addNewMembers } from "../redux/action/actInfoRoom";
 
-const AddNewMembers = ({ friendsList }) => {
-    const authentication = useSelector((state) => state.authentication);
-    const currentRoomId = useSelector((state) => state.currentRoomId);
-    const membersInRoom = useSelector((state) => state.membersInRoom);
+const AddNewMembers = ({ friendsList, membersInRoom = [], authentication, currentRoomId }) => {
     const [friendsAdded, setfriendsAdded] = useState([]);
 
     const [isEmptyFriendsAdded, setIsEmptyFriendsAdded] = useState(true);
@@ -43,10 +39,10 @@ const AddNewMembers = ({ friendsList }) => {
             setfriendsAdded(friendsAddedClone);
         });
     };
-  
-    const convertMembersInRoomData = membersInRoom.map((member) =>{
-        return member.user.id
-    } );
+
+    const convertMembersInRoomData = membersInRoom.map((member) => {
+        return member.user.id;
+    });
 
     const filterMembersAlreadyInRoom = friendsList.filter((friend) => {
         const FRIEND_ID = friend.friend.id;

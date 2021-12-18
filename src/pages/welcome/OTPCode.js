@@ -11,8 +11,6 @@ const OTPCode = ({ gotoPreviousStepOfRegister, isEntitledGotoNextStep, resendOTP
     const message = useSelector((state) => state.message);
     const [otp, setotp] = useState("");
 
-    
-
     useEffect(() => {
         dispatch(storeUserInfoWhenRegister("verificationCode", otp));
     }, [dispatch, otp]);

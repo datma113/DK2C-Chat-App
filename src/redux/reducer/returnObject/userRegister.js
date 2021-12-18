@@ -13,11 +13,10 @@ const reducer = (state = initial, action) => {
             let currentUserRegisterInfo = { ...state };
             currentUserRegisterInfo[key] = value;
             return currentUserRegisterInfo;
-
         case STORE_USER_INFO_WHEN_DONE_A_REGISTER_STEP:
             return user;
         case CLEAR_USER_INFO_WHEN_DONE_REGISTER:
-            return {};
+            return initial;
         default:
             break;
     }

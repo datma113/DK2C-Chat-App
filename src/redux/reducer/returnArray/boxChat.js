@@ -46,8 +46,10 @@ const reducer = (state = initial, action) => {
             let mapMessagesId = newMessagesAfterDeleteAnMessge.map((message) => message.id);
             const indexOfMessageDeleted = mapMessagesId.indexOf(message.id);
 
-            newMessagesAfterDeleteAnMessge[indexOfMessageDeleted].content = message.content;
+            if (newMessagesAfterDeleteAnMessge[indexOfMessageDeleted].media)
+                newMessagesAfterDeleteAnMessge[indexOfMessageDeleted].media.length = 0;
 
+            newMessagesAfterDeleteAnMessge[indexOfMessageDeleted].content = message.content;
             return newMessagesAfterDeleteAnMessge;
 
         case DELETE_CONVERSATION:

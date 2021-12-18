@@ -7,6 +7,7 @@
 @import './components/input';
 @import './components/carousel';
 @import './components/reaction';
+@import './components/media';
 
 /* responsive */
 @import './components/homeResponsive';
@@ -25,8 +26,7 @@
 @import './pages/inboxSideBar';
 @import './pages/createRoomWithMems';
 @import './pages/addFriends';
-
-
+@import './pages/friendProfile.scss';
 
 /*variables*/
 

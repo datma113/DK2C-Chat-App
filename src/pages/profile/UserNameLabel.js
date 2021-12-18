@@ -4,7 +4,6 @@ const UserNameLabel = (props) => {
     let user = props.user;
     let onNameChange = props.onNameChange;
     
-  
     return (
         <div>
             <h3>

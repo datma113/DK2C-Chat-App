@@ -44,8 +44,8 @@ const ProfileDetail = ({ user, setDOB, setGender }) => {
                     className="form-control text-medium mt-5 text-center"
                     value={selectValue}
                     onChange={(e) => {
-                        setselectValue(e.target.value)
-                        setGender(e.target.value)
+                        setselectValue(e.target.value);
+                        setGender(e.target.value);
                     }}
                 >
                     {genderMap}

@@ -10,6 +10,7 @@ import { getFriendsListFromServer } from "../../redux/action/actFriends";
 import CreateRoom from "../../modal/CreateRoom";
 import OutRoom from "../../modal/OutRoom";
 import SetAdmin from "../../modal/SetAdmin";
+import UnblockUser from "../../components/UnblockUser";
 
 const OptionOfRoom = ({ roomId }) => {
     const currentInbox = useSelector((state) => state.currentInbox);
@@ -17,7 +18,12 @@ const OptionOfRoom = ({ roomId }) => {
     const currentInboxId = useSelector((state) => state.currentInboxId);
     const membersInRoom = useSelector((state) => state.membersInRoom);
     const authentication = useSelector((state) => state.authentication);
+    const currentRoomId = useSelector((state) => state.currentRoomId);
+    const friendProfile = useSelector((state) => state.friendProfile);
     const dispatch = useDispatch();
+
+    const isBlockStatus = currentInbox.inbox?.room.to?.meBLock;
+
     useEffect(() => {
         dispatch(getFriendsListFromServer());
     }, [dispatch, roomId]);
@@ -39,7 +45,12 @@ const OptionOfRoom = ({ roomId }) => {
                         currentInbox={currentInbox}
                         authentication={authentication}
                     />
-                    <AddNewMembers friendsList={friendsList} />
+                    <AddNewMembers
+                        friendsList={friendsList}
+                        membersInRoom={membersInRoom}
+                        authentication={authentication}
+                        currentRoomId={currentRoomId}
+                    />
                     {isShowSetAdminTag() && (
                         <SetAdmin
                             membersInRoom={membersInRoom}
@@ -49,18 +60,22 @@ const OptionOfRoom = ({ roomId }) => {
                         />
                     )}
 
-                    <DeleteConversation />
+                    <DeleteConversation currentInboxId={currentInboxId} />
                     <OutRoom inboxId={currentInboxId} roomId={roomId} />
                 </div>
             )}
 
             {currentInbox.type === TYPE_ROOM_ONE && (
                 <div>
-                    <CreateRoom />
-                    <DeleteConversation />
-                    <ViewPersonalPage />
-                    <BlockUser />
-                    <ReportUser />
+                    <CreateRoom currentInbox={currentInbox}/>
+                    <ViewPersonalPage currentInbox={currentInbox} friendProfile={friendProfile} />
+                    <DeleteConversation currentInboxId={currentInboxId} />
+                    {isBlockStatus ? (
+                        <UnblockUser currentInbox={currentInbox} />
+                    ) : (
+                        <BlockUser currentInbox={currentInbox} />
+                    )}
+                    <ReportUser  currentInbox={currentInbox}/>
                 </div>
             )}
         </>

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import FriendsToCreateRoom from "../../components/FriendsToCreateRoom";
 import { getFriendsListFromServer } from "../../redux/action/actFriends";
+import { CLEAR_FRIEND_TO_CREATE_ROOM, createAction } from "../../redux/constants/constants";
 
 const CreateRoomWithMems = ({ friends, getFriendsAdded }) => {
     const dispatch = useDispatch();
-
+    const friendToCreateRoom = useSelector((state) => state.friendToCreateRoom);
     const [friendsAdded, setfriendsAdded] = useState([]);
-
+    
     const pushFriendsToListAdded = (friend) => {
         let cloneFriendsAdded = [...friendsAdded];
         cloneFriendsAdded.push(friend);
@@ -18,12 +19,21 @@ const CreateRoomWithMems = ({ friends, getFriendsAdded }) => {
     const deleteFriendsFromListAdded = (friendId) => {
         const cloneFriendsAdded = [...friendsAdded];
 
+        if(friendId === friendToCreateRoom.id)
+            dispatch(createAction(CLEAR_FRIEND_TO_CREATE_ROOM))
+
         const friendsId = cloneFriendsAdded.map((friend) => friend.id);
         const posOfFriendDeleted = friendsId.indexOf(friendId);
         cloneFriendsAdded.splice(posOfFriendDeleted, 1);
 
         setfriendsAdded(cloneFriendsAdded);
     };
+
+    useEffect(() => {
+        const size = Object.keys(friendToCreateRoom).length;
+        if (size) pushFriendsToListAdded(friendToCreateRoom);
+        //  eslint-disable-next-line
+    }, [friendToCreateRoom]);
 
     const friendsMap = friends.map((friend, index) => {
         const friendsId = [...friendsAdded].map((friend) => friend.id);

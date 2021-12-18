@@ -1,12 +1,16 @@
 import axios from "axios";
 import {
     API_ADD_NEW_MEMBERS,
+    API_ALL_MEDIA,
+    API_BLOCK,
     API_CHANGE_IMAGE_GROUP,
     API_CREATE_NEW_ROOM,
     API_EDIT_ROOM_NAME,
     API_GET_MEMBERS_IN_ROOM,
     API_INBOXS,
     API_OUT_ROOM,
+    API_REPORT_USER,
+    API_ROOM,
     API_SET_MEMBER_BECOME_ADMIN,
 } from "../constants/api";
 import {
@@ -20,7 +24,18 @@ import {
     RESET_CURRENT_INBOX_ID,
     UPDATE_ROOM_IMAGE_OF_HEADER_CHAT,
     UPDATE_ROOM_IMAGE_OF_INBOXS,
+    UPDATE_MEMBER_AUTHORITY,
+    UPDATE_MEMBERS_WHEN_DELETE_MEM,
+    UPDATE_MEMBER_AFTER_RECALL_ROLE,
+    UPDATE_CURRENT_INBOX_WHEN_BLOCK,
 } from "../constants/constants";
+
+const createAction = (type, data = {}) => {
+    return {
+        type,
+        data,
+    };
+};
 export const storeRoomName = (key, value) => {
     //key and value was created to save a dynamic object
     return {
@@ -89,6 +104,7 @@ export const createNewRoom = (room) => {
             .post(API_CREATE_NEW_ROOM, room)
             .then((resp) => {
                 dispatch(updateNewRoomRealtime(resp.data));
+                return Promise.resolve()
             })
             .catch((err) => {
                 console.log(err);
@@ -99,7 +115,7 @@ export const createNewRoom = (room) => {
 export const deleteConvesation = (inboxId) => {
     return (dispatch) => {
         return axios
-            .delete(API_INBOXS + inboxId)
+            .delete(API_INBOXS + "/" + inboxId)
             .then(() => {
                 dispatch({
                     type: DELETE_CONVERSATION,
@@ -145,7 +161,8 @@ export const changeImageGroup = (inboxDto, file) => {
         axios
             .post(API_CHANGE_IMAGE_GROUP + inboxDto.roomId, file, CONFIG_HEADER_MULTIPART_FORM_DATA)
             .then((resp) => {
-                const imgUrl = resp.data[0];
+                const imgUrl = resp.data.url;
+
                 dispatch({
                     type: UPDATE_ROOM_IMAGE_OF_HEADER_CHAT,
                     imgUrl,
@@ -167,9 +184,89 @@ export const setMemberBecomeAdmin = (roomId, memberId) => {
         axios
             .post(API_SET_MEMBER_BECOME_ADMIN + `/${roomId}/${memberId}`)
             .then((resp) => {
-                console.log(resp.data);
+                dispatch(createAction(UPDATE_MEMBER_AUTHORITY, { memberId: memberId }));
             })
             .catch((err) => {
                 console.error(err);
             });
+};
+
+export const recallMemberAdminRole = (roomId, memberId) => {
+    return (dispatch) =>
+        axios
+            .delete(API_SET_MEMBER_BECOME_ADMIN + `/${roomId}/${memberId}`)
+            .then((resp) => {
+                dispatch(createAction(UPDATE_MEMBER_AFTER_RECALL_ROLE, { memberId: memberId }));
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+};
+
+export const deleteMember = (roomId, memberId) => {
+    return (dispatch) =>
+        axios
+            .delete(API_ROOM + `${roomId}/${memberId}`)
+            .then((resp) => {
+                dispatch(createAction(UPDATE_MEMBERS_WHEN_DELETE_MEM, resp.data));
+                return Promise.resolve();
+            })
+            .catch((err) => {
+                console.error(err);
+                return Promise.reject();
+            });
+};
+
+export const blockUser = (userId) => {
+    return (dispatch) =>
+        axios
+            .post(API_BLOCK + `/${userId}`)
+            .then((resp) => {
+                const status = resp.data.blockUser.meBLock;
+                dispatch({
+                    type: UPDATE_CURRENT_INBOX_WHEN_BLOCK,
+                    status,
+                });
+                return Promise.resolve();
+            })
+            .catch((err) => {
+                const MESSAGE =
+                    (err.response && err.response.data && err.response.data.message) ||
+                    err.message ||
+                    err.toString();
+
+                console.error(`err: `, MESSAGE);
+                return Promise.reject();
+            });
+};
+
+export const unblockUser = (userId) => {
+    return (dispatch) =>
+        axios.delete(API_BLOCK + `/${userId}`).then((resp) => {
+            dispatch({
+                type: UPDATE_CURRENT_INBOX_WHEN_BLOCK,
+            });
+        });
+};
+
+export const getAllMediaByType = (roomId, type, page = 0) => {
+    const api = `${API_ALL_MEDIA}/${roomId}?type=${type}&size=6&page=${page}`;
+    return axios
+        .get(api)
+        .then((resp) => {
+            const originalData = resp.data.content;
+            const finalMedia = [];
+            originalData.forEach((media) => {
+                finalMedia.push(media.media[0]);
+            });
+            return Promise.resolve(finalMedia || []);
+        })
+        .catch((err) => Promise.resolve());
+};
+
+export const reportUser = (user) => {
+    return axios
+        .post(API_REPORT_USER, user)
+        .then((resp) => Promise.resolve(resp.data))
+        .catch((err) => Promise.reject());
 };

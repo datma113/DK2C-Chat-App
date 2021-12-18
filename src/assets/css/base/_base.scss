@@ -36,7 +36,8 @@ body {
     //     rgba(156, 75, 139, 0.34807426388524154) 89%,
     //     rgba(93, 59, 120, 0.28925073447347693) 96%
     // );
-    background-image: url("../image/devianart/enchanted_by_craftea_deqadnz-fullview.jpg");
+    background-image: url("../image/main-background.jpg");
+
     background-repeat: no-repeat;
     background-size: cover;
     backdrop-filter: blur(7px);
@@ -70,12 +71,17 @@ a {
 .modal-dialog {
     margin-top: 10rem;
 }
+.members-in-room-dialog {
+    max-width: none;
+    width: 70rem;
+}
 
 .header-img {
+    padding: 0 !important;
     width: 4rem;
     height: 4rem;
     border-radius: 100%;
-    box-shadow: 0 0 5px $mainDarkColor, 0 3px $mainLightColor;
+    box-shadow: 0 0 5px $mainDarkColor;
 }
 
 .introducing-text {

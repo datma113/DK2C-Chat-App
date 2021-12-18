@@ -17,7 +17,7 @@ import HeaderOfInfoRoom from "../../components/HeaderOfInfoRoom";
 import InfoOfRoom from "../../components/InfoOfRoom";
 import OptionOfRoom from "../homePage/OptionOfRoom";
 import { RESET_CURRENT_INBOX_ID, RESET_CURRENT_ROOM_ID } from "../../redux/constants/constants";
-import { useHistory } from "react-router";
+import MediaStore from "../../components/MediaStore";
 
 const FriendHome = () => {
     const dispatch = useDispatch();
@@ -26,12 +26,11 @@ const FriendHome = () => {
     const currentInboxId = useSelector((state) => state.currentInboxId);
     const currentRoomId = useSelector((state) => state.currentRoomId);
     const authentication = useSelector((state) => state.authentication);
+    const currentInbox = useSelector((state) => state.currentInbox);
 
-    const history = useHistory()
     let [index, setindex] = useState(-2);
 
     useEffect(() => {
-      
         dispatch({
             type: RESET_CURRENT_INBOX_ID,
         });
@@ -43,10 +42,7 @@ const FriendHome = () => {
         dispatch(getFriendsListFromServer());
         dispatch(getFriendsRequestFromServer());
         dispatch(getGroupsChatList());
-
-        
-
-    }, [dispatch, authentication, history]);
+    }, [dispatch, authentication]);
 
     const changeOptions = (option) => {
         setindex(option);
@@ -99,14 +95,19 @@ const FriendHome = () => {
                         <>
                             <div className="box-chat-container">
                                 <HeaderOfBoxChat />
-                                <BoxChat />
+                                <BoxChat
+                                    currentInboxId={currentInboxId}
+                                    authentication={authentication}
+                                    currentRoomId={currentRoomId}
+                                />
                                 <SendMessage roomId={currentRoomId} />
                             </div>
                             <div className="info-room-right">
                                 <HeaderOfInfoRoom />
                                 <div className="info-room-right__scroll">
-                                    <InfoOfRoom />
+                                    <InfoOfRoom currentInbox={currentInbox} />
                                     <OptionOfRoom roomId={currentRoomId} />
+                                    <MediaStore  roomId={currentRoomId}/>
                                 </div>
                             </div>
                         </>

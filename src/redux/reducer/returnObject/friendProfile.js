@@ -1,11 +1,11 @@
 import { STORE_FRIEND_PROFILE } from "../../constants/constants";
 const initial = {};
 const reducer = (state = initial, action) => {
-    let { type, profile } = action;
+    let { type, data } = action;
 
     switch (type) {
         case STORE_FRIEND_PROFILE:
-            return profile;
+            return data;
         default:
             break;
     }

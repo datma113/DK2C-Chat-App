@@ -2,13 +2,14 @@ const API = process.env.REACT_APP_BASE_URL;
 
 const API_AUTH = API + "auth/";
 const API_SIGN_UP = API_AUTH + "signup/";
-const API_ROOM = API + "rooms/";
 const API_USER = API + "user/";
 const API_ME = API_USER + "me/";
 
+export const API_BLOCK = API + "blocks"
 export const API_MESSAGES = API + 'messages/'
 export const API_FRIENDS = API + "friends"
 export const API_INBOXS = API + "inboxs";
+export const API_ROOM = API + "rooms/";
 export const API_FRIENDS_REQUEST = API + "friend-request/";
 
 /**authentication */
@@ -18,16 +19,23 @@ export const API_GET_USER_WHEN_EXISTS_REFRESH_TOKEN = API + "user/me";
 export const API_GET_REFRESH_TOKEN = API_AUTH + "refreshtoken";
 /**Register */
 
-export const API_SIGN_UP_IMFORMATION = API_SIGN_UP + "save_information";
-export const API_SIGN_UP_CHECK_MAIL = API_SIGN_UP + "send_verification_code";
-export const API_SIGN_UP_VERIFY = API_SIGN_UP + "verify";
+export const API_SIGN_UP_IMFORMATION = API_SIGN_UP + "valid";
+export const API_SIGN_IN_WITH_PHONE = API_AUTH + "signup/phone";
+
+export const API_SIGN_UP_CHECK_MAIL = API_SIGN_UP + "email";
+export const API_SIGN_UP_VERIFY = API_SIGN_UP + "email/verify";
+export const API_SIGN_UP_RESEND = API_SIGN_UP + "email/reSendVerificationCode";
 
 /**Profile */
 export const API_USER_INFO = API_ME;
 export const API_CHANGE_USER_IMAGE = API_ME + "changeImage"
 export const API_CHANGE_PASSWORD = API_ME + "changePassword";
+
+/** user */
 export const API_GET_USER_PROFILE = API_USER + "viewProfile/";
 export const API_SEARCH_USERS_BY_PHONE = API_USER + "searchPhone?textToSearch=";
+export const API_REPORT_USER = API_USER + "report";
+
 /**inbox */
 export const API_GET_INBOX_BY_ID = API_INBOXS + "/ofRoomId/";
 export const API_GET_INBOX_BY_FRIEND_ID = API_INBOXS + "/with/";
@@ -35,6 +43,7 @@ export const API_GET_INBOX_BY_FRIEND_ID = API_INBOXS + "/with/";
 /**Chat */
 export const API_GET_MESSAGE_IN_CHAT_BOX = API_MESSAGES + "inbox/";
 export const API_MEMBERS_EXPRESS_REATIONS = API_MESSAGES + "react/";
+export const API_ALL_MEDIA = API_MESSAGES + "media";
 
 export const API_GET_FILE_URL_WHEN_SENDED = API + "file/";
 

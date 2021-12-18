@@ -1,15 +1,53 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
+import Swal from "sweetalert2";
 import TagOfOptionRoom from "../components/TagOfOptionRoom";
-import { getMembersInRoom, setMemberBecomeAdmin } from "../redux/action/actInfoRoom";
+import {
+    getMembersInRoom,
+    recallMemberAdminRole,
+    setMemberBecomeAdmin,
+} from "../redux/action/actInfoRoom";
 import MyCustomModal from "./MyCustomModal";
 
-const SetAdmin = ({ roomId, membersInRoom, currentInbox, authentication }) => {
+const SetAdmin = ({ roomId, membersInRoom, authentication }) => {
     const dispatch = useDispatch();
-    const [memberId, setmemberId] = useState("");
+
+    const setMemberBecomeAdminHandle = (member) => {
+        Swal.fire({
+            title: "Cấp quyền",
+            text: ` Thiết lập ${member.user.displayName} thành quản trị viên?`,
+            icon: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#a166d1",
+            cancelButtonColor: "#262626",
+            cancelButtonText: "trở lại",
+            confirmButtonText: "Cấp quyền",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(setMemberBecomeAdmin(roomId, member.user.id));
+            }
+        });
+    };
+
+    const recallMemberAdminRoleHandle = (member) => {
+        Swal.fire({
+            title: "Hủy quyền",
+            text: ` Thu hồi quyền Quản trị viên của ${member.user.displayName}?`,
+            icon: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#a166d1",
+            cancelButtonColor: "#262626",
+            cancelButtonText: "trở lại",
+            confirmButtonText: "Xác nhận",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(recallMemberAdminRole(roomId, member.user.id));
+            }
+        });
+    };
 
     const membersInRoomMap = membersInRoom.map((member, index) => {
-        if (authentication.user.id === member.user.id) return <> </>;
+        if (authentication.user.id === member.user.id) return <div key={index}> </div>;
         return (
             <div className="row m-2 mt-4" key={index}>
                 <div className="col-1">
@@ -24,9 +62,21 @@ const SetAdmin = ({ roomId, membersInRoom, currentInbox, authentication }) => {
 
                 <div className="col-2">
                     {member.isAdmin ? (
-                        <div className="btn btn-outline-danger"> hủy quyền </div>
+                        <div
+                            className="btn btn-outline-danger"
+                            onClick={() => recallMemberAdminRoleHandle(member)}
+                        >
+                            {" "}
+                            hủy quyền{" "}
+                        </div>
                     ) : (
-                        <div className="btn btn-secondary"> cấp quyền </div>
+                        <div
+                            className="btn btn-secondary"
+                            onClick={() => setMemberBecomeAdminHandle(member)}
+                        >
+                            {" "}
+                            cấp quyền{" "}
+                        </div>
                     )}
                 </div>
             </div>
@@ -50,7 +100,6 @@ const SetAdmin = ({ roomId, membersInRoom, currentInbox, authentication }) => {
                 inner={renderSetAdmin()}
                 headerTitle="Thiết lập thành quản trị viên"
                 id="setAdminModal"
-                //   functionWhenClick={() => dispatch(setMemberBecomeAdmin(roomId, memberId))}
             />
         </>
     );

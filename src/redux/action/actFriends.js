@@ -7,6 +7,7 @@ import {
     API_INBOXS,
 } from "../constants/api";
 import {
+    createAction,
     STORE_FRIENDS_LIST,
     STORE_FRIENDS_REQUEST,
     STORE_FRIEND_PROFILE,
@@ -113,6 +114,7 @@ const gotoChatInfriendList = (inbox, dispatch) => {
         imgUrl: sender.imageUrl,
         displayName: sender.displayName,
         type: inbox.room.type,
+        inbox
     };
     dispatch(storeCurrentInbox(currentInbox));
 };
@@ -144,19 +146,12 @@ export const getInboxByFriendId = (friendId) => {
     };
 };
 
-const storeFriendProfile = (profile) => {
-    return {
-        type: STORE_FRIEND_PROFILE,
-        profile,
-    };
-};
-
 export const getUserProfile = (userId) => {
     return (dispatch) =>
         axios
             .get(API_GET_USER_PROFILE + userId)
             .then((resp) => {
-                dispatch(storeFriendProfile(resp.data));
+                dispatch(createAction(STORE_FRIEND_PROFILE, resp.data));
                 return Promise.resolve();
             })
             .catch((err) => {
@@ -183,9 +178,7 @@ export const deleteFriends = (friendId) => {
 export const addFriend = (userId) => {
     return axios
         .post(API_FRIENDS_REQUEST + userId)
-        .then((resp) => {
-            console.log(resp.data);
-        })
+        .then((resp) => {})
         .catch((err) => {
             const MESSAGE =
                 (err.response && err.response.data && err.response.data.message) ||

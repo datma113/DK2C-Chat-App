@@ -47,16 +47,28 @@ const ChangePassword = () => {
 
         dispatch(changePassword(USER_PASSWORD))
             .then(() => {
+                let timerInterval
                 Swal.fire({
-                    icon: "success",
-                    title: "Đổi mật khẩu thành công!",
-                    text: " Hệ thống sẽ tự đọng quay về trang chủ",
-                    showConfirmButton: false,
-                });
-                setTimeout(() => {
-                    history.push("/");
-                    window.location.reload();
-                }, 2000);
+                  title: 'Đổi mật khẩu thành công!',
+                  html: 'Hệ thống sẽ quay về trang chủ trong <b></b> giây',
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                      b.textContent = Swal.getTimerLeft()
+                    }, 50)
+                  },
+                  willClose: () => {
+                    clearInterval(timerInterval)
+                  }
+                }).then((result) => {
+                  /* Read more about handling dismissals below */
+                  if (result.dismiss === Swal.DismissReason.timer) {
+                    history.push("/")
+                  }
+                })
             })
             .catch((err) => {
                 Swal.fire({

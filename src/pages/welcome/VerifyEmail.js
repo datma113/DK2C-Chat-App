@@ -8,36 +8,65 @@ import { storeUserInfoWhenRegister } from "../../redux/action/actRegister";
 import { CLEAR_MESSAGE_FROM_SERVER } from "../../redux/constants/constants";
 
 const VerifyEmail = ({ gotoPreviousStepOfRegister, isEntitledGotoNextStep }) => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const userRegister = useSelector((state) => state.userRegister);
     const message = useSelector((state) => state.message);
-   
+
+    const isDisabled = () => {
+        if (
+            userRegister.email &&
+            userRegister.password &&
+            userRegister.confirmPassword === userRegister.password
+        )
+            return "";
+        return "disabled";
+    };
+
     useEffect(() => {
         dispatch({
-            type: CLEAR_MESSAGE_FROM_SERVER
-        })
-    }, [dispatch])
+            type: CLEAR_MESSAGE_FROM_SERVER,
+        });
+    }, [dispatch]);
 
     return (
         <div>
             <TextInput
                 label="Email của bạn"
-                id={0}
-                type="text"
                 regexPattern={
                     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
                 }
-                keyStoreToReducer="email"
                 checkRegex={regexInputModule.checkRegexOfUserEmail}
+                id={0}
+                type="email"
+                keyStoreToReducer="email"
                 functionToDispatch={storeUserInfoWhenRegister}
                 initialValue={userRegister.email}
+            />
+            <TextInput
+                label="Mật khẩu"
+                id={1}
+                type="password"
+                keyStoreToReducer="password"
+                regexPattern={/[\w]/g}
+                checkRegex={regexInputModule.checkRegexOfUserPassword}
+                functionToDispatch={storeUserInfoWhenRegister}
+                initialValue={userRegister.password}
+            />
+            <TextInput
+                label="xác nhận mật khẩu"
+                id={2}
+                type="password"
+                keyStoreToReducer="confirmPassword"
+                functionToDispatch={storeUserInfoWhenRegister}
+                initialValue=""
             />
             <ErrorHandle message={message.message} />
 
             <MyCustomButton
-                label="xác nhận"
+                label="Tiếp tục"
                 typeButton="secondary"
                 isEntitledGotoNextStep={isEntitledGotoNextStep}
+                disabled={isDisabled()}
             />
             <MyCustomButton
                 label="Quay lại"

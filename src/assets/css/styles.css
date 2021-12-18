@@ -25,7 +25,7 @@ html {
 }
 
 body {
-  background-image: url("../image/devianart/enchanted_by_craftea_deqadnz-fullview.jpg");
+  background-image: url("../image/main-background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   backdrop-filter: blur(7px);
@@ -60,11 +60,17 @@ a {
   margin-top: 10rem;
 }
 
+.members-in-room-dialog {
+  max-width: none;
+  width: 70rem;
+}
+
 .header-img {
+  padding: 0 !important;
   width: 4rem;
   height: 4rem;
   border-radius: 100%;
-  box-shadow: 0 0 5px #262626, 0 3px #FBFBFB;
+  box-shadow: 0 0 5px #262626;
 }
 
 .introducing-text {
@@ -134,7 +140,7 @@ a {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: url("../image/devianart/enchanted_by_craftea_deqadnz-fullview.jpg");
+  background-image: url("../image/main-background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   backdrop-filter: blur(7px);
@@ -297,6 +303,76 @@ a {
   overflow-y: scroll;
 }
 
+.media__img {
+  border-radius: 7.5px;
+  box-shadow: 0 0 3px #262626;
+  transition: 0.1s;
+}
+.media__img:hover {
+  box-shadow: 0 0 1x black;
+}
+
+.media-message {
+  padding: 1rem 0;
+  border-bottom: thin solid #dddddd;
+}
+.media-message__img {
+  padding: 1rem;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 7.5px;
+  box-shadow: 2px 3px 5px #262626;
+}
+.media-message__file-name {
+  word-wrap: break-word;
+  color: red;
+}
+.media-message__download {
+  cursor: pointer;
+  text-shadow: 1px 2px 2px #FBFBFB;
+  transform: scale(1);
+  transition: 0.1s;
+}
+.media-message__download:hover {
+  transform: scale(1.4);
+}
+
+.media-store {
+  margin-top: 1rem;
+  margin-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.media-store__title {
+  color: #FFA900;
+  user-select: none;
+}
+.media-store__image {
+  margin-top: 1.5rem;
+  height: 10rem;
+}
+.media-store__image__modal-image {
+  height: 10rem;
+  width: 100%;
+  cursor: pointer;
+  box-shadow: 0 0 3px #262626;
+  border-radius: 7.5px;
+  transition: 0.1s;
+}
+.media-store__image__modal-image:hover {
+  box-shadow: 0 0 10px #5D3B78;
+}
+.media-store__more {
+  cursor: pointer;
+  user-select: none;
+  transform: scale(1);
+  transition: 0.2s;
+}
+.media-store__more:hover {
+  color: #5D3B78;
+  transform: scale(1.25);
+}
+
 /* responsive */
 @media only screen and (min-width: 992px) {
   .introducing-text {
@@ -342,6 +418,9 @@ a {
   background-color: #FBFBFB;
   margin-top: 5rem;
   margin-bottom: 5rem;
+  height: 60rem;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 .welcome-container__image {
   width: 30rem;
@@ -366,8 +445,8 @@ a {
   }
 }
 .home {
-  display: flex;
   height: 90vh;
+  display: flex;
 }
 .home__inbox-list {
   height: 80vh;
@@ -471,9 +550,9 @@ a {
 
 .box-chat-container {
   height: 90vh;
+  width: 50%;
   display: flex;
   flex-direction: column;
-  flex: 8;
   border-right: thin solid #dddddd;
 }
 
@@ -572,8 +651,7 @@ a {
   left: -3rem;
 }
 .single-chat-box__message__delete--other {
-  top: 20%;
-  right: -3rem;
+  display: none !important;
 }
 .single-chat-box__message__delete:hover .single-chat-box__message__delete__options {
   transform: scaleY(1);
@@ -681,6 +759,51 @@ a {
   position: absolute;
   bottom: 6rem;
   right: 0;
+}
+
+.imgs-sending {
+  display: flex;
+  width: 75%;
+  max-height: 20rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border-top: thin solid #262626;
+}
+.imgs-sending__imgs {
+  position: relative;
+  margin-top: 1rem;
+}
+.imgs-sending__imgs__media {
+  margin: 0.75rem 0;
+  border-radius: 7.5px;
+  box-shadow: 4px 4px 4px #262626;
+  width: 8rem;
+  height: 8rem;
+  cursor: pointer;
+  transition: 0.1s;
+}
+.imgs-sending__imgs__media:hover {
+  box-shadow: 4px 4px 4px #262626, -2px -2px 3px #262626;
+}
+.imgs-sending__imgs__remove {
+  position: absolute;
+  user-select: none;
+  border-radius: 100%;
+  height: 2rem;
+  width: 2rem;
+  background-color: white;
+  box-shadow: 0 0 3px #262626;
+  font-size: 1.5rem;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  transform: scale(1);
+  transition: 0.2s;
+}
+.imgs-sending__imgs__remove:hover {
+  background-color: #F93154;
+  color: #FBFBFB;
+  transform: scale(1.4);
 }
 
 .friendhome {
@@ -814,8 +937,8 @@ a {
 }
 
 .info-room-right {
-  flex-grow: 1;
   background-color: #FBFBFB;
+  width: 25%;
 }
 .info-room-right__scroll {
   height: calc(90vh - 10rem);
@@ -834,6 +957,10 @@ a {
   height: 15rem;
   background-color: white;
   flex-direction: column;
+}
+.info-room__name {
+  width: 100%;
+  word-wrap: break-word;
 }
 .info-room__img {
   height: 6rem;
@@ -902,6 +1029,7 @@ a {
   max-width: 30rem;
   border-radius: 100px;
   padding: 0.25rem 2rem;
+  word-wrap: break-word;
 }
 
 .profile__img {
@@ -967,7 +1095,8 @@ a {
 }
 
 .inbox-side-bar {
-  min-width: 40rem;
+  width: 25%;
+  min-width: 35rem;
   overflow: scroll;
   overflow-x: hidden;
 }
@@ -1057,6 +1186,29 @@ a {
   height: 10rem;
   border-radius: 100%;
   box-shadow: 0 0 5px #FBFBFB;
+}
+
+.friend-profile {
+  display: flex;
+  flex-direction: column;
+}
+.friend-profile__header-img {
+  position: relative;
+  margin-bottom: 2rem;
+}
+.friend-profile__header-img__big-img {
+  width: 100%;
+  height: 15rem;
+}
+.friend-profile__header-img__small-img {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 100%;
+  position: absolute;
+  box-shadow: 0 0 5px black;
+  left: 50%;
+  bottom: -4rem;
+  transform: translate(-50%, 0);
 }
 
 /*variables*/

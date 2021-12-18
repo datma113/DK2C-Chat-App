@@ -1,6 +1,6 @@
 .info-room-right {
-    flex-grow: 1;
     background-color: $mainLightColor;
+    width: 25%;
     &__scroll {
         height: calc(90vh - 10rem);
         overflow-y: scroll;
@@ -21,6 +21,10 @@
     background-color: white;
     flex-direction: column;
 
+    &__name {
+        width: 100%;
+        word-wrap: break-word;
+    }
     &__img {
         height: 6rem;
         width: 6rem;

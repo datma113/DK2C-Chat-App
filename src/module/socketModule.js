@@ -2,10 +2,16 @@ import axios from "axios";
 import SockJS from "sockjs-client";
 import Stomp from "stompjs";
 import {
+    createAction,
     DELETE_AN_MESSAGE,
+    SCROLL_BOTTOM_WHEN_SEND_MESSAGE,
+    UPDATE_BUTTON_WHEN_SENT_REQUEST,
+    UPDATE_FRIENDS_REQUEST_AFTER_SENT_REQUEST,
+    UPDATE_FRIEND_AFTER_REQUEST,
     UPDATE_LAST_MESSAGE_IN_INBOX,
     UPDATE_MESSAGE_REALTIME,
     UPDATE_REACTION_REALTIME,
+    UPDATE_USERS_AFTER_SENT_REQUEST,
 } from "../redux/constants/constants";
 import { API_GET_INBOX_BY_ID } from "../redux/constants/api";
 import newMessageSingleton from "./newMessageSingleton";
@@ -34,12 +40,17 @@ const socketModule = (function () {
         const onConnected = () => {
             stompClient.subscribe("/users/queue/messages", function (resp) {
                 const data = JSON.parse(resp.body);
-                const MESSAGE = [{ ...data, reactions: [] }];
+                const message = [{ ...data, reactions: [] }];
                 const TYPE_MESSAGE_SYSTEM = "SYSTEM";
 
                 dispatch({
                     type: UPDATE_MESSAGE_REALTIME,
-                    realTimeMessage: MESSAGE,
+                    realTimeMessage: message,
+                });
+
+                dispatch({
+                    type: SCROLL_BOTTOM_WHEN_SEND_MESSAGE,
+                    status: true,
                 });
 
                 axios.get(API_GET_INBOX_BY_ID + data.roomId).then((resp) => {
@@ -85,6 +96,30 @@ const socketModule = (function () {
                     message: data,
                 });
             });
+
+            stompClient.subscribe("/users/queue/friendRequest/received", function (resp) {
+                const data = JSON.parse(resp.body);
+                dispatch(createAction(UPDATE_USERS_AFTER_SENT_REQUEST, data));
+                dispatch(createAction(UPDATE_FRIENDS_REQUEST_AFTER_SENT_REQUEST, data));
+                dispatch(createAction(UPDATE_BUTTON_WHEN_SENT_REQUEST, data));
+            });
+
+            stompClient.subscribe("/users/queue/friendRequest/accept", function (resp) {});
+
+            stompClient.subscribe("/users/queue/friendRequest/recall", function (resp) {
+                const data = JSON.parse(resp.body);
+                dispatch(createAction(UPDATE_USERS_AFTER_SENT_REQUEST, data));
+                dispatch({
+                    type: UPDATE_FRIEND_AFTER_REQUEST,
+                    id: data.to.id,
+                });
+                dispatch(createAction(UPDATE_BUTTON_WHEN_SENT_REQUEST, data));
+            });
+
+            stompClient.subscribe("/users/queue/friendRequest/delete", function (resp) {
+                const data = JSON.parse(resp.body);
+                console.log(data);
+            });
         };
 
         stompClient.connect(user, onConnected);
@@ -95,12 +130,22 @@ const socketModule = (function () {
     }
 
     function sendMessageToOneFriend(roomId, content, type) {
-        const FRIEND = {
+        const friend = {
             content,
             roomId,
             type,
         };
-        stompClient.send("/app/chat", {}, JSON.stringify(FRIEND));
+        stompClient.send("/app/chat", {}, JSON.stringify(friend));
+    }
+
+    function sendFiles(roomId, media, type) {
+        const files = {
+            roomId,
+            media,
+            type,
+        };
+        console.log(files);
+        stompClient.send("/app/chat", {}, JSON.stringify(files));
     }
 
     function expressReaction(reaction) {
@@ -119,6 +164,9 @@ const socketModule = (function () {
         },
         expressReaction: function (reaction) {
             expressReaction(reaction);
+        },
+        sendFiles: function (roomId, media, type) {
+            sendFiles(roomId, media, type);
         },
     };
 })();

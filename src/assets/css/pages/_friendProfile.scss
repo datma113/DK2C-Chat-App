@@ -1,0 +1,24 @@
+.friend-profile {
+    display: flex;
+    flex-direction: column;
+
+    &__header-img {
+        position: relative;
+        margin-bottom: 2rem;
+        &__big-img {
+            width: 100%;
+            height: 15rem;
+        }
+
+        &__small-img {
+            width: 8rem;
+            height: 8rem;
+            border-radius: 100%;
+            position: absolute;
+            box-shadow: 0 0 5px black;
+            left: 50%;
+            bottom: -4rem;
+            transform: translate(-50%, 0);
+        }
+    }
+}

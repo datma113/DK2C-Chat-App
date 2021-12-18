@@ -3,7 +3,7 @@ import TagOfOptionRoom from "../components/TagOfOptionRoom";
 import MyCustomModal from "./MyCustomModal";
 import { deleteMember, getMembersInRoom } from "../redux/action/actInfoRoom";
 import { useDispatch } from "react-redux";
-import { addFriend } from "../redux/action/actFriends";
+import { addFriend, declineFriendRequest } from "../redux/action/actFriends";
 import Swal from "sweetalert2";
 
 const MembersInRoom = ({ roomId, membersInRoom, currentInbox, authentication }) => {
@@ -28,7 +28,12 @@ const MembersInRoom = ({ roomId, membersInRoom, currentInbox, authentication }) 
                         </button>
                         <button
                             type="button"
-                            className="member-in-room__btn btn  btn-outline-danger mt-2"
+                            className="member-in-room__btn btn  btn-outline-danger mt-2
+                            
+                            "
+                            onClick={() => {
+                                dispatch(declineFriendRequest(member.user.id))
+                            }}
                         >
                             hủy
                         </button>

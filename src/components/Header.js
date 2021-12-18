@@ -24,10 +24,11 @@ const Header = () => {
                 window.location.reload();
             })
             .catch((err) => {
+                console.error(err);
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    html: `<div className="text-normal text-center text-danger"> ${err} </div>`,
+                    html: `<div className="text-normal text-center text-danger"> ${` Vui lòng thử lại.`} </div>`,
                 });
             });
     };

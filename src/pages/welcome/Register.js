@@ -16,7 +16,6 @@ import OTPCode from "./OTPCode";
 import Loading from "../../components/Loading";
 import UserInfoRegister from "./UserInfoRegister";
 import { useHistory } from "react-router-dom";
-import { CLEAR_MESSAGE_FROM_SERVER } from "../../redux/constants/constants";
 import Swal from "sweetalert2";
 import regexInputModule from "../../module/regexInputModule";
 

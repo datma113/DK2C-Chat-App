@@ -43,7 +43,6 @@ const socketModule = (function () {
                 const message = [{ ...data, reactions: [] }];
                 const TYPE_MESSAGE_SYSTEM = "SYSTEM";
 
-
                 dispatch({
                     type: UPDATE_MESSAGE_REALTIME,
                     realTimeMessage: message,
@@ -105,11 +104,7 @@ const socketModule = (function () {
                 dispatch(createAction(UPDATE_BUTTON_WHEN_SENT_REQUEST, data));
             });
 
-            stompClient.subscribe("/users/queue/friendRequest/accept", function (resp) {
-                const data = JSON.parse(resp.body);
-
-                console.log(data);
-            });
+            stompClient.subscribe("/users/queue/friendRequest/accept", function (resp) {});
 
             stompClient.subscribe("/users/queue/friendRequest/recall", function (resp) {
                 const data = JSON.parse(resp.body);
@@ -118,6 +113,7 @@ const socketModule = (function () {
                     type: UPDATE_FRIEND_AFTER_REQUEST,
                     id: data.to.id,
                 });
+                dispatch(createAction(UPDATE_BUTTON_WHEN_SENT_REQUEST, data));
             });
 
             stompClient.subscribe("/users/queue/friendRequest/delete", function (resp) {
@@ -147,8 +143,8 @@ const socketModule = (function () {
             roomId,
             media,
             type,
-          
         };
+        console.log(files);
         stompClient.send("/app/chat", {}, JSON.stringify(files));
     }
 

@@ -14,7 +14,7 @@ const UserInfoRegister = ({ registerFields = [], userRegister = {}, isEntitledGo
         if (
             userRegister.displayName &&
             userRegister.password &&
-            userRegister.phoneNumber &&
+            userRegister.email &&
             userRegister["confirmPassword"] === userRegister.password
         )
             return "";

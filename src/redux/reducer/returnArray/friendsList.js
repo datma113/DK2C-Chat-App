@@ -8,11 +8,12 @@ const reducer = (state = initial, action) => {
             return friends;
 
         case UPDATE_FRIENDS_AFTER_DELETE:
-            let friendsMap = state.map((el) => el.friend.id);
+            let friendsAfterDelete = [...state]
+           
+            let friendsMap = friendsAfterDelete.map((el) => el.friend.id);
             const indexOffriendDeleted = friendsMap.indexOf(friendId);
-            state.splice(indexOffriendDeleted, 1);
-            return state;
-
+            friendsAfterDelete.splice(indexOffriendDeleted, 1);
+            return friendsAfterDelete;
         default:
             return state;
     }

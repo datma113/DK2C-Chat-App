@@ -78,7 +78,8 @@ export const acceptFriendRequest = (id) => {
     return (dispatch) => {
         return axios
             .put(API_FRIENDS_REQUEST + id)
-            .then(() => {
+            .then((resp) => {
+                console.log(resp);
                 dispatch({
                     type: UPDATE_FRIEND_AFTER_REQUEST,
                     id,

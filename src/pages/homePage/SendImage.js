@@ -5,8 +5,7 @@ import { createAction, STORE_IMAGES_SENDING } from "../../redux/constants/consta
 const SendImage = () => {
     const dispatch = useDispatch()
     const handleSendImageEvent = (e) => {
-        const images = e.target.files;
-
+        const images = e.target.files;    
         dispatch(createAction(STORE_IMAGES_SENDING, images))
     };
 

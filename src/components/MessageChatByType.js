@@ -101,8 +101,10 @@ const MessageChatByType = ({ message, index, originalBoxChat, authentication, cu
         if (message.type === "MEDIA" && message.media.length > 0) {
             return <AllMedia messageMedia={message.media} />;
         }
-
-        return <p>{message.content}</p>;
+       // var parser = new DOMParser();
+       // var doc = parser.parseFromString(message.content, 'text/html');
+       
+        return <p dangerouslySetInnerHTML={{__html: message.content}} />;
     };
 
     return (

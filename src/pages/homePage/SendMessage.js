@@ -15,6 +15,7 @@ import {
 import mediaModule from "../../module/mediaModule";
 import ModalVideo from "react-modal-video";
 import "react-modal-video/scss/modal-video.scss";
+import Swal from "sweetalert2";
 
 const SendMessage = ({ roomId }) => {
     const allMediaSending = useSelector((state) => state.allMediaSending);
@@ -40,7 +41,6 @@ const SendMessage = ({ roomId }) => {
     const RAR_FILE = 5;
     const EXE_FILE = 6;
     const TXT_FILE = 7;
-
 
     const isImage = (type) => type.includes(typeOfMedia.image);
     const isVideo = (type) => type.includes(typeOfMedia.video);
@@ -115,8 +115,6 @@ const SendMessage = ({ roomId }) => {
         };
     };
 
-   
-    
     const pairProcesscor = [
         [({ type } = {}) => isImage(type), IMAGE_FILE],
         [({ type } = {}) => isVideo(type), VIDEO_FILE],
@@ -127,11 +125,10 @@ const SendMessage = ({ roomId }) => {
         [({ name } = {}) => isWordFile(name), WORD_FILE],
     ];
 
-
     const allMediaSendingMap = allMediaSending.map((media, index) => {
         const url = URL.createObjectURL(media);
         const renderMediaBy = renderMedia(url, index);
-        
+
         const mediaType = {
             type: media.type,
             name: media.name,
@@ -142,7 +139,7 @@ const SendMessage = ({ roomId }) => {
                 return renderMediaBy(file);
             }
         }
-        
+
         return renderMediaBy();
     });
 
@@ -158,8 +155,15 @@ const SendMessage = ({ roomId }) => {
         dispatch(createAction(CLEAR_IMAGES_SENDING));
 
         const formData = new FormData();
-
+        const MAXIMUM_SIZE = 6553600;
         files.forEach((file) => {
+            if (file.size > MAXIMUM_SIZE) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    html: `<div class="text-normal text-center text-danger"> ${`file ${file.name} vượt quá 50MB`} </div>`,
+                });
+            }
             formData.append("files", file);
         });
 

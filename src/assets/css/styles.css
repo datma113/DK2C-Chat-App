@@ -307,6 +307,7 @@ a {
   border-radius: 7.5px;
   box-shadow: 0 0 3px #262626;
   transition: 0.1s;
+  width: 100%;
 }
 .media__img:hover {
   box-shadow: 0 0 1x black;

@@ -12,6 +12,7 @@ import {
     STORE_FRIENDS_REQUEST,
     STORE_FRIEND_PROFILE,
     STORE_GROUPS_LIST,
+    UPDATE_FRIENDS_AFTER_ACCEPT,
     UPDATE_FRIENDS_AFTER_DELETE,
     UPDATE_FRIEND_AFTER_REQUEST,
 } from "../constants/constants";
@@ -79,11 +80,17 @@ export const acceptFriendRequest = (id) => {
         return axios
             .put(API_FRIENDS_REQUEST + id)
             .then((resp) => {
-                console.log(resp);
+                console.log(resp.data);
                 dispatch({
                     type: UPDATE_FRIEND_AFTER_REQUEST,
                     id,
                 });
+
+                dispatch({
+                    type: UPDATE_FRIENDS_AFTER_ACCEPT,
+                    friend: resp.data
+                })
+
 
                 return Promise.resolve();
             })

@@ -1,15 +1,20 @@
-import { STORE_FRIENDS_LIST, UPDATE_FRIENDS_AFTER_DELETE } from "../../constants/constants";
+import {
+    STORE_FRIENDS_LIST,
+    UPDATE_FRIENDS_AFTER_ACCEPT,
+    UPDATE_FRIENDS_AFTER_DELETE,
+} from "../../constants/constants";
 const initial = [];
 const reducer = (state = initial, action) => {
-    let { type, friends, friendId } = action;
+    let { type, friends, friendId, friend } = action;
 
     switch (type) {
         case STORE_FRIENDS_LIST:
             return friends;
-
+        case UPDATE_FRIENDS_AFTER_ACCEPT:
+            return [{ friend }, ...state];
         case UPDATE_FRIENDS_AFTER_DELETE:
-            let friendsAfterDelete = [...state]
-           
+            let friendsAfterDelete = [...state];
+
             let friendsMap = friendsAfterDelete.map((el) => el.friend.id);
             const indexOffriendDeleted = friendsMap.indexOf(friendId);
             friendsAfterDelete.splice(indexOffriendDeleted, 1);

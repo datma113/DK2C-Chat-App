@@ -42,7 +42,7 @@ const ListFriends = () => {
 
     const deleteFriend = (friendId) => {
         dispatch(deleteFriends(friendId)).then(() => {
-
+            
             dispatch({
                 type: RESET_CURRENT_INBOX_ID,
             });

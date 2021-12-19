@@ -168,6 +168,7 @@ export const deleteFriends = (friendId) => {
                     type: UPDATE_FRIENDS_AFTER_DELETE,
                     friendId,
                 });
+                
                 return Promise.resolve();
             })
             .catch((err) => {

@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import TextInput from "../../components/TextInput";
 import regexInputModule from "../../module/regexInputModule";
 import {
-    registerUserAccountInitialStep,
+    registerValidPhone,
     storeUserInfoWhenRegister,
 } from "../../redux/action/actRegister";
 import { CLEAR_USER_INFO_WHEN_DONE_REGISTER } from "../../redux/constants/constants";
@@ -68,7 +68,7 @@ const SmsUserInfo = ({ userRegister = {}, setregisterStep, history, dispatch, me
                 type="button"
                 className={`btn btn-welcome btn-secondary ${isEnableNextBtn()}`}
                 onClick={() => {
-                    dispatch(registerUserAccountInitialStep(userRegister))
+                    dispatch(registerValidPhone(userRegister))
                         .then((resp) => {
                             setregisterStep(1);
                         })

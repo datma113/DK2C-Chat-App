@@ -11,7 +11,13 @@ const UserInfoRegister = ({ registerFields = [], userRegister = {}, isEntitledGo
     const dispatch = useDispatch();
 
     const isEnableNextBtn = () => {
-        if (userRegister.displayName) return "";
+        if (
+            userRegister.displayName &&
+            userRegister.password &&
+            userRegister.phoneNumber &&
+            userRegister["confirmPassword"] === userRegister.password
+        )
+            return "";
         return "disabled";
     };
 

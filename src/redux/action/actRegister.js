@@ -7,6 +7,31 @@ import {
 } from "../constants/constants";
 import RegisterService from "../../services/RegisterService";
 
+
+export const registerValidPhone =  (user) => {
+    return (dispatch) => {
+        return RegisterService.registerValidPhone(user)
+            .then((resp) => {
+                dispatch({
+                    type: CLEAR_MESSAGE_FROM_SERVER,
+                });
+                return Promise.resolve(resp.data);
+            })
+            .catch((err) => {
+                const MESSAGE =
+                    (err.response && err.response.data && err.response.data.message) ||
+                    err.message ||
+                    err.toString();
+
+                dispatch({
+                    type: SET_MESSAGE_FROM_SERVER,
+                    message: MESSAGE,
+                });
+                return Promise.reject(MESSAGE);
+            });
+    };
+}
+
 export const registerUserAccountInitialStep = (user) => {
     return (dispatch) => {
         return RegisterService.registerUserAccountInitialStep(user)

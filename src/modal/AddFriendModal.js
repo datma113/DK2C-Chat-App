@@ -12,9 +12,10 @@ const AddfriendModal = () => {
     const authentication = useSelector(state => state.authentication)
 
     const getUsersHandle = (query = "") => {
-        const VALID_PHONE_NUMBER = [10, 11, 12];
+        const VALID_USER_LENGTH = 10;
         const LENGTH_QUERY = query.length;
-        if (VALID_PHONE_NUMBER.includes(LENGTH_QUERY)) dispatch(getUsers(query));
+        console.log(query);
+        if (LENGTH_QUERY >= VALID_USER_LENGTH) dispatch(getUsers(query));
     };
 
     const isMyself = () => {

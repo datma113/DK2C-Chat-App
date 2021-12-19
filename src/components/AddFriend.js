@@ -57,7 +57,7 @@ const AddFriend = ({ users, handleOnChange, functionWhenClick, isMyself }) => {
                 <input
                     type="text"
                     className="form-control text-medium text-center w-75"
-                    placeholder="Tìm số điện thoại"
+                    placeholder="Tìm kiếm người dùng"
                     onChange={handleOnChange}
                 />
                 <hr />
@@ -68,7 +68,7 @@ const AddFriend = ({ users, handleOnChange, functionWhenClick, isMyself }) => {
                         {renderButtonAddFriend(users)}
                     </div>
                 ) : (
-                    <p className="text-danger">Vui lòng nhập chính xác nhập Số Điện Thoại!</p>
+                    <p className="text-danger">Nhập email hoặc số điện thoại!</p>
                 )}
             </div>
         </div>

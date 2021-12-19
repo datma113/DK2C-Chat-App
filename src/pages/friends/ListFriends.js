@@ -54,7 +54,7 @@ const ListFriends = () => {
     };
 
     const listFriendMap = friendsList.map((friend, index) => {
-        const ID = friend.friend.id;
+        const ID = friend?.friend?.id;
 
         return (
             <Friend

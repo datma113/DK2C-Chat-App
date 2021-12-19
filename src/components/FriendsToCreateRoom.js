@@ -1,6 +1,6 @@
 import React from "react";
 
-const FriendsToCreateRoom = ({ friend, functionWhenClick, isActive }) => {
+const FriendsToCreateRoom = ({ friend = {}, functionWhenClick, isActive }) => {
     const isActiveClass = () => {
         return isActive ? "friends-added-active" : "";
     };

@@ -38,7 +38,7 @@ const CreateRoomWithMems = ({ friends, getFriendsAdded }) => {
     const friendsMap = friends.map((friend, index) => {
         const friendsId = [...friendsAdded].map((friend) => friend.id);
 
-        const isActive = friendsId.includes(friend.friend.id) ? true : false;
+        const isActive = friendsId.includes(friend?.friend?.id) ? true : false;
 
         return (
             <FriendsToCreateRoom

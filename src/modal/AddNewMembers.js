@@ -45,7 +45,7 @@ const AddNewMembers = ({ friendsList, membersInRoom = [], authentication, curren
     });
 
     const filterMembersAlreadyInRoom = friendsList.filter((friend) => {
-        const FRIEND_ID = friend.friend.id;
+        const FRIEND_ID = friend?.friend?.id;
         return !convertMembersInRoomData.includes(FRIEND_ID);
     });
 

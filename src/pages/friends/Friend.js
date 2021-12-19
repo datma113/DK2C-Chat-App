@@ -14,17 +14,17 @@ const Friend = ({
     deleteFriend
 }) => {
     
-    const FRIEND_ID = friend.friend.id;
+    const FRIEND_ID = friend?.friend?.id;
     return (
         <div className="friend row p-3 center" onClick={functionWhenClick}>
             <div className="col-3 center">
                 <div className="friend__img">
-                    <img src={friend.friend.imageUrl} alt="" />
+                    <img src={friend?.friend?.imageUrl} alt="" />
                 </div>
             </div>
 
             <div className="col-8 d-flex align-items-center">
-                <div className=" text-medium">{friend.friend.displayName}</div>
+                <div className=" text-medium">{friend?.friend?.displayName}</div>
             </div>
 
             <div

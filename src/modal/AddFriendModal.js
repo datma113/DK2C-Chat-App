@@ -14,7 +14,6 @@ const AddfriendModal = () => {
     const getUsersHandle = (query = "") => {
         const VALID_USER_LENGTH = 10;
         const LENGTH_QUERY = query.length;
-        console.log(query);
         if (LENGTH_QUERY >= VALID_USER_LENGTH) dispatch(getUsers(query));
     };
 

@@ -63,6 +63,7 @@ export const getInboxsFromServer = () => {
         return axios
             .get(API_INBOXS)
             .then((resp) => {
+                console.log(resp);
                 dispatch(storeInboxs(resp.data.content));
             })
             .catch((err) => {

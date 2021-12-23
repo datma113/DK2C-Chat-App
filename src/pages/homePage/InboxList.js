@@ -8,7 +8,7 @@ import Proptypes from "prop-types";
 const InboxList = ({ authentication, currentInboxId }) => {
     const dispatch = useDispatch();
     const inboxs = useSelector((state) => state.inboxs);
-    const [loadingOlderInboxs, setloadingOlderInboxs] = useState(1);
+    const [loadingOlderInboxs, setloadingOlderInboxs] = useState(0);
 
     const loadingOlderFriendsInboxs = () => {
         setloadingOlderInboxs((n) => n + 1);
